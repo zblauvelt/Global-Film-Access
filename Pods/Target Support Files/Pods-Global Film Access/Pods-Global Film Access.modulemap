@@ -1,0 +1,6 @@
+framework module Pods_Global_Film_Access {
+  umbrella header "Pods-Global Film Access-umbrella.h"
+
+  export *
+  module * { export * }
+}
