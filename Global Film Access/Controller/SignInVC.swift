@@ -39,6 +39,7 @@ class SignInVC: UIViewController {
                         if error != nil {
                             print("ZACK: Unable to authenticate with Firebase user email")
                         } else {
+                            
                             print("ZACK: Successfully authenticated with Firebase")
                             
                             if let user = user {
