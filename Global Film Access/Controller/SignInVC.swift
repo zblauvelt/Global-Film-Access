@@ -23,7 +23,7 @@ class SignInVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    //MARK: Authenticate with Email
     @IBAction func signInButtonTapped(_ sender: Any) {
         if let email = email.text, let password = password.text {
             
