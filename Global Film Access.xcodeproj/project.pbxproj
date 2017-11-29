@@ -13,6 +13,8 @@
 		14392FB21FC516CE00993BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14392FB11FC516CE00993BB7 /* Assets.xcassets */; };
 		14392FB51FC516CE00993BB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14392FB31FC516CE00993BB7 /* LaunchScreen.storyboard */; };
 		14392FBD1FC51A6C00993BB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14392FBC1FC51A6C00993BB7 /* GoogleService-Info.plist */; };
+		1444D5E61FCE505E00A50CFF /* ProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5E51FCE505E00A50CFF /* ProjectsVC.swift */; };
+		1444D5E81FCE5F9F00A50CFF /* ProjectsTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5E71FCE5F9F00A50CFF /* ProjectsTabBar.swift */; };
 		14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEF81FCAF674005AACA2 /* Constants.swift */; };
 		14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */; };
 		14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */; };
@@ -30,6 +32,8 @@
 		14392FB41FC516CE00993BB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14392FB61FC516CE00993BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14392FBC1FC51A6C00993BB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1444D5E51FCE505E00A50CFF /* ProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsVC.swift; sourceTree = "<group>"; };
+		1444D5E71FCE5F9F00A50CFF /* ProjectsTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTabBar.swift; sourceTree = "<group>"; };
 		14C8AEF81FCAF674005AACA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RndButton.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 			children = (
 				14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */,
 				14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */,
+				1444D5E71FCE5F9F00A50CFF /* ProjectsTabBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				14392FAC1FC516CE00993BB7 /* SignInVC.swift */,
+				1444D5E51FCE505E00A50CFF /* ProjectsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -264,7 +270,9 @@
 				14392FAB1FC516CE00993BB7 /* AppDelegate.swift in Sources */,
 				14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */,
 				14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */,
+				1444D5E81FCE5F9F00A50CFF /* ProjectsTabBar.swift in Sources */,
 				14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */,
+				1444D5E61FCE505E00A50CFF /* ProjectsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
