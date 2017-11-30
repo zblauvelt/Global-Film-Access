@@ -14,8 +14,14 @@ class SignInVC: UIViewController {
     @IBOutlet weak var password: CustomTextField!
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //FIXME: remove when done app
+        email.text = "zblauvelt@hotmail.com"
+        password.text = "Hockey4842"
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -58,7 +64,7 @@ class SignInVC: UIViewController {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         email.text = nil
         password.text = nil
-        //performSegue(withIdentifier: "goToProfile", sender: nil)
+        performSegue(withIdentifier: "signIn", sender: nil)
         
     }
     

@@ -15,6 +15,7 @@
 		14392FBD1FC51A6C00993BB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14392FBC1FC51A6C00993BB7 /* GoogleService-Info.plist */; };
 		1444D5E61FCE505E00A50CFF /* ProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5E51FCE505E00A50CFF /* ProjectsVC.swift */; };
 		1444D5E81FCE5F9F00A50CFF /* ProjectsTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5E71FCE5F9F00A50CFF /* ProjectsTabBar.swift */; };
+		1444D5ED1FCF8E8600A50CFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5EC1FCF8E8600A50CFF /* User.swift */; };
 		14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEF81FCAF674005AACA2 /* Constants.swift */; };
 		14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */; };
 		14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */; };
@@ -34,6 +35,7 @@
 		14392FBC1FC51A6C00993BB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1444D5E51FCE505E00A50CFF /* ProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsVC.swift; sourceTree = "<group>"; };
 		1444D5E71FCE5F9F00A50CFF /* ProjectsTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTabBar.swift; sourceTree = "<group>"; };
+		1444D5EC1FCF8E8600A50CFF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		14C8AEF81FCAF674005AACA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RndButton.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		14392FA91FC516CE00993BB7 /* Global Film Access */ = {
 			isa = PBXGroup;
 			children = (
+				1444D5EB1FCF8E3A00A50CFF /* Models */,
 				14C8AF001FCCEBFB005AACA2 /* Services */,
 				14C8AEF71FCAF62F005AACA2 /* Utilities */,
 				14C8AEF41FCAF5D2005AACA2 /* View */,
@@ -87,6 +90,14 @@
 				14392FBC1FC51A6C00993BB7 /* GoogleService-Info.plist */,
 			);
 			path = "Global Film Access";
+			sourceTree = "<group>";
+		};
+		1444D5EB1FCF8E3A00A50CFF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1444D5EC1FCF8E8600A50CFF /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		14C8AEF41FCAF5D2005AACA2 /* View */ = {
@@ -270,6 +281,7 @@
 				14392FAB1FC516CE00993BB7 /* AppDelegate.swift in Sources */,
 				14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */,
 				14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */,
+				1444D5ED1FCF8E8600A50CFF /* User.swift in Sources */,
 				1444D5E81FCE5F9F00A50CFF /* ProjectsTabBar.swift in Sources */,
 				14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */,
 				1444D5E61FCE505E00A50CFF /* ProjectsVC.swift in Sources */,

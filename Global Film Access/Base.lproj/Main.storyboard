@@ -70,7 +70,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signInButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Dv-sZ-ibG"/>
-                                    <segue destination="a32-4K-aSg" kind="show" id="0fj-jX-zdi"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="Vf7-pN-vEL">
@@ -133,29 +132,60 @@
                     <connections>
                         <outlet property="email" destination="k9T-a4-Jrq" id="DKn-JO-XF1"/>
                         <outlet property="password" destination="byb-uI-lgf" id="Rg9-hb-zH4"/>
+                        <segue destination="a32-4K-aSg" kind="showDetail" identifier="signIn" id="iRo-JK-oAK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-54" y="374"/>
+            <point key="canvasLocation" x="-49" y="374"/>
         </scene>
         <!--Projects-->
-        <scene sceneID="LbH-DU-Dxq">
+        <scene sceneID="2Wb-5z-Bw9">
             <objects>
-                <viewController title="Projects" id="zCJ-6h-Peg" customClass="ProjectsVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wxk-nQ-16V">
+                <tableViewController id="pU0-nW-oIt" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="v9d-zM-x75">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="UPc-K1-Rho"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Projects" id="nBY-eg-Me5">
-                        <barButtonItem key="rightBarButtonItem" image="AccountNavBar" id="OVO-8K-ytx"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectsCell" id="mxE-wE-fKG">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mxE-wE-fKG" id="E99-5q-Geh">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pU0-nW-oIt" id="PNi-QB-CU6"/>
+                            <outlet property="delegate" destination="pU0-nW-oIt" id="kVy-Xc-Gel"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Projects" id="ICi-UP-0Gd">
+                        <barButtonItem key="rightBarButtonItem" image="AccountNavBar" id="E9x-yt-ReO"/>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SFo-WG-mJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dCd-9M-wj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2221.739130434783" y="37.5"/>
+            <point key="canvasLocation" x="2222" y="80"/>
+        </scene>
+        <!--Projects-->
+        <scene sceneID="K2j-iX-5wQ">
+            <objects>
+                <navigationController id="oe1-Jm-h1J" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Projects" image="ClapperBoardTabBar" id="v73-cP-XEz"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yCh-Ib-bdb">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="pU0-nW-oIt" kind="relationship" relationship="rootViewController" id="anK-zd-59U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xti-6s-OVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1496" y="80"/>
         </scene>
         <!--Archive-->
         <scene sceneID="oTi-NU-ivd">
@@ -205,36 +235,18 @@
             </objects>
             <point key="canvasLocation" x="1496" y="757"/>
         </scene>
-        <!--Projects-->
-        <scene sceneID="TXv-9e-mHx">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pHC-q9-Kfw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Projects" image="ClapperBoardTabBar" id="tuI-v4-uYK"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Vb-Wh-FOy">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="zCJ-6h-Peg" kind="relationship" relationship="rootViewController" id="GCP-8W-gZm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xWf-GF-6m8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1497" y="38"/>
-        </scene>
         <!--Projects Tab Bar-->
         <scene sceneID="DyH-vH-BFf">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="a32-4K-aSg" customClass="ProjectsTabBar" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YDt-oj-d3R">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="pHC-q9-Kfw" kind="relationship" relationship="viewControllers" id="pbi-K3-GIy"/>
+                        <segue destination="oe1-Jm-h1J" kind="relationship" relationship="viewControllers" id="4lQ-14-73X"/>
                         <segue destination="ibb-lE-4Is" kind="relationship" relationship="viewControllers" id="1Tv-5N-4bM"/>
                     </connections>
                 </tabBarController>
