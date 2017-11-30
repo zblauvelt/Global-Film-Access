@@ -143,17 +143,46 @@
         <scene sceneID="2Wb-5z-Bw9">
             <objects>
                 <tableViewController id="pU0-nW-oIt" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="v9d-zM-x75">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="v9d-zM-x75">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectsCell" id="mxE-wE-fKG">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectsCell" rowHeight="100" id="mxE-wE-fKG">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mxE-wE-fKG" id="E99-5q-Geh">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThorImage" translatesAutoresizingMaskIntoConstraints="NO" id="Z43-yY-laM">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="99"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="6sy-AJ-jeP"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thor: Ragnorok" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-SL-VrE">
+                                            <rect key="frame" x="128" y="16" width="286" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.1176470588" green="0.14117647059999999" blue="0.15686274510000001" alpha="0.55000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="October 31st, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPn-dz-D0A">
+                                            <rect key="frame" x="128" y="45" width="147" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.1176470588" green="0.14117647059999999" blue="0.15686274510000001" alpha="0.55000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ELj-SL-VrE" firstAttribute="top" secondItem="E99-5q-Geh" secondAttribute="top" constant="16" id="CgT-M5-TSg"/>
+                                        <constraint firstAttribute="bottom" secondItem="Z43-yY-laM" secondAttribute="bottom" id="PSz-vV-7FW"/>
+                                        <constraint firstItem="ELj-SL-VrE" firstAttribute="leading" secondItem="Z43-yY-laM" secondAttribute="trailing" constant="8" id="dkA-s2-Xdw"/>
+                                        <constraint firstItem="Z43-yY-laM" firstAttribute="top" secondItem="E99-5q-Geh" secondAttribute="top" id="f9Z-Jf-jaf"/>
+                                        <constraint firstItem="Z43-yY-laM" firstAttribute="leading" secondItem="E99-5q-Geh" secondAttribute="leading" id="gei-ce-dUZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="ELj-SL-VrE" secondAttribute="trailing" id="h9a-hD-7h3"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -168,7 +197,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCd-9M-wj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2222" y="80"/>
+            <point key="canvasLocation" x="2221.739130434783" y="79.891304347826093"/>
         </scene>
         <!--Projects-->
         <scene sceneID="K2j-iX-5wQ">
@@ -261,6 +290,7 @@
         <image name="ClapperBoardTabBar" width="24" height="18"/>
         <image name="FilingCabinet" width="16" height="22"/>
         <image name="LogoDark" width="125" height="129"/>
+        <image name="ThorImage" width="118" height="100"/>
         <image name="email" width="33" height="33"/>
         <image name="password" width="31" height="31"/>
     </resources>
