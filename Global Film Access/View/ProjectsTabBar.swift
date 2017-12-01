@@ -29,8 +29,7 @@ class ProjectsTabBar: UITabBarController {
     }
     
     @objc func buttonAction(sender: UIButton) {
-        print("ZACK: Button Tapped")
-        //FIXME: Add segue here.
+        //TODO: Add segue here.
     }
     
 

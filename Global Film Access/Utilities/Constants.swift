@@ -8,5 +8,13 @@
 
 
 import UIKit
+import Firebase
+
 
 let SHADOW_GRAY: CGFloat = 120.0/255
+
+let userID = FIRAuth.auth()!.currentUser!.uid
+
+
+
+
