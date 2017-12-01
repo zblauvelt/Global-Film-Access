@@ -18,15 +18,30 @@ class DataService {
     
     //DB references
     private var _REF_BASE = DB_BASE
+    private var _REF_PROJECTS = DB_BASE.child("projects")
     private var _REF_USERS = DB_BASE.child("users")
+    private var _REF_CURRENT_USER = DB_BASE.child("users").child(userID)
+    private var _REF_USER_PROJECTS = DB_BASE.child("users").child(userID).child("userProjects")
 
     
     var REF_BASE: FIRDatabaseReference {
         return _REF_BASE
     }
     
+    var REF_PROJECTS: FIRDatabaseReference {
+        return _REF_PROJECTS
+    }
+    
     var REF_USERS: FIRDatabaseReference {
         return _REF_USERS
+    }
+    
+    var REF_CURRENT_USER: FIRDatabaseReference {
+        return _REF_CURRENT_USER
+    }
+    
+    var REF_USER_PROJECTS: FIRDatabaseReference {
+        return _REF_USER_PROJECTS
     }
     
     
@@ -36,4 +51,5 @@ class DataService {
     }
     
     
-}
+    }
+
