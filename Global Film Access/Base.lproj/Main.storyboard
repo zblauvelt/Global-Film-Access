@@ -148,7 +148,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectsCell" rowHeight="100" id="mxE-wE-fKG">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectsCell" rowHeight="100" id="mxE-wE-fKG" customClass="ProjectsCell" customModule="Global_Film_Access" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mxE-wE-fKG" id="E99-5q-Geh">
@@ -184,6 +184,11 @@
                                         <constraint firstAttribute="trailing" secondItem="ELj-SL-VrE" secondAttribute="trailing" id="h9a-hD-7h3"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="projectImage" destination="Z43-yY-laM" id="Ciu-6u-v8J"/>
+                                    <outlet property="projectNameLbl" destination="ELj-SL-VrE" id="bSG-W9-flt"/>
+                                    <outlet property="projectReleaseDate" destination="zPn-dz-D0A" id="Hvt-zJ-EAY"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
