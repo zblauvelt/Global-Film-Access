@@ -47,7 +47,7 @@ class ProjectDetails {
             self._name = name
         }
         
-        if let date = projectData["date"] {
+        if let date = projectData["startDate"] {
             self._date = date
         }
     }

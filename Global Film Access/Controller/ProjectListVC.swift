@@ -11,14 +11,12 @@ import Firebase
 
 class ProjectListVC: UITableViewController {
 
-    var projects = [String]()
-    var userProjectDetails = [ProjectDetails]()
+   var projects = [String]()
+   var userProjectDetails = [ProjectDetails]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserProjects()
-        print("COUNT2: \(projects.count)")
-        getProjectDetails()
         
     }
 
@@ -28,23 +26,28 @@ class ProjectListVC: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return userProjectDetails.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let userProject = userProjectDetails[indexPath.row]
+        let cellIdentifier = "ProjectsCell"
 
         // Configure the cell...
-
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ProjectsCell {
+            cell.configureCell(userProject: userProject)
+            return cell
+        } else {
+            return ProjectsCell()
+        }
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
@@ -94,7 +97,7 @@ class ProjectListVC: UITableViewController {
     
     //Need to get info to load in ViewDidLoad and need to figure out how to get the current user's projects and access the total details.
     func getUserProjects() {
-        DataService.ds.REF_USER_PROJECTS.observe(.value) { (snapshot) in
+        DataService.ds.REF_USER_PROJECTS.observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 self.projects.removeAll()
                 for snap in snapshot {
@@ -110,28 +113,33 @@ class ProjectListVC: UITableViewController {
                 }
                 
             }
-        }
+        })
     }
     
     func getProjectDetails() {
-        //or project in projects {
 
-            DataService.ds.REF_PROJECTS.observe(.value) { (snapshot) in
+        DataService.ds.REF_PROJECTS.observe(.value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     self.userProjectDetails.removeAll()
                     for snap in snapshot {
                         print("SNAP: \(snap)")
-                        
+                       
+                      //If the id matches the id from projects then it will be added to userProjectsDetails Array
                         if let projectDetailDict = snap.value as? Dictionary<String, String> {
                             let key = snap.key
                             let projectDetails = ProjectDetails(projectid: key, projectData: projectDetailDict)
-                            self.userProjectDetails.append(projectDetails)
+                            
+                            if self.projects.contains("\(projectDetails.projectid)") {
+                                self.userProjectDetails.append(projectDetails)
                         }
                     }
                 }
             }
-        //}
+            self.tableView.reloadData()
+        })
         
     }
+    
+
 
 }
