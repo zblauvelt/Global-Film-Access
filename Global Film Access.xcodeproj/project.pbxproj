@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E5961FD8C8DD00925648 /* CommonTextField.swift */; };
 		14392FAB1FC516CE00993BB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14392FAA1FC516CE00993BB7 /* AppDelegate.swift */; };
 		14392FAD1FC516CE00993BB7 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14392FAC1FC516CE00993BB7 /* SignInVC.swift */; };
 		14392FB01FC516CE00993BB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14392FAE1FC516CE00993BB7 /* Main.storyboard */; };
@@ -20,6 +21,8 @@
 		1444D5F11FD0CC9000A50CFF /* ProjectListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F01FD0CC9000A50CFF /* ProjectListVC.swift */; };
 		1444D5F31FD0E67E00A50CFF /* ProjectDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F21FD0E67E00A50CFF /* ProjectDetails.swift */; };
 		1444D5F51FD45B9900A50CFF /* ProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */; };
+		1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F61FD63F7000A50CFF /* CircleImage.swift */; };
+		1444D5F91FD6414200A50CFF /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F81FD6414200A50CFF /* CustomView.swift */; };
 		14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEF81FCAF674005AACA2 /* Constants.swift */; };
 		14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */; };
 		14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */; };
@@ -29,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		0D1F3B38E97BD801B0E1B7CE /* Pods-Global Film Access.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Global Film Access.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Global Film Access/Pods-Global Film Access.debug.xcconfig"; sourceTree = "<group>"; };
+		1433E5961FD8C8DD00925648 /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
 		14392FA71FC516CE00993BB7 /* Global Film Access.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Global Film Access.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14392FAA1FC516CE00993BB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14392FAC1FC516CE00993BB7 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -44,6 +48,8 @@
 		1444D5F01FD0CC9000A50CFF /* ProjectListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListVC.swift; sourceTree = "<group>"; };
 		1444D5F21FD0E67E00A50CFF /* ProjectDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetails.swift; sourceTree = "<group>"; };
 		1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCell.swift; sourceTree = "<group>"; };
+		1444D5F61FD63F7000A50CFF /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		1444D5F81FD6414200A50CFF /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		14C8AEF81FCAF674005AACA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RndButton.swift; sourceTree = "<group>"; };
@@ -116,6 +122,9 @@
 				14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */,
 				14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */,
 				1444D5E71FCE5F9F00A50CFF /* ProjectsTabBar.swift */,
+				1444D5F61FD63F7000A50CFF /* CircleImage.swift */,
+				1444D5F81FD6414200A50CFF /* CustomView.swift */,
+				1433E5961FD8C8DD00925648 /* CommonTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,9 +297,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1444D5F91FD6414200A50CFF /* CustomView.swift in Sources */,
 				1444D5F11FD0CC9000A50CFF /* ProjectListVC.swift in Sources */,
+				1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */,
 				14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */,
 				14392FAD1FC516CE00993BB7 /* SignInVC.swift in Sources */,
+				1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */,
 				1444D5EF1FD0C53900A50CFF /* UserProjects.swift in Sources */,
 				1444D5F31FD0E67E00A50CFF /* ProjectDetails.swift in Sources */,
 				14392FAB1FC516CE00993BB7 /* AppDelegate.swift in Sources */,

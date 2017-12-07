@@ -204,6 +204,126 @@
             </objects>
             <point key="canvasLocation" x="2221.739130434783" y="79.891304347826093"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="Td4-EN-RmW">
+            <objects>
+                <viewController id="h8P-8I-duR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ks0-wr-d1U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CamerBackground" translatesAutoresizingMaskIntoConstraints="NO" id="27i-Sl-40a">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDT-Wm-P3n" customClass="CustomView" customModule="Global_Film_Access" customModuleProvider="target">
+                                <rect key="frame" x="72.666666666666686" y="120" width="269" height="420"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5a-be-OW5">
+                                        <rect key="frame" x="38" y="76" width="193" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="BgN-8u-nJ1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="27"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProjectFilm" translatesAutoresizingMaskIntoConstraints="NO" id="J4b-os-tAB">
+                                        <rect key="frame" x="105" y="8" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="QRE-lX-djH"/>
+                                            <constraint firstAttribute="height" constant="60" id="l1I-wD-ite"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EUT-yx-gCr">
+                                        <rect key="frame" x="15" y="168.33333333333331" width="239" height="85"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KRK-xw-5tn">
+                                                <rect key="frame" x="0.0" y="0.0" width="239" height="40"/>
+                                                <subviews>
+                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBtn" translatesAutoresizingMaskIntoConstraints="NO" id="eBx-PX-Oiz" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="JJq-BP-sSZ"/>
+                                                            <constraint firstAttribute="width" constant="40" id="Q6g-7p-B9Q"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fxa-1X-crB" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                        <rect key="frame" x="50" y="0.0" width="189" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="VM6-eX-Bpd"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="48s-LM-2Aj">
+                                                <rect key="frame" x="0.0" y="45" width="239" height="40"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fw4-gc-pj3">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="40" id="QRR-xZ-L6r"/>
+                                                            <constraint firstAttribute="height" constant="40" id="orS-UO-HVX"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Release Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yv3-8C-xA7" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                        <rect key="frame" x="50" y="0.0" width="189" height="40"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieq-ZT-jJd" customClass="RndButton" customModule="Global_Film_Access" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="295.66666666666669" width="253" height="30"/>
+                                        <color key="backgroundColor" red="0.0084041617809999993" green="0.1625512838" blue="0.29542711379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="jaw-tL-wBA"/>
+                                        </constraints>
+                                        <state key="normal" title="Save Project">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ieq-ZT-jJd" firstAttribute="leading" secondItem="RDT-Wm-P3n" secondAttribute="leading" constant="8" id="35A-ES-uCW"/>
+                                    <constraint firstItem="ieq-ZT-jJd" firstAttribute="top" secondItem="EUT-yx-gCr" secondAttribute="bottom" constant="42.333333333333371" id="8bE-KU-ZYB"/>
+                                    <constraint firstItem="J4b-os-tAB" firstAttribute="top" secondItem="RDT-Wm-P3n" secondAttribute="top" constant="8" id="BFq-EJ-C8f"/>
+                                    <constraint firstItem="J4b-os-tAB" firstAttribute="centerX" secondItem="RDT-Wm-P3n" secondAttribute="centerX" id="PKg-Fd-W2z"/>
+                                    <constraint firstAttribute="trailing" secondItem="ieq-ZT-jJd" secondAttribute="trailing" constant="8" id="QOa-xa-IPa"/>
+                                    <constraint firstAttribute="trailing" secondItem="EUT-yx-gCr" secondAttribute="trailing" constant="15" id="RIu-7R-eoT"/>
+                                    <constraint firstItem="EUT-yx-gCr" firstAttribute="centerY" secondItem="RDT-Wm-P3n" secondAttribute="centerY" id="S4D-k8-YOx"/>
+                                    <constraint firstAttribute="height" constant="420" id="dia-qL-jGa"/>
+                                    <constraint firstAttribute="width" constant="269" id="fZN-7X-1s4"/>
+                                    <constraint firstItem="Z5a-be-OW5" firstAttribute="centerX" secondItem="RDT-Wm-P3n" secondAttribute="centerX" id="j6m-Fw-EfB"/>
+                                    <constraint firstItem="Z5a-be-OW5" firstAttribute="top" secondItem="J4b-os-tAB" secondAttribute="bottom" constant="8" id="m53-YG-ksV"/>
+                                    <constraint firstItem="EUT-yx-gCr" firstAttribute="leading" secondItem="RDT-Wm-P3n" secondAttribute="leading" constant="15" id="rz2-xm-OBc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RDT-Wm-P3n" firstAttribute="centerX" secondItem="Ks0-wr-d1U" secondAttribute="centerX" id="02N-vr-vaA"/>
+                            <constraint firstItem="27i-Sl-40a" firstAttribute="leading" secondItem="9Yn-wH-00T" secondAttribute="leading" id="5ij-lw-2Ut"/>
+                            <constraint firstItem="9Yn-wH-00T" firstAttribute="bottom" secondItem="27i-Sl-40a" secondAttribute="bottom" id="8SN-R8-gsD"/>
+                            <constraint firstItem="9Yn-wH-00T" firstAttribute="trailing" secondItem="27i-Sl-40a" secondAttribute="trailing" id="V9V-cA-NFt"/>
+                            <constraint firstItem="RDT-Wm-P3n" firstAttribute="top" secondItem="9Yn-wH-00T" secondAttribute="top" constant="100" id="bM6-0Q-Sk6"/>
+                            <constraint firstItem="27i-Sl-40a" firstAttribute="top" secondItem="Ks0-wr-d1U" secondAttribute="top" id="hhU-eR-1zH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Yn-wH-00T"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="j4K-0J-ySJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vHJ-0O-KVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2957.971014492754" y="79.891304347826093"/>
+        </scene>
         <!--Projects-->
         <scene sceneID="K2j-iX-5wQ">
             <objects>
@@ -282,6 +402,7 @@
                     <connections>
                         <segue destination="oe1-Jm-h1J" kind="relationship" relationship="viewControllers" id="4lQ-14-73X"/>
                         <segue destination="ibb-lE-4Is" kind="relationship" relationship="viewControllers" id="1Tv-5N-4bM"/>
+                        <segue destination="h8P-8I-duR" kind="presentation" identifier="CreateProjectSegue" id="g36-id-bS0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56u-eg-MBE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -294,7 +415,9 @@
         <image name="CamerBackground" width="375" height="667"/>
         <image name="ClapperBoardTabBar" width="24" height="18"/>
         <image name="FilingCabinet" width="16" height="22"/>
+        <image name="ImageBtn" width="60" height="60"/>
         <image name="LogoDark" width="125" height="129"/>
+        <image name="ProjectFilm" width="56" height="53"/>
         <image name="ThorImage" width="118" height="100"/>
         <image name="email" width="33" height="33"/>
         <image name="password" width="31" height="31"/>
