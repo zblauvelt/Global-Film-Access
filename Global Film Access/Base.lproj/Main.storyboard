@@ -207,7 +207,7 @@
         <!--Item-->
         <scene sceneID="Td4-EN-RmW">
             <objects>
-                <viewController id="h8P-8I-duR" sceneMemberID="viewController">
+                <viewController id="h8P-8I-duR" customClass="CreateProjectVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ks0-wr-d1U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -306,21 +306,40 @@
                                     <constraint firstItem="EUT-yx-gCr" firstAttribute="leading" secondItem="RDT-Wm-P3n" secondAttribute="leading" constant="15" id="rz2-xm-OBc"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Md-gP-x6Q">
+                                <rect key="frame" x="189" y="453.66666666666669" width="37" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="uQf-Qc-eoY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.0" alpha="0.55311451342281881" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="q9E-Jo-Q9x" kind="unwind" unwindAction="closWithSegue:" id="sAS-ad-1ep"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RDT-Wm-P3n" firstAttribute="centerX" secondItem="Ks0-wr-d1U" secondAttribute="centerX" id="02N-vr-vaA"/>
+                            <constraint firstItem="4Md-gP-x6Q" firstAttribute="top" secondItem="ieq-ZT-jJd" secondAttribute="bottom" constant="8" id="1g6-J7-1cl"/>
                             <constraint firstItem="27i-Sl-40a" firstAttribute="leading" secondItem="9Yn-wH-00T" secondAttribute="leading" id="5ij-lw-2Ut"/>
                             <constraint firstItem="9Yn-wH-00T" firstAttribute="bottom" secondItem="27i-Sl-40a" secondAttribute="bottom" id="8SN-R8-gsD"/>
                             <constraint firstItem="9Yn-wH-00T" firstAttribute="trailing" secondItem="27i-Sl-40a" secondAttribute="trailing" id="V9V-cA-NFt"/>
                             <constraint firstItem="RDT-Wm-P3n" firstAttribute="top" secondItem="9Yn-wH-00T" secondAttribute="top" constant="100" id="bM6-0Q-Sk6"/>
                             <constraint firstItem="27i-Sl-40a" firstAttribute="top" secondItem="Ks0-wr-d1U" secondAttribute="top" id="hhU-eR-1zH"/>
+                            <constraint firstItem="4Md-gP-x6Q" firstAttribute="centerX" secondItem="Ks0-wr-d1U" secondAttribute="centerX" id="p2d-uK-Tee"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Yn-wH-00T"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="j4K-0J-ySJ"/>
+                    <connections>
+                        <outlet property="containerView" destination="RDT-Wm-P3n" id="KC4-Sj-RZg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHJ-0O-KVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="q9E-Jo-Q9x" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2957.971014492754" y="79.891304347826093"/>
         </scene>
