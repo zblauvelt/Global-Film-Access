@@ -8,24 +8,58 @@
 
 import UIKit
 
-class CreateProjectVC: UIViewController {
+class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var containerView: CustomView!
     @IBOutlet weak var projectNameLbl: CommonTextField!
     @IBOutlet weak var dateLbl: CommonTextField!
+    @IBOutlet weak var imageAdd: CircleImage!
+    
     let picker = UIDatePicker()
+    var imagePicker: UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
-        //Animation for View
+        //creating the imagepicker
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true   
+        imagePicker.delegate = self
+        //Animation for View to popup
         containerView.transform = CGAffineTransform.init(scaleX: 0, y:0)
     }
-  //Animation for View
+  //Animation for View to popup
     override func viewDidAppear(_ animated: Bool) {
         UIView.animate(withDuration: 0.3, animations: {
             self.containerView.transform = CGAffineTransform.identity
         })
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imageAdd.image = image
+            imageAdd.contentMode = .scaleToFill
+        } else {
+            print("ZACK: A valid image wasn't selected.")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func addImageTapped(_ sender: Any) {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

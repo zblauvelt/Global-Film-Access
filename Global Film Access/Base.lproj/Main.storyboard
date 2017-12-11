@@ -241,13 +241,17 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KRK-xw-5tn">
                                                 <rect key="frame" x="0.0" y="0.0" width="239" height="50"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-6z-C2x" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
+                                                    <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-6z-C2x" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="ATR-aA-8T2"/>
                                                             <constraint firstAttribute="width" constant="50" id="nyB-in-Wct"/>
                                                         </constraints>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="9gk-5v-RuG" appends="YES" id="YYL-fI-ZCd"/>
+                                                        </connections>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fxa-1X-crB" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
                                                         <rect key="frame" x="60" y="0.0" width="179" height="50"/>
@@ -343,11 +347,17 @@
                     <connections>
                         <outlet property="containerView" destination="RDT-Wm-P3n" id="KC4-Sj-RZg"/>
                         <outlet property="dateLbl" destination="tIP-kp-VzA" id="pag-lB-ASr"/>
+                        <outlet property="imageAdd" destination="L0x-6z-C2x" id="YLk-Pq-ryR"/>
                         <outlet property="projectNameLbl" destination="Fxa-1X-crB" id="i8X-Su-0ip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHJ-0O-KVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="q9E-Jo-Q9x" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="9gk-5v-RuG">
+                    <connections>
+                        <action selector="addImageTapped:" destination="h8P-8I-duR" id="K1O-Xv-Avf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2957.971014492754" y="79.891304347826093"/>
         </scene>
