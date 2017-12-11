@@ -11,6 +11,7 @@
     <customFonts key="customFonts">
         <array key="Avenir.ttc">
             <string>Avenir-Book</string>
+            <string>Avenir-BookOblique</string>
         </array>
     </customFonts>
     <scenes>
@@ -235,44 +236,48 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EUT-yx-gCr">
-                                        <rect key="frame" x="15" y="168.33333333333331" width="239" height="85"/>
+                                        <rect key="frame" x="15" y="158.33333333333331" width="239" height="105"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KRK-xw-5tn">
-                                                <rect key="frame" x="0.0" y="0.0" width="239" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="239" height="50"/>
                                                 <subviews>
-                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBtn" translatesAutoresizingMaskIntoConstraints="NO" id="eBx-PX-Oiz" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-6z-C2x" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="JJq-BP-sSZ"/>
-                                                            <constraint firstAttribute="width" constant="40" id="Q6g-7p-B9Q"/>
+                                                            <constraint firstAttribute="height" constant="50" id="ATR-aA-8T2"/>
+                                                            <constraint firstAttribute="width" constant="50" id="nyB-in-Wct"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fxa-1X-crB" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
-                                                        <rect key="frame" x="50" y="0.0" width="189" height="40"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fxa-1X-crB" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                        <rect key="frame" x="60" y="0.0" width="179" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="VM6-eX-Bpd"/>
+                                                            <constraint firstAttribute="height" constant="50" id="VM6-eX-Bpd"/>
                                                         </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-BookOblique" family="Avenir" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="48s-LM-2Aj">
-                                                <rect key="frame" x="0.0" y="45" width="239" height="40"/>
+                                                <rect key="frame" x="0.0" y="55" width="239" height="50"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fw4-gc-pj3">
-                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Lg-aP-WaR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="40" id="QRR-xZ-L6r"/>
-                                                            <constraint firstAttribute="height" constant="40" id="orS-UO-HVX"/>
+                                                            <constraint firstAttribute="height" constant="50" id="5Y8-hW-cH3"/>
+                                                            <constraint firstAttribute="width" constant="50" id="Ddb-iT-4uN"/>
                                                         </constraints>
                                                     </view>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Release Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yv3-8C-xA7" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
-                                                        <rect key="frame" x="50" y="0.0" width="189" height="40"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tIP-kp-VzA" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                        <rect key="frame" x="60" y="0.0" width="179" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="InT-Rk-dE8"/>
+                                                        </constraints>
                                                         <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-BookOblique" family="Avenir" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
@@ -280,7 +285,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieq-ZT-jJd" customClass="RndButton" customModule="Global_Film_Access" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="295.66666666666669" width="253" height="30"/>
+                                        <rect key="frame" x="8" y="305.66666666666669" width="253" height="30"/>
                                         <color key="backgroundColor" red="0.0084041617809999993" green="0.1625512838" blue="0.29542711379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="jaw-tL-wBA"/>
@@ -289,12 +294,27 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Md-gP-x6Q">
+                                        <rect key="frame" x="109.66666666666669" y="343" width="50" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="uDc-Fm-B9g"/>
+                                            <constraint firstAttribute="height" constant="30" id="uQf-Qc-eoY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="0.0" alpha="0.55311451342281881" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="q9E-Jo-Q9x" kind="unwind" unwindAction="closWithSegue:" id="sAS-ad-1ep"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ieq-ZT-jJd" firstAttribute="leading" secondItem="RDT-Wm-P3n" secondAttribute="leading" constant="8" id="35A-ES-uCW"/>
                                     <constraint firstItem="ieq-ZT-jJd" firstAttribute="top" secondItem="EUT-yx-gCr" secondAttribute="bottom" constant="42.333333333333371" id="8bE-KU-ZYB"/>
                                     <constraint firstItem="J4b-os-tAB" firstAttribute="top" secondItem="RDT-Wm-P3n" secondAttribute="top" constant="8" id="BFq-EJ-C8f"/>
+                                    <constraint firstItem="4Md-gP-x6Q" firstAttribute="centerX" secondItem="RDT-Wm-P3n" secondAttribute="centerX" id="OfI-7f-CWY"/>
                                     <constraint firstItem="J4b-os-tAB" firstAttribute="centerX" secondItem="RDT-Wm-P3n" secondAttribute="centerX" id="PKg-Fd-W2z"/>
                                     <constraint firstAttribute="trailing" secondItem="ieq-ZT-jJd" secondAttribute="trailing" constant="8" id="QOa-xa-IPa"/>
                                     <constraint firstAttribute="trailing" secondItem="EUT-yx-gCr" secondAttribute="trailing" constant="15" id="RIu-7R-eoT"/>
@@ -304,38 +324,26 @@
                                     <constraint firstItem="Z5a-be-OW5" firstAttribute="centerX" secondItem="RDT-Wm-P3n" secondAttribute="centerX" id="j6m-Fw-EfB"/>
                                     <constraint firstItem="Z5a-be-OW5" firstAttribute="top" secondItem="J4b-os-tAB" secondAttribute="bottom" constant="8" id="m53-YG-ksV"/>
                                     <constraint firstItem="EUT-yx-gCr" firstAttribute="leading" secondItem="RDT-Wm-P3n" secondAttribute="leading" constant="15" id="rz2-xm-OBc"/>
+                                    <constraint firstItem="4Md-gP-x6Q" firstAttribute="top" secondItem="ieq-ZT-jJd" secondAttribute="bottom" constant="8" id="vg9-X0-ymo"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Md-gP-x6Q">
-                                <rect key="frame" x="189" y="453.66666666666669" width="37" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="uQf-Qc-eoY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="0.0" alpha="0.55311451342281881" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="q9E-Jo-Q9x" kind="unwind" unwindAction="closWithSegue:" id="sAS-ad-1ep"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RDT-Wm-P3n" firstAttribute="centerX" secondItem="Ks0-wr-d1U" secondAttribute="centerX" id="02N-vr-vaA"/>
-                            <constraint firstItem="4Md-gP-x6Q" firstAttribute="top" secondItem="ieq-ZT-jJd" secondAttribute="bottom" constant="8" id="1g6-J7-1cl"/>
                             <constraint firstItem="27i-Sl-40a" firstAttribute="leading" secondItem="9Yn-wH-00T" secondAttribute="leading" id="5ij-lw-2Ut"/>
                             <constraint firstItem="9Yn-wH-00T" firstAttribute="bottom" secondItem="27i-Sl-40a" secondAttribute="bottom" id="8SN-R8-gsD"/>
                             <constraint firstItem="9Yn-wH-00T" firstAttribute="trailing" secondItem="27i-Sl-40a" secondAttribute="trailing" id="V9V-cA-NFt"/>
                             <constraint firstItem="RDT-Wm-P3n" firstAttribute="top" secondItem="9Yn-wH-00T" secondAttribute="top" constant="100" id="bM6-0Q-Sk6"/>
                             <constraint firstItem="27i-Sl-40a" firstAttribute="top" secondItem="Ks0-wr-d1U" secondAttribute="top" id="hhU-eR-1zH"/>
-                            <constraint firstItem="4Md-gP-x6Q" firstAttribute="centerX" secondItem="Ks0-wr-d1U" secondAttribute="centerX" id="p2d-uK-Tee"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Yn-wH-00T"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="j4K-0J-ySJ"/>
                     <connections>
                         <outlet property="containerView" destination="RDT-Wm-P3n" id="KC4-Sj-RZg"/>
+                        <outlet property="dateLbl" destination="tIP-kp-VzA" id="pag-lB-ASr"/>
+                        <outlet property="projectNameLbl" destination="Fxa-1X-crB" id="i8X-Su-0ip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHJ-0O-KVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -432,9 +440,9 @@
     <resources>
         <image name="AccountNavBar" width="23" height="24"/>
         <image name="CamerBackground" width="375" height="667"/>
+        <image name="Camera" width="30" height="24"/>
         <image name="ClapperBoardTabBar" width="24" height="18"/>
         <image name="FilingCabinet" width="16" height="22"/>
-        <image name="ImageBtn" width="60" height="60"/>
         <image name="LogoDark" width="125" height="129"/>
         <image name="ProjectFilm" width="56" height="53"/>
         <image name="ThorImage" width="118" height="100"/>
