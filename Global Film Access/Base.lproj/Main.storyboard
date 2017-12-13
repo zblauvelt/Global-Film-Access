@@ -241,9 +241,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KRK-xw-5tn">
                                                 <rect key="frame" x="0.0" y="0.0" width="239" height="50"/>
                                                 <subviews>
-                                                    <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-6z-C2x" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
+                                                    <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBtn" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-6z-C2x" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="ATR-aA-8T2"/>
@@ -297,6 +296,10 @@
                                         <state key="normal" title="Save Project">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="saveImageTapped:" destination="h8P-8I-duR" eventType="touchUpInside" id="b0u-mW-IQL"/>
+                                            <segue destination="q9E-Jo-Q9x" kind="unwind" unwindAction="closWithSegue:" id="vFg-Yq-ggr"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Md-gP-x6Q">
                                         <rect key="frame" x="109.66666666666669" y="343" width="50" height="30"/>
@@ -450,9 +453,9 @@
     <resources>
         <image name="AccountNavBar" width="23" height="24"/>
         <image name="CamerBackground" width="375" height="667"/>
-        <image name="Camera" width="30" height="24"/>
         <image name="ClapperBoardTabBar" width="24" height="18"/>
         <image name="FilingCabinet" width="16" height="22"/>
+        <image name="ImageBtn" width="60" height="60"/>
         <image name="LogoDark" width="125" height="129"/>
         <image name="ProjectFilm" width="56" height="53"/>
         <image name="ThorImage" width="118" height="100"/>
