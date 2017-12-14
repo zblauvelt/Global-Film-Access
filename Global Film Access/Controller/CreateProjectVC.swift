@@ -90,25 +90,35 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
     
     
-    //Post to Firebase
+    //MARK: Post to Firebase
     func addProjectToFirebase(imgURL: String) {
+        
+        //Posting to global projects list
         let project: Dictionary<String, AnyObject> = [
             "name": projectNameLbl.text as AnyObject,
             "image": imgURL as AnyObject,
             "startDate": dateLbl.text as AnyObject
         ]
-        
+
         let firebaseProject = DataService.ds.REF_PROJECTS.childByAutoId()
         firebaseProject.setValue(project)
         
+        //Posting to userbased project list
         let projectId = "\(firebaseProject.key)"
         
         let newUserProject: Dictionary<String, String> = [
+            "admin": "true"
+        ]
+        
+        let firebaseUserProject = DataService.ds.REF_USER_PROJECTS.child(projectId)
+        firebaseUserProject.setValue(newUserProject)
+        //Posting to current user current project list
+        let newCurrentProject: Dictionary<String, String> = [
             "projectid": projectId
         ]
         
-        let firebaseUserProject = DataService.ds.REF_USER_PROJECTS.childByAutoId()
-        firebaseUserProject.setValue(newUserProject)
+        let firebaseUserCurrentProject = DataService.ds.REF_USER_CURRENT_PROJECTS.childByAutoId()
+        firebaseUserCurrentProject.setValue(newCurrentProject)
         
         projectNameLbl.text = nil
         imageSelected = true
@@ -118,7 +128,7 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
     
     
-    //Creation of datepicker
+    //MARK: Creation of datepicker
     func createDatePicker() {
         //toolbar
         let toolbar = UIToolbar()

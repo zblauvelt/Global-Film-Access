@@ -11,6 +11,7 @@ import Foundation
 class UserProjects {
     private var _userProjects: String!
     private var _projectid: String!
+    private var _admin: String!
     
     var userProjects: String {
         return _userProjects
@@ -20,8 +21,13 @@ class UserProjects {
         return _projectid
     }
     
-    init(projectid: String) {
+    var admin: String {
+        return _admin
+    }
+    
+    init(projectid: String, admin: String) {
         self._projectid = projectid
+        self._admin = admin
     }
     
     init(userProjects: String, projectData: Dictionary<String, String>) {
@@ -29,6 +35,10 @@ class UserProjects {
         
         if let projectid = projectData["projectid"] {
             self._projectid = projectid
+        }
+        
+        if let admin = projectData["admin"] {
+            self._admin = admin
         }
     }
     

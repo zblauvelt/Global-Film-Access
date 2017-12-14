@@ -11,8 +11,9 @@
 
     class ProjectListVC: UITableViewController {
         
-        var projects = [String]()
+        var currentProjects = [CurArchProjects]()
         var userProjectDetails = [ProjectDetails]()
+        var projectid = [String]()
         static var imageCache: NSCache<NSString, UIImage> = NSCache()
 
         override func viewDidLoad() {
@@ -20,8 +21,6 @@
             getUserProjects()
             
         }
-
-
 
         // MARK: - Table view data source
 
@@ -55,25 +54,32 @@
             }
     }
 
-        /*
-        // Override to support conditional editing of the table view.
+        override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+            let archive = UITableViewRowAction(style: .normal, title: "Archive") { (rowAction, indexPath) in
+                self.moveToArchive(indexPath: indexPath)
+            }
+            archive.backgroundColor = UIColor.blue
+            return [archive]
+        }
+        
+      /*  // Override to support conditional editing of the table view.
         override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
             // Return false if you do not want the specified item to be editable.
             return true
-        }
-        */
+        }*/
+     
 
-        /*
-        // Override to support editing the table view.
+        
+       /* // Override to support editing the table view.
         override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
-                // Delete the row from the data source
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            } else if editingStyle == .insert {
-                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            
+            let archive = UITableViewRowAction(style: .normal, title: "Archive") { (rowAction, indexPath) in
+                self.moveToArchive(indexPath: indexPath)
             }
-        }
-        */
+            archive.backgroundColor = UIColor.blue
+            return [archive]
+        }*/
+     
 
         /*
         // Override to support rearranging the table view.
@@ -103,17 +109,17 @@
         
         //Need to get info to load in ViewDidLoad and need to figure out how to get the current user's projects and access the total details.
         func getUserProjects() {
-            DataService.ds.REF_USER_PROJECTS.observe(.value, with: { (snapshot) in
+            DataService.ds.REF_USER_CURRENT_PROJECTS.observe(.value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    self.projects.removeAll()
+                    self.projectid.removeAll()
                     for snap in snapshot {
                         print("SNAP:\(snap)")
                         
                         if let projectDict = snap.value as? Dictionary<String, String> {
                             let key = snap.key
-                            let project = UserProjects(userProjects: key, projectData: projectDict)
-                            self.projects.append(project.projectid)
-                            print("COUNT: \(self.projects.count)")
+                            let project = CurArchProjects(projectKey: key, projectData: projectDict)
+                            self.currentProjects.append(project)
+                            self.projectid.append(project.projectid)
                             self.getProjectDetails()
                         }
                     }
@@ -135,7 +141,7 @@
                                 let key = snap.key
                                 let projectDetails = ProjectDetails(projectid: key, projectData: projectDetailDict)
                                 
-                                if self.projects.contains("\(projectDetails.projectid)") {
+                                if self.projectid.contains("\(projectDetails.projectid)") {
                                     self.userProjectDetails.append(projectDetails)
                             }
                         }
@@ -144,6 +150,20 @@
                 self.tableView.reloadData()
             })
             
+        }
+        
+        //Move row to archive
+        func moveToArchive(indexPath: IndexPath) {
+            let project = userProjectDetails[indexPath.row].projectid
+            let archivedProject: Dictionary<String, String> = [
+                "projectid": project
+            ]
+            let firebaseArchiveProject = DataService.ds.REF_USER_ARCHIVE_PROJECTS.childByAutoId()
+            firebaseArchiveProject.setValue(archivedProject)
+            
+            let currentProjectAtRow = currentProjects[indexPath.row].projectKey
+            let firebaseRemoveFromCurrent = DataService.ds.REF_USER_CURRENT_PROJECTS.child(currentProjectAtRow)
+            firebaseRemoveFromCurrent.removeValue()
         }
         
         //unwind Create Project VC

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1417FAB51FE21A6300EDBF1B /* CurArchProjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1417FAB41FE21A6300EDBF1B /* CurArchProjects.swift */; };
 		1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E5961FD8C8DD00925648 /* CommonTextField.swift */; };
 		1433E5991FD8D11400925648 /* CreateProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E5981FD8D11400925648 /* CreateProjectVC.swift */; };
 		1433E59D1FD8E86200925648 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E59C1FD8E86200925648 /* CircleButton.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		0D1F3B38E97BD801B0E1B7CE /* Pods-Global Film Access.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Global Film Access.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Global Film Access/Pods-Global Film Access.debug.xcconfig"; sourceTree = "<group>"; };
+		1417FAB41FE21A6300EDBF1B /* CurArchProjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurArchProjects.swift; sourceTree = "<group>"; };
 		1433E5961FD8C8DD00925648 /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
 		1433E5981FD8D11400925648 /* CreateProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectVC.swift; sourceTree = "<group>"; };
 		1433E59C1FD8E86200925648 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1417FAB31FE1F73600EDBF1B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1444D5EC1FCF8E8600A50CFF /* User.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		14392F9E1FC516CE00993BB7 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +103,7 @@
 		14392FA91FC516CE00993BB7 /* Global Film Access */ = {
 			isa = PBXGroup;
 			children = (
+				1417FAB31FE1F73600EDBF1B /* Protocols */,
 				1444D5EB1FCF8E3A00A50CFF /* Models */,
 				14C8AF001FCCEBFB005AACA2 /* Services */,
 				14C8AEF71FCAF62F005AACA2 /* Utilities */,
@@ -111,9 +122,9 @@
 		1444D5EB1FCF8E3A00A50CFF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1444D5EC1FCF8E8600A50CFF /* User.swift */,
 				1444D5EE1FD0C53900A50CFF /* UserProjects.swift */,
 				1444D5F21FD0E67E00A50CFF /* ProjectDetails.swift */,
+				1417FAB41FE21A6300EDBF1B /* CurArchProjects.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,6 +317,7 @@
 				1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */,
 				14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */,
 				14392FAD1FC516CE00993BB7 /* SignInVC.swift in Sources */,
+				1417FAB51FE21A6300EDBF1B /* CurArchProjects.swift in Sources */,
 				1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */,
 				1444D5EF1FD0C53900A50CFF /* UserProjects.swift in Sources */,
 				1444D5F31FD0E67E00A50CFF /* ProjectDetails.swift in Sources */,
