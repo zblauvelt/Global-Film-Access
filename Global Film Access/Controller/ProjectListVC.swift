@@ -88,8 +88,8 @@
             })
         }
         
+        
         func getProjectDetails() {
-
             DataService.ds.REF_PROJECTS.observe(.value, with: { (snapshot) in
                     if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                         self.userProjectDetails.removeAll()
@@ -107,6 +107,7 @@
                         }
                     }
                 }
+
                 self.tableView.reloadData()
             })
             

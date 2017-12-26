@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -163,21 +164,23 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thor: Ragnorok" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-SL-VrE">
-                                            <rect key="frame" x="128" y="16" width="286" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="128" y="15.999999999999998" width="286" height="23.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                             <color key="textColor" red="0.1176470588" green="0.14117647059999999" blue="0.15686274510000001" alpha="0.55000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="October 31st, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPn-dz-D0A">
-                                            <rect key="frame" x="128" y="45" width="147" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="October 31, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPn-dz-D0A">
+                                            <rect key="frame" x="128" y="45" width="278" height="23.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                             <color key="textColor" red="0.1176470588" green="0.14117647059999999" blue="0.15686274510000001" alpha="0.55000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="zPn-dz-D0A" firstAttribute="leading" secondItem="Z43-yY-laM" secondAttribute="trailing" constant="8" id="6eP-v0-jWG"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zPn-dz-D0A" secondAttribute="trailing" id="Bz0-07-let"/>
                                         <constraint firstItem="ELj-SL-VrE" firstAttribute="top" secondItem="E99-5q-Geh" secondAttribute="top" constant="16" id="CgT-M5-TSg"/>
+                                        <constraint firstItem="zPn-dz-D0A" firstAttribute="top" secondItem="ELj-SL-VrE" secondAttribute="bottom" constant="6" id="Nby-IE-mG6"/>
                                         <constraint firstAttribute="bottom" secondItem="Z43-yY-laM" secondAttribute="bottom" id="PSz-vV-7FW"/>
                                         <constraint firstItem="ELj-SL-VrE" firstAttribute="leading" secondItem="Z43-yY-laM" secondAttribute="trailing" constant="8" id="dkA-s2-Xdw"/>
                                         <constraint firstItem="Z43-yY-laM" firstAttribute="top" secondItem="E99-5q-Geh" secondAttribute="top" id="f9Z-Jf-jaf"/>
@@ -384,19 +387,55 @@
         <!--Archive-->
         <scene sceneID="oTi-NU-ivd">
             <objects>
-                <tableViewController id="ypz-pd-VK8" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GCL-Mh-ymE">
+                <tableViewController id="ypz-pd-VK8" customClass="ArchiveProjectsVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GCL-Mh-ymE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="archiveCell" id="ncU-BB-t7p">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="archiveCell" rowHeight="100" id="ncU-BB-t7p" customClass="ArchiveProjectCell" customModule="Global_Film_Access" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ncU-BB-t7p" id="9cy-kg-iTB">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ThorImage" translatesAutoresizingMaskIntoConstraints="NO" id="2gi-Y5-DdD">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="99.666666666666671"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="DKY-p4-hjN"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thor: Ragnorok" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4I-yw-YPS">
+                                            <rect key="frame" x="128" y="24" width="278" height="23.333333333333329"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.55000000000000004" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="December 26, 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wr-aL-hgq">
+                                            <rect key="frame" x="128" y="53.333333333333336" width="278" height="23.333333333333336"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.55000000000000004" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="9Wr-aL-hgq" firstAttribute="leading" secondItem="2gi-Y5-DdD" secondAttribute="trailing" constant="8" id="1pb-Tg-Hs3"/>
+                                        <constraint firstItem="c4I-yw-YPS" firstAttribute="top" secondItem="9cy-kg-iTB" secondAttribute="topMargin" constant="16" id="1ry-Cr-NcV"/>
+                                        <constraint firstItem="2gi-Y5-DdD" firstAttribute="top" secondItem="9cy-kg-iTB" secondAttribute="top" id="4op-MB-uZY"/>
+                                        <constraint firstItem="2gi-Y5-DdD" firstAttribute="leading" secondItem="9cy-kg-iTB" secondAttribute="leading" id="KAc-Vd-IFB"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="c4I-yw-YPS" secondAttribute="trailing" id="WXu-MZ-mD1"/>
+                                        <constraint firstItem="9Wr-aL-hgq" firstAttribute="top" secondItem="c4I-yw-YPS" secondAttribute="bottom" constant="6" id="bwK-pR-tGv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="9Wr-aL-hgq" secondAttribute="trailing" id="fHY-yf-RPk"/>
+                                        <constraint firstItem="c4I-yw-YPS" firstAttribute="leading" secondItem="2gi-Y5-DdD" secondAttribute="trailing" constant="8" id="iF7-TC-vdy"/>
+                                        <constraint firstAttribute="bottom" secondItem="2gi-Y5-DdD" secondAttribute="bottom" id="oF0-nZ-0Dw"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="acrchiveNameLbl" destination="c4I-yw-YPS" id="OP5-WB-qcT"/>
+                                    <outlet property="archiveDateLbl" destination="9Wr-aL-hgq" id="aNY-kI-Zol"/>
+                                    <outlet property="archiveProjectImage" destination="2gi-Y5-DdD" id="Tq2-oC-sPt"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

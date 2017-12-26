@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 protocol User {
     var admin: Bool { get }
 }
