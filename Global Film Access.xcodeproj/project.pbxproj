@@ -74,14 +74,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1417FAB31FE1F73600EDBF1B /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				1444D5EC1FCF8E8600A50CFF /* User.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		14392F9E1FC516CE00993BB7 = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +95,6 @@
 		14392FA91FC516CE00993BB7 /* Global Film Access */ = {
 			isa = PBXGroup;
 			children = (
-				1417FAB31FE1F73600EDBF1B /* Protocols */,
 				1444D5EB1FCF8E3A00A50CFF /* Models */,
 				14C8AF001FCCEBFB005AACA2 /* Services */,
 				14C8AEF71FCAF62F005AACA2 /* Utilities */,
@@ -122,6 +113,7 @@
 		1444D5EB1FCF8E3A00A50CFF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1444D5EC1FCF8E8600A50CFF /* User.swift */,
 				1444D5EE1FD0C53900A50CFF /* UserProjects.swift */,
 				1444D5F21FD0E67E00A50CFF /* ProjectDetails.swift */,
 				1417FAB41FE21A6300EDBF1B /* CurArchProjects.swift */,

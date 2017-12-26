@@ -11,7 +11,7 @@ import Foundation
 class ProjectDetails {
     private var _image: String!
     private var _name: String!
-    private var _date: String! //FIXME: this may be a date.
+    private var _date: String! 
     private var _projectid: String!
     
     var image: String {

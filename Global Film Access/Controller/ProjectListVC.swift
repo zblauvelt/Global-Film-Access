@@ -57,54 +57,12 @@
         override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
             let archive = UITableViewRowAction(style: .normal, title: "Archive") { (rowAction, indexPath) in
                 self.moveToArchive(indexPath: indexPath)
+                
             }
             archive.backgroundColor = UIColor.blue
             return [archive]
-        }
-        
-      /*  // Override to support conditional editing of the table view.
-        override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            // Return false if you do not want the specified item to be editable.
-            return true
-        }*/
-     
-
-        
-       /* // Override to support editing the table view.
-        override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
             
-            let archive = UITableViewRowAction(style: .normal, title: "Archive") { (rowAction, indexPath) in
-                self.moveToArchive(indexPath: indexPath)
-            }
-            archive.backgroundColor = UIColor.blue
-            return [archive]
-        }*/
-     
-
-        /*
-        // Override to support rearranging the table view.
-        override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
         }
-        */
-
-        /*
-        // Override to support conditional rearranging of the table view.
-        override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-            // Return false if you do not want the item to be re-orderable.
-            return true
-        }
-        */
-
-        /*
-        // MARK: - Navigation
-
-        // In a storyboard-based application, you will often want to do a little preparation before navigation
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            // Get the new view controller using segue.destinationViewController.
-            // Pass the selected object to the new view controller.
-        }
-        */
         
         
         //Need to get info to load in ViewDidLoad and need to figure out how to get the current user's projects and access the total details.
@@ -112,6 +70,7 @@
             DataService.ds.REF_USER_CURRENT_PROJECTS.observe(.value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     self.projectid.removeAll()
+                    self.currentProjects.removeAll()
                     for snap in snapshot {
                         print("SNAP:\(snap)")
                         
@@ -125,6 +84,7 @@
                     }
                     
                 }
+                self.tableView.reloadData()
             })
         }
         
@@ -164,6 +124,7 @@
             let currentProjectAtRow = currentProjects[indexPath.row].projectKey
             let firebaseRemoveFromCurrent = DataService.ds.REF_USER_CURRENT_PROJECTS.child(currentProjectAtRow)
             firebaseRemoveFromCurrent.removeValue()
+            self.getProjectDetails()
         }
         
         //unwind Create Project VC
