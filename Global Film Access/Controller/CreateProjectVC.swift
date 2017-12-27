@@ -114,10 +114,10 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         firebaseUserProject.setValue(newUserProject)
         //Posting to current user current project list
         let newCurrentProject: Dictionary<String, String> = [
-            "projectid": projectId
+            "access": "true"
         ]
-        
-        let firebaseUserCurrentProject = DataService.ds.REF_USER_CURRENT_PROJECTS.childByAutoId()
+        let currentProjectId = "\(firebaseProject.key)"
+        let firebaseUserCurrentProject = DataService.ds.REF_USER_CURRENT_PROJECTS.child(currentProjectId)
         firebaseUserCurrentProject.setValue(newCurrentProject)
         
         projectNameLbl.text = nil

@@ -29,6 +29,8 @@
 		14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */; };
 		14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */; };
 		14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AF011FCCEC64005AACA2 /* DataService.swift */; };
+		14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */; };
+		14E8D5071FF2CA7600B85A20 /* ArchiveProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */; };
 		1E477724B92E25CFD32BCC06 /* Pods_Global_Film_Access.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CDBEDCFF910448C7FC4733 /* Pods_Global_Film_Access.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RndButton.swift; sourceTree = "<group>"; };
 		14C8AF011FCCEC64005AACA2 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectsVC.swift; sourceTree = "<group>"; };
+		14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectCell.swift; sourceTree = "<group>"; };
 		C9E9645289A7DF37D7A13653 /* Pods-Global Film Access.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Global Film Access.release.xcconfig"; path = "Pods/Target Support Files/Pods-Global Film Access/Pods-Global Film Access.release.xcconfig"; sourceTree = "<group>"; };
 		D3CDBEDCFF910448C7FC4733 /* Pods_Global_Film_Access.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Global_Film_Access.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -158,6 +162,8 @@
 				1444D5F01FD0CC9000A50CFF /* ProjectListVC.swift */,
 				1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */,
 				1433E5981FD8D11400925648 /* CreateProjectVC.swift */,
+				14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */,
+				14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -313,11 +319,13 @@
 				1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */,
 				1444D5EF1FD0C53900A50CFF /* UserProjects.swift in Sources */,
 				1444D5F31FD0E67E00A50CFF /* ProjectDetails.swift in Sources */,
+				14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */,
 				14392FAB1FC516CE00993BB7 /* AppDelegate.swift in Sources */,
 				14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */,
 				14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */,
 				1444D5ED1FCF8E8600A50CFF /* User.swift in Sources */,
 				1444D5E81FCE5F9F00A50CFF /* ProjectsTabBar.swift in Sources */,
+				14E8D5071FF2CA7600B85A20 /* ArchiveProjectCell.swift in Sources */,
 				1433E5991FD8D11400925648 /* CreateProjectVC.swift in Sources */,
 				1444D5F51FD45B9900A50CFF /* ProjectsCell.swift in Sources */,
 				14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */,
