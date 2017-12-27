@@ -58,52 +58,23 @@ class ArchiveProjectsVC: UITableViewController {
     }
  
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
+        let activate = UITableViewRowAction(style: .normal, title: "Activate") { (rowAction, indexPath) in
+            self.moveToArchive(indexPath: indexPath)
+        }
+        
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
+            self.permanentlyDelete(indexPath: indexPath)
+        }
+        
+        delete.backgroundColor = UIColor.red
+        activate.backgroundColor = UIColor.gray
+        return [activate, delete]
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
-    
+    //Need to get info to load in ViewDidLoad and need to figure out how to get the current user's projects and access the total details.
     func getUserProjects() {
         DataService.ds.REF_USER_ARCHIVE_PROJECTS.observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -116,7 +87,7 @@ class ArchiveProjectsVC: UITableViewController {
                         let key = snap.key
                         let project = CurArchProjects(projectKey: key, projectData: projectDict)
                         self.archiveProjects.append(project)
-                        self.projectid.append(project.projectid)
+                        self.projectid.append(project.projectKey)
                         self.getProjectDetails()
                     }
                 }
@@ -148,6 +119,38 @@ class ArchiveProjectsVC: UITableViewController {
             
             self.tableView.reloadData()
         })
+        
+    }
+    
+    //Move row to current projects.
+    func moveToArchive(indexPath: IndexPath) {
+        let project = userProjectDetails[indexPath.row].projectid
+        let activateProject: Dictionary<String, String> = [
+            "projectid": project
+        ]
+        let firebaseActivateProject = DataService.ds.REF_USER_CURRENT_PROJECTS.child(project)
+        firebaseActivateProject.setValue(activateProject)
+        
+        let currentProjectAtRow = userProjectDetails[indexPath.row].projectid
+        let firebaseRemoveFromArchive = DataService.ds.REF_USER_ARCHIVE_PROJECTS.child(currentProjectAtRow)
+        firebaseRemoveFromArchive.removeValue()
+        self.getProjectDetails()
+    }
+    
+    //Remove row
+    func permanentlyDelete(indexPath: IndexPath) {
+        let currentProjectAtRow = userProjectDetails[indexPath.row].projectid
+        let firebaseRemoveFromArchive = DataService.ds.REF_USER_ARCHIVE_PROJECTS.child(currentProjectAtRow)
+        let firebaseRemoveFromUser = DataService.ds.REF_USER_PROJECTS.child(currentProjectAtRow)
+        firebaseRemoveFromArchive.removeValue()
+        firebaseRemoveFromUser.removeValue()
+        self.getProjectDetails()
+    }
+    
+ 
+    
+    //unwind Create Project VC
+    @IBAction func clos(segue: UIStoryboardSegue) {
         
     }
 

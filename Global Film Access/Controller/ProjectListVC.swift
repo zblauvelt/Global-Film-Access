@@ -78,7 +78,7 @@
                             let key = snap.key
                             let project = CurArchProjects(projectKey: key, projectData: projectDict)
                             self.currentProjects.append(project)
-                            self.projectid.append(project.projectid)
+                            self.projectid.append(project.projectKey)
                             self.getProjectDetails()
                         }
                     }
@@ -115,14 +115,14 @@
         
         //Move row to archive
         func moveToArchive(indexPath: IndexPath) {
-            let project = userProjectDetails[indexPath.row].projectid
+            let projectid = userProjectDetails[indexPath.row].projectid
             let archivedProject: Dictionary<String, String> = [
-                "projectid": project
+                "access": "true"
             ]
-            let firebaseArchiveProject = DataService.ds.REF_USER_ARCHIVE_PROJECTS.childByAutoId()
+            let firebaseArchiveProject = DataService.ds.REF_USER_ARCHIVE_PROJECTS.child(projectid)
             firebaseArchiveProject.setValue(archivedProject)
             
-            let currentProjectAtRow = currentProjects[indexPath.row].projectKey
+            let currentProjectAtRow = userProjectDetails[indexPath.row].projectid
             let firebaseRemoveFromCurrent = DataService.ds.REF_USER_CURRENT_PROJECTS.child(currentProjectAtRow)
             firebaseRemoveFromCurrent.removeValue()
             self.getProjectDetails()

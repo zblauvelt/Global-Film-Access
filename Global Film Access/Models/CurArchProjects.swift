@@ -31,7 +31,7 @@ init(projectid: String) {
 init(projectKey: String, projectData: Dictionary<String, String>) {
     self._projectKey = projectKey
     
-    if let projectid = projectData["projectid"] {
+    if let projectid = projectData["access"] {
         self._projectid = projectid
     }
     
