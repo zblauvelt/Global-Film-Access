@@ -13,16 +13,13 @@ class ArchiveProjectsVC: UITableViewController {
     var projectid = [String]()
     var archiveProjects = [CurArchProjects]()
     var userProjectDetails = [ProjectDetails]()
+    var userProjectAccess = [UserProjects]()
     static var archiveImageCache: NSCache<NSString, UIImage> = NSCache()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserProjects()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+       
     }
 
     // MARK: - Table view data source
@@ -74,8 +71,23 @@ class ArchiveProjectsVC: UITableViewController {
         
     }
     
+    
     //Need to get info to load in ViewDidLoad and need to figure out how to get the current user's projects and access the total details.
     func getUserProjects() {
+        DataService.ds.REF_USER_PROJECTS.observe(.value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                self.userProjectAccess.removeAll()
+                for snap in snapshot {
+                    print("SNAP:\(snap)")
+                    if let userAccessDict = snap.value as? Dictionary<String, String> {
+                        let key = snap.key
+                        let projectAccess = UserProjects(userProjects: key, projectData: userAccessDict)
+                        self.userProjectAccess.append(projectAccess)
+                    }
+                }
+                
+            }
+        })
         DataService.ds.REF_USER_ARCHIVE_PROJECTS.observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 self.projectid.removeAll()
@@ -116,17 +128,16 @@ class ArchiveProjectsVC: UITableViewController {
                     }
                 }
             }
-            
             self.tableView.reloadData()
         })
         
     }
     
-    //Move row to current projects.
+    //Move row to current projects from archive.
     func moveToArchive(indexPath: IndexPath) {
         let project = userProjectDetails[indexPath.row].projectid
         let activateProject: Dictionary<String, String> = [
-            "projectid": project
+            "access": Access.granted.rawValue
         ]
         let firebaseActivateProject = DataService.ds.REF_USER_CURRENT_PROJECTS.child(project)
         firebaseActivateProject.setValue(activateProject)
@@ -139,6 +150,18 @@ class ArchiveProjectsVC: UITableViewController {
     
     //Remove row
     func permanentlyDelete(indexPath: IndexPath) {
+        if userProjectAccess[indexPath.row].admin == Access.granted.rawValue {
+            let currentProjectAtRow = userProjectDetails[indexPath.row].projectid
+            let firebaseRemoveFromGlobalProjects = DataService.ds.REF_PROJECTS.child(currentProjectAtRow)
+            firebaseRemoveFromGlobalProjects.removeValue()
+            deleteUserProjects(indexPath: indexPath)
+        } else {
+            deleteUserProjects(indexPath: indexPath)
+        }
+    }
+    
+    //Delete only the users projects if they are not the admin.
+    func deleteUserProjects(indexPath: IndexPath) {
         let currentProjectAtRow = userProjectDetails[indexPath.row].projectid
         let firebaseRemoveFromArchive = DataService.ds.REF_USER_ARCHIVE_PROJECTS.child(currentProjectAtRow)
         let firebaseRemoveFromUser = DataService.ds.REF_USER_PROJECTS.child(currentProjectAtRow)
@@ -146,7 +169,6 @@ class ArchiveProjectsVC: UITableViewController {
         firebaseRemoveFromUser.removeValue()
         self.getProjectDetails()
     }
-    
  
     
     //unwind Create Project VC

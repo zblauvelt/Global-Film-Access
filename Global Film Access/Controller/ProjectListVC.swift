@@ -117,7 +117,7 @@
         func moveToArchive(indexPath: IndexPath) {
             let projectid = userProjectDetails[indexPath.row].projectid
             let archivedProject: Dictionary<String, String> = [
-                "access": "true"
+                "access": Access.granted.rawValue
             ]
             let firebaseArchiveProject = DataService.ds.REF_USER_ARCHIVE_PROJECTS.child(projectid)
             firebaseArchiveProject.setValue(archivedProject)

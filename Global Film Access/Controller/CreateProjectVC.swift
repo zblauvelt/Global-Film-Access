@@ -107,14 +107,14 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         let projectId = "\(firebaseProject.key)"
         
         let newUserProject: Dictionary<String, String> = [
-            "admin": "true"
+            "admin": Access.granted.rawValue
         ]
         
         let firebaseUserProject = DataService.ds.REF_USER_PROJECTS.child(projectId)
         firebaseUserProject.setValue(newUserProject)
         //Posting to current user current project list
         let newCurrentProject: Dictionary<String, String> = [
-            "access": "true"
+            "access": Access.granted.rawValue
         ]
         let currentProjectId = "\(firebaseProject.key)"
         let firebaseUserCurrentProject = DataService.ds.REF_USER_CURRENT_PROJECTS.child(currentProjectId)

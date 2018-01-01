@@ -25,6 +25,8 @@
 		1444D5F51FD45B9900A50CFF /* ProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */; };
 		1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F61FD63F7000A50CFF /* CircleImage.swift */; };
 		1444D5F91FD6414200A50CFF /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F81FD6414200A50CFF /* CustomView.swift */; };
+		148E23941FF91AF8004F7D1D /* USStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23931FF91AF8004F7D1D /* USStates.swift */; };
+		148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23951FFA833C004F7D1D /* FireBaseAuth.swift */; };
 		14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEF81FCAF674005AACA2 /* Constants.swift */; };
 		14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */; };
 		14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */; };
@@ -56,6 +58,8 @@
 		1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCell.swift; sourceTree = "<group>"; };
 		1444D5F61FD63F7000A50CFF /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		1444D5F81FD6414200A50CFF /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		148E23931FF91AF8004F7D1D /* USStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USStates.swift; sourceTree = "<group>"; };
+		148E23951FFA833C004F7D1D /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
 		14C8AEF81FCAF674005AACA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RndButton.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				14C8AEF81FCAF674005AACA2 /* Constants.swift */,
+				148E23931FF91AF8004F7D1D /* USStates.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				14C8AF011FCCEC64005AACA2 /* DataService.swift */,
+				148E23951FFA833C004F7D1D /* FireBaseAuth.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -315,7 +321,9 @@
 				1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */,
 				14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */,
 				14392FAD1FC516CE00993BB7 /* SignInVC.swift in Sources */,
+				148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */,
 				1417FAB51FE21A6300EDBF1B /* CurArchProjects.swift in Sources */,
+				148E23941FF91AF8004F7D1D /* USStates.swift in Sources */,
 				1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */,
 				1444D5EF1FD0C53900A50CFF /* UserProjects.swift in Sources */,
 				1444D5F31FD0E67E00A50CFF /* ProjectDetails.swift in Sources */,
