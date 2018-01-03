@@ -27,6 +27,8 @@
 		1444D5F91FD6414200A50CFF /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F81FD6414200A50CFF /* CustomView.swift */; };
 		148E23941FF91AF8004F7D1D /* USStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23931FF91AF8004F7D1D /* USStates.swift */; };
 		148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23951FFA833C004F7D1D /* FireBaseAuth.swift */; };
+		148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */; };
+		148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */; };
 		14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEF81FCAF674005AACA2 /* Constants.swift */; };
 		14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */; };
 		14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */; };
@@ -60,6 +62,8 @@
 		1444D5F81FD6414200A50CFF /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		148E23931FF91AF8004F7D1D /* USStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USStates.swift; sourceTree = "<group>"; };
 		148E23951FFA833C004F7D1D /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
+		148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
+		148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBottomBorder.swift; sourceTree = "<group>"; };
 		14C8AEF81FCAF674005AACA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RndButton.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				1444D5F81FD6414200A50CFF /* CustomView.swift */,
 				1433E5961FD8C8DD00925648 /* CommonTextField.swift */,
 				1433E59C1FD8E86200925648 /* CircleButton.swift */,
+				148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				14392FAC1FC516CE00993BB7 /* SignInVC.swift */,
+				148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */,
 				1444D5F01FD0CC9000A50CFF /* ProjectListVC.swift */,
 				1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */,
 				1433E5981FD8D11400925648 /* CreateProjectVC.swift */,
@@ -319,6 +325,7 @@
 				1444D5F11FD0CC9000A50CFF /* ProjectListVC.swift in Sources */,
 				1433E59D1FD8E86200925648 /* CircleButton.swift in Sources */,
 				1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */,
+				148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */,
 				14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */,
 				14392FAD1FC516CE00993BB7 /* SignInVC.swift in Sources */,
 				148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */,
@@ -336,6 +343,7 @@
 				14E8D5071FF2CA7600B85A20 /* ArchiveProjectCell.swift in Sources */,
 				1433E5991FD8D11400925648 /* CreateProjectVC.swift in Sources */,
 				1444D5F51FD45B9900A50CFF /* ProjectsCell.swift in Sources */,
+				148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */,
 				14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

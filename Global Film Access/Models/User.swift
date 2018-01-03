@@ -42,8 +42,7 @@ enum CreateUserError: String, Error {
     case invalidZipCode = "Please provide a zip code."
     case invalidProfileImage = "Please provide an image."
     case invalidUserName = "Please provide a username."
-    case invalidEmail = "Please provide a valid email"
-    case invalidPassword = "Passwords must be atleast 6 characters, contain one uppercase letter, and one of the following !&^%$#@()/?"
+
     
 }
 

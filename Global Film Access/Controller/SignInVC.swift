@@ -18,8 +18,8 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //FIXME: remove when done app
-        //email.text = "zblauvelt@hotmail.com"
-        //password.text = "Hockey4842"
+        email.text = "zblauvelt@hotmail.com"
+        password.text = "Hockey4842"
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -72,8 +72,10 @@ class SignInVC: UIViewController {
         performSegue(withIdentifier: "signIn", sender: nil)
         
     }*/
-    
-    
+    //unwind back to login
+    @IBAction func cancel(segue: UIStoryboardSegue) {
+        
+    }
     
     
 }

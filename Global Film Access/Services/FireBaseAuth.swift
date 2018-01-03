@@ -12,6 +12,9 @@ import Firebase
 
 enum FIRAuthError: String, Error {
     case inValid = "Email and Password do not match. Please try again."
+    case invalidEmail = "Please provide a valid email"
+    case invalidPassword = "Passwords must be atleast 6 characters, contain one uppercase letter, and one of the following !&^%$#@()/?"
+    case passwordsDoNotMatch = "Passwords do not match."
 }
 
 
@@ -46,12 +49,15 @@ class FirebaseAuth {
     }
     ///Creates user for Firebase Auth()
     //MARK: Create FirebaseAuth() User
-    func createUser(email: String, password: String) throws {
+    func createUser(email: String, password: String, confirmedPassword: String) throws {
         guard validateEmail(enteredEmail: email) == true else{
-            throw CreateUserError.invalidEmail
+            throw FIRAuthError.invalidEmail
         }
         guard validatePassword(text: password) == true else {
-            throw CreateUserError.invalidPassword
+            throw FIRAuthError.invalidPassword
+        }
+        guard password == confirmedPassword else {
+            throw FIRAuthError.passwordsDoNotMatch
         }
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
@@ -68,19 +74,26 @@ class FirebaseAuth {
     func createUserDB() {
         
     }
-    
+    ///Sign user into the app 
     func signInUser(email: String, password: String) {
+        let rootVC = UIApplication.shared.keyWindow?.rootViewController
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if error == nil {
                 print("ZACK: Email user authenticated with Firebase")
+                if let vc = rootVC {
+                    vc.performSegue(withIdentifier: "signIn", sender: nil)
+                }
             } else {
                 let alertController = UIAlertController(title: "Authorization", message: FIRAuthError.inValid.rawValue, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
                     return
                 }
                 alertController.addAction(okAction)
-                UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+                if let vc = rootVC {
+                  vc.present(alertController, animated: true, completion: nil)
+                }
+                
             }
         })
     }

@@ -15,6 +15,11 @@ let SHADOW_GRAY: CGFloat = 120.0/255
 
 let userID = FIRAuth.auth()!.currentUser!.uid
 
-
+/// Making Navigation Bar Transparent
+func transparentNavBar(viewController: UIViewController) {
+    viewController.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    viewController.navigationController?.navigationBar.shadowImage = UIImage()
+    viewController.navigationController?.navigationBar.isTranslucent = true
+}
 
 
