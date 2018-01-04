@@ -73,9 +73,8 @@ class SignInVC: UIViewController {
         
     }*/
     //unwind back to login
-    @IBAction func cancel(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func cancel(segue: UIStoryboardSegue) {}
+    @IBAction func cancelCreateUser(segue: UIStoryboardSegue) {}
     
     
 }

@@ -27,13 +27,28 @@ class CreateAccountVC: UIViewController {
     @IBAction func createAccountTapped(_ sender: Any) {
         if let email = emailTextField.text, let password = passwordTextField.text, let confirmedPassword = confirmPasswordTextField.text {
             do {
-                try createAccount.createUser(email: email, password: password, confirmedPassword: confirmedPassword)
+                try createAccount.createUser(email: email, password: password, confirmedPassword: confirmedPassword, topVC: self)
             } catch FIRAuthError.invalidEmail {
-                print("\(FIRAuthError.invalidEmail.rawValue)")
+                let alertController = UIAlertController(title: "Invalid Email", message: FIRAuthError.invalidEmail.rawValue, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
+                    return
+                }
+                alertController.addAction(okAction)
+                present(alertController, animated: true, completion: nil)
             } catch FIRAuthError.invalidPassword {
-                print("\(FIRAuthError.invalidPassword.rawValue)")
+                let alertController = UIAlertController(title: "Invalid Password", message: FIRAuthError.invalidPassword.rawValue, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
+                    return
+                }
+                alertController.addAction(okAction)
+                present(alertController, animated: true, completion: nil)
             } catch FIRAuthError.passwordsDoNotMatch {
-                print("\(FIRAuthError.passwordsDoNotMatch.rawValue)")
+                let alertController = UIAlertController(title: "Passwords do not match", message: FIRAuthError.passwordsDoNotMatch.rawValue, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
+                    return
+                }
+                alertController.addAction(okAction)
+                present(alertController, animated: true, completion: nil)
             } catch let error {
                 print("\(error)")
             }

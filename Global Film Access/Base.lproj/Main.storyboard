@@ -266,6 +266,7 @@
                         <outlet property="confirmPasswordTextField" destination="pgM-DI-sjJ" id="vKa-33-CX8"/>
                         <outlet property="emailTextField" destination="kWv-ab-5sp" id="UbR-T3-KUG"/>
                         <outlet property="passwordTextField" destination="fMi-pl-nj4" id="74T-hy-LdB"/>
+                        <segue destination="2NG-3e-Isi" kind="unwind" identifier="cancelCreateUser" unwindAction="cancelCreateUserWithSegue:" id="OBt-if-yZG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wyB-kc-vMn" userLabel="First Responder" sceneMemberID="firstResponder"/>

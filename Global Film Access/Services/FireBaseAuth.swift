@@ -15,6 +15,7 @@ enum FIRAuthError: String, Error {
     case invalidEmail = "Please provide a valid email"
     case invalidPassword = "Passwords must be atleast 6 characters, contain one uppercase letter, and one of the following !&^%$#@()/?"
     case passwordsDoNotMatch = "Passwords do not match."
+    case emailExists = "This email address already exists."
 }
 
 
@@ -49,7 +50,8 @@ class FirebaseAuth {
     }
     ///Creates user for Firebase Auth()
     //MARK: Create FirebaseAuth() User
-    func createUser(email: String, password: String, confirmedPassword: String) throws {
+    func createUser(email: String, password: String, confirmedPassword: String, topVC: UIViewController) throws {
+        let rootVC = topVC
         guard validateEmail(enteredEmail: email) == true else{
             throw FIRAuthError.invalidEmail
         }
@@ -62,7 +64,20 @@ class FirebaseAuth {
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
-                print("ZACK: Unable to authenticate with Firebase user email")
+                
+                    let alertController = UIAlertController(title: "Email Exists", message: FIRAuthError.emailExists.rawValue, preferredStyle: .alert)
+                    let signIn = UIAlertAction(title: "Sign In", style: .default, handler: { action in
+                        rootVC.performSegue(withIdentifier: "cancelCreateUser", sender: self)
+                    })
+                    
+                    let okAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                        return
+                    }
+                    alertController.addAction(signIn)
+                    alertController.addAction(okAction)
+                    rootVC.present(alertController, animated: true, completion: nil)
+                
+                
             } else {
                 print("ZACK: Successfully authenticated with Firebase")
             }
