@@ -12,8 +12,7 @@ import Firebase
 class SignInVC: UIViewController {
     @IBOutlet weak var email: CustomTextField!
     @IBOutlet weak var password: CustomTextField!
-    
-    
+    let firebaseAuth = FirebaseAuth()
     
     
     override func viewDidLoad() {
@@ -32,6 +31,12 @@ class SignInVC: UIViewController {
     //MARK: Authenticate with Email
     @IBAction func signInButtonTapped(_ sender: Any) {
         if let email = email.text, let password = password.text {
+            self.firebaseAuth.signInUser(email: email, password: password)
+        }
+    }
+        
+        
+        /*if let email = email.text, let password = password.text {
             
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
                 if error == nil {
@@ -58,17 +63,18 @@ class SignInVC: UIViewController {
             })
             
         }
-    }
+    }*/
  
-    func completeSignIn(id: String, userData: Dictionary<String, String>) {
+    /*func completeSignIn(id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         email.text = nil
         password.text = nil
         performSegue(withIdentifier: "signIn", sender: nil)
         
-    }
-    
-    
+    }*/
+    //unwind back to login
+    @IBAction func cancel(segue: UIStoryboardSegue) {}
+    @IBAction func cancelCreateUser(segue: UIStoryboardSegue) {}
     
     
 }
