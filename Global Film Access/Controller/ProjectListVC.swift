@@ -11,7 +11,7 @@
 
     class ProjectListVC: UITableViewController {
         
-        var currentProjects = [CurArchProjects]()
+        /*var currentProjects = [CurArchProjects]()
         var userProjectDetails = [ProjectDetails]()
         var projectid = [String]()
         static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -131,7 +131,7 @@
         //unwind Create Project VC
         @IBAction func clos(segue: UIStoryboardSegue) {
             
-        }
+        }*/
         
         
 

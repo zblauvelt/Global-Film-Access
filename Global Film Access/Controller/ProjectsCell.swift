@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ProjectsCell: UITableViewCell {
+/*class ProjectsCell: UITableViewCell {
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var projectNameLbl: UILabel!
     @IBOutlet weak var projectReleaseDate: UILabel!
@@ -47,4 +47,4 @@ class ProjectsCell: UITableViewCell {
         }
     }
 
-}
+}*/

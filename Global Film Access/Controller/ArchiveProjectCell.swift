@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ArchiveProjectCell: UITableViewCell {
+/*class ArchiveProjectCell: UITableViewCell {
     
     @IBOutlet weak var archiveProjectImage: UIImageView!
     @IBOutlet weak var acrchiveNameLbl: UILabel!
@@ -48,4 +48,4 @@ class ArchiveProjectCell: UITableViewCell {
         }
     }
 
-}
+}*/

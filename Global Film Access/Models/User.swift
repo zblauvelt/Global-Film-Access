@@ -8,7 +8,7 @@
 
 import Foundation
 import Firebase
-
+//this enum should be used for projects
 /*enum UserAccessLevel: String {
     case unknown = "Unknown"
     case executiveProducer = "Executive Producer"
@@ -45,6 +45,8 @@ enum CreateUserError: String, Error {
 
     
 }
+//MARK: The current Firebase User
+ let userID = FIRAuth.auth()!.currentUser!.uid
 
 protocol User {
     var firstName: String { get set }
@@ -52,20 +54,42 @@ protocol User {
     var city: String { get set }
     var state: USAState { get set }
     var zipCode: String { get set }
-    var profileImage: String { get set }
+    var profileImage: UIImage { get set }
     var userName: String { get set }
+    var REF_USERS: FIRDatabaseReference { get }
+    var REF_CURRENT_USER: FIRDatabaseReference { get }
+    var REF_USER_PROJECTS: FIRDatabaseReference { get }
+    var REF_USER_CURRENT_PROJECTS: FIRDatabaseReference { get }
+    var REF_USER_ARCHIVE_PROJECTS: FIRDatabaseReference { get }
+    var REF_PROFILE_IMAGE: FIRStorageReference { get }
+    
+    ///Adds user to the Firebase database
+    //MARK: Create user for DB
+    func createUserDB(firstName: String, lastName: String, city: String, State: USAState, zipCode: String, profileImage: UIImage?) throws
+    
+    
 }
 
 class UserType: User {
+    
     var firstName: String
     var lastName: String
     var city: String
     var state: USAState
     var zipCode: String
-    var profileImage: String
+    var profileImage: UIImage
     var userName: String
+    //Firebase database references
+   
+    var REF_USERS = DB_BASE.child("users")
+    var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
+    var REF_USER_PROJECTS = DB_BASE.child("users").child(userID).child("userProjects")
+    var REF_USER_CURRENT_PROJECTS = DB_BASE.child("users").child(userID).child("currentProjects")
+    var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
+    var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
     
-    init(firstName: String, lastName: String, city: String, state: USAState, profileImage: String, zipCode: String) {
+    
+    init(firstName: String, lastName: String, city: String, state: USAState, profileImage: UIImage, zipCode: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.city = city
@@ -109,14 +133,64 @@ class UserType: User {
         }
         
         if let profileImage = userData[FIRUserData.profileImage.rawValue] {
-            self.profileImage = profileImage as! String
+            self.profileImage = profileImage as! UIImage
         } else {
             throw CreateUserError.invalidProfileImage
         }
         
     }
-
     
+    func createUserDB(firstName: String, lastName: String, city: String, State: USAState, zipCode: String, profileImage: UIImage?) throws {
+        guard firstName != "" else {
+            throw CreateUserError.invalidFirstName
+        }
+        guard lastName != "" else {
+            throw CreateUserError.invalidLastName
+        }
+        guard city != "" else {
+            throw CreateUserError.invalidCity
+        }
+        guard state != .unknown else {
+            throw CreateUserError.invalidState
+        }
+        guard zipCode != "" else {
+            throw CreateUserError.invalidZipCode
+        }
+        guard let img = profileImage else {
+            throw CreateUserError.invalidProfileImage
+        }
+        
+        //Save image to profile pics folder in Firebase Storage
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            
+            let imgUid = NSUUID().uuidString
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpeg"
+            
+            REF_PROFILE_IMAGE.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
+                if error != nil {
+                    print("ZACK: Unable to upload to Firebase Storage")
+                } else {
+                    print("ZACK: Successfully uploaded image")
+                    let downloadURL = metaData?.downloadURL()?.absoluteString
+                    if let url = downloadURL {
+                        let user: Dictionary<String, String> = [
+                            "firstName": firstName,
+                            "lastName": lastName,
+                            "userName": "\(firstName).\(lastName)",
+                            "city": city,
+                            "state": self.state.rawValue,
+                            "zipCode": zipCode,
+                            "profileImageURL": url
+                        ]
+                        //MARK: Post to Firebase Database
+                        self.REF_USERS.setValue(user)
+                    }
+                }
+            }
+            
+        }
+    }
     
  
 }

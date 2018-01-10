@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+/*class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var containerView: CustomView!
     @IBOutlet weak var projectNameLbl: CommonTextField!
     @IBOutlet weak var dateLbl: CommonTextField!
@@ -62,11 +62,9 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
             return
         }
         guard let img = imageAdd.image, imageSelected == true else {
-            
             print("ZACK: An image must be selected") //TODO: If they do not provide an image provide one
             return
         }
-        
         if let imgData = UIImageJPEGRepresentation(img, 0.2) {
             
             let imgUid = NSUUID().uuidString
@@ -152,4 +150,4 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         self.view.endEditing(true)
     }
 
-}
+}*/

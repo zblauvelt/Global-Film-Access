@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ArchiveProjectsVC: UITableViewController {
+/*class ArchiveProjectsVC: UITableViewController {
     var projectid = [String]()
     var archiveProjects = [CurArchProjects]()
     var userProjectDetails = [ProjectDetails]()
@@ -176,4 +176,4 @@ class ArchiveProjectsVC: UITableViewController {
         
     }
 
-}
+}*/

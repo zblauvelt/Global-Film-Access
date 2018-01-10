@@ -77,18 +77,14 @@ class FirebaseAuth {
                     alertController.addAction(okAction)
                     rootVC.present(alertController, animated: true, completion: nil)
                 
-                
             } else {
+                rootVC.performSegue(withIdentifier: "createProfile", sender: self)
                 print("ZACK: Successfully authenticated with Firebase")
             }
         })
     }
     
-    ///Adds user to the Firebase database
-    //MARK: Create user for DB
-    func createUserDB() {
-        
-    }
+
     ///Sign user into the app 
     func signInUser(email: String, password: String) {
         let rootVC = UIApplication.shared.keyWindow?.rootViewController

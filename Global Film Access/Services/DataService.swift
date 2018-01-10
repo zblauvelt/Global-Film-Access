@@ -20,11 +20,7 @@ class DataService {
     //DB references
     private var _REF_BASE = DB_BASE
     private var _REF_PROJECTS = DB_BASE.child("projects")
-    private var _REF_USERS = DB_BASE.child("users")
-    private var _REF_CURRENT_USER = DB_BASE.child("users").child(userID)
-    private var _REF_USER_PROJECTS = DB_BASE.child("users").child(userID).child("userProjects")
-    private var _REF_USER_CURRENT_PROJECTS = DB_BASE.child("users").child(userID).child("currentProjects")
-    private var _REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
+
 
     //Storage references
     private var _REF_PROJECT_IMAGES = STORAGE_BASE.child("project-pics")
@@ -37,36 +33,12 @@ class DataService {
         return _REF_PROJECTS
     }
     
-    var REF_USERS: FIRDatabaseReference {
-        return _REF_USERS
-    }
-    
-    var REF_CURRENT_USER: FIRDatabaseReference {
-        return _REF_CURRENT_USER
-    }
-    
-    var REF_USER_PROJECTS: FIRDatabaseReference {
-        return _REF_USER_PROJECTS
-    }
-    
-    var REF_USER_CURRENT_PROJECTS: FIRDatabaseReference {
-        return _REF_USER_CURRENT_PROJECTS
-    }
-    
-    var REF_USER_ARCHIVE_PROJECTS: FIRDatabaseReference {
-        return _REF_USER_ARCHIVE_PROJECTS
-    }
-    
-    var REF_PROJECT_IMAGES: FIRStorageReference {
-        return _REF_PROJECT_IMAGES 
-    }
-    
 
     
     
-    func createFirebaseDBUser(uid: String, userData: Dictionary<String, String>) {
-        REF_USERS.child(uid).updateChildValues(userData)
-    }
+    //func createFirebaseDBUser(uid: String, userData: Dictionary<String, String>) {
+      //  REF_USERS.child(uid).updateChildValues(userData)
+    //}
     
     
     }
