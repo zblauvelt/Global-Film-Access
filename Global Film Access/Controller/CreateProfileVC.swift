@@ -53,11 +53,18 @@ class CreateProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
     
     
     @IBAction func createProfileTapped(_ sender: Any) {
-        if let firstName = firstNameTextLbl.text, let lastName = lastNameTextLbl.text, let city = cityTextLbl.text, let state = pickState.text, let zipCode = zipCodeTextLbl.text, let profileImage = profileImage.image {
+        if let firstName = firstNameTextLbl.text, let lastName = lastNameTextLbl.text, let city = cityTextLbl.text, let state = pickState.text, let zipCode = zipCodeTextLbl.text, let image = profileImage.image {
             
-            let user = UserType(firstName: firstName, lastName: lastName, city: city, state: state, profileImage: profileImage, zipCode: zipCode)
+            let user = UserType(firstName: firstName, lastName: lastName, city: city, state: state, profileImage: image, zipCode: zipCode)
             do {
                 try user.createUserDB(user: user)
+                performSegue(withIdentifier: "goToProjects", sender: self)
+                firstNameTextLbl.text = nil
+                lastNameTextLbl.text = nil
+                cityTextLbl.text = nil
+                pickState.text = nil
+                zipCodeTextLbl.text = nil
+                profileImage.image = UIImage(named: "ProfileImage")
             } catch CreateUserError.invalidFirstName {
                 showAlert(message: CreateUserError.invalidFirstName.rawValue)
             } catch CreateUserError.invalidLastName {
@@ -75,6 +82,8 @@ class CreateProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
         } else {
             showAlert(message: "Unable to Create User")
         }
+        
+        
     }
     
     //Alert message for error handling
