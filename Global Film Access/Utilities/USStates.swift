@@ -20,7 +20,7 @@ enum USAState: String {
     case connecticut = "Connecticut"
     case delaware = "Delaware"
     case florida = "Florida"
-    case georgie = "Georgia"
+    case georgia = "Georgia"
     case hawaii = "Hawaii"
     case idaho = "Idaho"
     case illinois = "Illinois"

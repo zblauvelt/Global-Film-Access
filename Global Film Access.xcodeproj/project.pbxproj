@@ -33,6 +33,7 @@
 		14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */; };
 		14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */; };
 		14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AF011FCCEC64005AACA2 /* DataService.swift */; };
+		14E640F22002EB6C00A00968 /* CreateProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E640F12002EB6C00A00968 /* CreateProfileVC.swift */; };
 		14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */; };
 		14E8D5071FF2CA7600B85A20 /* ArchiveProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */; };
 		1E477724B92E25CFD32BCC06 /* Pods_Global_Film_Access.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CDBEDCFF910448C7FC4733 /* Pods_Global_Film_Access.framework */; };
@@ -68,6 +69,7 @@
 		14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RndButton.swift; sourceTree = "<group>"; };
 		14C8AF011FCCEC64005AACA2 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		14E640F12002EB6C00A00968 /* CreateProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileVC.swift; sourceTree = "<group>"; };
 		14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectsVC.swift; sourceTree = "<group>"; };
 		14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectCell.swift; sourceTree = "<group>"; };
 		C9E9645289A7DF37D7A13653 /* Pods-Global Film Access.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Global Film Access.release.xcconfig"; path = "Pods/Target Support Files/Pods-Global Film Access/Pods-Global Film Access.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				1433E5981FD8D11400925648 /* CreateProjectVC.swift */,
 				14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */,
 				14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */,
+				14E640F12002EB6C00A00968 /* CreateProfileVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				1433E59D1FD8E86200925648 /* CircleButton.swift in Sources */,
 				1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */,
 				148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */,
+				14E640F22002EB6C00A00968 /* CreateProfileVC.swift in Sources */,
 				14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */,
 				14392FAD1FC516CE00993BB7 /* SignInVC.swift in Sources */,
 				148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */,
