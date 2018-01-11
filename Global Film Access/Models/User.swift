@@ -52,7 +52,7 @@ protocol User {
     var firstName: String { get set }
     var lastName: String { get set }
     var city: String { get set }
-    var state: USAState { get set }
+    var state: String { get set }
     var zipCode: String { get set }
     var profileImage: UIImage { get set }
     var userName: String { get set }
@@ -65,7 +65,7 @@ protocol User {
     
     ///Adds user to the Firebase database
     //MARK: Create user for DB
-    func createUserDB(firstName: String, lastName: String, city: String, State: USAState, zipCode: String, profileImage: UIImage?) throws
+    func createUserDB(user: UserType) throws
     
     
 }
@@ -75,7 +75,7 @@ class UserType: User {
     var firstName: String
     var lastName: String
     var city: String
-    var state: USAState
+    var state: String
     var zipCode: String
     var profileImage: UIImage
     var userName: String
@@ -89,7 +89,7 @@ class UserType: User {
     var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
     
     
-    init(firstName: String, lastName: String, city: String, state: USAState, profileImage: UIImage, zipCode: String) {
+    init(firstName: String, lastName: String, city: String, state: String, profileImage: UIImage, zipCode: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.city = city
@@ -121,7 +121,7 @@ class UserType: User {
         }
         
         if let state = userData[FIRUserData.state.rawValue] {
-            self.state = state as! USAState
+            self.state = state as! String
         } else {
             throw CreateUserError.invalidState
         }
@@ -140,25 +140,24 @@ class UserType: User {
         
     }
     
-    func createUserDB(firstName: String, lastName: String, city: String, State: USAState, zipCode: String, profileImage: UIImage?) throws {
-        guard firstName != "" else {
+    func createUserDB(user: UserType) throws {
+        guard user.firstName != "" else {
             throw CreateUserError.invalidFirstName
         }
-        guard lastName != "" else {
+        guard user.lastName != "" else {
             throw CreateUserError.invalidLastName
         }
-        guard city != "" else {
+        guard user.city != "" else {
             throw CreateUserError.invalidCity
         }
-        guard state != .unknown else {
+        guard user.state != "" else {
             throw CreateUserError.invalidState
         }
-        guard zipCode != "" else {
+        guard user.zipCode != "" else {
             throw CreateUserError.invalidZipCode
         }
-        guard let img = profileImage else {
-            throw CreateUserError.invalidProfileImage
-        }
+        
+        let img = user.profileImage
         
         //Save image to profile pics folder in Firebase Storage
         if let imgData = UIImageJPEGRepresentation(img, 0.2) {
@@ -175,16 +174,16 @@ class UserType: User {
                     let downloadURL = metaData?.downloadURL()?.absoluteString
                     if let url = downloadURL {
                         let user: Dictionary<String, String> = [
-                            "firstName": firstName,
-                            "lastName": lastName,
-                            "userName": "\(firstName).\(lastName)",
-                            "city": city,
-                            "state": self.state.rawValue,
-                            "zipCode": zipCode,
+                            "firstName": user.firstName,
+                            "lastName": user.lastName,
+                            "userName": "\(user.firstName).\(user.lastName)",
+                            "city": user.city,
+                            "state": user.state,
+                            "zipCode": user.zipCode,
                             "profileImageURL": url
                         ]
                         //MARK: Post to Firebase Database
-                        self.REF_USERS.setValue(user)
+                        self.REF_CURRENT_USER.setValue(user)
                     }
                 }
             }

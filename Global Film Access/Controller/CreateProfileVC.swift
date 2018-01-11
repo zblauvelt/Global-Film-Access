@@ -8,19 +8,100 @@
 
 import UIKit
 
-class CreateProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var pickState: UITextField!
-   
+    @IBOutlet weak var firstNameTextLbl: UITextField!
+    @IBOutlet weak var lastNameTextLbl: UITextField!
+    @IBOutlet weak var cityTextLbl: UITextField!
+    @IBOutlet weak var zipCodeTextLbl: UITextField!
+    @IBOutlet weak var profileImage: UIImageView!
+    var imagePicker: UIImagePickerController!
+    var imageSelected = false
     
-    let usaStates: [USAState] = [.alabama, .alaska, .arizone, .arkansas, .california, .colorado, .connecticut, .delaware, .florida, .georgia, .hawaii, .idaho, .illinois, .indiana, .iowa, .kansas, .kentucky, .louisiana, .maine, .maryland, .massachusetts, .michigan, .minnesota, .mississippi, .missouri, .montana, .nebraska, .nevada, .newHampshire, .newJersey, .newMexico, .newYork, .northCarolina, .northDakota, .ohio, .oklahoma, .oregon, .pennsylvania, .rhodeIsland, .southCarolina, .southDakota, .tennessee, .texas, .utah, .vermont, .virginia, .washington, .westVirginia, .wisconsin, .wyoming]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(usaStates.count)
         getStatePickers(pickState)
+        firstNameTextLbl.setBottomBorder()
+        lastNameTextLbl.setBottomBorder()
+        cityTextLbl.setBottomBorder()
+        pickState.setBottomBorder()
+        zipCodeTextLbl.setBottomBorder()
+        
+        //creating the imagepicker
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        
     }
 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            profileImage.image = image
+            profileImage.contentMode = .scaleToFill
+            imageSelected = true
+        } else {
+            print("ZACK: A valid image wasn't selected.")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func addImageTapped(_ sender: Any) {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func createProfileTapped(_ sender: Any) {
+        if let firstName = firstNameTextLbl.text, let lastName = lastNameTextLbl.text, let city = cityTextLbl.text, let state = pickState.text, let zipCode = zipCodeTextLbl.text, let profileImage = profileImage.image {
+            
+            let user = UserType(firstName: firstName, lastName: lastName, city: city, state: state, profileImage: profileImage, zipCode: zipCode)
+            do {
+                try user.createUserDB(user: user)
+            } catch CreateUserError.invalidFirstName {
+                showAlert(message: CreateUserError.invalidFirstName.rawValue)
+            } catch CreateUserError.invalidLastName {
+                showAlert(message: CreateUserError.invalidLastName.rawValue)
+            } catch CreateUserError.invalidCity {
+                showAlert(message: CreateUserError.invalidCity.rawValue)
+            } catch CreateUserError.invalidState {
+                showAlert(message: CreateUserError.invalidState.rawValue)
+            } catch CreateUserError.invalidZipCode {
+                showAlert(message: CreateUserError.invalidZipCode.rawValue)
+            } catch let error {
+                print(error)
+            }
+            
+        } else {
+            showAlert(message: "Unable to Create User")
+        }
+    }
+    
+    //Alert message for error handling
+    func showAlert(message: String) {
+        let alertController = UIAlertController(title: "" , message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
+            return
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //States List
+    let usaStates: [USAState] = [.alabama, .alaska, .arizone, .arkansas, .california, .colorado, .connecticut, .delaware, .florida, .georgia, .hawaii, .idaho, .illinois, .indiana, .iowa, .kansas, .kentucky, .louisiana, .maine, .maryland, .massachusetts, .michigan, .minnesota, .mississippi, .missouri, .montana, .nebraska, .nevada, .newHampshire, .newJersey, .newMexico, .newYork, .northCarolina, .northDakota, .ohio, .oklahoma, .oregon, .pennsylvania, .rhodeIsland, .southCarolina, .southDakota, .tennessee, .texas, .utah, .vermont, .virginia, .washington, .westVirginia, .wisconsin, .wyoming]
+    
     //MARK:- PickerView Delegate & DataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -39,7 +120,7 @@ class CreateProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
         self.getStatePickers(pickState)
     }
     
-    //UIViewPicker for State
+    //MARK: UIViewPicker for State
     func getStatePickers(_ textField : UITextField){
         let statePickerView = UIPickerView()
         statePickerView.delegate = self
@@ -59,7 +140,7 @@ class CreateProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
         
         label.font = UIFont.systemFont(ofSize: 14)
         
-        label.textColor = UIColor.yellow
+        label.textColor = UIColor.white
         
         label.text = "Pick a State"
         
@@ -73,21 +154,13 @@ class CreateProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataS
     }
     //MARK:- Button
     @objc func donePressed(sender: UIBarButtonItem) {
-        
         pickState.resignFirstResponder()
     }
     
     @objc func cancelPressed(sender: UIBarButtonItem) {
-        
-        //pickState.text = "iPhone 7 Plus Jet Black"
-        
         pickState.resignFirstResponder()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
 
 }
