@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserProjects {
+/*class UserProjects {
     private var _userProjects: String!
     private var _projectid: String!
     private var _admin: String!
@@ -44,4 +44,4 @@ class UserProjects {
     
     
     
-}
+}*/

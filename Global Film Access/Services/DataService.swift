@@ -25,9 +25,9 @@ class DataService {
     //Storage references
     private var _REF_PROJECT_IMAGES = STORAGE_BASE.child("project-pics")
     
-    var REF_BASE: FIRDatabaseReference {
-        return _REF_BASE
-    }
+    //var REF_BASE: FIRDatabaseReference {
+      //  return _REF_BASE
+    //}
     
     var REF_PROJECTS: FIRDatabaseReference {
         return _REF_PROJECTS

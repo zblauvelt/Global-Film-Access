@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-/*class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var containerView: CustomView!
     @IBOutlet weak var projectNameLbl: CommonTextField!
     @IBOutlet weak var dateLbl: CommonTextField!
@@ -53,78 +53,41 @@ import Firebase
     
     
     @IBAction func saveImageTapped(_ sender: Any) {
-        guard let projectName = projectNameLbl.text, projectName != "" else {
-            print("ZACK: User didn't add name") //TODO: add alert of date or name is blank
-            return
-        }
-        guard let date = dateLbl.text, date != "" else {
-            print("ZACK: User didn't add a release date") //TODO: add alert of date or name is blank
-            return
-        }
-        guard let img = imageAdd.image, imageSelected == true else {
-            print("ZACK: An image must be selected") //TODO: If they do not provide an image provide one
-            return
-        }
-        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+        if let projectName = projectNameLbl.text, let projectReleaseDate = dateLbl.text, let projectImage = imageAdd.image {
             
-            let imgUid = NSUUID().uuidString
-            let metaData = FIRStorageMetadata()
-            metaData.contentType = "image/jpeg"
-            
-            DataService.ds.REF_PROJECT_IMAGES.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
-                if error != nil {
-                    print("ZACK: Unable to upload to Firebase Storage") //TODO: send alert to user
-                } else {
-                    print("ZACK: Successfully uploaded image")
-                    let downloadURL = metaData?.downloadURL()?.absoluteString
-                    if let url = downloadURL {
-                        self.addProjectToFirebase(imgURL: url)
-                    }
-                }
+            let newProject = ProjectType(projectName: projectName, projectImage: projectImage, projectReleaseDate: projectReleaseDate)
+            do {
+                try newProject.createProjectDB(project: newProject)
+                projectNameLbl.text = nil
+                imageSelected = true
+                dateLbl.text = nil
+                imageAdd.image = UIImage(named: "ImageBtn.png")
+                imageAdd.contentMode = .center
+            } catch CreateProjectError.inValidProjectName {
+                showAlert(message: CreateProjectError.inValidProjectName.rawValue)
+            } catch CreateProjectError.invalidProjectDate {
+                showAlert(message: CreateProjectError.invalidProjectDate.rawValue)
+            } catch CreateProjectError.invalideProjectImage {
+                showAlert(message: CreateProjectError.invalideProjectImage.rawValue)
+            } catch let error {
+                showAlert(message: "\(error)")
             }
             
+        }   else {
+            showAlert(message: "Unable to create project")
         }
-        
-    }
-    
-    
-    //MARK: Post to Firebase
-    func addProjectToFirebase(imgURL: String) {
-        
-        //Posting to global projects list
-        let project: Dictionary<String, AnyObject> = [
-            "name": projectNameLbl.text as AnyObject,
-            "image": imgURL as AnyObject,
-            "startDate": dateLbl.text as AnyObject
-        ]
 
-        let firebaseProject = DataService.ds.REF_PROJECTS.childByAutoId()
-        firebaseProject.setValue(project)
         
-        //Posting to userbased project list
-        let projectId = "\(firebaseProject.key)"
-        
-        let newUserProject: Dictionary<String, String> = [
-            "admin": Access.granted.rawValue
-        ]
-        
-        let firebaseUserProject = DataService.ds.REF_USER_PROJECTS.child(projectId)
-        firebaseUserProject.setValue(newUserProject)
-        //Posting to current user current project list
-        let newCurrentProject: Dictionary<String, String> = [
-            "access": Access.granted.rawValue
-        ]
-        let currentProjectId = "\(firebaseProject.key)"
-        let firebaseUserCurrentProject = DataService.ds.REF_USER_CURRENT_PROJECTS.child(currentProjectId)
-        firebaseUserCurrentProject.setValue(newCurrentProject)
-        
-        projectNameLbl.text = nil
-        imageSelected = true
-        dateLbl.text = nil
-        imageAdd.image = UIImage(named: "ImageBtn.png")
-        imageAdd.contentMode = .center
     }
     
+    func showAlert(message: String) {
+        let alertController = UIAlertController(title: "" , message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
+            return
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
     //MARK: Creation of datepicker
     func createDatePicker() {
@@ -150,4 +113,4 @@ import Firebase
         self.view.endEditing(true)
     }
 
-}*/
+}

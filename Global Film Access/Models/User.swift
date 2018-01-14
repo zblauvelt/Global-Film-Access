@@ -8,16 +8,7 @@
 
 import Foundation
 import Firebase
-//this enum should be used for projects
-/*enum UserAccessLevel: String {
-    case unknown = "Unknown"
-    case executiveProducer = "Executive Producer"
-    case topTierProducer = "Top Tier Producer"
-    case lowTierProducer = "Low Tier Producer"
-    case crew = "Crew Member"
-    case vendor = "Vendor"
-    case talent = "Talent"
-}*/
+
 
 enum Access: String {
     case granted = "true"
@@ -56,16 +47,16 @@ protocol User {
     var zipCode: String { get set }
     var profileImage: UIImage { get set }
     var userName: String { get set }
+    var userKey: String { get set }
     var REF_USERS: FIRDatabaseReference { get }
     var REF_CURRENT_USER: FIRDatabaseReference { get }
     var REF_USER_PROJECTS: FIRDatabaseReference { get }
-    var REF_USER_CURRENT_PROJECTS: FIRDatabaseReference { get }
     var REF_USER_ARCHIVE_PROJECTS: FIRDatabaseReference { get }
     var REF_PROFILE_IMAGE: FIRStorageReference { get }
     
     ///Adds user to the Firebase database
     //MARK: Create user for DB
-    func createUserDB(user: UserType) throws
+    func createUserDB(user: User) throws
     
     
 }
@@ -79,12 +70,14 @@ class UserType: User {
     var zipCode: String
     var profileImage: UIImage
     var userName: String
+    var userKey: String = userID
+    
     //Firebase database references
    
     var REF_USERS = DB_BASE.child("users")
     var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
+    var REF_CURREN_USER_DETAILS = DB_BASE.child("users").child(userID).child("Details")
     var REF_USER_PROJECTS = DB_BASE.child("users").child(userID).child("userProjects")
-    var REF_USER_CURRENT_PROJECTS = DB_BASE.child("users").child(userID).child("currentProjects")
     var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
     var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
     
@@ -99,8 +92,8 @@ class UserType: User {
         self.userName = "\(firstName).\(lastName)"
     }
     
-    init(userName: String, userData: Dictionary <String, Any>) throws {
-        self.userName = userName
+    init(userKey: String, userData: Dictionary <String, Any>) throws {
+        self.userKey = userKey
         
         if let firstName = userData[FIRUserData.firstName.rawValue] {
             self.firstName = firstName as! String
@@ -132,6 +125,12 @@ class UserType: User {
             throw CreateUserError.invalidZipCode
         }
         
+        if let userName = userData[FIRUserData.userName.rawValue] {
+            self.userName = userName as! String
+        } else {
+            throw CreateUserError.invalidUserName
+        }
+        
         if let profileImage = userData[FIRUserData.profileImage.rawValue] {
             self.profileImage = profileImage as! UIImage
         } else {
@@ -140,7 +139,7 @@ class UserType: User {
         
     }
     
-    func createUserDB(user: UserType) throws {
+    func createUserDB(user: User) throws {
         guard user.firstName != "" else {
             throw CreateUserError.invalidFirstName
         }
@@ -174,16 +173,16 @@ class UserType: User {
                     let downloadURL = metaData?.downloadURL()?.absoluteString
                     if let url = downloadURL {
                         let user: Dictionary<String, String> = [
-                            "firstName": user.firstName,
-                            "lastName": user.lastName,
-                            "userName": "\(user.firstName).\(user.lastName)",
-                            "city": user.city,
-                            "state": user.state,
-                            "zipCode": user.zipCode,
-                            "profileImageURL": url
+                            FIRUserData.firstName.rawValue: user.firstName,
+                            FIRUserData.lastName.rawValue: user.lastName,
+                            FIRUserData.userName.rawValue: "\(user.firstName).\(user.lastName)",
+                            FIRUserData.city.rawValue: user.city,
+                            FIRUserData.state.rawValue: user.state,
+                            FIRUserData.zipCode.rawValue: user.zipCode,
+                            FIRUserData.profileImage.rawValue: url
                         ]
                         //MARK: Post to Firebase Database
-                        self.REF_CURRENT_USER.setValue(user)
+                        self.REF_CURREN_USER_DETAILS.setValue(user)
                     }
                 }
             }

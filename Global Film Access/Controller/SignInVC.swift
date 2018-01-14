@@ -19,7 +19,7 @@ class SignInVC: UIViewController {
         super.viewDidLoad()
         //FIXME: remove when done app
         email.text = "zblauvelt@hotmail.com"
-        password.text = "Hockey4842"
+        password.text = "Hockey4842?"
         
         // Do any additional setup after loading the view, typically from a nib.
     }
