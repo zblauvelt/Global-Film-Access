@@ -12,10 +12,10 @@
     class ProjectListVC: UITableViewController {
         
         var currentProjects = [CurArchProjects]()
-        var userProjectDetails = [ProjectDetails]()
+        var userProjectDetails = [ProjectType]()
         var projectid = [String]()
         static var imageCache: NSCache<NSString, UIImage> = NSCache()
-
+        
         override func viewDidLoad() {
             super.viewDidLoad()
             getUserProjects()
@@ -67,7 +67,7 @@
         
         //Need to get info to load in ViewDidLoad and need to figure out how to get the current user's projects and access the total details.
         func getUserProjects() {
-            DataService.ds.REF_USER_CURRENT_PROJECTS.observe(.value, with: { (snapshot) in
+            ProjectType.REF_USER_CURRENT_PROJECTS.observe(.value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     self.projectid.removeAll()
                     self.currentProjects.removeAll()
@@ -90,16 +90,16 @@
         
         
         func getProjectDetails() {
-            DataService.ds.REF_PROJECTS.observe(.value, with: { (snapshot) in
+            ProjectType.REF_PROJECT.observe(.value, with: { (snapshot) in
                     if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                        self.userProjectDetails.removeAll()
+                        ProjectType.userProjects.removeAll()
                         for snap in snapshot {
                             print("SNAP: \(snap)")
                            
                           //If the id matches the id from projects then it will be added to userProjectsDetails Array
                             if let projectDetailDict = snap.value as? Dictionary<String, String> {
                                 let key = snap.key
-                                let projectDetails = ProjectDetails(projectid: key, projectData: projectDetailDict)
+                                let projectDetails = try! ProjectType(projectID: key, projectData: projectDetailDict)
                                 
                                 if self.projectid.contains("\(projectDetails.projectid)") {
                                     self.userProjectDetails.append(projectDetails)

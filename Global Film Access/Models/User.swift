@@ -48,11 +48,11 @@ protocol User {
     var profileImage: UIImage { get set }
     var userName: String { get set }
     var userKey: String { get set }
-    var REF_USERS: FIRDatabaseReference { get }
-    var REF_CURRENT_USER: FIRDatabaseReference { get }
-    var REF_USER_PROJECTS: FIRDatabaseReference { get }
-    var REF_USER_ARCHIVE_PROJECTS: FIRDatabaseReference { get }
-    var REF_PROFILE_IMAGE: FIRStorageReference { get }
+    static var REF_USERS: FIRDatabaseReference { get }
+    static var REF_CURRENT_USER: FIRDatabaseReference { get }
+    static var REF_USER_PROJECTS: FIRDatabaseReference { get }
+    static var REF_USER_ARCHIVE_PROJECTS: FIRDatabaseReference { get }
+    static var REF_PROFILE_IMAGE: FIRStorageReference { get }
     
     ///Adds user to the Firebase database
     //MARK: Create user for DB
@@ -74,12 +74,12 @@ class UserType: User {
     
     //Firebase database references
    
-    var REF_USERS = DB_BASE.child("users")
-    var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
-    var REF_CURREN_USER_DETAILS = DB_BASE.child("users").child(userID).child("Details")
-    var REF_USER_PROJECTS = DB_BASE.child("users").child(userID).child("userProjects")
-    var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
-    var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
+    static var REF_USERS = DB_BASE.child("users")
+    static var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
+    static var REF_CURREN_USER_DETAILS = DB_BASE.child("users").child(userID).child("Details")
+    static var REF_USER_PROJECTS = DB_BASE.child("users").child(userID).child("userProjects")
+    static var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
+    static var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
     
     
     init(firstName: String, lastName: String, city: String, state: String, profileImage: UIImage, zipCode: String) {
@@ -165,7 +165,7 @@ class UserType: User {
             let metaData = FIRStorageMetadata()
             metaData.contentType = "image/jpeg"
             
-            REF_PROFILE_IMAGE.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
+            UserType.REF_PROFILE_IMAGE.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
                 if error != nil {
                     print("ZACK: Unable to upload to Firebase Storage")
                 } else {

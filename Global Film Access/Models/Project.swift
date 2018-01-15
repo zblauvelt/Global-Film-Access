@@ -43,14 +43,13 @@ protocol Project {
     var projectReleaseDate: String { get set }
     var projectID: String { get set }
     var userAccessLevel: String { get set }
-    var userProjects: [String] { get set }
-    var REF_PROJECT: FIRDatabaseReference { get }
-    var REF_USER_PROJECTS: FIRDatabaseReference { get }
-    var REF_USER_CURRENT_PROJECTS: FIRDatabaseReference { get }
-    var REF_PROJECT_IMG_STORAGE: FIRStorageReference { get }
+    static var userProjects: [Project] { get set }
+    static var REF_PROJECT: FIRDatabaseReference { get }
+    static var REF_USER_PROJECTS: FIRDatabaseReference { get }
+    static var REF_USER_CURRENT_PROJECTS: FIRDatabaseReference { get }
+    static var REF_PROJECT_IMG_STORAGE: FIRStorageReference { get }
     
     func createProjectDB(project: Project) throws
-    func getUserProject()
     
     
 }
@@ -62,11 +61,11 @@ class ProjectType: Project {
     var projectReleaseDate: String
     var projectID: String = ""
     var userAccessLevel: String = UserAccessLevel.admin.rawValue
-    var userProjects = [String]()
-    var REF_PROJECT: FIRDatabaseReference = DB_BASE.child("projects")
-    var REF_USER_PROJECTS: FIRDatabaseReference = DB_BASE.child("users").child(userID).child("userProjects")
-    var REF_USER_CURRENT_PROJECTS = DB_BASE.child("users").child(userID).child("currentProjects")
-    var REF_PROJECT_IMG_STORAGE: FIRStorageReference = STORAGE_BASE.child("project-pics")
+    static var userProjects = [Project]()
+    static var REF_PROJECT: FIRDatabaseReference = DB_BASE.child("projects")
+    static var REF_USER_PROJECTS: FIRDatabaseReference = DB_BASE.child("users").child(userID).child("userProjects")
+    static var REF_USER_CURRENT_PROJECTS = DB_BASE.child("users").child(userID).child("currentProjects")
+    static var REF_PROJECT_IMG_STORAGE: FIRStorageReference = STORAGE_BASE.child("project-pics")
     
     init(projectName: String, projectImage: UIImage, projectReleaseDate: String) {
         self.projectName = projectName
@@ -86,7 +85,7 @@ class ProjectType: Project {
         if let projectImage = projectData[FIRProjectData.image.rawValue] {
             self.projectImage = projectImage as! UIImage
         } else {
-           throw CreateProjectError.invalideProjectImage
+            throw CreateProjectError.invalideProjectImage
         }
         
         if let projectReleaseDate = projectData[FIRProjectData.releaseDate.rawValue] {
@@ -96,8 +95,6 @@ class ProjectType: Project {
         }
         
     }
-    
-    
     func createProjectDB(project: Project) throws {
         guard project.projectName != "" else {
             throw CreateProjectError.inValidProjectName
@@ -114,7 +111,7 @@ class ProjectType: Project {
             let metaData = FIRStorageMetadata()
             metaData.contentType = "image/jpeg"
             
-            REF_PROJECT_IMG_STORAGE.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
+            ProjectType.REF_PROJECT_IMG_STORAGE.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
                 if error != nil {
                     print("ZACK: Unable to upload to Firebase Storage") //TODO: send alert to user
                 } else {
@@ -130,22 +127,16 @@ class ProjectType: Project {
                             FIRProjectData.accessLevel.rawValue: self.userAccessLevel
                         ]
                         
-                        self.REF_PROJECT.child("\(self.projectName)").setValue(project)
-                        self.REF_USER_CURRENT_PROJECTS.child("\(self.projectName)").setValue(currentProject)
-                        self.REF_USER_PROJECTS.child("\(self.projectName)").setValue(currentProject)
+                        ProjectType.REF_PROJECT.child("\(self.projectName)").setValue(project)
+                        ProjectType.REF_USER_CURRENT_PROJECTS.child("\(self.projectName)").setValue(currentProject)
+                        ProjectType.REF_USER_PROJECTS.child("\(self.projectName)").setValue(currentProject)
                         
                     }
                 }
             }
             
         }
-        
-    }
-    
-    func getUserProject() {
-        <#code#>
     }
 }
-
 
 
