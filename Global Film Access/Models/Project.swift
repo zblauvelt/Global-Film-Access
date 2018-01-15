@@ -39,17 +39,16 @@ enum UserAccessLevel: String {
 
 protocol Project {
     var projectName: String { get set }
-    var projectImage: UIImage { get set }
+    var projectImage: String? { get set }
     var projectReleaseDate: String { get set }
     var projectID: String { get set }
     var userAccessLevel: String { get set }
-    static var userProjects: [Project] { get set }
     static var REF_PROJECT: FIRDatabaseReference { get }
     static var REF_USER_PROJECTS: FIRDatabaseReference { get }
     static var REF_USER_CURRENT_PROJECTS: FIRDatabaseReference { get }
     static var REF_PROJECT_IMG_STORAGE: FIRStorageReference { get }
     
-    func createProjectDB(project: Project) throws
+    func createProjectDB(project: Project, image: UIImage) throws
     
     
 }
@@ -57,45 +56,44 @@ protocol Project {
 class ProjectType: Project {
     
     var projectName: String
-    var projectImage: UIImage
+    var projectImage: String?
     var projectReleaseDate: String
     var projectID: String = ""
     var userAccessLevel: String = UserAccessLevel.admin.rawValue
-    static var userProjects = [Project]()
     static var REF_PROJECT: FIRDatabaseReference = DB_BASE.child("projects")
     static var REF_USER_PROJECTS: FIRDatabaseReference = DB_BASE.child("users").child(userID).child("userProjects")
     static var REF_USER_CURRENT_PROJECTS = DB_BASE.child("users").child(userID).child("currentProjects")
+    static var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
     static var REF_PROJECT_IMG_STORAGE: FIRStorageReference = STORAGE_BASE.child("project-pics")
     
-    init(projectName: String, projectImage: UIImage, projectReleaseDate: String) {
+    init(projectName: String, projectReleaseDate: String) {
         self.projectName = projectName
-        self.projectImage = projectImage
         self.projectReleaseDate = projectReleaseDate
     }
     
-    init(projectID: String, projectData: Dictionary <String, Any>) throws {
+    init(projectID: String, projectData: Dictionary <String, String>) throws {
         self.projectID = projectID
         
         if let projectName = projectData[FIRProjectData.projectName.rawValue] {
-            self.projectName = projectName as! String
+            self.projectName = projectName
         } else {
             throw CreateProjectError.inValidProjectName
         }
         
         if let projectImage = projectData[FIRProjectData.image.rawValue] {
-            self.projectImage = projectImage as! UIImage
+            self.projectImage = projectImage
         } else {
             throw CreateProjectError.invalideProjectImage
         }
         
         if let projectReleaseDate = projectData[FIRProjectData.releaseDate.rawValue] {
-            self.projectReleaseDate = projectReleaseDate as! String
+            self.projectReleaseDate = projectReleaseDate
         } else {
             throw CreateProjectError.invalidProjectDate
         }
         
     }
-    func createProjectDB(project: Project) throws {
+    func createProjectDB(project: Project, image: UIImage) throws {
         guard project.projectName != "" else {
             throw CreateProjectError.inValidProjectName
         }
@@ -103,7 +101,7 @@ class ProjectType: Project {
             throw CreateProjectError.invalidProjectDate
         }
         
-        let img = project.projectImage
+        let img = image
         
         if let imgData = UIImageJPEGRepresentation(img, 0.2) {
             

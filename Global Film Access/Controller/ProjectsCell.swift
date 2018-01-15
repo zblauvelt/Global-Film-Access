@@ -29,21 +29,24 @@ class ProjectsCell: UITableViewCell {
         if img != nil {
             self.projectImage.image = img
         } else {
-            let ref = FIRStorage.storage().reference(forURL: userProject.projectImage)
-            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                if error != nil {
-                    print("ZACK: Unable to download image from Firebase Storage")
-                } else {
-                    print("ZACK: Image downloaded from Firebase Storage")
-                    if let imgData = data {
-                        if let img = UIImage(data: imgData) {
-                            self.projectImage.image = img
-                            ProjectListVC.imageCache.setObject(img, forKey: userProject.image as NSString)
+            
+            if let imageURL = userProject.projectImage {
+                
+                let ref = FIRStorage.storage().reference(forURL: imageURL)
+                ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                    if error != nil {
+                        print("ZACK: Unable to download image from Firebase Storage")
+                    } else {
+                        print("ZACK: Image downloaded from Firebase Storage")
+                        if let imgData = data {
+                            if let img = UIImage(data: imgData) {
+                                self.projectImage.image = img
+                                ProjectListVC.imageCache.setObject(img, forKey: imageURL as NSString)
+                            }
                         }
                     }
-                }
-            })
-            
+                })
+            } 
         }
     }
 
