@@ -544,7 +544,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDT-Wm-P3n" customClass="CustomView" customModule="Global_Film_Access" customModuleProvider="target">
-                                <rect key="frame" x="25.5" y="120" width="269" height="420"/>
+                                <rect key="frame" x="25.5" y="70" width="269" height="420"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5a-be-OW5">
                                         <rect key="frame" x="38" y="76" width="193" height="40"/>
@@ -601,7 +601,7 @@
                                                             <constraint firstAttribute="width" constant="50" id="Ddb-iT-4uN"/>
                                                         </constraints>
                                                     </view>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tIP-kp-VzA" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Est Release Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tIP-kp-VzA" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
                                                         <rect key="frame" x="60" y="0.0" width="179" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="InT-Rk-dE8"/>
@@ -668,7 +668,7 @@
                             <constraint firstItem="27i-Sl-40a" firstAttribute="leading" secondItem="9Yn-wH-00T" secondAttribute="leading" id="5ij-lw-2Ut"/>
                             <constraint firstItem="9Yn-wH-00T" firstAttribute="bottom" secondItem="27i-Sl-40a" secondAttribute="bottom" id="8SN-R8-gsD"/>
                             <constraint firstItem="9Yn-wH-00T" firstAttribute="trailing" secondItem="27i-Sl-40a" secondAttribute="trailing" id="V9V-cA-NFt"/>
-                            <constraint firstItem="RDT-Wm-P3n" firstAttribute="top" secondItem="9Yn-wH-00T" secondAttribute="top" constant="100" id="bM6-0Q-Sk6"/>
+                            <constraint firstItem="RDT-Wm-P3n" firstAttribute="top" secondItem="9Yn-wH-00T" secondAttribute="top" constant="50" id="bM6-0Q-Sk6"/>
                             <constraint firstItem="27i-Sl-40a" firstAttribute="top" secondItem="Ks0-wr-d1U" secondAttribute="top" id="hhU-eR-1zH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Yn-wH-00T"/>
@@ -689,7 +689,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2957.971014492754" y="79.891304347826093"/>
+            <point key="canvasLocation" x="1494" y="-650"/>
         </scene>
         <!--Projects-->
         <scene sceneID="K2j-iX-5wQ">
@@ -773,7 +773,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="79T-KW-CV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2528.985507246377" y="756.52173913043487"/>
+            <point key="canvasLocation" x="2220" y="756"/>
         </scene>
         <!--Archive-->
         <scene sceneID="m6z-wO-2i4">
@@ -790,7 +790,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cG1-bi-8x3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1802.8985507246377" y="756.52173913043487"/>
+            <point key="canvasLocation" x="1494" y="756"/>
         </scene>
         <!--Projects Tab Bar-->
         <scene sceneID="DyH-vH-BFf">
