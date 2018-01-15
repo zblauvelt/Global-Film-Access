@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-/*class ProjectsCell: UITableViewCell {
+class ProjectsCell: UITableViewCell {
     @IBOutlet weak var projectImage: UIImageView!
     @IBOutlet weak var projectNameLbl: UILabel!
     @IBOutlet weak var projectReleaseDate: UILabel!
@@ -21,15 +21,15 @@ import Firebase
         // Initialization code
     }
 
-    func configureCell(userProject: ProjectDetails, img: UIImage? = nil) {
-        self.projectNameLbl.text = userProject.name
-        self.projectReleaseDate.text = userProject.date
+    func configureCell(userProject: ProjectType, img: UIImage? = nil) {
+        self.projectNameLbl.text = userProject.projectName
+        self.projectReleaseDate.text = userProject.projectReleaseDate
         
         //Image Caching
         if img != nil {
             self.projectImage.image = img
         } else {
-            let ref = FIRStorage.storage().reference(forURL: userProject.image)
+            let ref = FIRStorage.storage().reference(forURL: userProject.projectImage)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
                     print("ZACK: Unable to download image from Firebase Storage")
@@ -47,4 +47,4 @@ import Firebase
         }
     }
 
-}*/
+}
