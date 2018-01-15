@@ -7,41 +7,27 @@
 //
 
 import Foundation
+import Firebase
 
-/*class UserProjects {
-    private var _userProjects: String!
-    private var _projectid: String!
-    private var _admin: String!
+class UserProjects {
+    var projectID: String = ""
+    var accessLevel: String
+    static var REF_USER_PROJECTS: FIRDatabaseReference = DB_BASE.child("users").child(userID).child("userProjects")
+    static var REF_USER_CURRENT_PROJECTS = DB_BASE.child("users").child(userID).child("currentProjects")
+    static var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
     
-    var userProjects: String {
-        return _userProjects
+    
+    init(accessLevel: String) {
+        self.accessLevel = accessLevel
     }
     
-    var projectid: String {
-        return _projectid
-    }
-    
-    var admin: String {
-        return _admin
-    }
-    
-    init(projectid: String, admin: String) {
-        self._projectid = projectid
-        self._admin = admin
-    }
-    
-    init(userProjects: String, projectData: Dictionary<String, String>) {
-        self._userProjects = userProjects
+    init(projectID: String, userProjectData: Dictionary <String, String>) throws {
+        self.projectID = projectID
         
-        if let projectid = projectData["projectid"] {
-            self._projectid = projectid
-        }
-        
-        if let admin = projectData["admin"] {
-            self._admin = admin
+        if let accessLevel = userProjectData[FIRProjectData.accessLevel.rawValue] {
+            self.accessLevel = accessLevel
+        } else {
+            throw CreateProjectError.incalidProjectAccessLevel
         }
     }
-    
-    
-    
-}*/
+}

@@ -11,7 +11,7 @@
 
     class ProjectListVC: UITableViewController {
         
-        var currentProjects = [CurArchProjects]()
+        var currentProjects = [UserProjects]()
         var userProjectDetails = [ProjectType]()
         var projectid = [String]()
         static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -70,7 +70,7 @@
         
         //Need to get info to load in ViewDidLoad and need to figure out how to get the current user's projects and access the total details.
         func getUserProjects() {
-            ProjectType.REF_USER_CURRENT_PROJECTS.observe(.value, with: { (snapshot) in
+            UserProjects.REF_USER_CURRENT_PROJECTS.observe(.value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     self.projectid.removeAll()
                     self.currentProjects.removeAll()
@@ -79,9 +79,9 @@
                         
                         if let projectDict = snap.value as? Dictionary<String, String> {
                             let key = snap.key
-                            let project = CurArchProjects(projectKey: key, projectData: projectDict)
+                            let project = try! UserProjects(projectID: key, userProjectData: projectDict)
                             self.currentProjects.append(project)
-                            self.projectid.append(project.projectKey)
+                            self.projectid.append(project.projectID)
                             self.getProjectDetails()
                         }
                     }
@@ -120,13 +120,13 @@
         func moveToArchive(indexPath: IndexPath) {
             let projectid = userProjectDetails[indexPath.row].projectID
             let archivedProject: Dictionary<String, String> = [
-                FIRProjectData.accessLevel.rawValue: Access.granted.rawValue
+                FIRProjectData.accessLevel.rawValue: userProjectDetails[indexPath.row].userAccessLevel
             ]
-            let firebaseArchiveProject = ProjectType.REF_USER_ARCHIVE_PROJECTS.child(projectid)
+            let firebaseArchiveProject = UserProjects.REF_USER_ARCHIVE_PROJECTS.child(projectid)
             firebaseArchiveProject.setValue(archivedProject)
             
             let currentProjectAtRow = userProjectDetails[indexPath.row].projectID
-            let firebaseRemoveFromCurrent = ProjectType.REF_USER_CURRENT_PROJECTS.child(currentProjectAtRow)
+            let firebaseRemoveFromCurrent = UserProjects.REF_USER_CURRENT_PROJECTS.child(currentProjectAtRow)
             firebaseRemoveFromCurrent.removeValue()
             self.getProjectDetails()
         }

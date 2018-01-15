@@ -15,6 +15,7 @@ enum CreateProjectError: String, Error {
     case inValidProjectName = "Please provide a valid name for your project."
     case invalideProjectImage = "Please provide an image for your project."
     case invalidProjectDate = "Please provide a date for your project."
+    case incalidProjectAccessLevel = "Please provide a correct access level."
 }
 
 //Firebase DB References
@@ -44,8 +45,6 @@ protocol Project {
     var projectID: String { get set }
     var userAccessLevel: String { get set }
     static var REF_PROJECT: FIRDatabaseReference { get }
-    static var REF_USER_PROJECTS: FIRDatabaseReference { get }
-    static var REF_USER_CURRENT_PROJECTS: FIRDatabaseReference { get }
     static var REF_PROJECT_IMG_STORAGE: FIRStorageReference { get }
     
     func createProjectDB(project: Project, image: UIImage) throws
@@ -61,9 +60,6 @@ class ProjectType: Project {
     var projectID: String = ""
     var userAccessLevel: String = UserAccessLevel.admin.rawValue
     static var REF_PROJECT: FIRDatabaseReference = DB_BASE.child("projects")
-    static var REF_USER_PROJECTS: FIRDatabaseReference = DB_BASE.child("users").child(userID).child("userProjects")
-    static var REF_USER_CURRENT_PROJECTS = DB_BASE.child("users").child(userID).child("currentProjects")
-    static var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
     static var REF_PROJECT_IMG_STORAGE: FIRStorageReference = STORAGE_BASE.child("project-pics")
     
     init(projectName: String, projectReleaseDate: String) {
@@ -126,8 +122,8 @@ class ProjectType: Project {
                         ]
                         
                         ProjectType.REF_PROJECT.child("\(self.projectName)").setValue(project)
-                        ProjectType.REF_USER_CURRENT_PROJECTS.child("\(self.projectName)").setValue(currentProject)
-                        ProjectType.REF_USER_PROJECTS.child("\(self.projectName)").setValue(currentProject)
+                        UserProjects.REF_USER_CURRENT_PROJECTS.child("\(self.projectName)").setValue(currentProject)
+                        UserProjects.REF_USER_PROJECTS.child("\(self.projectName)").setValue(currentProject)
                         
                     }
                 }
