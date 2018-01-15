@@ -11,7 +11,7 @@
 
     class ProjectListVC: UITableViewController {
         
-        var currentProjects = [CurArchProjects]()
+        var currentProjects = [UserProjects]()
         var userProjectDetails = [ProjectType]()
         var projectid = [String]()
         static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -41,17 +41,20 @@
 
             // Configure the cell...
             if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ProjectsCell {
-                
-                if let img = ProjectListVC.imageCache.object(forKey: userProject.image as NSString) {
-                    cell.configureCell(userProject: userProject, img: img)
-
+                if let imageURL = userProject.projectImage {
+                    if let img = ProjectListVC.imageCache.object(forKey: imageURL as NSString) {
+                        cell.configureCell(userProject: userProject, img: img)
+                        
+                    } else {
+                        cell.configureCell(userProject: userProject)
+                    }
+                    return cell
                 } else {
-                    cell.configureCell(userProject: userProject)
-            }
-                return cell
-            } else {
-                return ProjectsCell()
-            }
+                    return ProjectsCell()
+                }
+                } else {
+                    return ProjectsCell()
+                }
     }
 
         override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -67,7 +70,7 @@
         
         //Need to get info to load in ViewDidLoad and need to figure out how to get the current user's projects and access the total details.
         func getUserProjects() {
-            ProjectType.REF_USER_CURRENT_PROJECTS.observe(.value, with: { (snapshot) in
+            UserProjects.REF_USER_CURRENT_PROJECTS.observe(.value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     self.projectid.removeAll()
                     self.currentProjects.removeAll()
@@ -76,9 +79,9 @@
                         
                         if let projectDict = snap.value as? Dictionary<String, String> {
                             let key = snap.key
-                            let project = CurArchProjects(projectKey: key, projectData: projectDict)
+                            let project = try! UserProjects(projectID: key, userProjectData: projectDict)
                             self.currentProjects.append(project)
-                            self.projectid.append(project.projectKey)
+                            self.projectid.append(project.projectID)
                             self.getProjectDetails()
                         }
                     }
@@ -92,7 +95,7 @@
         func getProjectDetails() {
             ProjectType.REF_PROJECT.observe(.value, with: { (snapshot) in
                     if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                        ProjectType.userProjects.removeAll()
+                        self.userProjectDetails.removeAll()
                         for snap in snapshot {
                             print("SNAP: \(snap)")
                            
@@ -101,7 +104,7 @@
                                 let key = snap.key
                                 let projectDetails = try! ProjectType(projectID: key, projectData: projectDetailDict)
                                 
-                                if self.projectid.contains("\(projectDetails.projectid)") {
+                                if self.projectid.contains("\(projectDetails.projectID)") {
                                     self.userProjectDetails.append(projectDetails)
                             }
                         }
@@ -115,15 +118,15 @@
         
         //Move row to archive
         func moveToArchive(indexPath: IndexPath) {
-            let projectid = userProjectDetails[indexPath.row].projectid
+            let projectid = userProjectDetails[indexPath.row].projectID
             let archivedProject: Dictionary<String, String> = [
-                "access": Access.granted.rawValue
+                FIRProjectData.accessLevel.rawValue: userProjectDetails[indexPath.row].userAccessLevel
             ]
-            let firebaseArchiveProject = DataService.ds.REF_USER_ARCHIVE_PROJECTS.child(projectid)
+            let firebaseArchiveProject = UserProjects.REF_USER_ARCHIVE_PROJECTS.child(projectid)
             firebaseArchiveProject.setValue(archivedProject)
             
-            let currentProjectAtRow = userProjectDetails[indexPath.row].projectid
-            let firebaseRemoveFromCurrent = DataService.ds.REF_USER_CURRENT_PROJECTS.child(currentProjectAtRow)
+            let currentProjectAtRow = userProjectDetails[indexPath.row].projectID
+            let firebaseRemoveFromCurrent = UserProjects.REF_USER_CURRENT_PROJECTS.child(currentProjectAtRow)
             firebaseRemoveFromCurrent.removeValue()
             self.getProjectDetails()
         }

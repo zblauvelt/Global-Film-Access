@@ -50,8 +50,6 @@ protocol User {
     var userKey: String { get set }
     static var REF_USERS: FIRDatabaseReference { get }
     static var REF_CURRENT_USER: FIRDatabaseReference { get }
-    static var REF_USER_PROJECTS: FIRDatabaseReference { get }
-    static var REF_USER_ARCHIVE_PROJECTS: FIRDatabaseReference { get }
     static var REF_PROFILE_IMAGE: FIRStorageReference { get }
     
     ///Adds user to the Firebase database
@@ -73,12 +71,9 @@ class UserType: User {
     var userKey: String = userID
     
     //Firebase database references
-   
     static var REF_USERS = DB_BASE.child("users")
     static var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
     static var REF_CURREN_USER_DETAILS = DB_BASE.child("users").child(userID).child("Details")
-    static var REF_USER_PROJECTS = DB_BASE.child("users").child(userID).child("userProjects")
-    static var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
     static var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
     
     
@@ -182,7 +177,7 @@ class UserType: User {
                             FIRUserData.profileImage.rawValue: url
                         ]
                         //MARK: Post to Firebase Database
-                        self.REF_CURREN_USER_DETAILS.setValue(user)
+                        UserType.REF_CURREN_USER_DETAILS.setValue(user)
                     }
                 }
             }

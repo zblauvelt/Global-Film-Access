@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-/*class ArchiveProjectsVC: UITableViewController {
+class ArchiveProjectsVC: UITableViewController {
     var projectid = [String]()
-    var archiveProjects = [CurArchProjects]()
-    var userProjectDetails = [ProjectDetails]()
+    var archiveProjects = [UserProjects]()
+    var userProjectDetails = [ProjectType]()
     var userProjectAccess = [UserProjects]()
     static var archiveImageCache: NSCache<NSString, UIImage> = NSCache()
     
@@ -41,17 +41,22 @@ import Firebase
         
         // Configure the cell...
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ArchiveProjectCell {
-            
-            if let img = ArchiveProjectsVC.archiveImageCache.object(forKey: userProject.image as NSString) {
-                cell.configureCell(userProject: userProject, img: img)
+            if let imageURL = userProject.projectImage {
                 
+                if let img = ArchiveProjectsVC.archiveImageCache.object(forKey: imageURL as NSString) {
+                    cell.configureCell(userProject: userProject, img: img)
+                    
+                } else {
+                    cell.configureCell(userProject: userProject)
+                }
+                return cell
             } else {
-                cell.configureCell(userProject: userProject)
+                return ArchiveProjectCell()
             }
-            return cell
-        } else {
-            return ArchiveProjectCell()
-        }
+            } else {
+                return ArchiveProjectCell()
+            }
+
     }
  
 
@@ -74,21 +79,7 @@ import Firebase
     
     //Need to get info to load in ViewDidLoad and need to figure out how to get the current user's projects and access the total details.
     func getUserProjects() {
-        DataService.ds.REF_USER_PROJECTS.observe(.value, with: { (snapshot) in
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                self.userProjectAccess.removeAll()
-                for snap in snapshot {
-                    print("SNAP:\(snap)")
-                    if let userAccessDict = snap.value as? Dictionary<String, String> {
-                        let key = snap.key
-                        let projectAccess = UserProjects(userProjects: key, projectData: userAccessDict)
-                        self.userProjectAccess.append(projectAccess)
-                    }
-                }
-                
-            }
-        })
-        DataService.ds.REF_USER_ARCHIVE_PROJECTS.observe(.value, with: { (snapshot) in
+        UserProjects.REF_USER_ARCHIVE_PROJECTS.observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 self.projectid.removeAll()
                 self.archiveProjects.removeAll()
@@ -97,9 +88,9 @@ import Firebase
                     
                     if let projectDict = snap.value as? Dictionary<String, String> {
                         let key = snap.key
-                        let project = CurArchProjects(projectKey: key, projectData: projectDict)
+                        let project = try! UserProjects(projectID: key, userProjectData: projectDict)
                         self.archiveProjects.append(project)
-                        self.projectid.append(project.projectKey)
+                        self.projectid.append(project.projectID)
                         self.getProjectDetails()
                     }
                 }
@@ -120,9 +111,9 @@ import Firebase
                     //If the id matches the id from projects then it will be added to userProjectsDetails Array
                     if let projectDetailDict = snap.value as? Dictionary<String, String> {
                         let key = snap.key
-                        let projectDetails = ProjectDetails(projectid: key, projectData: projectDetailDict)
+                        let projectDetails = try! ProjectType(projectID: key, projectData: projectDetailDict)
                         
-                        if self.projectid.contains("\(projectDetails.projectid)") {
+                        if self.projectid.contains("\(projectDetails.projectID)") {
                             self.userProjectDetails.append(projectDetails)
                         }
                     }
@@ -135,23 +126,23 @@ import Firebase
     
     //Move row to current projects from archive.
     func moveToArchive(indexPath: IndexPath) {
-        let project = userProjectDetails[indexPath.row].projectid
+        let project = userProjectDetails[indexPath.row].projectID
         let activateProject: Dictionary<String, String> = [
-            "access": Access.granted.rawValue
+            FIRProjectData.accessLevel.rawValue: userProjectDetails[indexPath.row].userAccessLevel
         ]
-        let firebaseActivateProject = DataService.ds.REF_USER_CURRENT_PROJECTS.child(project)
+        let firebaseActivateProject = UserProjects.REF_USER_CURRENT_PROJECTS.child(project)
         firebaseActivateProject.setValue(activateProject)
         
-        let currentProjectAtRow = userProjectDetails[indexPath.row].projectid
-        let firebaseRemoveFromArchive = DataService.ds.REF_USER_ARCHIVE_PROJECTS.child(currentProjectAtRow)
+        let currentProjectAtRow = userProjectDetails[indexPath.row].projectID
+        let firebaseRemoveFromArchive = UserProjects.REF_USER_ARCHIVE_PROJECTS.child(currentProjectAtRow)
         firebaseRemoveFromArchive.removeValue()
         self.getProjectDetails()
     }
     
     //Remove row
     func permanentlyDelete(indexPath: IndexPath) {
-        if userProjectAccess[indexPath.row].admin == Access.granted.rawValue {
-            let currentProjectAtRow = userProjectDetails[indexPath.row].projectid
+        if archiveProjects[indexPath.row].accessLevel == UserAccessLevel.admin.rawValue {
+            let currentProjectAtRow = userProjectDetails[indexPath.row].projectID
             let firebaseRemoveFromGlobalProjects = DataService.ds.REF_PROJECTS.child(currentProjectAtRow)
             firebaseRemoveFromGlobalProjects.removeValue()
             deleteUserProjects(indexPath: indexPath)
@@ -162,9 +153,9 @@ import Firebase
     
     //Delete only the users projects if they are not the admin.
     func deleteUserProjects(indexPath: IndexPath) {
-        let currentProjectAtRow = userProjectDetails[indexPath.row].projectid
-        let firebaseRemoveFromArchive = DataService.ds.REF_USER_ARCHIVE_PROJECTS.child(currentProjectAtRow)
-        let firebaseRemoveFromUser = DataService.ds.REF_USER_PROJECTS.child(currentProjectAtRow)
+        let currentProjectAtRow = userProjectDetails[indexPath.row].projectID
+        let firebaseRemoveFromArchive = UserProjects.REF_USER_ARCHIVE_PROJECTS.child(currentProjectAtRow)
+        let firebaseRemoveFromUser = UserProjects.REF_USER_PROJECTS.child(currentProjectAtRow)
         firebaseRemoveFromArchive.removeValue()
         firebaseRemoveFromUser.removeValue()
         self.getProjectDetails()
@@ -176,4 +167,4 @@ import Firebase
         
     }
 
-}*/
+}

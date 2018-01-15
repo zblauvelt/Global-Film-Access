@@ -55,9 +55,9 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBAction func saveImageTapped(_ sender: Any) {
         if let projectName = projectNameLbl.text, let projectReleaseDate = dateLbl.text, let projectImage = imageAdd.image {
             
-            let newProject = ProjectType(projectName: projectName, projectImage: projectImage, projectReleaseDate: projectReleaseDate)
+            let newProject = ProjectType(projectName: projectName, projectReleaseDate: projectReleaseDate)
             do {
-                try newProject.createProjectDB(project: newProject)
+                try newProject.createProjectDB(project: newProject, image: projectImage)
                 projectNameLbl.text = nil
                 imageSelected = true
                 dateLbl.text = nil
