@@ -131,9 +131,23 @@
             self.getProjectDetails()
         }
         
+        
+        
         //unwind Create Project VC
         @IBAction func clos(segue: UIStoryboardSegue) {
             
+        }
+        
+        //Pass data through Segue
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "goToProjectDetail" {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let tabCtrl = segue.destination as! UITabBarController
+                    let nav = tabCtrl.viewControllers!.first as! UINavigationController
+                    let destinationController = nav.viewControllers.first as! ProjectDetailVC
+                    destinationController.selectedProjectKey = userProjectDetails[indexPath.row].projectID
+                }
+            }
         }
         
         

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1403ED13200851F800A5C58C /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1403ED12200851F700A5C58C /* Project.swift */; };
+		1403ED17200D4D2700A5C58C /* ProjectDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */; };
 		1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E5961FD8C8DD00925648 /* CommonTextField.swift */; };
 		1433E5991FD8D11400925648 /* CreateProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E5981FD8D11400925648 /* CreateProjectVC.swift */; };
 		1433E59D1FD8E86200925648 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E59C1FD8E86200925648 /* CircleButton.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		0D1F3B38E97BD801B0E1B7CE /* Pods-Global Film Access.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Global Film Access.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Global Film Access/Pods-Global Film Access.debug.xcconfig"; sourceTree = "<group>"; };
 		1403ED12200851F700A5C58C /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailVC.swift; sourceTree = "<group>"; };
 		1433E5961FD8C8DD00925648 /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
 		1433E5981FD8D11400925648 /* CreateProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectVC.swift; sourceTree = "<group>"; };
 		1433E59C1FD8E86200925648 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */,
 				14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */,
 				14E640F12002EB6C00A00968 /* CreateProfileVC.swift */,
+				1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */,
 				1444D5EF1FD0C53900A50CFF /* UserProjects.swift in Sources */,
 				14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */,
+				1403ED17200D4D2700A5C58C /* ProjectDetailVC.swift in Sources */,
 				14392FAB1FC516CE00993BB7 /* AppDelegate.swift in Sources */,
 				14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */,
 				14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */,
