@@ -540,7 +540,44 @@
                     <view key="view" contentMode="scaleToFill" id="Jal-8j-Mry">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TnN-HN-Fh4">
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="LsH-T9-A09">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iod-DA-khV">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="121.5"/>
+                                                <color key="backgroundColor" red="0.9685322642326355" green="0.96869415044784546" blue="0.96851092576980591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5l-1E-4JB">
+                                                <rect key="frame" x="0.0" y="122.5" width="320" height="122"/>
+                                                <color key="backgroundColor" red="0.96853226420000005" green="0.96869415039999995" blue="0.96851092579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4W-Kc-Ws9">
+                                                <rect key="frame" x="0.0" y="245.5" width="320" height="121.5"/>
+                                                <color key="backgroundColor" red="0.96853226420000005" green="0.96869415039999995" blue="0.96851092579999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.55000000000000004" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="LsH-T9-A09" firstAttribute="leading" secondItem="TnN-HN-Fh4" secondAttribute="leading" id="c1B-by-4Ov"/>
+                                    <constraint firstAttribute="bottom" secondItem="LsH-T9-A09" secondAttribute="bottom" id="c70-X8-4ur"/>
+                                    <constraint firstItem="LsH-T9-A09" firstAttribute="top" secondItem="TnN-HN-Fh4" secondAttribute="top" id="mjb-J4-1Yz"/>
+                                    <constraint firstAttribute="trailing" secondItem="LsH-T9-A09" secondAttribute="trailing" id="odi-59-mTa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="TnN-HN-Fh4" firstAttribute="trailing" secondItem="6IO-nD-4by" secondAttribute="trailing" id="U5S-pa-gRl"/>
+                            <constraint firstItem="6IO-nD-4by" firstAttribute="bottom" secondItem="TnN-HN-Fh4" secondAttribute="bottom" id="aYK-mE-jay"/>
+                            <constraint firstItem="TnN-HN-Fh4" firstAttribute="leading" secondItem="6IO-nD-4by" secondAttribute="leading" id="fK5-aY-e4T"/>
+                            <constraint firstItem="TnN-HN-Fh4" firstAttribute="top" secondItem="6IO-nD-4by" secondAttribute="top" id="fah-jQ-F6b"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6IO-nD-4by"/>
                     </view>
                     <navigationItem key="navigationItem" id="BdM-FX-u8q">
@@ -554,7 +591,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a1p-RL-DwY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="emH-FL-oSQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4579" y="80"/>
+            <point key="canvasLocation" x="4578.75" y="80"/>
         </scene>
         <!--Item-->
         <scene sceneID="Td4-EN-RmW">
@@ -861,6 +898,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="cWu-dY-sB7"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eE1-7f-4rw">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
