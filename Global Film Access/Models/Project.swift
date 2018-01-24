@@ -15,7 +15,8 @@ enum CreateProjectError: String, Error {
     case inValidProjectName = "Please provide a valid name for your project."
     case invalideProjectImage = "Please provide an image for your project."
     case invalidProjectDate = "Please provide a date for your project."
-    case incalidProjectAccessLevel = "Please provide a correct access level."
+    case invalidProjectAccessLevel = "Please provide a correct access level."
+    case duplicateName = "You're already a part of a project with this name. Please give the project a unique name."
 }
 
 //Firebase DB References
@@ -89,10 +90,17 @@ class ProjectType: Project {
         }
         
     }
+    
+    
     func createProjectDB(project: Project, image: UIImage) throws {
         guard project.projectName != "" else {
             throw CreateProjectError.inValidProjectName
         }
+        
+        if ProjectListVC.projectName.contains(project.projectName.lowercased()) {
+            throw CreateProjectError.duplicateName
+        }
+        
         guard project.projectReleaseDate != "" else {
             throw CreateProjectError.invalidProjectDate
         }
@@ -118,12 +126,15 @@ class ProjectType: Project {
                             FIRProjectData.image.rawValue: url
                         ]
                         let currentProject: Dictionary <String, String> = [
+                            FIRProjectData.projectName.rawValue: self.projectName,
                             FIRProjectData.accessLevel.rawValue: self.userAccessLevel
                         ]
                         
-                        ProjectType.REF_PROJECT.child("\(self.projectName)").setValue(project)
-                        UserProjects.REF_USER_CURRENT_PROJECTS.child("\(self.projectName)").setValue(currentProject)
-                        UserProjects.REF_USER_PROJECTS.child("\(self.projectName)").setValue(currentProject)
+                        let globalProject = ProjectType.REF_PROJECT.childByAutoId()
+                        globalProject.setValue(project)
+                        
+                        UserProjects.REF_USER_CURRENT_PROJECTS.child("\(globalProject.key)").setValue(currentProject)
+                        UserProjects.REF_USER_PROJECTS.child("\(globalProject.key)").setValue(currentProject)
                         
                     }
                 }
