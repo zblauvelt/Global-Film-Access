@@ -13,7 +13,8 @@
         
         var currentProjects = [UserProjects]()
         var userProjectDetails = [ProjectType]()
-        var projectid = [String]()
+        static var projectid = [String]()
+        static var projectName = [String]()
         static var imageCache: NSCache<NSString, UIImage> = NSCache()
         
         override func viewDidLoad() {
@@ -72,7 +73,7 @@
         func getUserProjects() {
             UserProjects.REF_USER_CURRENT_PROJECTS.observe(.value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    self.projectid.removeAll()
+                    ProjectListVC.projectid.removeAll()
                     self.currentProjects.removeAll()
                     for snap in snapshot {
                         print("SNAP:\(snap)")
@@ -81,7 +82,7 @@
                             let key = snap.key
                             let project = try! UserProjects(projectID: key, userProjectData: projectDict)
                             self.currentProjects.append(project)
-                            self.projectid.append(project.projectID)
+                            ProjectListVC.projectid.append(project.projectID)
                             self.getProjectDetails()
                         }
                     }
@@ -103,9 +104,10 @@
                             if let projectDetailDict = snap.value as? Dictionary<String, String> {
                                 let key = snap.key
                                 let projectDetails = try! ProjectType(projectID: key, projectData: projectDetailDict)
-                                
-                                if self.projectid.contains("\(projectDetails.projectID)") {
+                                if ProjectListVC.projectid.contains("\(projectDetails.projectID)") {
                                     self.userProjectDetails.append(projectDetails)
+                                    ProjectListVC.projectName.append(projectDetails.projectName.lowercased())
+                                    print("Project Names: \(ProjectListVC.projectName)")
                             }
                         }
                     }
@@ -120,6 +122,7 @@
         func moveToArchive(indexPath: IndexPath) {
             let projectid = userProjectDetails[indexPath.row].projectID
             let archivedProject: Dictionary<String, String> = [
+                FIRProjectData.projectName.rawValue: userProjectDetails[indexPath.row].projectName,
                 FIRProjectData.accessLevel.rawValue: userProjectDetails[indexPath.row].userAccessLevel
             ]
             let firebaseArchiveProject = UserProjects.REF_USER_ARCHIVE_PROJECTS.child(projectid)
@@ -131,9 +134,23 @@
             self.getProjectDetails()
         }
         
+        
+        
         //unwind Create Project VC
         @IBAction func clos(segue: UIStoryboardSegue) {
             
+        }
+        
+        //Pass data through Segue
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "goToProjectDetail" {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let tabCtrl = segue.destination as! UITabBarController
+                    let nav = tabCtrl.viewControllers!.first as! UINavigationController
+                    let destinationController = nav.viewControllers.first as! ProjectDetailVC
+                    destinationController.selectedProjectKey = userProjectDetails[indexPath.row].projectName
+                }
+            }
         }
         
         

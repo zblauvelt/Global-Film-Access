@@ -128,6 +128,7 @@ class ArchiveProjectsVC: UITableViewController {
     func moveToArchive(indexPath: IndexPath) {
         let project = userProjectDetails[indexPath.row].projectID
         let activateProject: Dictionary<String, String> = [
+            FIRProjectData.projectName.rawValue: userProjectDetails[indexPath.row].projectName,
             FIRProjectData.accessLevel.rawValue: userProjectDetails[indexPath.row].userAccessLevel
         ]
         let firebaseActivateProject = UserProjects.REF_USER_CURRENT_PROJECTS.child(project)

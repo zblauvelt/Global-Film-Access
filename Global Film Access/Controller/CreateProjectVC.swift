@@ -58,6 +58,8 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
             let newProject = ProjectType(projectName: projectName, projectReleaseDate: projectReleaseDate)
             do {
                 try newProject.createProjectDB(project: newProject, image: projectImage)
+                print("ZACK: Project saved.")
+                self.dismiss(animated: true, completion: nil)
                 projectNameLbl.text = nil
                 imageSelected = true
                 dateLbl.text = nil
@@ -65,6 +67,8 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
                 imageAdd.contentMode = .center
             } catch CreateProjectError.inValidProjectName {
                 showAlert(message: CreateProjectError.inValidProjectName.rawValue)
+            } catch CreateProjectError.duplicateName {
+                showAlert(message: CreateProjectError.duplicateName.rawValue)
             } catch CreateProjectError.invalidProjectDate {
                 showAlert(message: CreateProjectError.invalidProjectDate.rawValue)
             } catch CreateProjectError.invalideProjectImage {
@@ -73,9 +77,9 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
                 showAlert(message: "\(error)")
             }
             
-        }   else {
-            showAlert(message: "Unable to create project")
-        }
+            }   else {
+                showAlert(message: "Unable to create project")
+            }
 
         
     }
