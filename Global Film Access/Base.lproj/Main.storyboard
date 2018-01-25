@@ -12,7 +12,6 @@
     <customFonts key="customFonts">
         <array key="Avenir.ttc">
             <string>Avenir-Book</string>
-            <string>Avenir-BookOblique</string>
             <string>Avenir-Heavy</string>
             <string>Avenir-Medium</string>
         </array>
@@ -288,7 +287,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wyB-kc-vMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2NG-3e-Isi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="392.75362318840581" y="1439.6739130434785"/>
+            <point key="canvasLocation" x="388" y="1455"/>
         </scene>
         <!--Create Profile-->
         <scene sceneID="z2I-el-0io">
@@ -463,7 +462,153 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CgF-OT-C43" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1215" y="1422.5"/>
+            <point key="canvasLocation" x="1494" y="1455"/>
+        </scene>
+        <!--Create ProjectVC-->
+        <scene sceneID="fgL-wp-laF">
+            <objects>
+                <viewController id="h1x-ul-EjU" customClass="CreateProjectVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w1E-wf-OxA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CamerBackground" translatesAutoresizingMaskIntoConstraints="NO" id="qil-RR-wIf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jz5-ca-oss">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60M-Ti-tij">
+                                        <rect key="frame" x="0.0" y="415" width="320" height="65"/>
+                                        <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="UDa-Fc-G2r"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
+                                        <state key="normal" title="Create Project">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createProjectTapped:" destination="h1x-ul-EjU" eventType="touchUpInside" id="QXg-GW-lXo"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjk-aa-oGH">
+                                        <rect key="frame" x="97" y="0.0" width="127.5" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="JRo-V5-I8G"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHe-vX-dFW">
+                                        <rect key="frame" x="10" y="16.5" width="46" height="33"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBtn" translatesAutoresizingMaskIntoConstraints="NO" id="gAV-LO-rv4" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
+                                        <rect key="frame" x="110" y="69.5" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="aUo-KC-IAL"/>
+                                            <constraint firstAttribute="height" constant="100" id="rcs-7m-a3o"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEe-Gr-4Tg">
+                                        <rect key="frame" x="122.5" y="173.5" width="75" height="33"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <state key="normal" title="Add Image">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addImageTapped:" destination="h1x-ul-EjU" eventType="touchUpInside" id="lAh-cO-UMx"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="B2P-rT-SlI">
+                                        <rect key="frame" x="10.5" y="222.5" width="300" height="204"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bt1-zq-zR6">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Est Release Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B96-ax-zTS">
+                                                <rect key="frame" x="0.0" y="88" width="300" height="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Project Access Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FgO-gZ-YNd">
+                                                <rect key="frame" x="0.0" y="176" width="300" height="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="Utb-If-Wsx"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="sEe-Gr-4Tg" firstAttribute="centerX" secondItem="jz5-ca-oss" secondAttribute="centerX" id="Co4-rz-rQx"/>
+                                    <constraint firstItem="Rjk-aa-oGH" firstAttribute="top" secondItem="jz5-ca-oss" secondAttribute="top" id="Fsk-dI-5Il"/>
+                                    <constraint firstItem="RHe-vX-dFW" firstAttribute="centerY" secondItem="Rjk-aa-oGH" secondAttribute="centerY" id="GeU-tP-mP4"/>
+                                    <constraint firstItem="gAV-LO-rv4" firstAttribute="top" secondItem="RHe-vX-dFW" secondAttribute="bottom" constant="20" id="GjJ-Cw-4ju"/>
+                                    <constraint firstItem="gAV-LO-rv4" firstAttribute="centerX" secondItem="jz5-ca-oss" secondAttribute="centerX" id="HnG-fV-vJ4"/>
+                                    <constraint firstAttribute="bottom" secondItem="60M-Ti-tij" secondAttribute="bottom" id="I72-Hh-5bY"/>
+                                    <constraint firstItem="RHe-vX-dFW" firstAttribute="leading" secondItem="jz5-ca-oss" secondAttribute="leading" constant="10" id="KDz-Vw-Tpk"/>
+                                    <constraint firstItem="60M-Ti-tij" firstAttribute="leading" secondItem="jz5-ca-oss" secondAttribute="leading" id="TmQ-wn-Neh"/>
+                                    <constraint firstItem="Rjk-aa-oGH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RHe-vX-dFW" secondAttribute="trailing" constant="41" id="WU0-D6-F9W"/>
+                                    <constraint firstItem="B2P-rT-SlI" firstAttribute="centerX" secondItem="jz5-ca-oss" secondAttribute="centerX" id="d2L-Jj-8z8"/>
+                                    <constraint firstItem="B2P-rT-SlI" firstAttribute="top" secondItem="sEe-Gr-4Tg" secondAttribute="bottom" constant="16" id="dVG-UY-mib"/>
+                                    <constraint firstItem="sEe-Gr-4Tg" firstAttribute="top" secondItem="gAV-LO-rv4" secondAttribute="bottom" constant="4" id="lcR-5v-dTt"/>
+                                    <constraint firstAttribute="trailing" secondItem="60M-Ti-tij" secondAttribute="trailing" id="oaN-LC-KSS"/>
+                                    <constraint firstItem="Rjk-aa-oGH" firstAttribute="centerX" secondItem="jz5-ca-oss" secondAttribute="centerX" id="qtK-BA-pvf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qil-RR-wIf" firstAttribute="top" secondItem="w1E-wf-OxA" secondAttribute="top" id="7ll-QE-0AG"/>
+                            <constraint firstItem="jz5-ca-oss" firstAttribute="top" secondItem="w1E-wf-OxA" secondAttribute="top" id="CfY-EG-v9k"/>
+                            <constraint firstItem="iDz-rt-wov" firstAttribute="bottom" secondItem="jz5-ca-oss" secondAttribute="bottom" id="Nbx-nK-Ap2"/>
+                            <constraint firstItem="jz5-ca-oss" firstAttribute="leading" secondItem="iDz-rt-wov" secondAttribute="leading" id="Zff-02-6fo"/>
+                            <constraint firstItem="qil-RR-wIf" firstAttribute="trailing" secondItem="iDz-rt-wov" secondAttribute="trailing" id="fYB-SF-uZU"/>
+                            <constraint firstItem="qil-RR-wIf" firstAttribute="bottom" secondItem="iDz-rt-wov" secondAttribute="bottom" id="h7s-1z-Yg8"/>
+                            <constraint firstItem="iDz-rt-wov" firstAttribute="trailing" secondItem="jz5-ca-oss" secondAttribute="trailing" id="l3x-6q-rvm"/>
+                            <constraint firstItem="qil-RR-wIf" firstAttribute="leading" secondItem="w1E-wf-OxA" secondAttribute="leading" id="von-ZB-lrL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iDz-rt-wov"/>
+                    </view>
+                    <connections>
+                        <outlet property="dateLbl" destination="B96-ax-zTS" id="pbt-o7-vAQ"/>
+                        <outlet property="imageAdd" destination="gAV-LO-rv4" id="2HJ-sx-oQY"/>
+                        <outlet property="projectAccessCodeLbl" destination="FgO-gZ-YNd" id="a4M-27-1UD"/>
+                        <outlet property="projectNameLbl" destination="Bt1-zq-zR6" id="yWq-Pl-aOj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ssq-Hf-MzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1494" y="-638"/>
         </scene>
         <!--Projects-->
         <scene sceneID="2Wb-5z-Bw9">
@@ -911,164 +1056,6 @@
             </objects>
             <point key="canvasLocation" x="5362.5" y="78.75"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="Td4-EN-RmW">
-            <objects>
-                <viewController id="h8P-8I-duR" customClass="CreateProjectVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ks0-wr-d1U">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CamerBackground" translatesAutoresizingMaskIntoConstraints="NO" id="27i-Sl-40a">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDT-Wm-P3n" customClass="CustomView" customModule="Global_Film_Access" customModuleProvider="target">
-                                <rect key="frame" x="25.5" y="70" width="269" height="420"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5a-be-OW5">
-                                        <rect key="frame" x="38" y="76" width="193" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="BgN-8u-nJ1"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="27"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProjectFilm" translatesAutoresizingMaskIntoConstraints="NO" id="J4b-os-tAB">
-                                        <rect key="frame" x="105" y="8" width="60" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="QRE-lX-djH"/>
-                                            <constraint firstAttribute="height" constant="60" id="l1I-wD-ite"/>
-                                        </constraints>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EUT-yx-gCr">
-                                        <rect key="frame" x="15" y="157.5" width="239" height="105"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KRK-xw-5tn">
-                                                <rect key="frame" x="0.0" y="0.0" width="239" height="50"/>
-                                                <subviews>
-                                                    <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBtn" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-6z-C2x" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        <gestureRecognizers/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="ATR-aA-8T2"/>
-                                                            <constraint firstAttribute="width" constant="50" id="nyB-in-Wct"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="9gk-5v-RuG" appends="YES" id="YYL-fI-ZCd"/>
-                                                        </connections>
-                                                    </imageView>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fxa-1X-crB" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
-                                                        <rect key="frame" x="60" y="0.0" width="179" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="VM6-eX-Bpd"/>
-                                                        </constraints>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" name="Avenir-BookOblique" family="Avenir" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="48s-LM-2Aj">
-                                                <rect key="frame" x="0.0" y="55" width="239" height="50"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Lg-aP-WaR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="5Y8-hW-cH3"/>
-                                                            <constraint firstAttribute="width" constant="50" id="Ddb-iT-4uN"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Est Release Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tIP-kp-VzA" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
-                                                        <rect key="frame" x="60" y="0.0" width="179" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="InT-Rk-dE8"/>
-                                                        </constraints>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" name="Avenir-BookOblique" family="Avenir" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieq-ZT-jJd" customClass="RndButton" customModule="Global_Film_Access" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="304.5" width="253" height="30"/>
-                                        <color key="backgroundColor" red="0.0084041617809999993" green="0.1625512838" blue="0.29542711379999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="jaw-tL-wBA"/>
-                                        </constraints>
-                                        <state key="normal" title="Save Project">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="saveImageTapped:" destination="h8P-8I-duR" eventType="touchUpInside" id="b0u-mW-IQL"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Md-gP-x6Q">
-                                        <rect key="frame" x="109.5" y="342" width="50" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="uDc-Fm-B9g"/>
-                                            <constraint firstAttribute="height" constant="30" id="uQf-Qc-eoY"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" white="0.0" alpha="0.55311451342281881" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="q9E-Jo-Q9x" kind="unwind" unwindAction="closWithSegue:" id="sAS-ad-1ep"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="ieq-ZT-jJd" firstAttribute="leading" secondItem="RDT-Wm-P3n" secondAttribute="leading" constant="8" id="35A-ES-uCW"/>
-                                    <constraint firstItem="ieq-ZT-jJd" firstAttribute="top" secondItem="EUT-yx-gCr" secondAttribute="bottom" constant="42.333333333333371" id="8bE-KU-ZYB"/>
-                                    <constraint firstItem="J4b-os-tAB" firstAttribute="top" secondItem="RDT-Wm-P3n" secondAttribute="top" constant="8" id="BFq-EJ-C8f"/>
-                                    <constraint firstItem="4Md-gP-x6Q" firstAttribute="centerX" secondItem="RDT-Wm-P3n" secondAttribute="centerX" id="OfI-7f-CWY"/>
-                                    <constraint firstItem="J4b-os-tAB" firstAttribute="centerX" secondItem="RDT-Wm-P3n" secondAttribute="centerX" id="PKg-Fd-W2z"/>
-                                    <constraint firstAttribute="trailing" secondItem="ieq-ZT-jJd" secondAttribute="trailing" constant="8" id="QOa-xa-IPa"/>
-                                    <constraint firstAttribute="trailing" secondItem="EUT-yx-gCr" secondAttribute="trailing" constant="15" id="RIu-7R-eoT"/>
-                                    <constraint firstItem="EUT-yx-gCr" firstAttribute="centerY" secondItem="RDT-Wm-P3n" secondAttribute="centerY" id="S4D-k8-YOx"/>
-                                    <constraint firstAttribute="height" constant="420" id="dia-qL-jGa"/>
-                                    <constraint firstAttribute="width" constant="269" id="fZN-7X-1s4"/>
-                                    <constraint firstItem="Z5a-be-OW5" firstAttribute="centerX" secondItem="RDT-Wm-P3n" secondAttribute="centerX" id="j6m-Fw-EfB"/>
-                                    <constraint firstItem="Z5a-be-OW5" firstAttribute="top" secondItem="J4b-os-tAB" secondAttribute="bottom" constant="8" id="m53-YG-ksV"/>
-                                    <constraint firstItem="EUT-yx-gCr" firstAttribute="leading" secondItem="RDT-Wm-P3n" secondAttribute="leading" constant="15" id="rz2-xm-OBc"/>
-                                    <constraint firstItem="4Md-gP-x6Q" firstAttribute="top" secondItem="ieq-ZT-jJd" secondAttribute="bottom" constant="8" id="vg9-X0-ymo"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="RDT-Wm-P3n" firstAttribute="centerX" secondItem="Ks0-wr-d1U" secondAttribute="centerX" id="02N-vr-vaA"/>
-                            <constraint firstItem="27i-Sl-40a" firstAttribute="leading" secondItem="9Yn-wH-00T" secondAttribute="leading" id="5ij-lw-2Ut"/>
-                            <constraint firstItem="9Yn-wH-00T" firstAttribute="bottom" secondItem="27i-Sl-40a" secondAttribute="bottom" id="8SN-R8-gsD"/>
-                            <constraint firstItem="9Yn-wH-00T" firstAttribute="trailing" secondItem="27i-Sl-40a" secondAttribute="trailing" id="V9V-cA-NFt"/>
-                            <constraint firstItem="RDT-Wm-P3n" firstAttribute="top" secondItem="9Yn-wH-00T" secondAttribute="top" constant="50" id="bM6-0Q-Sk6"/>
-                            <constraint firstItem="27i-Sl-40a" firstAttribute="top" secondItem="Ks0-wr-d1U" secondAttribute="top" id="hhU-eR-1zH"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="9Yn-wH-00T"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="j4K-0J-ySJ"/>
-                    <connections>
-                        <outlet property="containerView" destination="RDT-Wm-P3n" id="KC4-Sj-RZg"/>
-                        <outlet property="dateLbl" destination="tIP-kp-VzA" id="pag-lB-ASr"/>
-                        <outlet property="imageAdd" destination="L0x-6z-C2x" id="YLk-Pq-ryR"/>
-                        <outlet property="projectNameLbl" destination="Fxa-1X-crB" id="i8X-Su-0ip"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vHJ-0O-KVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="q9E-Jo-Q9x" userLabel="Exit" sceneMemberID="exit"/>
-                <tapGestureRecognizer id="9gk-5v-RuG">
-                    <connections>
-                        <action selector="addImageTapped:" destination="h8P-8I-duR" id="K1O-Xv-Avf"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="1494" y="-650"/>
-        </scene>
         <!--Projects-->
         <scene sceneID="K2j-iX-5wQ">
             <objects>
@@ -1183,7 +1170,7 @@
                     <connections>
                         <segue destination="oe1-Jm-h1J" kind="relationship" relationship="viewControllers" id="4lQ-14-73X"/>
                         <segue destination="ibb-lE-4Is" kind="relationship" relationship="viewControllers" id="1Tv-5N-4bM"/>
-                        <segue destination="h8P-8I-duR" kind="presentation" identifier="CreateProjectSegue" id="g36-id-bS0"/>
+                        <segue destination="h1x-ul-EjU" kind="presentation" identifier="CreateProjectSegue" id="Ftn-Gd-w3B"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56u-eg-MBE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1402,7 +1389,6 @@
         <image name="LogoDark" width="125" height="129"/>
         <image name="ManVideoTaping" width="365" height="667"/>
         <image name="ProfileImage" width="80" height="80"/>
-        <image name="ProjectFilm" width="56" height="53"/>
         <image name="Script" width="24" height="24"/>
         <image name="Social" width="24" height="20"/>
         <image name="ThorImage" width="118" height="100"/>

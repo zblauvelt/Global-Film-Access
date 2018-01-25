@@ -17,6 +17,7 @@ enum CreateProjectError: String, Error {
     case invalidProjectDate = "Please provide a date for your project."
     case invalidProjectAccessLevel = "Please provide a correct access level."
     case duplicateName = "You're already a part of a project with this name. Please give the project a unique name."
+    case invalidAccessCode = "Please provide a valid access code."
 }
 
 //Firebase DB References
@@ -25,6 +26,7 @@ enum FIRProjectData: String {
     case image = "image"
     case releaseDate = "releaseDate"
     case accessLevel = "accessLevel"
+    case accessCode = "accessCode"
 }
 
 //this enum should be used for projects
@@ -43,6 +45,7 @@ protocol Project {
     var projectName: String { get set }
     var projectImage: String? { get set }
     var projectReleaseDate: String { get set }
+    var projectAccessCode: String { get set }
     var projectID: String { get set }
     var userAccessLevel: String { get set }
     static var REF_PROJECT: FIRDatabaseReference { get }
@@ -58,14 +61,16 @@ class ProjectType: Project {
     var projectName: String
     var projectImage: String?
     var projectReleaseDate: String
+    var projectAccessCode: String
     var projectID: String = ""
     var userAccessLevel: String = UserAccessLevel.admin.rawValue
     static var REF_PROJECT: FIRDatabaseReference = DB_BASE.child("projects")
     static var REF_PROJECT_IMG_STORAGE: FIRStorageReference = STORAGE_BASE.child("project-pics")
     
-    init(projectName: String, projectReleaseDate: String) {
+    init(projectName: String, projectReleaseDate: String, projectAccessCode: String) {
         self.projectName = projectName
         self.projectReleaseDate = projectReleaseDate
+        self.projectAccessCode = projectAccessCode
     }
     
     init(projectID: String, projectData: Dictionary <String, String>) throws {
@@ -87,6 +92,12 @@ class ProjectType: Project {
             self.projectReleaseDate = projectReleaseDate
         } else {
             throw CreateProjectError.invalidProjectDate
+        }
+        
+        if let projectAccessCode = projectData[FIRProjectData.accessCode.rawValue] {
+            self.projectAccessCode = projectAccessCode
+        } else {
+            throw CreateProjectError.invalidAccessCode
         }
         
     }
@@ -123,6 +134,7 @@ class ProjectType: Project {
                         let project: Dictionary <String, String> = [
                             FIRProjectData.projectName.rawValue: self.projectName,
                             FIRProjectData.releaseDate.rawValue: self.projectReleaseDate,
+                            FIRProjectData.accessCode.rawValue: self.projectAccessCode,
                             FIRProjectData.image.rawValue: url
                         ]
                         let currentProject: Dictionary <String, String> = [

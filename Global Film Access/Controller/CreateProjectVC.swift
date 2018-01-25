@@ -10,9 +10,11 @@ import UIKit
 import Firebase
 
 class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBOutlet weak var containerView: CustomView!
-    @IBOutlet weak var projectNameLbl: CommonTextField!
-    @IBOutlet weak var dateLbl: CommonTextField!
+    //@IBOutlet weak var containerView: CustomView!
+    @IBOutlet weak var projectNameLbl: UITextField!
+    @IBOutlet weak var dateLbl: UITextField!
+    @IBOutlet weak var projectAccessCodeLbl: UITextField!
+    
     @IBOutlet weak var imageAdd: CircleImage!
     
     let picker = UIDatePicker()
@@ -22,18 +24,15 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
+        //White border on text labels
+        projectNameLbl.setBottomBorder()
+        dateLbl.setBottomBorder()
+        projectAccessCodeLbl.setBottomBorder()
         //creating the imagepicker
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true   
         imagePicker.delegate = self
-        //Animation for View to popup
-        containerView.transform = CGAffineTransform.init(scaleX: 0, y:0)
-    }
-  //Animation for View to popup
-    override func viewDidAppear(_ animated: Bool) {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.containerView.transform = CGAffineTransform.identity
-        })
+  
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -52,10 +51,10 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
     
     
-    @IBAction func saveImageTapped(_ sender: Any) {
-        if let projectName = projectNameLbl.text, let projectReleaseDate = dateLbl.text, let projectImage = imageAdd.image {
+    @IBAction func createProjectTapped(_ sender: Any) {
+        if let projectName = projectNameLbl.text, let projectReleaseDate = dateLbl.text, let projectAccessCode = projectAccessCodeLbl.text, let projectImage = imageAdd.image {
             
-            let newProject = ProjectType(projectName: projectName, projectReleaseDate: projectReleaseDate)
+            let newProject = ProjectType(projectName: projectName, projectReleaseDate: projectReleaseDate, projectAccessCode: projectAccessCode)
             do {
                 try newProject.createProjectDB(project: newProject, image: projectImage)
                 print("ZACK: Project saved.")
@@ -71,6 +70,8 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
                 showAlert(message: CreateProjectError.duplicateName.rawValue)
             } catch CreateProjectError.invalidProjectDate {
                 showAlert(message: CreateProjectError.invalidProjectDate.rawValue)
+            } catch CreateProjectError.invalidAccessCode {
+                showAlert(message: CreateProjectError.invalidAccessCode.rawValue)
             } catch CreateProjectError.invalideProjectImage {
                 showAlert(message: CreateProjectError.invalideProjectImage.rawValue)
             } catch let error {
