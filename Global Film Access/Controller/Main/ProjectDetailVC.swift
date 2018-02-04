@@ -10,12 +10,14 @@ import UIKit
 
 class ProjectDetailVC: UIViewController {
 
-    var selectedProjectKey = ""
+    var selectedProjectName = ""
+    var selectProjectID = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //Customize Navbar
-        self.navigationItem.title = selectedProjectKey
+        self.navigationItem.title = selectedProjectName
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style:.plain, target: nil, action: nil)
         // Do any additional setup after loading the view.
     }
@@ -23,6 +25,13 @@ class ProjectDetailVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToPreProductionDashboard" {
+            let viewController = segue.destination as! PreProductionDashboardVC
+            viewController.selectedProjectID = self.selectProjectID
+        }
     }
     
 

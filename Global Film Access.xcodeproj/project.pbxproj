@@ -30,6 +30,8 @@
 		148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23951FFA833C004F7D1D /* FireBaseAuth.swift */; };
 		148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */; };
 		148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */; };
+		14A948D2202001470061881D /* Employees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A948D1202001470061881D /* Employees.swift */; };
+		14A948D42023EF910061881D /* CastPositionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A948D32023EF910061881D /* CastPositionsVC.swift */; };
 		14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEF81FCAF674005AACA2 /* Constants.swift */; };
 		14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */; };
 		14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */; };
@@ -67,6 +69,8 @@
 		148E23951FFA833C004F7D1D /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
 		148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBottomBorder.swift; sourceTree = "<group>"; };
+		14A948D1202001470061881D /* Employees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employees.swift; sourceTree = "<group>"; };
+		14A948D32023EF910061881D /* CastPositionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastPositionsVC.swift; sourceTree = "<group>"; };
 		14C8AEF81FCAF674005AACA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RndButton.swift; sourceTree = "<group>"; };
@@ -132,8 +136,34 @@
 				1444D5EC1FCF8E8600A50CFF /* User.swift */,
 				1444D5EE1FD0C53900A50CFF /* UserProjects.swift */,
 				1403ED12200851F700A5C58C /* Project.swift */,
+				14A948D1202001470061881D /* Employees.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		14A948D5202406CE0061881D /* PreProduction */ = {
+			isa = PBXGroup;
+			children = (
+				14066E5920135E1900440DD6 /* PreProductionDashboardVC.swift */,
+				14A948D32023EF910061881D /* CastPositionsVC.swift */,
+			);
+			path = PreProduction;
+			sourceTree = "<group>";
+		};
+		14A948D6202406E70061881D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				14392FAC1FC516CE00993BB7 /* SignInVC.swift */,
+				148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */,
+				14E640F12002EB6C00A00968 /* CreateProfileVC.swift */,
+				1444D5F01FD0CC9000A50CFF /* ProjectListVC.swift */,
+				1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */,
+				1433E5981FD8D11400925648 /* CreateProjectVC.swift */,
+				14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */,
+				14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */,
+				1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		14C8AEF41FCAF5D2005AACA2 /* View */ = {
@@ -172,16 +202,8 @@
 		14C8AF031FCCEEF3005AACA2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				14392FAC1FC516CE00993BB7 /* SignInVC.swift */,
-				148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */,
-				1444D5F01FD0CC9000A50CFF /* ProjectListVC.swift */,
-				1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */,
-				1433E5981FD8D11400925648 /* CreateProjectVC.swift */,
-				14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */,
-				14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */,
-				14E640F12002EB6C00A00968 /* CreateProfileVC.swift */,
-				1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */,
-				14066E5920135E1900440DD6 /* PreProductionDashboardVC.swift */,
+				14A948D6202406E70061881D /* Main */,
+				14A948D5202406CE0061881D /* PreProduction */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -343,12 +365,14 @@
 				14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */,
 				1403ED17200D4D2700A5C58C /* ProjectDetailVC.swift in Sources */,
 				14392FAB1FC516CE00993BB7 /* AppDelegate.swift in Sources */,
+				14A948D42023EF910061881D /* CastPositionsVC.swift in Sources */,
 				14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */,
 				14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */,
 				1444D5ED1FCF8E8600A50CFF /* User.swift in Sources */,
 				1444D5E81FCE5F9F00A50CFF /* ProjectsTabBar.swift in Sources */,
 				14E8D5071FF2CA7600B85A20 /* ArchiveProjectCell.swift in Sources */,
 				1433E5991FD8D11400925648 /* CreateProjectVC.swift in Sources */,
+				14A948D2202001470061881D /* Employees.swift in Sources */,
 				14066E5A20135E1900440DD6 /* PreProductionDashboardVC.swift in Sources */,
 				1444D5F51FD45B9900A50CFF /* ProjectsCell.swift in Sources */,
 				148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */,
