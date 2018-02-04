@@ -148,7 +148,8 @@
                     let tabCtrl = segue.destination as! UITabBarController
                     let nav = tabCtrl.viewControllers!.first as! UINavigationController
                     let destinationController = nav.viewControllers.first as! ProjectDetailVC
-                    destinationController.selectedProjectKey = userProjectDetails[indexPath.row].projectName
+                    destinationController.selectedProjectName = userProjectDetails[indexPath.row].projectName
+                    destinationController.selectProjectID = userProjectDetails[indexPath.row].projectID
                 }
             }
         }
