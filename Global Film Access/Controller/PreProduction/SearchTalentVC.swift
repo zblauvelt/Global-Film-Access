@@ -9,14 +9,21 @@
 import UIKit
 import Firebase
 
-class SearchTalentVC: UITableViewController {
+class SearchTalentVC: UITableViewController, UISearchBarDelegate {
 
     var unfilteredTalent = [UserType]()
+    var filteredTalent = [UserType]()
+    var isSearching = false
     static var userProfileImageCache: NSCache<NSString, UIImage> = NSCache()
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getTalentProfiles()
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
+        
     }
 
 
@@ -29,11 +36,17 @@ class SearchTalentVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        
+        if isSearching {
+            return filteredTalent.count
+        }
         return unfilteredTalent.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let talent = unfilteredTalent[indexPath.row]
+    
+        let talent = toggleTalentArrays()[indexPath.row]
+     //let talent = unfilteredTalent[indexPath.row]
         let cellIdentifier = "userSearchCell"
         
         // Configure the cell...
@@ -51,6 +64,25 @@ class SearchTalentVC: UITableViewController {
             }
         } else {
             return SearchTalentCell()
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            isSearching = false
+            
+            view.endEditing(true)
+            filteredTalent.removeAll()
+            tableView.reloadData()
+        } else {
+            isSearching = true
+            
+            for talent in unfilteredTalent {
+                if talent.firstName.lowercased() == searchText.lowercased() || talent.lastName.lowercased() == searchText.lowercased() {
+                   filteredTalent.append(talent)
+                }
+            }
+            tableView.reloadData()
         }
     }
 
@@ -74,7 +106,13 @@ class SearchTalentVC: UITableViewController {
             self.tableView.reloadData()
         })
     }
-
-
+    ///Function to see if searching or not.
+    func toggleTalentArrays() -> [UserType] {
+        if isSearching {
+            return filteredTalent
+        } else {
+            return unfilteredTalent
+        }
+    }
 
 }
