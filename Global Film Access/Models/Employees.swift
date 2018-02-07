@@ -27,7 +27,7 @@ enum FiRPositionData: String {
 protocol Position {
     var positionName: String { get set }
     static var createdPositions: [String] { get set }
-    static var prospects: [String] { get set }
+    var prospects: [String] { get set }
     static var REF_PRE_PRODUCTION_CASTING_POSITION: FIRDatabaseReference { get }
     
     func createPosition(projectID: String, positionName: String) throws
@@ -36,7 +36,7 @@ protocol Position {
 class Cast: Position {
     var positionName: String = ""
     static var createdPositions = [String]()
-    static var prospects: [String] = ["No Prospects"]
+    var prospects: [String] = ["No Prospects"]
     static var REF_PRE_PRODUCTION_CASTING_POSITION: FIRDatabaseReference = DB_BASE.child("preProductionCasting")
     
     init() {}
@@ -49,7 +49,7 @@ class Cast: Position {
         }
         
         if let prospects = positionData[FiRPositionData.prospects.rawValue] {
-            Cast.prospects = prospects as! [String]
+            self.prospects = prospects as! [String]
         }
 
     }
@@ -68,7 +68,7 @@ class Cast: Position {
         
         let newPosition: Dictionary <String, Any> = [
             FiRPositionData.positionName.rawValue: positionName,
-            FiRPositionData.prospects.rawValue: Cast.prospects
+            FiRPositionData.prospects.rawValue: self.prospects
         ]
         
         Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child(positionName).setValue(newPosition)

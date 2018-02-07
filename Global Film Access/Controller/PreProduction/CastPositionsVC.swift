@@ -21,6 +21,7 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         // Do any additional setup after loading the view.
         getCastingPositions()
+        
     }
     
     
