@@ -151,5 +151,14 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.present(alertController, animated: true, completion: nil)
         self.getCastingPositions()
     }
+    //MARK: Passing cast selected to Cast Detail vc
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToCast" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destinationController = segue.destination as! CastingDetailVC
+                destinationController.selectedCastPosition = castingPostions[indexPath.row].positionName
+            }
+        }
+    }
     
 }

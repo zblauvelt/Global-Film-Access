@@ -13,9 +13,9 @@ class UserProjects {
     var projectID: String = ""
     var projectName: String = ""
     var accessLevel: String
-    static var REF_USER_PROJECTS: FIRDatabaseReference = DB_BASE.child("users").child(userID).child("userProjects")
-    static var REF_USER_CURRENT_PROJECTS = DB_BASE.child("users").child(userID).child("currentProjects")
-    static var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("users").child(userID).child("archiveProjects")
+    static var REF_USER_PROJECTS: FIRDatabaseReference = DB_BASE.child("userProjectsAll").child(userID)
+    static var REF_USER_CURRENT_PROJECTS = DB_BASE.child("userCurrentProjects").child(userID)
+    static var REF_USER_ARCHIVE_PROJECTS = DB_BASE.child("userArchivedProjects").child(userID)
     
     
     init(accessLevel: String) {

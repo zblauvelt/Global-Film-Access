@@ -1133,6 +1133,9 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="PnP-SE-YoJ" kind="show" identifier="goToCast" id="h99-3g-5Mp"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1164,6 +1167,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joS-bC-C5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6170.625" y="-403.75"/>
+        </scene>
+        <!--Cast-->
+        <scene sceneID="yde-6b-pOI">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YIA-jP-J8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Cast" id="PnP-SE-YoJ" customClass="CastingDetailVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="byh-FG-uyf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="AGT-jk-3zk"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cast" id="htY-ZA-gDi">
+                        <barButtonItem key="rightBarButtonItem" image="AddNavBar" id="kPQ-Ft-9nG">
+                            <connections>
+                                <segue destination="x71-JX-PEA" kind="show" id="wFF-SI-xYB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="6966" y="-403"/>
+        </scene>
+        <!--Search Talent-->
+        <scene sceneID="2N5-co-qi8">
+            <objects>
+                <tableViewController title="Search Talent" id="x71-JX-PEA" customClass="SearchTalentVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MM1-FJ-4xP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userSearchCell" rowHeight="100" id="KKV-0f-xGd" customClass="SearchTalentCell" customModule="Global_Film_Access" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KKV-0f-xGd" id="9P8-IN-NrU">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="UZQ-Js-ydE">
+                                            <rect key="frame" x="16" y="11" width="85" height="78"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="85" id="pOh-WC-Hpi"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zack Blauvelt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rN-Bb-si5">
+                                            <rect key="frame" x="116" y="35" width="188" height="31"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="UZQ-Js-ydE" firstAttribute="leading" secondItem="9P8-IN-NrU" secondAttribute="leadingMargin" id="bAh-8N-4dg"/>
+                                        <constraint firstItem="UZQ-Js-ydE" firstAttribute="top" secondItem="9P8-IN-NrU" secondAttribute="topMargin" id="fDE-mw-mq6"/>
+                                        <constraint firstItem="1rN-Bb-si5" firstAttribute="leading" secondItem="UZQ-Js-ydE" secondAttribute="trailing" constant="15" id="hPC-jI-CSi"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="UZQ-Js-ydE" secondAttribute="bottom" id="kVW-gG-IJa"/>
+                                        <constraint firstItem="1rN-Bb-si5" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="rpE-yO-vcG"/>
+                                        <constraint firstItem="1rN-Bb-si5" firstAttribute="trailing" secondItem="9P8-IN-NrU" secondAttribute="trailingMargin" id="t82-8h-4ui"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="talentUserName" destination="1rN-Bb-si5" id="vTp-ds-8d9"/>
+                                    <outlet property="userProfileImage" destination="UZQ-Js-ydE" id="BjI-px-rd1"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="x71-JX-PEA" id="q6r-mw-Brn"/>
+                            <outlet property="delegate" destination="x71-JX-PEA" id="G77-m4-fxw"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FWM-ad-UfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7700.625" y="-405"/>
         </scene>
         <!--Projects-->
         <scene sceneID="K2j-iX-5wQ">
