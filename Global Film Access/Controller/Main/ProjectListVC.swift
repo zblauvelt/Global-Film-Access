@@ -15,7 +15,7 @@
         var userProjectDetails = [ProjectType]()
         static var projectid = [String]()
         static var projectName = [String]()
-        static var imageCache: NSCache<NSString, UIImage> = NSCache()
+        static var projectImageCache: NSCache<NSString, UIImage> = NSCache()
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -43,7 +43,7 @@
             // Configure the cell...
             if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ProjectsCell {
                 if let imageURL = userProject.projectImage {
-                    if let img = ProjectListVC.imageCache.object(forKey: imageURL as NSString) {
+                    if let img = ProjectListVC.projectImageCache.object(forKey: imageURL as NSString) {
                         cell.configureCell(userProject: userProject, img: img)
                         
                     } else {

@@ -1,36 +1,38 @@
 //
-//  ProjectsCell.swift
+//  SearchTalentCell.swift
 //  Global Film Access
 //
-//  Created by Zachary Blauvelt on 12/3/17.
-//  Copyright © 2017 Zachary Blauvelt. All rights reserved.
+//  Created by Zachary Blauvelt on 2/7/18.
+//  Copyright © 2018 Zachary Blauvelt. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class ProjectsCell: UITableViewCell {
-    @IBOutlet weak var projectImage: UIImageView!
-    @IBOutlet weak var projectNameLbl: UILabel!
-    @IBOutlet weak var projectReleaseDate: UILabel!
-    
-    
+class SearchTalentCell: UITableViewCell {
+    @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var talentUserName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    func configureCell(userProject: ProjectType, img: UIImage? = nil) {
-        self.projectNameLbl.text = userProject.projectName
-        self.projectReleaseDate.text = userProject.projectReleaseDate
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    func configureCell(user: UserType, img: UIImage? = nil) {
+        self.talentUserName.text = "\(user.firstName) \(user.lastName)"
         
         //Image Caching
         if img != nil {
-            self.projectImage.image = img
+            self.userProfileImage.image = img
         } else {
             
-            if let imageURL = userProject.projectImage {
+            if let imageURL = user.profileImage {
                 
                 let ref = FIRStorage.storage().reference(forURL: imageURL)
                 ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
@@ -40,13 +42,13 @@ class ProjectsCell: UITableViewCell {
                         print("ZACK: Image downloaded from Firebase Storage")
                         if let imgData = data {
                             if let img = UIImage(data: imgData) {
-                                self.projectImage.image = img
-                                ProjectListVC.projectImageCache.setObject(img, forKey: imageURL as NSString)
+                                self.userProfileImage.image = img
+                                SearchTalentVC.userProfileImageCache.setObject(img, forKey: imageURL as NSString)
                             }
                         }
                     }
                 })
-            } 
+            }
         }
     }
 

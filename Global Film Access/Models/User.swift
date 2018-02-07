@@ -45,7 +45,7 @@ protocol User {
     var city: String { get set }
     var state: String { get set }
     var zipCode: String { get set }
-    var profileImage: UIImage { get set }
+    var profileImage: String? { get set }
     var userName: String { get set }
     var userKey: String { get set }
     static var REF_USERS: FIRDatabaseReference { get }
@@ -54,7 +54,7 @@ protocol User {
     
     ///Adds user to the Firebase database
     //MARK: Create user for DB
-    func createUserDB(user: User) throws
+    func createUserDB(user: User, userImage: UIImage) throws
     
     
 }
@@ -66,75 +66,74 @@ class UserType: User {
     var city: String
     var state: String
     var zipCode: String
-    var profileImage: UIImage
+    var profileImage: String?
     var userName: String
-    var userKey: String = userID
+    var userKey: String = ""
     
     //Firebase database references
     static var REF_USERS = DB_BASE.child("users")
     static var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
-    static var REF_CURREN_USER_DETAILS = DB_BASE.child("users").child(userID).child("Details")
+    static var REF_CURRENT_USER_DETAILS = DB_BASE.child("users").child(userID)
     static var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
     
     
-    init(firstName: String, lastName: String, city: String, state: String, profileImage: UIImage, zipCode: String) {
+    init(firstName: String, lastName: String, city: String, state: String, zipCode: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.city = city
         self.state = state
         self.zipCode = zipCode
-        self.profileImage = profileImage
         self.userName = "\(firstName).\(lastName)"
     }
     
-    init(userKey: String, userData: Dictionary <String, Any>) throws {
+    init(userKey: String, userData: Dictionary <String, String>) throws {
         self.userKey = userKey
         
         if let firstName = userData[FIRUserData.firstName.rawValue] {
-            self.firstName = firstName as! String
+            self.firstName = firstName
         } else {
             throw CreateUserError.invalidFirstName
         }
         
         if let lastName = userData[FIRUserData.lastName.rawValue] {
-           self.lastName = lastName as! String
+           self.lastName = lastName
         } else {
             throw CreateUserError.invalidLastName
         }
         
         if let city = userData[FIRUserData.city.rawValue] {
-            self.city = city as! String
+            self.city = city
         } else {
             throw CreateUserError.invalidCity
         }
         
         if let state = userData[FIRUserData.state.rawValue] {
-            self.state = state as! String
+            self.state = state
         } else {
             throw CreateUserError.invalidState
         }
         
         if let zipCode = userData[FIRUserData.zipCode.rawValue] {
-            self.zipCode = zipCode as! String
+            self.zipCode = zipCode
         } else {
             throw CreateUserError.invalidZipCode
         }
         
         if let userName = userData[FIRUserData.userName.rawValue] {
-            self.userName = userName as! String
+            self.userName = userName
         } else {
             throw CreateUserError.invalidUserName
         }
         
         if let profileImage = userData[FIRUserData.profileImage.rawValue] {
-            self.profileImage = profileImage as! UIImage
+            self.profileImage = profileImage
         } else {
             throw CreateUserError.invalidProfileImage
         }
         
     }
     
-    func createUserDB(user: User) throws {
+    func createUserDB(user: User, userImage: UIImage) throws {
         guard user.firstName != "" else {
             throw CreateUserError.invalidFirstName
         }
@@ -151,7 +150,7 @@ class UserType: User {
             throw CreateUserError.invalidZipCode
         }
         
-        let img = user.profileImage
+        let img = userImage
         
         //Save image to profile pics folder in Firebase Storage
         if let imgData = UIImageJPEGRepresentation(img, 0.2) {
@@ -177,7 +176,7 @@ class UserType: User {
                             FIRUserData.profileImage.rawValue: url
                         ]
                         //MARK: Post to Firebase Database
-                        UserType.REF_CURREN_USER_DETAILS.setValue(user)
+                        UserType.REF_CURRENT_USER_DETAILS.setValue(user)
                     }
                 }
             }
