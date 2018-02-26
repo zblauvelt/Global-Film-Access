@@ -71,7 +71,7 @@ class UserType: User {
     var userKey: String = ""
     
     //Firebase database references
-    static var REF_USERS = DB_BASE.child("users")
+    static var REF_USERS = DB_BASE.child("users").child("Details")
     static var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
     static var REF_CURRENT_USER_DETAILS = DB_BASE.child("users").child(userID)
     static var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")

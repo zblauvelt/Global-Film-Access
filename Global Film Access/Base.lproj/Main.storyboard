@@ -486,7 +486,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="615"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjk-aa-oGH">
-                                                <rect key="frame" x="97" y="0.0" width="127.5" height="65"/>
+                                                <rect key="frame" x="97" y="20" width="127.5" height="65"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="65" id="JRo-V5-I8G"/>
                                                 </constraints>
@@ -495,7 +495,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHe-vX-dFW">
-                                                <rect key="frame" x="10" y="16.5" width="46" height="33"/>
+                                                <rect key="frame" x="10" y="36.5" width="46" height="33"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -505,14 +505,14 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBtn" translatesAutoresizingMaskIntoConstraints="NO" id="gAV-LO-rv4" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
-                                                <rect key="frame" x="110" y="89.5" width="100" height="100"/>
+                                                <rect key="frame" x="110" y="109.5" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="aUo-KC-IAL"/>
                                                     <constraint firstAttribute="height" constant="100" id="rcs-7m-a3o"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEe-Gr-4Tg">
-                                                <rect key="frame" x="122.5" y="193.5" width="75" height="33"/>
+                                                <rect key="frame" x="122.5" y="213.5" width="75" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="33" id="ePe-CV-Nsc"/>
                                                 </constraints>
@@ -525,7 +525,7 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="B2P-rT-SlI">
-                                                <rect key="frame" x="10.5" y="258.5" width="300" height="204"/>
+                                                <rect key="frame" x="10.5" y="278.5" width="300" height="204"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bt1-zq-zR6">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="28"/>
@@ -567,7 +567,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Access Code is what you will give to potential talent and employees of this project. E.g. &quot;MyProject4973&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dp-2T-E7e">
-                                                <rect key="frame" x="10" y="466.5" width="300" height="95"/>
+                                                <rect key="frame" x="10" y="486.5" width="300" height="95"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="95" id="XQv-On-hs3"/>
                                                 </constraints>
@@ -579,7 +579,7 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="sEe-Gr-4Tg" firstAttribute="centerX" secondItem="jz5-ca-oss" secondAttribute="centerX" id="Co4-rz-rQx"/>
-                                            <constraint firstItem="Rjk-aa-oGH" firstAttribute="top" secondItem="jz5-ca-oss" secondAttribute="top" id="Fsk-dI-5Il"/>
+                                            <constraint firstItem="Rjk-aa-oGH" firstAttribute="top" secondItem="jz5-ca-oss" secondAttribute="top" constant="20" id="Fsk-dI-5Il"/>
                                             <constraint firstItem="RHe-vX-dFW" firstAttribute="centerY" secondItem="Rjk-aa-oGH" secondAttribute="centerY" id="GeU-tP-mP4"/>
                                             <constraint firstItem="gAV-LO-rv4" firstAttribute="top" secondItem="RHe-vX-dFW" secondAttribute="bottom" constant="40" id="GjJ-Cw-4ju"/>
                                             <constraint firstItem="gAV-LO-rv4" firstAttribute="centerX" secondItem="jz5-ca-oss" secondAttribute="centerX" id="HnG-fV-vJ4"/>
@@ -649,7 +649,417 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ssq-Hf-MzJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qoK-Ia-8H5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1492.5" y="-1018.75"/>
+            <point key="canvasLocation" x="1494" y="-700"/>
+        </scene>
+        <!--Edit Profile-->
+        <scene sceneID="jJZ-gK-uyb">
+            <objects>
+                <viewController id="SPD-Rh-gRG" customClass="EditProfileVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A44-eE-LHh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBJ-ZD-vUK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1500"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPO-YE-CbQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1500"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNZ-f9-qm5">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1500"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="jWO-xW-3aj" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
+                                                        <rect key="frame" x="97.5" y="25" width="125" height="125"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="125" id="7lX-wS-wVs"/>
+                                                            <constraint firstAttribute="width" constant="125" id="yRw-wM-aVE"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basic Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQT-zP-wZK">
+                                                        <rect key="frame" x="108" y="190" width="103" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="103" id="JED-1A-BiI"/>
+                                                            <constraint firstAttribute="height" constant="21" id="YNz-zi-NvX"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKP-lf-PX3">
+                                                        <rect key="frame" x="108.5" y="413" width="103" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="HCQ-eO-sm9"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="103" id="tXX-Rs-eSp"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="0aS-pD-se1">
+                                                        <rect key="frame" x="10" y="219" width="300" height="154"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cV4-zu-m8h">
+                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIh-50-hAs" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sFH-OB-77U" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="Nd4-3r-2w6"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mv8-ye-XnS">
+                                                                <rect key="frame" x="0.0" y="52" width="300" height="50"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r2b-3s-RUi" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hKn-MO-xVy" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="Rgr-8O-TyX"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GzW-Bf-wnf" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="104" width="300" height="50"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="VfF-nn-oo1"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="dB2-I2-IQM">
+                                                        <rect key="frame" x="10" y="442" width="300" height="154"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3BC-W8-FXS">
+                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Agent Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9YC-Aw-KcB" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Yq-Fl-RxH" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="QUU-aM-PTE"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Bs7-cq-u2g">
+                                                                <rect key="frame" x="0.0" y="52" width="300" height="50"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Manager Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3h1-yp-SNA" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aC0-Gh-Rzj" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="C45-pl-RSi"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GHQ-yL-zp8">
+                                                                <rect key="frame" x="0.0" y="104" width="300" height="50"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Legal Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uBx-2h-AP2" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="50" id="TKM-eb-rcC"/>
+                                                                        </constraints>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d1y-wP-sLQ" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                        <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo Reels" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQa-tx-I5T">
+                                                        <rect key="frame" x="108.5" y="636" width="103" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="MUQ-YQ-5nz"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="103" id="gAq-zS-6OT"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aQx-Am-fuu">
+                                                        <rect key="frame" x="10" y="665" width="300" height="50"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Video Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ebt-gb-t4z" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Video ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJc-do-86y" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="4wk-of-y05"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="BYY-pE-7Ko">
+                                                        <rect key="frame" x="10" y="1047" width="300" height="50"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Movie Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1aG-HC-h9m" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Year" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGD-ZS-HZi" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="rSD-U6-zDh"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-94-NaC">
+                                                        <rect key="frame" x="110" y="723" width="100" height="30"/>
+                                                        <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="U85-yT-c4s"/>
+                                                            <constraint firstAttribute="height" constant="30" id="yEA-aU-ATG"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                        <state key="normal" title="Add Video">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T92-16-0fW">
+                                                        <rect key="frame" x="121" y="150" width="78" height="34"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                                        <state key="normal" title="Edit Image">
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </state>
+                                                    </button>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="odp-6c-SMu">
+                                                        <rect key="frame" x="10" y="778" width="300" height="200"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="Zx3-kW-sxt"/>
+                                                        </constraints>
+                                                        <prototypes>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="videoCell" textLabel="mzC-bj-i2O" rowHeight="75" style="IBUITableViewCellStyleDefault" id="O7u-AG-rIa">
+                                                                <rect key="frame" x="0.0" y="28" width="300" height="75"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O7u-AG-rIa" id="ZsJ-cH-xCg">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="74.5"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Video Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mzC-bj-i2O">
+                                                                            <rect key="frame" x="15" y="0.0" width="270" height="74.5"/>
+                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </tableViewCellContentView>
+                                                            </tableViewCell>
+                                                        </prototypes>
+                                                    </tableView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD7-NX-RZH">
+                                                        <rect key="frame" x="108.5" y="1018" width="103" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="103" id="3oR-jF-gyl"/>
+                                                            <constraint firstAttribute="height" constant="21" id="IAp-ub-JqH"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YiW-f9-qqv">
+                                                        <rect key="frame" x="110" y="1105" width="100" height="30"/>
+                                                        <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="KA2-ez-4lz"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="fxe-as-slE"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                        <state key="normal" title="Add Video">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GL0-KB-hzL">
+                                                        <rect key="frame" x="10" y="1160" width="300" height="200"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="EfT-kn-432"/>
+                                                        </constraints>
+                                                        <prototypes>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCell" textLabel="Wmi-4Q-s20" detailTextLabel="jP2-j5-IUR" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="spN-tG-EoU">
+                                                                <rect key="frame" x="0.0" y="28" width="300" height="75"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="spN-tG-EoU" id="LIV-zd-Uuz">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="74.5"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Video Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wmi-4Q-s20">
+                                                                            <rect key="frame" x="15" y="17" width="93.5" height="20.5"/>
+                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jP2-j5-IUR">
+                                                                            <rect key="frame" x="15" y="40.5" width="25" height="14.5"/>
+                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </tableViewCellContentView>
+                                                            </tableViewCell>
+                                                        </prototypes>
+                                                    </tableView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="MQT-zP-wZK" firstAttribute="top" secondItem="jWO-xW-3aj" secondAttribute="bottom" constant="40" id="19Z-NM-4NE"/>
+                                                    <constraint firstItem="0aS-pD-se1" firstAttribute="leading" secondItem="MNZ-f9-qm5" secondAttribute="leading" constant="10" id="3Bw-Nj-STW"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BYY-pE-7Ko" secondAttribute="trailing" constant="10" id="3FG-BJ-Uzc"/>
+                                                    <constraint firstItem="dB2-I2-IQM" firstAttribute="top" secondItem="nKP-lf-PX3" secondAttribute="bottom" constant="8" id="6eq-ZL-B7N"/>
+                                                    <constraint firstItem="odp-6c-SMu" firstAttribute="leading" secondItem="MNZ-f9-qm5" secondAttribute="leading" constant="10" id="7uC-Ev-5JY"/>
+                                                    <constraint firstItem="jWO-xW-3aj" firstAttribute="top" secondItem="MNZ-f9-qm5" secondAttribute="top" constant="25" id="8A4-es-zfI"/>
+                                                    <constraint firstItem="GL0-KB-hzL" firstAttribute="leading" secondItem="MNZ-f9-qm5" secondAttribute="leading" constant="10" id="AH9-Od-xFw"/>
+                                                    <constraint firstItem="YiW-f9-qqv" firstAttribute="centerX" secondItem="MNZ-f9-qm5" secondAttribute="centerX" id="AR9-Zm-4k3"/>
+                                                    <constraint firstItem="T92-16-0fW" firstAttribute="top" secondItem="jWO-xW-3aj" secondAttribute="bottom" id="CuS-El-xNo"/>
+                                                    <constraint firstItem="MQT-zP-wZK" firstAttribute="centerX" secondItem="MNZ-f9-qm5" secondAttribute="centerX" id="Dxl-23-NYY"/>
+                                                    <constraint firstItem="aQx-Am-fuu" firstAttribute="leading" secondItem="MNZ-f9-qm5" secondAttribute="leading" constant="10" id="Em7-73-DK5"/>
+                                                    <constraint firstItem="odp-6c-SMu" firstAttribute="top" secondItem="MfV-94-NaC" secondAttribute="bottom" constant="25" id="Ff0-2C-SMz"/>
+                                                    <constraint firstItem="MfV-94-NaC" firstAttribute="centerX" secondItem="MNZ-f9-qm5" secondAttribute="centerX" id="G98-pB-1eI"/>
+                                                    <constraint firstItem="dB2-I2-IQM" firstAttribute="leading" secondItem="MNZ-f9-qm5" secondAttribute="leading" constant="10" id="KLc-oh-j55"/>
+                                                    <constraint firstItem="MfV-94-NaC" firstAttribute="top" secondItem="aQx-Am-fuu" secondAttribute="bottom" constant="8" id="KvP-SY-MqT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="GL0-KB-hzL" secondAttribute="trailing" constant="10" id="M4j-xi-Y7L"/>
+                                                    <constraint firstItem="oQa-tx-I5T" firstAttribute="top" secondItem="dB2-I2-IQM" secondAttribute="bottom" constant="40" id="MVC-sF-3nr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="aQx-Am-fuu" secondAttribute="trailing" constant="10" id="MZN-ib-ftr"/>
+                                                    <constraint firstItem="T92-16-0fW" firstAttribute="centerX" secondItem="MNZ-f9-qm5" secondAttribute="centerX" id="PBI-cv-R3E"/>
+                                                    <constraint firstItem="YiW-f9-qqv" firstAttribute="top" secondItem="BYY-pE-7Ko" secondAttribute="bottom" constant="8" id="Pex-HQ-Tqz"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0aS-pD-se1" secondAttribute="trailing" constant="10" id="QCx-0p-rDx"/>
+                                                    <constraint firstItem="BYY-pE-7Ko" firstAttribute="leading" secondItem="MNZ-f9-qm5" secondAttribute="leading" constant="10" id="TtJ-GG-axY"/>
+                                                    <constraint firstItem="jWO-xW-3aj" firstAttribute="centerX" secondItem="MNZ-f9-qm5" secondAttribute="centerX" id="UlQ-CQ-bfN"/>
+                                                    <constraint firstItem="nKP-lf-PX3" firstAttribute="centerX" secondItem="MNZ-f9-qm5" secondAttribute="centerX" id="VLj-4q-G6p"/>
+                                                    <constraint firstItem="BYY-pE-7Ko" firstAttribute="top" secondItem="RD7-NX-RZH" secondAttribute="bottom" constant="8" id="caY-n4-mwj"/>
+                                                    <constraint firstItem="GL0-KB-hzL" firstAttribute="top" secondItem="YiW-f9-qqv" secondAttribute="bottom" constant="25" id="d6O-y9-YWz"/>
+                                                    <constraint firstItem="aQx-Am-fuu" firstAttribute="top" secondItem="oQa-tx-I5T" secondAttribute="bottom" constant="8" id="eKZ-ds-PPx"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dB2-I2-IQM" secondAttribute="trailing" constant="10" id="icG-Fh-pci"/>
+                                                    <constraint firstItem="nKP-lf-PX3" firstAttribute="top" secondItem="0aS-pD-se1" secondAttribute="bottom" constant="40" id="lYU-Eg-S82"/>
+                                                    <constraint firstAttribute="trailing" secondItem="odp-6c-SMu" secondAttribute="trailing" constant="10" id="lel-c6-6yY"/>
+                                                    <constraint firstItem="RD7-NX-RZH" firstAttribute="centerX" secondItem="MNZ-f9-qm5" secondAttribute="centerX" id="pmf-jT-3y9"/>
+                                                    <constraint firstAttribute="height" constant="1500" id="pq8-Mc-e5U"/>
+                                                    <constraint firstItem="oQa-tx-I5T" firstAttribute="centerX" secondItem="MNZ-f9-qm5" secondAttribute="centerX" id="t7a-YR-UqP"/>
+                                                    <constraint firstItem="0aS-pD-se1" firstAttribute="top" secondItem="MQT-zP-wZK" secondAttribute="bottom" constant="8" id="ujd-cE-0vG"/>
+                                                    <constraint firstItem="RD7-NX-RZH" firstAttribute="top" secondItem="odp-6c-SMu" secondAttribute="bottom" constant="40" id="vG5-Fx-9d7"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="MNZ-f9-qm5" secondAttribute="bottom" id="H3t-97-6aH"/>
+                                            <constraint firstItem="MNZ-f9-qm5" firstAttribute="width" secondItem="bPO-YE-CbQ" secondAttribute="width" id="WxZ-os-vsN"/>
+                                            <constraint firstItem="MNZ-f9-qm5" firstAttribute="leading" secondItem="bPO-YE-CbQ" secondAttribute="leading" id="bFo-U3-T4J"/>
+                                            <constraint firstItem="MNZ-f9-qm5" firstAttribute="top" secondItem="bPO-YE-CbQ" secondAttribute="top" id="xb0-Dq-xNr"/>
+                                            <constraint firstAttribute="trailing" secondItem="MNZ-f9-qm5" secondAttribute="trailing" id="yhV-HV-qi3"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="bPO-YE-CbQ" firstAttribute="leading" secondItem="zBJ-ZD-vUK" secondAttribute="leading" id="4ab-tD-2KD"/>
+                                    <constraint firstAttribute="trailing" secondItem="bPO-YE-CbQ" secondAttribute="trailing" id="fWU-Bt-FBY"/>
+                                    <constraint firstItem="bPO-YE-CbQ" firstAttribute="top" secondItem="zBJ-ZD-vUK" secondAttribute="top" id="gEJ-tY-mwN"/>
+                                    <constraint firstAttribute="bottom" secondItem="bPO-YE-CbQ" secondAttribute="bottom" id="ltX-Tr-4lN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HPP-YN-et7" firstAttribute="bottom" secondItem="zBJ-ZD-vUK" secondAttribute="bottom" id="bxY-Nb-5fE"/>
+                            <constraint firstItem="HPP-YN-et7" firstAttribute="trailing" secondItem="zBJ-ZD-vUK" secondAttribute="trailing" id="h9q-QP-EU3"/>
+                            <constraint firstItem="HPP-YN-et7" firstAttribute="top" secondItem="zBJ-ZD-vUK" secondAttribute="top" constant="64" id="jNM-1u-5L3"/>
+                            <constraint firstItem="zBJ-ZD-vUK" firstAttribute="leading" secondItem="HPP-YN-et7" secondAttribute="leading" id="qxQ-59-ZJb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HPP-YN-et7"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Profile" id="2Xd-bV-dnC">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="AdZ-SJ-xg9">
+                            <connections>
+                                <segue destination="fyP-bK-fvL" kind="unwind" unwindAction="closWithSegue:" id="M3J-IK-IBW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <size key="freeformSize" width="320" height="1500"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bmN-C7-MRs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fyP-bK-fvL" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3026" y="-1478"/>
         </scene>
         <!--Projects-->
         <scene sceneID="2Wb-5z-Bw9">
@@ -712,7 +1122,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Projects" id="ICi-UP-0Gd">
-                        <barButtonItem key="rightBarButtonItem" image="AccountNavBar" id="E9x-yt-ReO"/>
+                        <barButtonItem key="rightBarButtonItem" image="AccountNavBar" id="E9x-yt-ReO">
+                            <connections>
+                                <segue destination="ksv-Lh-h4o" kind="presentation" identifier="projectToProfile" id="Ozr-ac-8g7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCd-9M-wj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1101,7 +1515,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hks-Lb-2sA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5362.5" y="78.75"/>
+            <point key="canvasLocation" x="5760" y="78.75"/>
         </scene>
         <!--Casting-->
         <scene sceneID="HIT-pJ-4OL">
@@ -1166,12 +1580,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joS-bC-C5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6170.625" y="-403.75"/>
+            <point key="canvasLocation" x="6568.125" y="-403.75"/>
         </scene>
         <!--Cast-->
         <scene sceneID="yde-6b-pOI">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YIA-jP-J8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Cast" id="PnP-SE-YoJ" customClass="CastingDetailVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="byh-FG-uyf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -1187,8 +1600,9 @@
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YIA-jP-J8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6966" y="-403"/>
+            <point key="canvasLocation" x="7363.125" y="-403.75"/>
         </scene>
         <!--Search Talent-->
         <scene sceneID="2N5-co-qi8">
@@ -1251,7 +1665,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FWM-ad-UfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7700.625" y="-405"/>
+            <point key="canvasLocation" x="8098.125" y="-405"/>
         </scene>
         <!--Projects-->
         <scene sceneID="K2j-iX-5wQ">
@@ -1330,7 +1744,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Archive" id="ipg-tW-NSJ">
-                        <barButtonItem key="rightBarButtonItem" image="AccountNavBar" id="GAe-hP-PnK"/>
+                        <barButtonItem key="rightBarButtonItem" image="AccountNavBar" id="GAe-hP-PnK">
+                            <connections>
+                                <segue destination="ksv-Lh-h4o" kind="presentation" id="2sr-yY-gsj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="79T-KW-CV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1572,6 +1990,24 @@
             </objects>
             <point key="canvasLocation" x="3744" y="3045"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EXf-Nk-YOh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ksv-Lh-h4o" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5F4-Lg-fxJ">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SPD-Rh-gRG" kind="relationship" relationship="rootViewController" id="tZw-h5-qXC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZwF-5j-B2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2220" y="-749"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AccountNavBar" width="23" height="24"/>
@@ -1596,6 +2032,7 @@
         <image name="password" width="31" height="31"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="2sr-yY-gsj"/>
         <segue reference="DaQ-8N-Jo4"/>
     </inferredMetricsTieBreakers>
 </document>
