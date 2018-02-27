@@ -1053,8 +1053,23 @@
                                 <segue destination="fyP-bK-fvL" kind="unwind" unwindAction="closWithSegue:" id="M3J-IK-IBW"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="gBa-Zb-ZNI"/>
                     </navigationItem>
                     <size key="freeformSize" width="320" height="1500"/>
+                    <connections>
+                        <outlet property="agentNameLbl" destination="9YC-Aw-KcB" id="8TW-z6-ick"/>
+                        <outlet property="agentNumberLbl" destination="7Yq-Fl-RxH" id="OPx-CQ-9uH"/>
+                        <outlet property="cityLbl" destination="r2b-3s-RUi" id="QLp-0o-1nw"/>
+                        <outlet property="firstNameLbl" destination="eIh-50-hAs" id="SmQ-5s-Jvf"/>
+                        <outlet property="lastNameLbl" destination="sFH-OB-77U" id="yIn-BR-fDH"/>
+                        <outlet property="legalNameLbl" destination="uBx-2h-AP2" id="wfZ-3N-4pS"/>
+                        <outlet property="legalNumberLbl" destination="d1y-wP-sLQ" id="5JB-uc-rug"/>
+                        <outlet property="managerNameLbl" destination="3h1-yp-SNA" id="7r5-te-Tjn"/>
+                        <outlet property="managerNumberLbl" destination="aC0-Gh-Rzj" id="8Is-pJ-Qz8"/>
+                        <outlet property="profileImage" destination="jWO-xW-3aj" id="QWa-kq-dId"/>
+                        <outlet property="stateLbl" destination="hKn-MO-xVy" id="aGU-tY-uvn"/>
+                        <outlet property="zipCodeLbl" destination="GzW-Bf-wnf" id="eRI-xh-mr0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmN-C7-MRs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fyP-bK-fvL" userLabel="Exit" sceneMemberID="exit"/>

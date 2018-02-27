@@ -23,6 +23,12 @@ enum FIRUserData: String {
     case profileImage = "profileImage"
     case userName = "userName"
     case zipCode = "zipCode"
+    case agentName = "agentName"
+    case agentNumber = "agentNumber"
+    case managerName = "managerName"
+    case managerNumber = "managerNumber"
+    case legalName = "legalName"
+    case legalNumber = "legalNumber"
 }
 
 enum CreateUserError: String, Error {
@@ -69,6 +75,12 @@ class UserType: User {
     var profileImage: String?
     var userName: String
     var userKey: String = ""
+    var agentName: String?
+    var agentNumber: String?
+    var managerName: String?
+    var managerNumber: String?
+    var legalName: String?
+    var legalNumber: String?
     
     //Firebase database references
     static var REF_USERS = DB_BASE.child("users").child("allUsers")
@@ -84,6 +96,7 @@ class UserType: User {
         self.state = state
         self.zipCode = zipCode
         self.userName = "\(firstName).\(lastName)"
+        
     }
     
     init(userKey: String, userData: Dictionary <String, String>) {
@@ -131,6 +144,42 @@ class UserType: User {
             self.profileImage = ""
         }
         
+        if let agentName = userData[FIRUserData.agentName.rawValue] {
+            self.agentName = agentName
+        } else {
+            self.agentName = "Agent Name"
+        }
+        
+        if let agentNumber = userData[FIRUserData.agentNumber.rawValue] {
+            self.agentNumber = agentNumber
+        } else {
+            self.agentNumber = "(xxx) xxx-xxxx"
+        }
+        
+        if let managerName = userData[FIRUserData.managerName.rawValue] {
+            self.managerName = managerName
+        } else {
+            self.managerName = "Manager Name"
+        }
+        
+        if let managerNumber = userData[FIRUserData.managerNumber.rawValue] {
+            self.managerNumber = managerNumber
+        } else {
+            self.managerNumber = "(xxx) xxx-xxxx"
+        }
+        
+        if let legalName = userData[FIRUserData.legalName.rawValue] {
+            self.legalName = legalName
+        } else {
+            self.legalName = "Legal Name"
+        }
+        
+        if let legalNumber = userData[FIRUserData.legalNumber.rawValue] {
+            self.legalNumber = legalNumber
+        } else {
+            self.legalNumber = "(xxx) xxx-xxxx"
+        }
+        
     }
     
     func createUserDB(user: User, userImage: UIImage) throws {
@@ -173,7 +222,7 @@ class UserType: User {
                             FIRUserData.city.rawValue: user.city,
                             FIRUserData.state.rawValue: user.state,
                             FIRUserData.zipCode.rawValue: user.zipCode,
-                            FIRUserData.profileImage.rawValue: url
+                            FIRUserData.profileImage.rawValue: url,
                         ]
                         
                         let newAllUser: Dictionary<String, String> = [
