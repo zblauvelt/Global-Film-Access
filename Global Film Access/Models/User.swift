@@ -71,9 +71,9 @@ class UserType: User {
     var userKey: String = ""
     
     //Firebase database references
-    static var REF_USERS = DB_BASE.child("users").child("Details")
+    static var REF_USERS = DB_BASE.child("users").child("allUsers")
     static var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
-    static var REF_CURRENT_USER_DETAILS = DB_BASE.child("users").child(userID)
+    static var REF_CURRENT_USER_DETAILS = DB_BASE.child("users").child("details")
     static var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
     
     
@@ -86,49 +86,49 @@ class UserType: User {
         self.userName = "\(firstName).\(lastName)"
     }
     
-    init(userKey: String, userData: Dictionary <String, String>) throws {
+    init(userKey: String, userData: Dictionary <String, String>) {
         self.userKey = userKey
         
         if let firstName = userData[FIRUserData.firstName.rawValue] {
             self.firstName = firstName
         } else {
-            throw CreateUserError.invalidFirstName
+            self.firstName = ""
         }
         
         if let lastName = userData[FIRUserData.lastName.rawValue] {
            self.lastName = lastName
         } else {
-            throw CreateUserError.invalidLastName
+            self.lastName = ""
         }
         
         if let city = userData[FIRUserData.city.rawValue] {
             self.city = city
         } else {
-            throw CreateUserError.invalidCity
+            self.city = ""
         }
         
         if let state = userData[FIRUserData.state.rawValue] {
             self.state = state
         } else {
-            throw CreateUserError.invalidState
+            self.state = ""
         }
         
         if let zipCode = userData[FIRUserData.zipCode.rawValue] {
             self.zipCode = zipCode
         } else {
-            throw CreateUserError.invalidZipCode
+            self.zipCode = ""
         }
         
         if let userName = userData[FIRUserData.userName.rawValue] {
             self.userName = userName
         } else {
-            throw CreateUserError.invalidUserName
+            self.userName = ""
         }
         
         if let profileImage = userData[FIRUserData.profileImage.rawValue] {
             self.profileImage = profileImage
         } else {
-            throw CreateUserError.invalidProfileImage
+            self.profileImage = ""
         }
         
     }
@@ -166,7 +166,7 @@ class UserType: User {
                     print("ZACK: Successfully uploaded image")
                     let downloadURL = metaData?.downloadURL()?.absoluteString
                     if let url = downloadURL {
-                        let user: Dictionary<String, String> = [
+                        let newUser: Dictionary<String, String> = [
                             FIRUserData.firstName.rawValue: user.firstName,
                             FIRUserData.lastName.rawValue: user.lastName,
                             FIRUserData.userName.rawValue: "\(user.firstName).\(user.lastName)",
@@ -175,8 +175,16 @@ class UserType: User {
                             FIRUserData.zipCode.rawValue: user.zipCode,
                             FIRUserData.profileImage.rawValue: url
                         ]
+                        
+                        let newAllUser: Dictionary<String, String> = [
+                            FIRUserData.firstName.rawValue: user.firstName,
+                            FIRUserData.lastName.rawValue: user.lastName,
+                            FIRUserData.profileImage.rawValue: url
+                        ]
+                       
                         //MARK: Post to Firebase Database
-                        UserType.REF_CURRENT_USER_DETAILS.setValue(user)
+                        UserType.REF_CURRENT_USER_DETAILS.child(userID).setValue(newUser)
+                        UserType.REF_USERS.child(userID).setValue(newAllUser)
                     }
                 }
             }

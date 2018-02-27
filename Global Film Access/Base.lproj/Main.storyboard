@@ -457,7 +457,7 @@
                         <outlet property="pickState" destination="7Fz-WT-ewK" id="sKu-PO-RlZ"/>
                         <outlet property="profileImage" destination="gPW-Nx-7Ew" id="Ydn-7w-pe5"/>
                         <outlet property="zipCodeTextLbl" destination="8aZ-fd-9aG" id="Zeu-ry-9n7"/>
-                        <segue destination="a32-4K-aSg" kind="show" identifier="goToProjects" id="DaQ-8N-Jo4"/>
+                        <segue destination="a32-4K-aSg" kind="presentation" identifier="goToProjects" id="DaQ-8N-Jo4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CgF-OT-C43" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2032,7 +2032,7 @@
         <image name="password" width="31" height="31"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2sr-yY-gsj"/>
+        <segue reference="Ozr-ac-8g7"/>
         <segue reference="DaQ-8N-Jo4"/>
     </inferredMetricsTieBreakers>
 </document>

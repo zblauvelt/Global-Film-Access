@@ -97,7 +97,7 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
                     //If the id matches the id from projects then it will be added to userProjectsDetails Array
                     if let userDetailsDict = snap.value as? Dictionary<String, String> {
                         let key = snap.key
-                        let userDetails = try! UserType(userKey: key, userData: userDetailsDict)
+                        let userDetails = UserType(userKey: key, userData: userDetailsDict)
                         self.unfilteredTalent.append(userDetails)
                     }
                 }
