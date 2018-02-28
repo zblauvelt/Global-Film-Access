@@ -845,7 +845,7 @@
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Video ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJc-do-86y" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Video URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJc-do-86y" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
                                                                 <rect key="frame" x="150" y="0.0" width="150" height="50"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="textColor"/>
@@ -890,6 +890,9 @@
                                                         <state key="normal" title="Add Video">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="addVideoTapped:" destination="SPD-Rh-gRG" eventType="touchUpInside" id="y05-tA-0pc"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T92-16-0fW">
                                                         <rect key="frame" x="121" y="150" width="78" height="34"/>
@@ -897,6 +900,9 @@
                                                         <state key="normal" title="Edit Image">
                                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="editImageTapped:" destination="SPD-Rh-gRG" eventType="touchUpInside" id="mfi-XU-vQw"/>
+                                                        </connections>
                                                     </button>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="odp-6c-SMu">
                                                         <rect key="frame" x="10" y="778" width="300" height="200"/>
@@ -942,9 +948,12 @@
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="fxe-as-slE"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                                        <state key="normal" title="Add Video">
+                                                        <state key="normal" title="Add Movie">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="addMovieTapped:" destination="SPD-Rh-gRG" eventType="touchUpInside" id="0XQ-rh-4p3"/>
+                                                        </connections>
                                                     </button>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GL0-KB-hzL">
                                                         <rect key="frame" x="10" y="1160" width="300" height="200"/>
@@ -960,8 +969,8 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="74.5"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Video Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wmi-4Q-s20">
-                                                                            <rect key="frame" x="15" y="17" width="93.5" height="20.5"/>
+                                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wmi-4Q-s20">
+                                                                            <rect key="frame" x="15" y="17" width="95.5" height="20.5"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -1053,7 +1062,11 @@
                                 <segue destination="fyP-bK-fvL" kind="unwind" unwindAction="closWithSegue:" id="M3J-IK-IBW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="gBa-Zb-ZNI"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="gBa-Zb-ZNI">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="SPD-Rh-gRG" id="tTo-9o-IIR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="320" height="1500"/>
                     <connections>
@@ -1066,8 +1079,12 @@
                         <outlet property="legalNumberLbl" destination="d1y-wP-sLQ" id="5JB-uc-rug"/>
                         <outlet property="managerNameLbl" destination="3h1-yp-SNA" id="7r5-te-Tjn"/>
                         <outlet property="managerNumberLbl" destination="aC0-Gh-Rzj" id="8Is-pJ-Qz8"/>
+                        <outlet property="movieNameLbl" destination="1aG-HC-h9m" id="mj5-bV-tgN"/>
+                        <outlet property="movieYearLbl" destination="gGD-ZS-HZi" id="BgH-8T-AvS"/>
                         <outlet property="profileImage" destination="jWO-xW-3aj" id="QWa-kq-dId"/>
                         <outlet property="stateLbl" destination="hKn-MO-xVy" id="aGU-tY-uvn"/>
+                        <outlet property="videoNameLbl" destination="Ebt-gb-t4z" id="cgf-cR-liq"/>
+                        <outlet property="videoURLLbl" destination="vJc-do-86y" id="gMa-8R-Iwk"/>
                         <outlet property="zipCodeLbl" destination="GzW-Bf-wnf" id="eRI-xh-mr0"/>
                     </connections>
                 </viewController>
