@@ -90,8 +90,6 @@ class UserType: User {
     static var REF_USERS = DB_BASE.child("users").child("allUsers")
     static var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
     static var REF_CURRENT_USER_DETAILS = DB_BASE.child("users").child("details")
-    static var REF_CURRENT_USER_VIDEOS = DB_BASE.child("users").child("videos")
-    static var REF_CURRENT_USER_MOVIES = DB_BASE.child("users").child("movies")
     static var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
     
     
@@ -358,4 +356,135 @@ class UserType: User {
         }
     }
 }
+
+enum CreateVideoError: String, Error {
+    case invalidVideoName = "Please provide a valid video name."
+    case invalidVideoURL = "Please provide a valid vimeo URL."
+}
+
+class UserVideos {
+    var videoName: String
+    var videoURL: String
+    var videoKey: String = ""
+    static var REF_CURRENT_USER_VIDEOS = DB_BASE.child("users").child("videos")
+    
+    
+    init(videoName: String, videoURL: String) {
+        self.videoName = videoName
+        self.videoURL = videoURL
+    }
+    
+    init(videoKey: String, videoData: Dictionary<String, String>) {
+        self.videoKey = videoKey
+        
+        if let videoName = videoData[FIRUserData.videoName.rawValue] {
+            self.videoName = videoName
+        } else {
+            self.videoName = ""
+        }
+        
+        if let videoURL = videoData[FIRUserData.videoURL.rawValue] {
+            self.videoURL = videoURL
+        } else {
+            self.videoURL = ""
+        }
+    }
+    
+    //Validate that a correct url was entered
+    func verifyUrl (urlString: String?) -> Bool {
+        //Check for nil
+        if let urlString = urlString {
+            // create NSURL instance
+            if let url = NSURL(string: urlString) {
+                // check if your application can open the NSURL instance
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
+    }
+    
+    func createNewVideo(video: UserVideos) throws {
+        guard video.videoName != "" else {
+            throw CreateVideoError.invalidVideoName
+        }
+        guard self.verifyUrl(urlString: video.videoURL) else {
+            throw CreateVideoError.invalidVideoURL
+        }
+        let newVideo: Dictionary<String, String> = [
+            FIRUserData.videoName.rawValue: videoName,
+            FIRUserData.videoURL.rawValue: videoURL
+        ]
+        UserVideos.REF_CURRENT_USER_VIDEOS.child(userID).childByAutoId().setValue(newVideo)
+    }
+}
+
+enum CreateMovieError: String, Error {
+    case invalidMovieName = "Please provide a valid movie name."
+    case invalidMovieYear = "Please provide the year you were apart of this movie."
+}
+
+class UserMovies {
+    var movieName: String
+    var movieYear: String
+    var movieKey: String = ""
+    static var REF_CURRENT_USER_MOVIES = DB_BASE.child("users").child("movies")
+    
+    init(movieName: String, movieYear: String) {
+        self.movieName = movieName
+        self.movieYear = movieYear
+    }
+    
+    init(movieKey: String, movieData: Dictionary<String, String>) {
+        self.movieKey = movieKey
+        
+        if let movieName = movieData[FIRUserData.movieName.rawValue] {
+            self.movieName = movieName
+        } else {
+            self.movieName = ""
+        }
+        
+        if let movieYear = movieData[FIRUserData.movieYear.rawValue] {
+            self.movieYear = movieYear
+        } else {
+            self.movieYear = ""
+        }
+    }
+    
+    func createNewMovie(movie: UserMovies) throws {
+        guard movie.movieName != "" else {
+            throw CreateMovieError.invalidMovieName
+        }
+        guard movie.movieYear != "" else {
+            throw CreateMovieError.invalidMovieYear
+        }
+        
+        let newMovie: Dictionary<String, String> = [
+            FIRUserData.movieName.rawValue: movieName,
+            FIRUserData.movieYear.rawValue: movieYear
+        ]
+        
+        UserMovies.REF_CURRENT_USER_MOVIES.child(userID).childByAutoId().setValue(newMovie)
+        }
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

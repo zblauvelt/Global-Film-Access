@@ -169,36 +169,21 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     //MARK: Add Video Button Tapped
     
-    //Validate that a correct url was entered
-    func verifyUrl (urlString: String?) -> Bool {
-        //Check for nil
-        if let urlString = urlString {
-            // create NSURL instance
-            if let url = NSURL(string: urlString) {
-                // check if your application can open the NSURL instance
-                return UIApplication.shared.canOpenURL(url as URL)
-            }
-        }
-        return false
-    }
-    
     @IBAction func addVideoTapped(_ sender: Any) {
         if let videoName = videoNameLbl.text, let videoURL = videoURLLbl.text {
-            guard videoName != "" else {
-                showAlert(message: "Please provide a valid video name.")
-                return
+        let newVideo = UserVideos(videoName: videoName, videoURL: videoURL)
+            
+            do {
+                try newVideo.createNewVideo(video: newVideo)
+                videoNameLbl.text = nil
+                videoURLLbl.text = nil
+            } catch CreateVideoError.invalidVideoName {
+                showAlert(message: CreateVideoError.invalidVideoName.rawValue)
+            } catch CreateVideoError.invalidVideoURL {
+                showAlert(message: CreateVideoError.invalidVideoURL.rawValue)
+            } catch let error {
+                showAlert(message: "\(error)")
             }
-            guard self.verifyUrl(urlString: videoURL) else {
-                showAlert(message: "Please provide a valid vimeo URL to your video." )
-                return
-            }
-            let newVideo: Dictionary<String, String> = [
-                FIRUserData.videoName.rawValue: videoName,
-                FIRUserData.videoURL.rawValue: videoURL
-            ]
-            UserType.REF_CURRENT_USER_VIDEOS.child(userID).childByAutoId().setValue(newVideo)
-            videoNameLbl.text = nil
-            videoURLLbl.text = nil
         }
     }
     
@@ -206,22 +191,20 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     @IBAction func addMovieTapped(_ sender: Any) {
         if let movieName = movieNameLbl.text, let movieYear = movieYearLbl.text {
-            guard movieName != "" else {
-                showAlert(message: "Please provide a valid movie name.")
-                return
-            }
-            guard movieYear != "" else {
-                showAlert(message: "Please provide the year you did this movie.")
-                return
-            }
-            let newMovie: Dictionary<String, String> = [
-                FIRUserData.movieName.rawValue: movieName,
-                FIRUserData.movieYear.rawValue: movieYear
-            ]
             
-            UserType.REF_CURRENT_USER_MOVIES.child(userID).childByAutoId().setValue(newMovie)
-            movieNameLbl.text = nil
-            movieYearLbl.text = nil
+            let newMovie = UserMovies(movieName: movieName, movieYear: movieYear)
+            
+            do {
+                try newMovie.createNewMovie(movie: newMovie)
+                movieNameLbl.text = nil
+                movieYearLbl.text = nil
+            } catch CreateMovieError.invalidMovieName {
+                showAlert(message: CreateMovieError.invalidMovieName.rawValue)
+            } catch CreateMovieError.invalidMovieYear {
+                showAlert(message: CreateMovieError.invalidMovieYear.rawValue)
+            } catch let error {
+                print("\(error)")
+            }
         }
     }
     
