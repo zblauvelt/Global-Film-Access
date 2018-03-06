@@ -29,6 +29,7 @@ enum FIRUserData: String {
     case managerNumber = "managerNumber"
     case legalName = "legalName"
     case legalNumber = "legalNumber"
+    case imdbRating = "IMDbRating"
     case videoName = "videoName"
     case videoURL = "videoURL"
     case movieName = "movieName"
@@ -85,11 +86,13 @@ class UserType: User {
     var managerNumber: String?
     var legalName: String?
     var legalNumber: String?
+    var imdbRating: String?
     
     //Firebase database references
     static var REF_USERS = DB_BASE.child("users").child("allUsers")
     static var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
     static var REF_CURRENT_USER_DETAILS = DB_BASE.child("users").child("details")
+    static var REF_CURRENT_USER_DETAILS_INFO = DB_BASE.child("users").child("details").child(userID)
     static var REF_PROFILE_IMAGE = STORAGE_BASE.child("profile-pics")
     
     
@@ -184,6 +187,12 @@ class UserType: User {
             self.legalNumber = "(xxx) xxx-xxxx"
         }
         
+        if let imdbRating = userData[FIRUserData.imdbRating.rawValue] {
+            self.imdbRating = imdbRating
+        } else {
+            self.imdbRating = "IMDb Rating"
+        }
+        
     }
     
     func createUserDB(user: User, userImage: UIImage) throws {
@@ -236,7 +245,7 @@ class UserType: User {
                         ]
                        
                         //MARK: Post to Firebase Database
-                        UserType.REF_CURRENT_USER_DETAILS.child(userID).setValue(newUser)
+                        UserType.REF_CURRENT_USER_DETAILS_INFO.child("info").setValue(newUser)
                         UserType.REF_USERS.child(userID).setValue(newAllUser)
                     }
                 }
@@ -245,7 +254,7 @@ class UserType: User {
         }
     }
     
-    func updateProfileInfo(user: UserType, userImage: UIImage, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String) throws {
+    func updateProfileInfo(user: UserType, userImage: UIImage, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String, userImdbRating: String) throws {
         let defualtNumber = "(xxx) xxx-xxxx"
         guard user.firstName != "" else {
             throw CreateUserError.invalidFirstName
@@ -305,6 +314,13 @@ class UserType: User {
                 return defualtNumber
             }
         }
+        var imdbRating: String {
+            if userImdbRating != "" {
+                return userImdbRating
+            } else {
+                return "IMDb Rating"
+            }
+        }
         
         
         
@@ -337,7 +353,8 @@ class UserType: User {
                             FIRUserData.managerName.rawValue: managerName,
                             FIRUserData.managerNumber.rawValue: managerNumber,
                             FIRUserData.legalName.rawValue: legalName,
-                            FIRUserData.legalNumber.rawValue: legalNumber
+                            FIRUserData.legalNumber.rawValue: legalNumber,
+                            FIRUserData.imdbRating.rawValue: imdbRating
                             ]
                         
                         let updateAllUser: Dictionary<String, String> = [
@@ -347,7 +364,7 @@ class UserType: User {
                         ]
                         
                         //MARK: Post to Firebase Database
-                        UserType.REF_CURRENT_USER_DETAILS.child(userID).updateChildValues(updateUser)
+                        UserType.REF_CURRENT_USER_DETAILS_INFO.child("info").updateChildValues(updateUser)
                         UserType.REF_USERS.child(userID).updateChildValues(updateAllUser)
                     }
                 }

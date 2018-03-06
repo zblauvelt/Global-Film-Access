@@ -30,6 +30,7 @@
 		148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23951FFA833C004F7D1D /* FireBaseAuth.swift */; };
 		148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */; };
 		148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */; };
+		14A892EB204CC730000C15D6 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A892EA204CC730000C15D6 /* ProfileVC.swift */; };
 		14A948D2202001470061881D /* Employees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A948D1202001470061881D /* Employees.swift */; };
 		14A948D42023EF910061881D /* CastPositionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A948D32023EF910061881D /* CastPositionsVC.swift */; };
 		14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEF81FCAF674005AACA2 /* Constants.swift */; };
@@ -73,6 +74,7 @@
 		148E23951FFA833C004F7D1D /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
 		148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBottomBorder.swift; sourceTree = "<group>"; };
+		14A892EA204CC730000C15D6 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		14A948D1202001470061881D /* Employees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employees.swift; sourceTree = "<group>"; };
 		14A948D32023EF910061881D /* CastPositionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastPositionsVC.swift; sourceTree = "<group>"; };
 		14C8AEF81FCAF674005AACA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */,
 				1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */,
 				14C9489F2030F97200A97237 /* EditProfileVC.swift */,
+				14A892EA204CC730000C15D6 /* ProfileVC.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				14E640F22002EB6C00A00968 /* CreateProfileVC.swift in Sources */,
 				14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */,
 				14392FAD1FC516CE00993BB7 /* SignInVC.swift in Sources */,
+				14A892EB204CC730000C15D6 /* ProfileVC.swift in Sources */,
 				148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */,
 				148E23941FF91AF8004F7D1D /* USStates.swift in Sources */,
 				1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */,
