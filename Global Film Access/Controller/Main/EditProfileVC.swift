@@ -9,9 +9,11 @@
 import UIKit
 import Firebase
 
-class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
     
     var userDetails = [UserType]()
+    var videoDetail = [UserVideos]()
+    var movieDetail = [UserMovies]()
     
     //MARK: Outlets
     @IBOutlet weak var profileImage: CircleImage!
@@ -30,7 +32,13 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var videoURLLbl: CommonTextField!
     @IBOutlet weak var movieNameLbl: CommonTextField!
     @IBOutlet weak var movieYearLbl: CommonTextField!
+    @IBOutlet weak var videoTableView: UITableView!
+    @IBOutlet weak var movieTableView: UITableView!
+    @IBOutlet weak var imdbRating: CommonTextField!
     
+    //MARK: Constraints
+    @IBOutlet weak var movieTableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var videoTableViewHeight: NSLayoutConstraint!
     var imagePicker: UIImagePickerController!
 
     
@@ -39,6 +47,8 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         super.viewDidLoad()
         getUserDetails()
         getStatePickers(stateLbl)
+        getUserVideos()
+        getUserMovies()
         
         
         
@@ -79,7 +89,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     //MARK: Get User Details
     ///Get user details from Firebase
     func getUserDetails() {
-        UserType.REF_CURRENT_USER_DETAILS.observe(.value, with: { (snapshot) in
+        UserType.REF_CURRENT_USER_DETAILS_INFO.observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 self.userDetails.removeAll()
                 for snap in snapshot {
@@ -121,6 +131,126 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             self.legalNumberLbl.text = legalNumber
         }
     }
+    
+    
+    // MARK: Table View Controllers
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var count: Int = 1
+        
+        if tableView == self.videoTableView {
+            count = self.videoDetail.count
+        } else if tableView == self.movieTableView {
+            count = self.movieDetail.count
+        }
+        
+        return count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifierVideo = "videoCell"
+        let cellIdentifierMovie = "movieCell"
+        var cell: UITableViewCell?
+        
+        if tableView == self.videoTableView {
+            cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifierVideo, for: indexPath)
+            
+            cell?.textLabel?.text = videoDetail[indexPath.row].videoName
+        } else if tableView == self.movieTableView {
+            cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifierMovie, for: indexPath)
+            
+            cell?.textLabel?.text = movieDetail[indexPath.row].movieName
+            cell?.detailTextLabel?.text = movieDetail[indexPath.row].movieYear
+        }
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
+            
+            if tableView == self.videoTableView {
+                
+                self.delete(tableView: self.videoTableView, indexPath: indexPath)
+                
+            } else if tableView == self.movieTableView {
+                
+                self.delete(tableView: self.movieTableView, indexPath: indexPath)
+                
+            }
+        }
+        delete.backgroundColor = UIColor.red
+        return [delete]
+    }
+    
+    // MARK: delete movie or video
+    func delete(tableView: UITableView, indexPath: IndexPath) {
+        switch tableView {
+        case self.videoTableView:
+            let video = videoDetail[indexPath.row].videoKey
+            UserVideos.REF_CURRENT_USER_VIDEOS.child(userID).child(video).removeValue()
+        case self.movieTableView:
+            let movie = movieDetail[indexPath.row].movieKey
+            UserMovies.REF_CURRENT_USER_MOVIES.child(userID).child(movie).removeValue()
+        default:
+            print("Table View doesn't exist.")
+        }
+    }
+    
+    //Get video details
+    func getUserVideos() {
+        UserVideos.REF_CURRENT_USER_VIDEOS.child(userID).observe(.value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            self.videoDetail.removeAll()
+                for snap in snapshot {
+                    print("SNAP:\(snap)")
+                    
+                    if let videoDict = snap.value as? Dictionary<String, String> {
+                        let key = snap.key
+                        let video = UserVideos(videoKey: key, videoData: videoDict)
+                        self.videoDetail.append(video)
+                    }
+                }
+                
+            }
+            self.videoTableView.reloadData()
+            self.viewDidLayoutSubviews()
+        })
+        
+    }
+    //Get Movie Details
+    func getUserMovies() {
+        UserMovies.REF_CURRENT_USER_MOVIES.child(userID).observe(.value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                self.movieDetail.removeAll()
+                for snap in snapshot {
+                    print("SNAP:\(snap)")
+                    
+                    if let movieDict = snap.value as? Dictionary<String, String> {
+                        let key = snap.key
+                        let movie = UserMovies(movieKey: key, movieData: movieDict)
+                        self.movieDetail.append(movie)
+                    }
+                }
+                
+            }
+            self.movieTableView.reloadData()
+            self.viewDidLayoutSubviews()
+        })
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let videotvHeight = CGFloat(self.videoDetail.count) * CGFloat(75)
+        let movietvHeight = CGFloat(self.movieDetail.count) * CGFloat(75)
+        self.videoTableViewHeight.constant = videotvHeight
+        self.movieTableViewHeight.constant = movietvHeight
+        
+        self.view.layoutIfNeeded()
+    }
+    
+    
 
     //Save Updates
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -135,12 +265,13 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             let managerNumber = managerNumberLbl.text,
             let legalName = legalNameLbl.text,
             let legalNumber = legalNumberLbl.text,
+            let imdbRating = imdbRating.text,
             let userImage = profileImage.image {
             
             let user = UserType(firstName: firstName, lastName: lastName, city: city, state: state, zipCode: zipCode)
             
             do {
-                try user.updateProfileInfo(user: user, userImage: userImage, userAgentName: agentName, userAgentNumber: agentNumber, userManagerName: managerName, userManagerNumber: managerNumber, userLegalName: legalName, userLegalNumber: legalNumber)
+                try user.updateProfileInfo(user: user, userImage: userImage, userAgentName: agentName, userAgentNumber: agentNumber, userManagerName: managerName, userManagerNumber: managerNumber, userLegalName: legalName, userLegalNumber: legalNumber, userImdbRating: imdbRating)
                 self.dismiss(animated: true, completion: nil)
             } catch CreateUserError.invalidFirstName {
                 showAlert(message: CreateUserError.invalidFirstName.rawValue)
@@ -185,6 +316,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 showAlert(message: "\(error)")
             }
         }
+        
     }
     
     //MARK: Add movies

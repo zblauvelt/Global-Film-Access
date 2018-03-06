@@ -115,4 +115,18 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "searchToProfile" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destinationController = segue.destination as! ProfileVC
+                if isSearching {
+                    destinationController.currentUserKey = filteredTalent[indexPath.row].userKey
+                } else {
+                    destinationController.currentUserKey = unfilteredTalent[indexPath.row].userKey
+                }
+            }
+        }
+    }
+    
+    
 }
