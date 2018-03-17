@@ -1722,7 +1722,7 @@
         <!--Profile-->
         <scene sceneID="N0Y-Ff-BA9">
             <objects>
-                <viewController storyboardIdentifier="I" id="9Ru-sO-W0a" customClass="ProfileVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="I" title="Profile" id="9Ru-sO-W0a" customClass="ProfileVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c8e-93-xhD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1832,14 +1832,70 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo Reels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfz-EX-BFL">
+                                                        <rect key="frame" x="8" y="291" width="304" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="q1u-HC-oLf"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qay-NY-T8Y">
+                                                        <rect key="frame" x="0.0" y="320" width="320" height="170"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="170" id="Dap-DQ-dGD"/>
+                                                        </constraints>
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AkI-mc-L2B">
+                                                            <size key="itemSize" width="162" height="140"/>
+                                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        </collectionViewFlowLayout>
+                                                        <cells>
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="demoReelCell" id="QlM-eY-BZp" customClass="ProfileCollectionViewCell" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="11" width="200" height="148"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="148"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ManVideoTaping" translatesAutoresizingMaskIntoConstraints="NO" id="4hk-6W-UlN">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="148"/>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                </view>
+                                                                <constraints>
+                                                                    <constraint firstItem="4hk-6W-UlN" firstAttribute="leading" secondItem="QlM-eY-BZp" secondAttribute="leading" id="LhN-pg-YIF"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="4hk-6W-UlN" secondAttribute="trailing" id="UFR-Wa-clR"/>
+                                                                    <constraint firstItem="4hk-6W-UlN" firstAttribute="top" secondItem="QlM-eY-BZp" secondAttribute="top" id="Vqu-YW-E95"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="4hk-6W-UlN" secondAttribute="bottom" id="iRB-Jp-kUr"/>
+                                                                </constraints>
+                                                                <size key="customSize" width="200" height="148"/>
+                                                                <connections>
+                                                                    <outlet property="demoReelThumbnail" destination="4hk-6W-UlN" id="65d-hl-lbN"/>
+                                                                </connections>
+                                                            </collectionViewCell>
+                                                        </cells>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="9Ru-sO-W0a" id="jf2-ol-heW"/>
+                                                            <outlet property="delegate" destination="9Ru-sO-W0a" id="gcV-C0-Ra8"/>
+                                                        </connections>
+                                                    </collectionView>
                                                 </subviews>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="qay-NY-T8Y" firstAttribute="top" secondItem="Yfz-EX-BFL" secondAttribute="bottom" constant="8" id="09q-vd-qJr"/>
                                                     <constraint firstAttribute="height" constant="1000" id="2TU-FB-pUx"/>
                                                     <constraint firstItem="MWC-bV-7Fs" firstAttribute="leading" secondItem="6os-Pb-G96" secondAttribute="trailing" constant="25" id="96S-kr-zHU"/>
+                                                    <constraint firstItem="qay-NY-T8Y" firstAttribute="leading" secondItem="sE7-sh-qRH" secondAttribute="leading" id="Cg8-5p-0nr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qay-NY-T8Y" secondAttribute="trailing" id="DmO-rY-G9d"/>
                                                     <constraint firstAttribute="trailing" secondItem="QAM-KO-AxD" secondAttribute="trailing" constant="8" id="Nfa-Af-IL6"/>
                                                     <constraint firstItem="D8x-tR-6RA" firstAttribute="top" secondItem="sE7-sh-qRH" secondAttribute="top" constant="8" id="QKg-Mn-JEI"/>
+                                                    <constraint firstItem="Yfz-EX-BFL" firstAttribute="leading" secondItem="sE7-sh-qRH" secondAttribute="leading" constant="8" id="S8k-Fr-rA6"/>
                                                     <constraint firstAttribute="trailing" secondItem="MWC-bV-7Fs" secondAttribute="trailing" constant="8" id="VhF-Ge-IcL"/>
+                                                    <constraint firstItem="Yfz-EX-BFL" firstAttribute="top" secondItem="D8x-tR-6RA" secondAttribute="bottom" constant="8" id="Wfv-fg-u73"/>
                                                     <constraint firstItem="6os-Pb-G96" firstAttribute="top" secondItem="sE7-sh-qRH" secondAttribute="top" constant="30" id="b4K-fS-pZX"/>
                                                     <constraint firstAttribute="trailing" secondItem="D8x-tR-6RA" secondAttribute="trailing" id="cbX-E2-cQV"/>
                                                     <constraint firstItem="ggv-va-VDS" firstAttribute="centerX" secondItem="6os-Pb-G96" secondAttribute="centerX" id="dFn-yB-SdL"/>
@@ -1847,6 +1903,7 @@
                                                     <constraint firstItem="QAM-KO-AxD" firstAttribute="top" secondItem="MWC-bV-7Fs" secondAttribute="bottom" constant="8" id="fAF-Si-1LS"/>
                                                     <constraint firstItem="6os-Pb-G96" firstAttribute="leading" secondItem="sE7-sh-qRH" secondAttribute="leading" constant="20" id="k7u-Ft-UNL"/>
                                                     <constraint firstItem="WsQ-o9-5vB" firstAttribute="leading" secondItem="6os-Pb-G96" secondAttribute="trailing" constant="25" id="kdx-bS-R9J"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Yfz-EX-BFL" secondAttribute="trailing" constant="8" id="uOr-RB-O2W"/>
                                                     <constraint firstItem="WsQ-o9-5vB" firstAttribute="centerY" secondItem="QAM-KO-AxD" secondAttribute="centerY" id="vVO-ny-N0e"/>
                                                     <constraint firstItem="QAM-KO-AxD" firstAttribute="leading" secondItem="WsQ-o9-5vB" secondAttribute="trailing" constant="8" id="wbR-68-fmB"/>
                                                     <constraint firstItem="MWC-bV-7Fs" firstAttribute="top" secondItem="sE7-sh-qRH" secondAttribute="top" constant="30" id="zp1-9T-Jvx"/>
@@ -1885,14 +1942,32 @@
                     </navigationItem>
                     <size key="freeformSize" width="320" height="1000"/>
                     <connections>
+                        <outlet property="collectionView" destination="qay-NY-T8Y" id="wC4-rm-Y6C"/>
                         <outlet property="fullNameLbl" destination="MWC-bV-7Fs" id="3At-dk-kBK"/>
                         <outlet property="imdbRatingLbl" destination="Kef-76-yiw" id="fcS-9w-Upo"/>
                         <outlet property="profileImage" destination="6os-Pb-G96" id="Qdf-Ac-3aJ"/>
+                        <segue destination="b5C-fm-CfY" kind="show" identifier="showVideo" id="HF3-SH-mtz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byY-Mw-rl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8966.25" y="-405"/>
+        </scene>
+        <!--DemoReel-->
+        <scene sceneID="7aP-9C-kFl">
+            <objects>
+                <viewController title="DemoReel" id="b5C-fm-CfY" customClass="DemoReelVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NQU-ex-5Jf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="QIf-tR-610"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Demo Reel" id="1Bu-vz-4Fr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oqt-8N-HvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9956" y="-398"/>
         </scene>
         <!--Projects-->
         <scene sceneID="K2j-iX-5wQ">

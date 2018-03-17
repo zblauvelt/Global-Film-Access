@@ -9,11 +9,14 @@
 import UIKit
 import Firebase
 
-class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
+class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, XMLParserDelegate {
     
     var userDetails = [UserType]()
     var videoDetail = [UserVideos]()
     var movieDetail = [UserMovies]()
+    //Variable for parsing XML
+    var currentParsingElement = ""
+    var imageURL = ""
     
     //MARK: Outlets
     @IBOutlet weak var profileImage: CircleImage!
@@ -301,23 +304,98 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     //MARK: Add Video Button Tapped
     
     @IBAction func addVideoTapped(_ sender: Any) {
-        if let videoName = videoNameLbl.text, let videoURL = videoURLLbl.text {
-        let newVideo = UserVideos(videoName: videoName, videoURL: videoURL)
-            
-            do {
-                try newVideo.createNewVideo(video: newVideo)
-                videoNameLbl.text = nil
-                videoURLLbl.text = nil
-            } catch CreateVideoError.invalidVideoName {
-                showAlert(message: CreateVideoError.invalidVideoName.rawValue)
-            } catch CreateVideoError.invalidVideoURL {
-                showAlert(message: CreateVideoError.invalidVideoURL.rawValue)
-            } catch let error {
-                showAlert(message: "\(error)")
+
+        if let videoID = videoURLLbl.text {
+            if videoID == "" {
+                showAlert(message: CreateVideoError.invalidVideoID.rawValue)
+            } else {
+                getXMLDataFromServer(videoID: videoID)
             }
         }
         
     }
+    //MARK: Get XML Data From Server
+    func getXMLDataFromServer(videoID: String) {
+        let url = NSURL(string:"http://vimeo.com/api/v2/video/\(videoID).xml")
+        print("RAN")
+        
+        //Creating data task
+        let task = URLSession.shared.dataTask(with: url! as URL) { (data, response, error) in
+            if data == nil {
+                print("dataTaskWithRequest error: \(String(describing: error?.localizedDescription))")
+                return
+            }
+            
+            let parser = XMLParser(data: data!)
+            parser.delegate = self
+            parser.parse()
+        }
+        task.resume()
+        
+    }
+    
+    // XML Parse Delegate
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        currentParsingElement = elementName
+        
+        if elementName == "videos" {
+            print("Started parsing...")
+        }
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        let foundedChar = string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+        
+        if (!foundedChar.isEmpty) {
+            if currentParsingElement == "thumbnail_medium" {
+                imageURL += foundedChar
+                print(imageURL)
+            }
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "videos" {
+            print("Ended parsing...")
+        }
+    }
+    
+    func parserDidEndDocument(_ parser: XMLParser) {
+        print("Ended Document...")
+        print("printing Image URL: \(imageURL)")
+        
+        self.postVideo()
+    }
+    
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+        print("parseErrorOccured: \(parseError)")
+    }
+
+    func postVideo() {
+        DispatchQueue.main.async {
+            if let videoName = self.videoNameLbl.text, let videoID = self.videoURLLbl.text {
+                
+                let newVideo = UserVideos(videoName: videoName, videoID: videoID, videoImageURL: self.imageURL)
+                
+                do {
+                    try newVideo.createNewVideo(video: newVideo)
+                    self.videoNameLbl.text = nil
+                    self.videoURLLbl.text = nil
+                } catch CreateVideoError.invalidVideoName {
+                    self.showAlert(message: CreateVideoError.invalidVideoName.rawValue)
+                } catch CreateVideoError.invalidVideoID {
+                    self.showAlert(message: CreateVideoError.invalidVideoID.rawValue)
+                } catch CreateVideoError.invalidVideoImageURL {
+                    self.showAlert(message: CreateVideoError.invalidVideoImageURL.rawValue)
+                } catch let error {
+                    self.showAlert(message: "\(error)")
+                }
+            }
+        }
+
+    }
+    
     
     //MARK: Add movies
     

@@ -1,4 +1,4 @@
-//
+  //
 //  ProfileVC.swift
 //  Global Film Access
 //
@@ -9,17 +9,24 @@
 import UIKit
 import Firebase
 
-class ProfileVC: UIViewController {
+fileprivate let reuseIdentifier = "demoReelCell"
+fileprivate let screenWidth = UIScreen.main.bounds.width
+
+class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, XMLParserDelegate {
     
     var userDetail = [UserType]()
     var userVideo = [UserVideos]()
     var userMovie = [UserMovies]()
     var currentUserKey = ""
+    //var currentParsingElement = ""
+    //var imageURL = ""
+    var videoID = ""
 
     //MARK: Outlets
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var fullNameLbl: UILabel!
     @IBOutlet weak var imdbRatingLbl: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     
     override func viewDidLoad() {
@@ -27,15 +34,64 @@ class ProfileVC: UIViewController {
         getUserDetail()
         getVideoDetail()
         getMovieDetail()
+        setupCollectionViewCells()
+        
         print("ZACK: \(currentUserKey)")
         
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+//Collection View Controller
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.userVideo.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let video = userVideo[indexPath.row]
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProfileCollectionViewCell
+        
+        let url = URL(string: video.videoImageURL)
+        
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf:url!)
+            DispatchQueue.main.async {
+                cell.demoReelThumbnail.image = UIImage(data: data!)
+            }
+        }
+
+        //cell.demoReelThumbnail.image = #imageLiteral(resourceName: "ProjectFilm")
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        videoID = userVideo[indexPath.row].videoID
+        self.performSegue(withIdentifier: "showVideo", sender: nil)
+        
+    }
+    
+    
+    //MARK: Set up Collection Views
+    func setupCollectionViewCells() {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        
+        let padding: CGFloat = 10
+        let itemWidth = screenWidth/3 - padding
+        let itemHeight = screenWidth/3 - padding
+        
+        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.scrollDirection = .horizontal
+        
+        collectionView.collectionViewLayout = layout
+    }
+    
     
     //Get All User Information
     
@@ -61,6 +117,7 @@ class ProfileVC: UIViewController {
     
     //Get user videos
     func getVideoDetail() {
+        print("VIDEOS")
         UserVideos.REF_CURRENT_USER_VIDEOS.child(currentUserKey).observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 self.userVideo.removeAll()
@@ -71,9 +128,12 @@ class ProfileVC: UIViewController {
                         let key = snap.key
                         let video = UserVideos(videoKey: key, videoData: videoDict)
                         self.userVideo.append(video)
+                        print(video.videoID)
+                        
                     }
                 }
             }
+            self.collectionView.reloadData()
         })
     }
     
@@ -133,8 +193,13 @@ class ProfileVC: UIViewController {
         //TODO: Add call function - Switch statement on sender.
     }
     
-
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showVideo" {
+            let desVC = segue.destination as! DemoReelVC
+            desVC.chosenVideoID = self.videoID
+        }
+    }
+   
     
 
 }

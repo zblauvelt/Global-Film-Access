@@ -31,7 +31,8 @@ enum FIRUserData: String {
     case legalNumber = "legalNumber"
     case imdbRating = "IMDbRating"
     case videoName = "videoName"
-    case videoURL = "videoURL"
+    case videoID = "videoID"
+    case videoImageURL = "videoImageURL"
     case movieName = "movieName"
     case movieYear = "movieYear"
 }
@@ -376,19 +377,22 @@ class UserType: User {
 
 enum CreateVideoError: String, Error {
     case invalidVideoName = "Please provide a valid video name."
-    case invalidVideoURL = "Please provide a valid vimeo URL."
+    case invalidVideoID = "Please provide a valid vimeo ID."
+    case invalidVideoImageURL = "It looks like the ID you enter isn't correct. Please make sure you are just using the Vimeo ID."
 }
 
 class UserVideos {
     var videoName: String
-    var videoURL: String
+    var videoID: String
+    var videoImageURL: String
     var videoKey: String = ""
     static var REF_CURRENT_USER_VIDEOS = DB_BASE.child("users").child("videos")
     
     
-    init(videoName: String, videoURL: String) {
+    init(videoName: String, videoID: String, videoImageURL: String) {
         self.videoName = videoName
-        self.videoURL = videoURL
+        self.videoID = videoID
+        self.videoImageURL = videoImageURL
     }
     
     init(videoKey: String, videoData: Dictionary<String, String>) {
@@ -400,36 +404,34 @@ class UserVideos {
             self.videoName = ""
         }
         
-        if let videoURL = videoData[FIRUserData.videoURL.rawValue] {
-            self.videoURL = videoURL
+        if let videoID = videoData[FIRUserData.videoID.rawValue] {
+            self.videoID = videoID
         } else {
-            self.videoURL = ""
+            self.videoID = ""
+        }
+        
+        if let videoImageURL = videoData[FIRUserData.videoImageURL.rawValue] {
+            self.videoImageURL = videoImageURL
+        } else {
+            self.videoImageURL = ""
         }
     }
-    
-    //Validate that a correct url was entered
-    func verifyUrl (urlString: String?) -> Bool {
-        //Check for nil
-        if let urlString = urlString {
-            // create NSURL instance
-            if let url = NSURL(string: urlString) {
-                // check if your application can open the NSURL instance
-                return UIApplication.shared.canOpenURL(url as URL)
-            }
-        }
-        return false
-    }
+
     
     func createNewVideo(video: UserVideos) throws {
         guard video.videoName != "" else {
             throw CreateVideoError.invalidVideoName
         }
-        guard self.verifyUrl(urlString: video.videoURL) else {
-            throw CreateVideoError.invalidVideoURL
+        guard video.videoID != "" else {
+            throw CreateVideoError.invalidVideoID
+        }
+        guard video.videoImageURL != "" else {
+            throw CreateVideoError.invalidVideoImageURL
         }
         let newVideo: Dictionary<String, String> = [
             FIRUserData.videoName.rawValue: videoName,
-            FIRUserData.videoURL.rawValue: videoURL
+            FIRUserData.videoID.rawValue: videoID,
+            FIRUserData.videoImageURL.rawValue: videoImageURL
         ]
         UserVideos.REF_CURRENT_USER_VIDEOS.child(userID).childByAutoId().setValue(newVideo)
     }
