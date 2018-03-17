@@ -12,7 +12,7 @@ import Firebase
 fileprivate let reuseIdentifier = "demoReelCell"
 fileprivate let screenWidth = UIScreen.main.bounds.width
 
-class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, XMLParserDelegate {
+class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, XMLParserDelegate, UITableViewDelegate, UITableViewDataSource {
     
     var userDetail = [UserType]()
     var userVideo = [UserVideos]()
@@ -27,6 +27,8 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var fullNameLbl: UILabel!
     @IBOutlet weak var imdbRatingLbl: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tvHeightConstraint: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
@@ -62,8 +64,6 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                 cell.demoReelThumbnail.image = UIImage(data: data!)
             }
         }
-
-        //cell.demoReelThumbnail.image = #imageLiteral(resourceName: "ProjectFilm")
         
         return cell
     }
@@ -73,7 +73,6 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         self.performSegue(withIdentifier: "showVideo", sender: nil)
         
     }
-    
     
     //MARK: Set up Collection Views
     func setupCollectionViewCells() {
@@ -92,6 +91,31 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         collectionView.collectionViewLayout = layout
     }
     
+    
+    //MARK: Table View Setup
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userMovie.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifierMovie = "profileMovieCell"
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifierMovie, for: indexPath)
+        
+        cell.textLabel?.text = userMovie[indexPath.row].movieName
+        cell.detailTextLabel?.text = userMovie[indexPath.row].movieYear
+        
+        return cell
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let movietvHeight = CGFloat(self.userMovie.count) * CGFloat(75)
+        self.tvHeightConstraint.constant = movietvHeight
+        
+        self.view.layoutIfNeeded()
+    }
     
     //Get All User Information
     
@@ -152,6 +176,8 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
                     }
                 }
             }
+            self.tableView.reloadData()
+            self.viewDidLayoutSubviews()
         })
     }
     
