@@ -37,10 +37,12 @@
 		14C8AEFD1FCB04D4005AACA2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */; };
 		14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */; };
 		14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8AF011FCCEC64005AACA2 /* DataService.swift */; };
+		14C900B1205B1DA6004DCFF0 /* DemoReelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C900B0205B1DA6004DCFF0 /* DemoReelVC.swift */; };
 		14C9487A202B2BF000A97237 /* CastingDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C94879202B2BF000A97237 /* CastingDetailVC.swift */; };
 		14C9487C202B832600A97237 /* SearchTalentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C9487B202B832500A97237 /* SearchTalentVC.swift */; };
 		14C9487E202B8CF800A97237 /* SearchTalentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C9487D202B8CF800A97237 /* SearchTalentCell.swift */; };
 		14C948A02030F97200A97237 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C9489F2030F97200A97237 /* EditProfileVC.swift */; };
+		14CA4A5820576782007F7C20 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */; };
 		14E640F22002EB6C00A00968 /* CreateProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E640F12002EB6C00A00968 /* CreateProfileVC.swift */; };
 		14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */; };
 		14E8D5071FF2CA7600B85A20 /* ArchiveProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */; };
@@ -81,10 +83,12 @@
 		14C8AEFC1FCB04D4005AACA2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		14C8AEFE1FCB05FC005AACA2 /* RndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RndButton.swift; sourceTree = "<group>"; };
 		14C8AF011FCCEC64005AACA2 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		14C900B0205B1DA6004DCFF0 /* DemoReelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoReelVC.swift; sourceTree = "<group>"; };
 		14C94879202B2BF000A97237 /* CastingDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastingDetailVC.swift; sourceTree = "<group>"; };
 		14C9487B202B832500A97237 /* SearchTalentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTalentVC.swift; sourceTree = "<group>"; };
 		14C9487D202B8CF800A97237 /* SearchTalentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTalentCell.swift; sourceTree = "<group>"; };
 		14C9489F2030F97200A97237 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		14E640F12002EB6C00A00968 /* CreateProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileVC.swift; sourceTree = "<group>"; };
 		14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectsVC.swift; sourceTree = "<group>"; };
 		14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectCell.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */,
 				14C9489F2030F97200A97237 /* EditProfileVC.swift */,
 				14A892EA204CC730000C15D6 /* ProfileVC.swift */,
+				14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */,
+				14C900B0205B1DA6004DCFF0 /* DemoReelVC.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -364,8 +370,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14C900B1205B1DA6004DCFF0 /* DemoReelVC.swift in Sources */,
 				1444D5F91FD6414200A50CFF /* CustomView.swift in Sources */,
 				1444D5F11FD0CC9000A50CFF /* ProjectListVC.swift in Sources */,
+				14CA4A5820576782007F7C20 /* ProfileCollectionViewCell.swift in Sources */,
 				1433E59D1FD8E86200925648 /* CircleButton.swift in Sources */,
 				1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */,
 				148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */,
