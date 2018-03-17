@@ -1960,14 +1960,29 @@
                     <view key="view" contentMode="scaleToFill" id="NQU-ex-5Jf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYw-fX-YUO">
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WYw-fX-YUO" firstAttribute="leading" secondItem="QIf-tR-610" secondAttribute="leading" id="3yn-oj-RgA"/>
+                            <constraint firstItem="WYw-fX-YUO" firstAttribute="trailing" secondItem="QIf-tR-610" secondAttribute="trailing" id="M0m-Qp-RMw"/>
+                            <constraint firstItem="WYw-fX-YUO" firstAttribute="bottom" secondItem="QIf-tR-610" secondAttribute="bottom" id="dma-Xl-VhX"/>
+                            <constraint firstItem="WYw-fX-YUO" firstAttribute="top" secondItem="QIf-tR-610" secondAttribute="top" id="f1W-zX-jqd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QIf-tR-610"/>
                     </view>
                     <navigationItem key="navigationItem" title="Demo Reel" id="1Bu-vz-4Fr"/>
+                    <connections>
+                        <outlet property="videoWebView" destination="WYw-fX-YUO" id="oZT-f4-cHI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oqt-8N-HvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9956" y="-398"/>
+            <point key="canvasLocation" x="9954.375" y="-398.75"/>
         </scene>
         <!--Projects-->
         <scene sceneID="K2j-iX-5wQ">
