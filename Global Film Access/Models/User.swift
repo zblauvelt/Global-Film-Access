@@ -45,6 +45,7 @@ enum CreateUserError: String, Error {
     case invalidZipCode = "Please provide a zip code."
     case invalidProfileImage = "Please provide an image."
     case invalidUserName = "Please provide a username."
+    case invalidNumber = "This user did not provide a valid contact number."
 
     
 }
@@ -255,7 +256,7 @@ class UserType: User {
         }
     }
     
-    func updateProfileInfo(user: UserType, userImage: UIImage, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String, userImdbRating: String) throws {
+    func updateProfileInfo(user: UserType, userImage: UIImage, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String, userImdbRating: String, imageChanged: Bool) throws {
         let defualtNumber = "(xxx) xxx-xxxx"
         guard user.firstName != "" else {
             throw CreateUserError.invalidFirstName
@@ -323,54 +324,79 @@ class UserType: User {
             }
         }
         
-        
-        
-        let img = userImage
-        
-        //Save image to profile pics folder in Firebase Storage
-        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+        if imageChanged {
+            let img = userImage
             
-            let imgUid = NSUUID().uuidString
-            let metaData = FIRStorageMetadata()
-            metaData.contentType = "image/jpeg"
-            
-            UserType.REF_PROFILE_IMAGE.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
-                if error != nil {
-                    print("ZACK: Unable to upload to Firebase Storage")
-                } else {
-                    print("ZACK: Successfully uploaded image")
-                    let downloadURL = metaData?.downloadURL()?.absoluteString
-                    if let url = downloadURL {
-                        let updateUser: Dictionary<String, String> = [
-                            FIRUserData.firstName.rawValue: user.firstName,
-                            FIRUserData.lastName.rawValue: user.lastName,
-                            FIRUserData.userName.rawValue: "\(user.firstName).\(user.lastName)",
-                            FIRUserData.city.rawValue: user.city,
-                            FIRUserData.state.rawValue: user.state,
-                            FIRUserData.zipCode.rawValue: user.zipCode,
-                            FIRUserData.profileImage.rawValue: url,
-                            FIRUserData.agentName.rawValue: agentName,
-                            FIRUserData.agentNumber.rawValue: agentNumber,
-                            FIRUserData.managerName.rawValue: managerName,
-                            FIRUserData.managerNumber.rawValue: managerNumber,
-                            FIRUserData.legalName.rawValue: legalName,
-                            FIRUserData.legalNumber.rawValue: legalNumber,
-                            FIRUserData.imdbRating.rawValue: imdbRating
+            //Save image to profile pics folder in Firebase Storage
+            if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+                
+                let imgUid = NSUUID().uuidString
+                let metaData = FIRStorageMetadata()
+                metaData.contentType = "image/jpeg"
+                
+                UserType.REF_PROFILE_IMAGE.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
+                    if error != nil {
+                        print("ZACK: Unable to upload to Firebase Storage")
+                    } else {
+                        print("ZACK: Successfully uploaded image")
+                        let downloadURL = metaData?.downloadURL()?.absoluteString
+                        if let url = downloadURL {
+                            let updateUser: Dictionary<String, String> = [
+                                FIRUserData.firstName.rawValue: user.firstName,
+                                FIRUserData.lastName.rawValue: user.lastName,
+                                FIRUserData.userName.rawValue: "\(user.firstName).\(user.lastName)",
+                                FIRUserData.city.rawValue: user.city,
+                                FIRUserData.state.rawValue: user.state,
+                                FIRUserData.zipCode.rawValue: user.zipCode,
+                                FIRUserData.profileImage.rawValue: url,
+                                FIRUserData.agentName.rawValue: agentName,
+                                FIRUserData.agentNumber.rawValue: agentNumber,
+                                FIRUserData.managerName.rawValue: managerName,
+                                FIRUserData.managerNumber.rawValue: managerNumber,
+                                FIRUserData.legalName.rawValue: legalName,
+                                FIRUserData.legalNumber.rawValue: legalNumber,
+                                FIRUserData.imdbRating.rawValue: imdbRating
                             ]
-                        
-                        let updateAllUser: Dictionary<String, String> = [
-                            FIRUserData.firstName.rawValue: user.firstName,
-                            FIRUserData.lastName.rawValue: user.lastName,
-                            FIRUserData.profileImage.rawValue: url
-                        ]
-                        
-                        //MARK: Post to Firebase Database
-                        UserType.REF_CURRENT_USER_DETAILS_INFO.child("info").updateChildValues(updateUser)
-                        UserType.REF_USERS.child(userID).updateChildValues(updateAllUser)
+                            
+                            let updateAllUser: Dictionary<String, String> = [
+                                FIRUserData.firstName.rawValue: user.firstName,
+                                FIRUserData.lastName.rawValue: user.lastName,
+                                FIRUserData.profileImage.rawValue: url
+                            ]
+                            
+                            //MARK: Post to Firebase Database
+                            UserType.REF_CURRENT_USER_DETAILS_INFO.child("info").updateChildValues(updateUser)
+                            UserType.REF_USERS.child(userID).updateChildValues(updateAllUser)
+                        }
                     }
                 }
+                
             }
+        } else {
+            let updateUser: Dictionary<String, String> = [
+                FIRUserData.firstName.rawValue: user.firstName,
+                FIRUserData.lastName.rawValue: user.lastName,
+                FIRUserData.userName.rawValue: "\(user.firstName).\(user.lastName)",
+                FIRUserData.city.rawValue: user.city,
+                FIRUserData.state.rawValue: user.state,
+                FIRUserData.zipCode.rawValue: user.zipCode,
+                FIRUserData.agentName.rawValue: agentName,
+                FIRUserData.agentNumber.rawValue: agentNumber,
+                FIRUserData.managerName.rawValue: managerName,
+                FIRUserData.managerNumber.rawValue: managerNumber,
+                FIRUserData.legalName.rawValue: legalName,
+                FIRUserData.legalNumber.rawValue: legalNumber,
+                FIRUserData.imdbRating.rawValue: imdbRating
+            ]
             
+            let updateAllUser: Dictionary<String, String> = [
+                FIRUserData.firstName.rawValue: user.firstName,
+                FIRUserData.lastName.rawValue: user.lastName
+            ]
+            
+            //MARK: Post to Firebase Database
+            UserType.REF_CURRENT_USER_DETAILS_INFO.child("info").updateChildValues(updateUser)
+            UserType.REF_USERS.child(userID).updateChildValues(updateAllUser)
         }
     }
 }

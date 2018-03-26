@@ -1182,7 +1182,168 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCd-9M-wj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2221.739130434783" y="79.891304347826093"/>
+            <point key="canvasLocation" x="2220" y="146"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mjP-SE-EnW">
+            <objects>
+                <navigationController id="ACJ-uQ-4Sr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4eb-6Y-LZC">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zib-fq-jgP" kind="relationship" relationship="rootViewController" id="SWn-ma-icv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k9s-hZ-s5X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4056" y="-999"/>
+        </scene>
+        <!--Edit Project-->
+        <scene sceneID="0KN-WS-NN8">
+            <objects>
+                <viewController id="zib-fq-jgP" customClass="EditProjectVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6nd-RH-1LN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6b-2s-sIN">
+                                <rect key="frame" x="0.0" y="64" width="320" height="936"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tpn-qG-S9B">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="936"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mif-EP-AZe">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageBtn" translatesAutoresizingMaskIntoConstraints="NO" id="aS8-8E-wp1" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
+                                                        <rect key="frame" x="97.5" y="8" width="125" height="125"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="125" id="BDD-tr-xVN"/>
+                                                            <constraint firstAttribute="height" constant="125" id="rAF-Bl-3Vg"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELe-Fg-NRJ">
+                                                        <rect key="frame" x="118.5" y="133" width="83" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="36" id="0GN-tb-aPp"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                        <state key="normal" title="Edit Image">
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="editImage:" destination="zib-fq-jgP" eventType="touchUpInside" id="bqz-PE-xIA"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Basic Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeG-Bu-ZHB">
+                                                        <rect key="frame" x="130.5" y="177" width="60" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="JzU-Qf-WBg"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="PTd-SX-eeC">
+                                                        <rect key="frame" x="10" y="206" width="300" height="150"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V3d-a8-DyE" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="49.5"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Release Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AK7-ae-DrU" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="50.5" width="300" height="49"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Access Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eng-3E-PYk" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="100.5" width="300" height="49.5"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="LdM-GS-DNG"/>
+                                                            <constraint firstAttribute="height" constant="150" id="rCd-KR-psg"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.955516517162323" green="0.95620101690292358" blue="0.96584397554397583" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1000" id="E5L-LL-sDE"/>
+                                                    <constraint firstItem="PTd-SX-eeC" firstAttribute="top" secondItem="PeG-Bu-ZHB" secondAttribute="bottom" constant="8" id="KDa-If-apM"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PTd-SX-eeC" secondAttribute="trailing" constant="10" id="R77-fl-Qh9"/>
+                                                    <constraint firstItem="ELe-Fg-NRJ" firstAttribute="centerX" secondItem="mif-EP-AZe" secondAttribute="centerX" id="SIL-oG-lPy"/>
+                                                    <constraint firstItem="aS8-8E-wp1" firstAttribute="centerX" secondItem="mif-EP-AZe" secondAttribute="centerX" id="SND-KD-pmv"/>
+                                                    <constraint firstItem="PeG-Bu-ZHB" firstAttribute="top" secondItem="ELe-Fg-NRJ" secondAttribute="bottom" constant="8" id="c7Z-89-BPT"/>
+                                                    <constraint firstItem="PTd-SX-eeC" firstAttribute="leading" secondItem="mif-EP-AZe" secondAttribute="leading" constant="10" id="cec-JD-F1f"/>
+                                                    <constraint firstItem="ELe-Fg-NRJ" firstAttribute="top" secondItem="aS8-8E-wp1" secondAttribute="bottom" id="d4E-rM-6Xk"/>
+                                                    <constraint firstItem="PeG-Bu-ZHB" firstAttribute="centerX" secondItem="mif-EP-AZe" secondAttribute="centerX" id="jS3-iP-bWZ"/>
+                                                    <constraint firstItem="aS8-8E-wp1" firstAttribute="top" secondItem="mif-EP-AZe" secondAttribute="top" constant="8" id="qrz-mn-B6k"/>
+                                                    <constraint firstItem="PTd-SX-eeC" firstAttribute="centerX" secondItem="mif-EP-AZe" secondAttribute="centerX" id="sfQ-dm-LNT"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="mif-EP-AZe" firstAttribute="leading" secondItem="tpn-qG-S9B" secondAttribute="leading" id="8FG-NI-Eb0"/>
+                                            <constraint firstItem="mif-EP-AZe" firstAttribute="top" secondItem="tpn-qG-S9B" secondAttribute="top" id="8Fw-ah-FBO"/>
+                                            <constraint firstItem="mif-EP-AZe" firstAttribute="width" secondItem="tpn-qG-S9B" secondAttribute="width" id="aM5-6n-fBi"/>
+                                            <constraint firstAttribute="trailing" secondItem="mif-EP-AZe" secondAttribute="trailing" id="gis-5Z-2Ke"/>
+                                            <constraint firstAttribute="bottom" secondItem="mif-EP-AZe" secondAttribute="bottom" id="xuu-IN-89X"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="tpn-qG-S9B" firstAttribute="leading" secondItem="j6b-2s-sIN" secondAttribute="leading" id="7wv-Qa-eGi"/>
+                                    <constraint firstAttribute="bottom" secondItem="tpn-qG-S9B" secondAttribute="bottom" id="bjO-W6-idN"/>
+                                    <constraint firstItem="tpn-qG-S9B" firstAttribute="top" secondItem="j6b-2s-sIN" secondAttribute="top" id="d1M-FW-c0P"/>
+                                    <constraint firstAttribute="trailing" secondItem="tpn-qG-S9B" secondAttribute="trailing" id="jSI-LE-DXM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j6b-2s-sIN" firstAttribute="leading" secondItem="Haf-cq-Apc" secondAttribute="leading" id="79r-jG-Bw3"/>
+                            <constraint firstItem="Haf-cq-Apc" firstAttribute="trailing" secondItem="j6b-2s-sIN" secondAttribute="trailing" id="GVB-1G-Sq4"/>
+                            <constraint firstItem="j6b-2s-sIN" firstAttribute="top" secondItem="Haf-cq-Apc" secondAttribute="top" id="hSb-2N-Afu"/>
+                            <constraint firstItem="Haf-cq-Apc" firstAttribute="bottom" secondItem="j6b-2s-sIN" secondAttribute="bottom" id="j2A-fn-SO3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Haf-cq-Apc"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Project" id="sMH-cM-hHJ">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="rNA-UG-BD2">
+                            <connections>
+                                <segue destination="63b-eA-ZFN" kind="unwind" unwindAction="closeToProjectDetailWithSegue:" id="ZGS-JZ-Qsg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="OFq-df-0DK">
+                            <connections>
+                                <action selector="saveBtnTapped:" destination="zib-fq-jgP" id="6zY-VD-Hkl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <size key="freeformSize" width="320" height="1000"/>
+                    <connections>
+                        <outlet property="projectAccessCodeLbl" destination="eng-3E-PYk" id="uCg-xT-EVC"/>
+                        <outlet property="projectImage" destination="aS8-8E-wp1" id="GTd-Wj-iwG"/>
+                        <outlet property="projectNameLbl" destination="V3d-a8-DyE" id="ect-sD-6Vr"/>
+                        <outlet property="releaseDateLbl" destination="AK7-ae-DrU" id="rSP-q8-hOq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gZQ-Xv-TuP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="63b-eA-ZFN" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4984" y="-1166"/>
         </scene>
         <!--Project DetailVC-->
         <scene sceneID="rxo-q3-CoW">
@@ -1313,6 +1474,11 @@
                         <barButtonItem key="leftBarButtonItem" title="Projects" id="pJe-gt-jke">
                             <connections>
                                 <segue destination="emH-FL-oSQ" kind="unwind" unwindAction="closWithSegue:" id="gX4-mV-XVt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Settings" id="AB2-Zx-8wI">
+                            <connections>
+                                <segue destination="ACJ-uQ-4Sr" kind="presentation" identifier="goToProjectSettings" id="D6H-F5-uiT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1755,7 +1921,7 @@
                                                                             <color key="titleColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="callButtonTapped:" destination="9Ru-sO-W0a" eventType="touchUpInside" id="y7u-eG-DyT"/>
+                                                                            <action selector="callButtonTapped:" destination="9Ru-sO-W0a" eventType="touchUpInside" id="QOb-jZ-qGL"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bII-gA-uaj">
@@ -1764,7 +1930,7 @@
                                                                             <color key="titleColor" red="0.18823529411764706" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="callButtonTapped:" destination="9Ru-sO-W0a" eventType="touchUpInside" id="0ym-ef-g1d"/>
+                                                                            <action selector="callButtonTapped:" destination="9Ru-sO-W0a" eventType="touchUpInside" id="NiG-7w-kpv"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LlR-zN-qe4">
@@ -1773,7 +1939,7 @@
                                                                             <color key="titleColor" red="0.18823529410000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <action selector="callButtonTapped:" destination="9Ru-sO-W0a" eventType="touchUpInside" id="9WV-zL-aox"/>
+                                                                            <action selector="callButtonTapped:" destination="9Ru-sO-W0a" eventType="touchUpInside" id="hSc-KO-nrR"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -1996,9 +2162,12 @@
                     </navigationItem>
                     <size key="freeformSize" width="320" height="1000"/>
                     <connections>
+                        <outlet property="agentBtn" destination="imT-wM-BbT" id="O9d-pT-EMh"/>
                         <outlet property="collectionView" destination="qay-NY-T8Y" id="wC4-rm-Y6C"/>
                         <outlet property="fullNameLbl" destination="MWC-bV-7Fs" id="3At-dk-kBK"/>
                         <outlet property="imdbRatingLbl" destination="Kef-76-yiw" id="fcS-9w-Upo"/>
+                        <outlet property="legalBtn" destination="LlR-zN-qe4" id="41E-qb-0hd"/>
+                        <outlet property="managerBtn" destination="bII-gA-uaj" id="p3w-i0-NW6"/>
                         <outlet property="profileImage" destination="6os-Pb-G96" id="Qdf-Ac-3aJ"/>
                         <outlet property="tableView" destination="LzC-Ts-HVZ" id="MKX-Xu-z7D"/>
                         <outlet property="tvHeightConstraint" destination="pZH-lk-aXB" id="onE-BK-Ql0"/>
@@ -2379,7 +2548,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZwF-5j-B2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2220" y="-749"/>
+            <point key="canvasLocation" x="2258" y="-700"/>
         </scene>
     </scenes>
     <resources>
@@ -2399,6 +2568,7 @@
         <image name="Phone" width="12" height="15"/>
         <image name="ProfileImage" width="80" height="80"/>
         <image name="Script" width="24" height="24"/>
+        <image name="Settings" width="25" height="25"/>
         <image name="Social" width="24" height="20"/>
         <image name="ThorImage" width="118" height="100"/>
         <image name="VideoCamera" width="64" height="56"/>

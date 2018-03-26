@@ -154,6 +154,73 @@ class ProjectType: Project {
             
         }
     }
+    
+    func updateProject(project: Project, image: UIImage, projectID: String, currentProjectName: String, imageChanged: Bool) throws {
+        guard project.projectName != "" else {
+            throw CreateProjectError.inValidProjectName
+        }
+        
+        if project.projectName.lowercased() != currentProjectName {
+            if ProjectListVC.projectName.contains(project.projectName.lowercased()) {
+                throw CreateProjectError.duplicateName
+            }
+        }
+        
+        guard project.projectReleaseDate != "" else {
+            throw CreateProjectError.invalidProjectDate
+        }
+        
+        if imageChanged {
+            let img = image
+            
+            if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+                
+                let imgUid = NSUUID().uuidString
+                let metaData = FIRStorageMetadata()
+                metaData.contentType = "image/jpeg"
+                
+                ProjectType.REF_PROJECT_IMG_STORAGE.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
+                    if error != nil {
+                        print("ZACK: Unable to upload to Firebase Storage") //TODO: send alert to user
+                    } else {
+                        print("ZACK: Successfully uploaded image")
+                        let downloadURL = metaData?.downloadURL()?.absoluteString
+                        if let url = downloadURL {
+                            let Globalproject: Dictionary <String, String> = [
+                                FIRProjectData.projectName.rawValue: self.projectName,
+                                FIRProjectData.releaseDate.rawValue: self.projectReleaseDate,
+                                FIRProjectData.accessCode.rawValue: self.projectAccessCode,
+                                FIRProjectData.image.rawValue: url
+                            ]
+                            let currentProject: Dictionary <String, String> = [
+                                FIRProjectData.projectName.rawValue: self.projectName,
+                                FIRProjectData.accessLevel.rawValue: self.userAccessLevel
+                            ]
+                            
+                            ProjectType.REF_PROJECT.child(projectID).updateChildValues(Globalproject)
+                            UserProjects.REF_USER_CURRENT_PROJECTS.child("\(projectID)").updateChildValues(currentProject)
+                            UserProjects.REF_USER_PROJECTS.child("\(projectID)").updateChildValues(currentProject)
+                            
+                        }
+                    }
+                }
+            }
+        } else {
+            let Globalproject: Dictionary <String, String> = [
+                FIRProjectData.projectName.rawValue: self.projectName,
+                FIRProjectData.releaseDate.rawValue: self.projectReleaseDate,
+                FIRProjectData.accessCode.rawValue: self.projectAccessCode
+            ]
+            let currentProject: Dictionary <String, String> = [
+                FIRProjectData.projectName.rawValue: self.projectName,
+                FIRProjectData.accessLevel.rawValue: self.userAccessLevel
+            ]
+            
+            ProjectType.REF_PROJECT.child(projectID).updateChildValues(Globalproject)
+            UserProjects.REF_USER_CURRENT_PROJECTS.child("\(projectID)").updateChildValues(currentProject)
+            UserProjects.REF_USER_PROJECTS.child("\(projectID)").updateChildValues(currentProject)
+        }
+    }
 }
 
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1403ED13200851F800A5C58C /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1403ED12200851F700A5C58C /* Project.swift */; };
 		1403ED17200D4D2700A5C58C /* ProjectDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */; };
+		14058A64206935E1008E8347 /* EditProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14058A63206935E1008E8347 /* EditProjectVC.swift */; };
 		14066E5A20135E1900440DD6 /* PreProductionDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14066E5920135E1900440DD6 /* PreProductionDashboardVC.swift */; };
 		1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E5961FD8C8DD00925648 /* CommonTextField.swift */; };
 		1433E5991FD8D11400925648 /* CreateProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E5981FD8D11400925648 /* CreateProjectVC.swift */; };
@@ -53,6 +54,7 @@
 		0D1F3B38E97BD801B0E1B7CE /* Pods-Global Film Access.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Global Film Access.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Global Film Access/Pods-Global Film Access.debug.xcconfig"; sourceTree = "<group>"; };
 		1403ED12200851F700A5C58C /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailVC.swift; sourceTree = "<group>"; };
+		14058A63206935E1008E8347 /* EditProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectVC.swift; sourceTree = "<group>"; };
 		14066E5920135E1900440DD6 /* PreProductionDashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreProductionDashboardVC.swift; sourceTree = "<group>"; };
 		1433E5961FD8C8DD00925648 /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
 		1433E5981FD8D11400925648 /* CreateProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectVC.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */,
 				1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */,
 				14C9489F2030F97200A97237 /* EditProfileVC.swift */,
+				14058A63206935E1008E8347 /* EditProjectVC.swift */,
 				14A892EA204CC730000C15D6 /* ProfileVC.swift */,
 				14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */,
 				14C900B0205B1DA6004DCFF0 /* DemoReelVC.swift */,
@@ -394,6 +397,7 @@
 				14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */,
 				14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */,
 				1444D5ED1FCF8E8600A50CFF /* User.swift in Sources */,
+				14058A64206935E1008E8347 /* EditProjectVC.swift in Sources */,
 				1444D5E81FCE5F9F00A50CFF /* ProjectsTabBar.swift in Sources */,
 				14E8D5071FF2CA7600B85A20 /* ArchiveProjectCell.swift in Sources */,
 				1433E5991FD8D11400925648 /* CreateProjectVC.swift in Sources */,
