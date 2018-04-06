@@ -31,6 +31,7 @@
 		148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23951FFA833C004F7D1D /* FireBaseAuth.swift */; };
 		148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */; };
 		148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */; };
+		149CFDDE2076F72C00E8D8AF /* EditProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CFDDD2076F72C00E8D8AF /* EditProjectCell.swift */; };
 		14A892EB204CC730000C15D6 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A892EA204CC730000C15D6 /* ProfileVC.swift */; };
 		14A948D2202001470061881D /* Employees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A948D1202001470061881D /* Employees.swift */; };
 		14A948D42023EF910061881D /* CastPositionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A948D32023EF910061881D /* CastPositionsVC.swift */; };
@@ -78,6 +79,7 @@
 		148E23951FFA833C004F7D1D /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
 		148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBottomBorder.swift; sourceTree = "<group>"; };
+		149CFDDD2076F72C00E8D8AF /* EditProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectCell.swift; sourceTree = "<group>"; };
 		14A892EA204CC730000C15D6 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		14A948D1202001470061881D /* Employees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employees.swift; sourceTree = "<group>"; };
 		14A948D32023EF910061881D /* CastPositionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastPositionsVC.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */,
 				14C9489F2030F97200A97237 /* EditProfileVC.swift */,
 				14058A63206935E1008E8347 /* EditProjectVC.swift */,
+				149CFDDD2076F72C00E8D8AF /* EditProjectCell.swift */,
 				14A892EA204CC730000C15D6 /* ProfileVC.swift */,
 				14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */,
 				14C900B0205B1DA6004DCFF0 /* DemoReelVC.swift */,
@@ -379,6 +382,7 @@
 				14CA4A5820576782007F7C20 /* ProfileCollectionViewCell.swift in Sources */,
 				1433E59D1FD8E86200925648 /* CircleButton.swift in Sources */,
 				1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */,
+				149CFDDE2076F72C00E8D8AF /* EditProjectCell.swift in Sources */,
 				148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */,
 				1403ED13200851F800A5C58C /* Project.swift in Sources */,
 				14E640F22002EB6C00A00968 /* CreateProfileVC.swift in Sources */,

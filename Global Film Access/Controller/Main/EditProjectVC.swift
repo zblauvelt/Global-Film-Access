@@ -9,17 +9,22 @@
 import UIKit
 import Firebase
 
-class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+
+    
     
     //MARK: Outlets
     @IBOutlet weak var projectImage: CircleImage!
     @IBOutlet weak var projectNameLbl: CommonTextField!
     @IBOutlet weak var releaseDateLbl: CommonTextField!
     @IBOutlet weak var projectAccessCodeLbl: CommonTextField!
+    @IBOutlet weak var auditionsTV: UITableView!
     
     
     var editingProject = [ProjectType]()
+    var auditionsDetail = [Auditions]()
     var projectID = ""
+    var datePicker = UIDatePicker()
     var imagePicker: UIImagePickerController!
     var imageChanged = false
     //This variable holds the original project name to tell
@@ -30,10 +35,34 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         getProjectDetails()
+        getAuditionDetails()
+        createDatePicker()
         //Creating Image Picker
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+        print("Project ID: \(projectID)")
+    }
+    
+    //MARK: Auditions Tableview
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(auditionsDetail.count)
+        return self.auditionsDetail.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let audition = auditionsDetail[indexPath.row]
+        let cellIdentifier = "auditionsCell"
+        
+        // Configure the cell...
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? EditProjectCell {
+            cell.configureAuditionCell(audition: audition)
+            
+            return cell
+        } else {
+            return EditProjectCell()
+        }
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -63,18 +92,22 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         do {
             try project.updateProject(project: project, image: projectImage, projectID: self.projectID, currentProjectName: currentProjectName, imageChanged: imageChanged)
             
-            if let projectImage = editingProject[0].projectImage {
-                let storage = FIRStorage.storage()
-                let storageRef = storage.reference(forURL: projectImage)
-                
-                storageRef.delete { error in
-                    if let error = error {
-                        print(error)
-                    } else {
-                        // File deleted successfully
+            if imageChanged {
+                if let projectImage = editingProject[0].projectImage {
+                    let storage = FIRStorage.storage()
+                    let storageRef = storage.reference(forURL: projectImage)
+                    
+                    storageRef.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            // File deleted successfully
+                        }
                     }
                 }
             }
+            
+            
             self.dismiss(animated: true, completion: nil)
             
         } catch CreateProjectError.duplicateName {
@@ -126,8 +159,29 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                     }
                 }
             }
+           self.auditionsTV.reloadData()
         })
     }
+    
+    func getAuditionDetails() {
+        Auditions.REF_AUDTIONS.child(self.projectID).observe(.value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                self.auditionsDetail.removeAll()
+                for snap in snapshot {
+                    print("AUDITION SNAP: \(snap)")
+                    
+                    //If the id matches the id from projects then it will be added to userProjectsDetails Array
+                    if let auditionDetailDict = snap.value as? Dictionary<String, String> {
+                        let key = snap.key
+                        let auditionDetail = Auditions(auditionKey: key, auditionData: auditionDetailDict)
+                        self.auditionsDetail.append(auditionDetail)
+                        print("Audition Count: \(self.auditionsDetail.count)")
+                        }
+                    }
+                }
+                self.auditionsTV.reloadData()
+            })
+        }
     
     //MARK: Fill in textfields
     func fillInTextFields() {
@@ -162,6 +216,31 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
     }
     
+    //MARK: Creation of datepicker
+    func createDatePicker() {
+        //toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //done button
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([done], animated: false)
+        
+        releaseDateLbl.inputAccessoryView = toolbar
+        releaseDateLbl.inputView = datePicker
+        datePicker.datePickerMode = .date
+        
+    }
+    
+    @objc func donePressed() {
+        //format date
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        let dateString = formatter.string(from: datePicker.date)
+        releaseDateLbl.text = "\(dateString)"
+        self.view.endEditing(true)
+    }
     
     
 }

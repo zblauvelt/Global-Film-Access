@@ -266,18 +266,21 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             do {
                 try user.updateProfileInfo(user: user, userImage: userImage, userAgentName: agentName, userAgentNumber: agentNumber, userManagerName: managerName, userManagerNumber: managerNumber, userLegalName: legalName, userLegalNumber: legalNumber, userImdbRating: imdbRating, imageChanged: imageChanged)
                 
-                if let userProfileImage = userDetails[0].profileImage {
-                    let storage = FIRStorage.storage()
-                    let storageRef = storage.reference(forURL: userProfileImage)
-                    
-                    storageRef.delete { error in
-                        if let error = error {
-                            print(error)
-                        } else {
-                            // File deleted successfully
+                if imageChanged {
+                    if let userProfileImage = userDetails[0].profileImage {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: userProfileImage)
+                        
+                        storageRef.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                // File deleted successfully
+                            }
                         }
                     }
                 }
+                
                 self.dismiss(animated: true, completion: nil)
             } catch CreateUserError.invalidFirstName {
                 showAlert(message: CreateUserError.invalidFirstName.rawValue)

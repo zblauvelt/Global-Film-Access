@@ -223,4 +223,119 @@ class ProjectType: Project {
     }
 }
 
+enum FIRDataAuditions: String {
+    case day = "day"
+    case description = "description"
+    case startTime = "startTime"
+    case endTime = "endTime"
+    case longitude = "longitude"
+    case latitude = "latitude"
+    case address = "address"
+    case notes = "notes"
+}
+
+enum CreateAudtionError: String, Error {
+    case invalideDescription = "Please provide a valid description."
+    case invalidStartTime = "Please provide a valid start time."
+    case invalideEndTime = "Please provide a valid end time."
+    case invalidDay = "Please provide a valid day."
+    case invalidAddress = "Please provide a valid address."
+}
+
+class Auditions {
+    var description: String
+    var startTime: String
+    var endTime: String
+    var day: String
+    var address: String
+    var auditionKey: String = ""
+    var notes: String?
+    var longitude: String?
+    var latitude: String?
+    static var REF_AUDTIONS: FIRDatabaseReference = DB_BASE.child("auditions")
+    
+    init(description: String, startTime: String, endTime: String, day: String, address: String) {
+        self.description = description
+        self.startTime = startTime
+        self.endTime = endTime
+        self.day = day
+        self.address = address
+    }
+    
+    init(auditionKey: String, auditionData: Dictionary<String, String>) {
+        self.auditionKey = auditionKey
+        
+        if let description = auditionData[FIRDataAuditions.description.rawValue] {
+            self.description = description
+        } else {
+            self.description = "No description specified."
+        }
+        
+        if let startTime = auditionData[FIRDataAuditions.startTime.rawValue] {
+            self.startTime = startTime
+        } else {
+            self.startTime = "N/A"
+        }
+        
+        if let endTime = auditionData[FIRDataAuditions.endTime.rawValue] {
+            self.endTime = endTime
+        } else{
+            self.endTime = "N/A"
+        }
+        
+        if let day = auditionData[FIRDataAuditions.day.rawValue] {
+            self.day = day
+        } else {
+            self.day = "N/A"
+        }
+        
+        if let notes = auditionData[FIRDataAuditions.notes.rawValue] {
+            self.notes = notes
+        } else{
+            self.notes = "No notes available."
+        }
+        
+        if let longitude = auditionData[FIRDataAuditions.longitude.rawValue] {
+            self.longitude = longitude
+        } else {
+            self.longitude = "N/A"
+        }
+        
+        if let latitude = auditionData[FIRDataAuditions.latitude.rawValue] {
+            self.latitude = latitude
+        } else {
+            self.latitude = "N/A"
+        }
+        
+        if let address = auditionData[FIRDataAuditions.address.rawValue] {
+            self.address = address
+        } else {
+            self.address = "N/A"
+        }
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
