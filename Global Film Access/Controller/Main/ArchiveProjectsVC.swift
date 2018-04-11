@@ -147,6 +147,7 @@ class ArchiveProjectsVC: UITableViewController {
             let firebaseRemoveFromGlobalProjects = DataService.ds.REF_PROJECTS.child(currentProjectAtRow)
             firebaseRemoveFromGlobalProjects.removeValue()
             deleteUserProjects(indexPath: indexPath)
+            ProjectListVC.projectName = ProjectListVC.projectName.filter{$0 != userProjectDetails[indexPath.row].projectName.lowercased()}
         } else {
             deleteUserProjects(indexPath: indexPath)
         }

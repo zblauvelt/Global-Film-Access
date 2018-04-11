@@ -31,8 +31,18 @@ class ProjectDetailVC: UIViewController {
         if segue.identifier == "goToPreProductionDashboard" {
             let viewController = segue.destination as! PreProductionDashboardVC
             viewController.selectedProjectID = self.selectProjectID
+        } else if segue.identifier == "goToProjectSettings" {
+            let nav = segue.destination as! UINavigationController
+            let viewController = nav.topViewController as! EditProjectVC
+            viewController.projectID = self.selectProjectID
         }
     }
     
+    
+    
+    
+    @IBAction func closeToProjectDetail(segue: UIStoryboardSegue) {
+        
+    }
 
 }

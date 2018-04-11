@@ -17,6 +17,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     //Variable for parsing XML
     var currentParsingElement = ""
     var imageURL = ""
+    var imageChanged = false
     
     //MARK: Outlets
     @IBOutlet weak var profileImage: CircleImage!
@@ -65,19 +66,8 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             profileImage.image = image
             profileImage.contentMode = .scaleToFill
-            if let userProfileImage = userDetails[0].profileImage {
-                let storage = FIRStorage.storage()
-                let storageRef = storage.reference(forURL: userProfileImage)
-                
-                storageRef.delete { error in
-                    if let error = error {
-                        print(error)
-                    } else {
-                        // File deleted successfully
-                    }
-                }
-            }
-            //imageChanged = true
+
+            imageChanged = true
         } else {
             print("ZACK: A valid image wasn't selected.")
         }
@@ -274,7 +264,23 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             let user = UserType(firstName: firstName, lastName: lastName, city: city, state: state, zipCode: zipCode)
             
             do {
-                try user.updateProfileInfo(user: user, userImage: userImage, userAgentName: agentName, userAgentNumber: agentNumber, userManagerName: managerName, userManagerNumber: managerNumber, userLegalName: legalName, userLegalNumber: legalNumber, userImdbRating: imdbRating)
+                try user.updateProfileInfo(user: user, userImage: userImage, userAgentName: agentName, userAgentNumber: agentNumber, userManagerName: managerName, userManagerNumber: managerNumber, userLegalName: legalName, userLegalNumber: legalNumber, userImdbRating: imdbRating, imageChanged: imageChanged)
+                
+                if imageChanged {
+                    if let userProfileImage = userDetails[0].profileImage {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: userProfileImage)
+                        
+                        storageRef.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                // File deleted successfully
+                            }
+                        }
+                    }
+                }
+                
                 self.dismiss(animated: true, completion: nil)
             } catch CreateUserError.invalidFirstName {
                 showAlert(message: CreateUserError.invalidFirstName.rawValue)

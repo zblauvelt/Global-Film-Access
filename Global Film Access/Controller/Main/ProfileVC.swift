@@ -29,6 +29,9 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tvHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var agentBtn: UIButton!
+    @IBOutlet weak var managerBtn: UIButton!
+    @IBOutlet weak var legalBtn: UIButton!
     
     
     override func viewDidLoad() {
@@ -215,8 +218,32 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     //MARK: Call buttons
     
-    @IBAction func callButtonTapped(_ sender: Any) {
+    @IBAction func callButtonTapped(_ sender: UIButton) {
         //TODO: Add call function - Switch statement on sender.
+        switch sender.tag {
+        case 1:
+            if let agentNumber = userDetail[0].agentNumber {
+                print(agentNumber)
+                callContact(phoneNumber: agentNumber)
+            } else {
+                showAlert(message: CreateUserError.invalidNumber.rawValue)
+            }
+        case 2:
+            if let managerNumber = userDetail[0].managerNumber {
+                callContact(phoneNumber: managerNumber)
+            } else {
+                showAlert(message: CreateUserError.invalidNumber.rawValue)
+            }
+        case 3:
+            if let legalNumber = userDetail[0].legalNumber {
+                callContact(phoneNumber: legalNumber)
+            } else {
+                showAlert(message: CreateUserError.invalidNumber.rawValue)
+            }
+        default:
+            showAlert(message: CreateUserError.invalidNumber.rawValue)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -225,7 +252,29 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
             desVC.chosenVideoID = self.videoID
         }
     }
+    
+    //MARK: Call Contacts
    
+    func callContact(phoneNumber: String) {
+        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+            let application: UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        } else {
+            showAlert(message: CreateUserError.invalidNumber.rawValue)
+        }
+    }
+    
+    //Alert message for error handling
+    func showAlert(message: String) {
+        let alertController = UIAlertController(title: "" , message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
+            return
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
 
 }
