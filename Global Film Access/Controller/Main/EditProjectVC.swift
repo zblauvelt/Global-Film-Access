@@ -242,5 +242,29 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.view.endEditing(true)
     }
     
+    @IBAction func closeAudition(segue: UIStoryboardSegue) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addAudtions" {
+            let vc = segue.destination as! AddEditAuditions
+            vc.projectID = self.projectID
+        } else if segue.identifier == "editAudition" {
+            if let indexPath = auditionsTV.indexPathForSelectedRow {
+                let vc = segue.destination as! AddEditAuditions
+                vc.auditionKey = auditionsDetail[indexPath.row].auditionKey
+                vc.projectID = self.projectID
+                vc.editDescription = auditionsDetail[indexPath.row].description
+                vc.editAddress = auditionsDetail[indexPath.row].address
+                vc.editDate = auditionsDetail[indexPath.row].day
+                vc.editstart = auditionsDetail[indexPath.row].startTime
+                vc.editEnd = auditionsDetail[indexPath.row].endTime
+                vc.editNotes = auditionsDetail[indexPath.row].notes
+                vc.editAudition = true
+            }
+            
+        }
+    }
     
 }

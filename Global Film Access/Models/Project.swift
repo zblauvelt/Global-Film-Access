@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import CoreLocation
 
 //Project Errors
 enum CreateProjectError: String, Error {
@@ -249,17 +250,27 @@ class Auditions {
     var day: String
     var address: String
     var auditionKey: String = ""
-    var notes: String?
+    var notes: String
     var longitude: String?
+    var newLongitude = 0.0
     var latitude: String?
+    var newLatitude = 0.0
     static var REF_AUDTIONS: FIRDatabaseReference = DB_BASE.child("auditions")
     
-    init(description: String, startTime: String, endTime: String, day: String, address: String) {
+    lazy var geoCoder = CLGeocoder()
+    
+    init(description: String, startTime: String, endTime: String, day: String, address: String, notes: String) {
         self.description = description
         self.startTime = startTime
         self.endTime = endTime
         self.day = day
         self.address = address
+        
+        if notes == "" {
+            self.notes = "No notes available"
+        } else {
+            self.notes = notes
+        }
     }
     
     init(auditionKey: String, auditionData: Dictionary<String, String>) {
@@ -313,6 +324,80 @@ class Auditions {
             self.address = "N/A"
         }
     }
+    
+    
+    func createAuditionDB(audition: Auditions, projectID: String, auditionKey: String, isEditing: Bool) throws {
+        guard audition.description != "" else {
+            throw CreateAudtionError.invalideDescription
+        }
+        
+        guard audition.day != "" else {
+            throw CreateAudtionError.invalidDay
+        }
+        
+        guard audition.startTime != "" else {
+            throw CreateAudtionError.invalidStartTime
+        }
+        
+        guard audition.endTime != "" else {
+            throw CreateAudtionError.invalideEndTime
+        }
+        
+        guard audition.address != "" else {
+            throw CreateAudtionError.invalidAddress
+        }
+        
+        
+        
+        let address = audition.address
+        
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            self.processResponse(withPlacemarks: placemarks, error: error)
+            
+            let newAudtion: Dictionary<String, String> = [
+                FIRDataAuditions.description.rawValue: audition.description,
+                FIRDataAuditions.day.rawValue: audition.day,
+                FIRDataAuditions.startTime.rawValue: audition.startTime,
+                FIRDataAuditions.endTime.rawValue: audition.endTime,
+                FIRDataAuditions.address.rawValue: audition.address,
+                FIRDataAuditions.notes.rawValue: audition.notes,
+                FIRDataAuditions.latitude.rawValue: "\(self.newLatitude)",
+                FIRDataAuditions.longitude.rawValue: "\(self.newLongitude)"
+            ]
+            
+            if isEditing {
+                Auditions.REF_AUDTIONS.child(projectID).child(auditionKey).updateChildValues(newAudtion)
+            } else {
+                Auditions.REF_AUDTIONS.child(projectID).childByAutoId().updateChildValues(newAudtion)
+            }
+            
+
+        }
+        
+    }
+    
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+        if let error = error {
+            print("Unable to Forward Geocode Address (\(error))")
+        } else {
+            var location: CLLocation?
+            
+            if let placemarks = placemarks, placemarks.count > 0 {
+                location = placemarks.first?.location
+            }
+            
+            if let location = location {
+                let coordinate = location.coordinate
+                newLatitude = coordinate.latitude
+                newLongitude = coordinate.longitude
+                print("LONGITUDE: \(newLongitude) LATITUDE: \(newLatitude)")
+            } else {
+                print("No Matching Location Found.")
+            }
+        }
+    }
+    
+
     
     
 }

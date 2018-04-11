@@ -32,6 +32,7 @@
 		148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */; };
 		148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */; };
 		149CFDDE2076F72C00E8D8AF /* EditProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CFDDD2076F72C00E8D8AF /* EditProjectCell.swift */; };
+		149CFDE02079332700E8D8AF /* AddEditAuditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CFDDF2079332700E8D8AF /* AddEditAuditions.swift */; };
 		14A892EB204CC730000C15D6 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A892EA204CC730000C15D6 /* ProfileVC.swift */; };
 		14A948D2202001470061881D /* Employees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A948D1202001470061881D /* Employees.swift */; };
 		14A948D42023EF910061881D /* CastPositionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A948D32023EF910061881D /* CastPositionsVC.swift */; };
@@ -80,6 +81,7 @@
 		148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBottomBorder.swift; sourceTree = "<group>"; };
 		149CFDDD2076F72C00E8D8AF /* EditProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectCell.swift; sourceTree = "<group>"; };
+		149CFDDF2079332700E8D8AF /* AddEditAuditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditAuditions.swift; sourceTree = "<group>"; };
 		14A892EA204CC730000C15D6 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		14A948D1202001470061881D /* Employees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employees.swift; sourceTree = "<group>"; };
 		14A948D32023EF910061881D /* CastPositionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastPositionsVC.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				14A892EA204CC730000C15D6 /* ProfileVC.swift */,
 				14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */,
 				14C900B0205B1DA6004DCFF0 /* DemoReelVC.swift */,
+				149CFDDF2079332700E8D8AF /* AddEditAuditions.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				14066E5A20135E1900440DD6 /* PreProductionDashboardVC.swift in Sources */,
 				1444D5F51FD45B9900A50CFF /* ProjectsCell.swift in Sources */,
 				148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */,
+				149CFDE02079332700E8D8AF /* AddEditAuditions.swift in Sources */,
 				14C9487C202B832600A97237 /* SearchTalentVC.swift in Sources */,
 				14C948A02030F97200A97237 /* EditProfileVC.swift in Sources */,
 				14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */,
