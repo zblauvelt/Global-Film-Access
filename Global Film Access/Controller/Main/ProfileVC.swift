@@ -276,5 +276,7 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         present(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func cancelToProfile(segue: UIStoryboardSegue) {}
+    
 
 }

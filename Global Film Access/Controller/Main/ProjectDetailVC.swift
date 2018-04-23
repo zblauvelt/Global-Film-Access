@@ -12,14 +12,18 @@ class ProjectDetailVC: UIViewController {
 
     var selectedProjectName = ""
     var selectProjectID = ""
+    static var currentProject = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //Customize Navbar
+        
         self.navigationItem.title = selectedProjectName
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style:.plain, target: nil, action: nil)
-        // Do any additional setup after loading the view.
+        
+        //Createing a static version of projectID
+        ProjectDetailVC.currentProject = selectProjectID
     }
 
     override func didReceiveMemoryWarning() {

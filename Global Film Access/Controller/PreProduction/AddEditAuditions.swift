@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddEditAuditions: UIViewController {
+class AddEditAuditions: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var descriptionLbl: UITextField!
     @IBOutlet weak var addressLbl: UITextField!
@@ -25,12 +25,19 @@ class AddEditAuditions: UIViewController {
     var editEnd = ""
     var editNotes = ""
     var auditionKey = ""
+    let datePicker = UIDatePicker()
+    let timePicker = UIDatePicker()
+    var activeTextField = UITextField()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        dateLbl.delegate = self
+        startLbl.delegate = self
+        endLbl.delegate = self
+        createDatePicker()
         print(projectID)
         print("AUDITION KEY\(auditionKey)")
         fillInLabels()
@@ -49,6 +56,7 @@ class AddEditAuditions: UIViewController {
             let audition = Auditions(description: audtionDescription, startTime: startTime, endTime: endTime, day: day, address: address, notes: notes)
             do {
                 try audition.createAuditionDB(audition: audition, projectID: projectID, auditionKey: auditionKey, isEditing: editAudition)
+                self.dismiss(animated: true, completion: nil)
             } catch CreateAudtionError.invalideDescription {
                 showAlert(message: CreateAudtionError.invalideDescription.rawValue)
             } catch CreateAudtionError.invalidAddress {
@@ -87,7 +95,72 @@ class AddEditAuditions: UIViewController {
             return
         }
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        self.activeTextField = textField
+        print("Active text selected")
+    }
 
+    //MARK: Creation of datepicker
+    func createDatePicker() {
+        //toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        // done button for toolbar
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([done], animated: false)
+        
+        dateLbl.inputAccessoryView = toolbar
+        dateLbl.inputView = datePicker
+        datePicker.datePickerMode = .date
+        startLbl.inputAccessoryView = toolbar
+        endLbl.inputAccessoryView = toolbar
+        startLbl.inputView = timePicker
+        endLbl.inputView = timePicker
+        timePicker.datePickerMode = .time
+        
+    }
+    @objc func donePressed() {
+        //format date
+            if activeTextField == dateLbl {
+                let formatter = DateFormatter()
+                formatter.dateStyle = .medium
+                formatter.timeStyle = .none
+                let dateString = formatter.string(from: datePicker.date)
+                dateLbl.text = "\(dateString)"
+                self.view.endEditing(true)
+            } else if activeTextField == startLbl {
+                let formatter = DateFormatter()
+                formatter.dateStyle = .none
+                formatter.timeStyle = .short
+                let dateString = formatter.string(from: timePicker.date)
+                startLbl.text = "\(dateString)"
+                self.view.endEditing(true)
+            } else if activeTextField == endLbl {
+                let formatter = DateFormatter()
+                formatter.dateStyle = .none
+                formatter.timeStyle = .short
+                let dateString = formatter.string(from: timePicker.date)
+                endLbl.text = "\(dateString)"
+                self.view.endEditing(true)
+            }
+            
+    }
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 }
