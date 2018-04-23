@@ -19,7 +19,7 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var releaseDateLbl: CommonTextField!
     @IBOutlet weak var projectAccessCodeLbl: CommonTextField!
     @IBOutlet weak var auditionsTV: UITableView!
-    
+    @IBOutlet weak var auditionHeightConstraint: NSLayoutConstraint!
     
     var editingProject = [ProjectType]()
     var auditionsDetail = [Auditions]()
@@ -63,6 +63,34 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             return EditProjectCell()
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
+            
+            let alertController = UIAlertController(title: "" , message: "Are you sure you want to delete this audition?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                return
+            }
+            let deleteAction = UIAlertAction(title: "Delete", style: .default, handler: { (action) in
+                self.delete(tableView: self.auditionsTV, indexPath: indexPath)
+            })
+            alertController.addAction(cancelAction)
+            alertController.addAction(deleteAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+                
+            
+        }
+        delete.backgroundColor = UIColor.red
+        return [delete]
+    }
+    
+    // MARK: delete movie or video
+    func delete(tableView: UITableView, indexPath: IndexPath) {
+        let auditionKey = auditionsDetail[indexPath.row].auditionKey
+        Auditions.REF_AUDTIONS.child(self.projectID).child(auditionKey).removeValue()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -162,7 +190,7 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
            self.auditionsTV.reloadData()
         })
     }
-    
+    //MARK: Getting Audition Details
     func getAuditionDetails() {
         Auditions.REF_AUDTIONS.child(self.projectID).observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -180,6 +208,7 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                     }
                 }
                 self.auditionsTV.reloadData()
+                self.viewDidLayoutSubviews()
             })
         }
     
@@ -266,5 +295,18 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             
         }
     }
+    
+    //Size tableview
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("Table view count: \(auditionsDetail.count)")
+        let auditiontvHeight = CGFloat(auditionsDetail.count) * CGFloat(165)
+        self.auditionHeightConstraint.constant = auditiontvHeight
+        
+        self.view.layoutIfNeeded()
+    }
+    
+    
+    
     
 }

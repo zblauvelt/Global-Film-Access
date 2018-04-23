@@ -27,6 +27,7 @@
 		1444D5F51FD45B9900A50CFF /* ProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */; };
 		1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F61FD63F7000A50CFF /* CircleImage.swift */; };
 		1444D5F91FD6414200A50CFF /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F81FD6414200A50CFF /* CustomView.swift */; };
+		1446BEF02089675A00BC271B /* assignAuditionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446BEEF2089675A00BC271B /* assignAuditionVC.swift */; };
 		148E23941FF91AF8004F7D1D /* USStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23931FF91AF8004F7D1D /* USStates.swift */; };
 		148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23951FFA833C004F7D1D /* FireBaseAuth.swift */; };
 		148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */; };
@@ -76,6 +77,7 @@
 		1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCell.swift; sourceTree = "<group>"; };
 		1444D5F61FD63F7000A50CFF /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		1444D5F81FD6414200A50CFF /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		1446BEEF2089675A00BC271B /* assignAuditionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assignAuditionVC.swift; sourceTree = "<group>"; };
 		148E23931FF91AF8004F7D1D /* USStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USStates.swift; sourceTree = "<group>"; };
 		148E23951FFA833C004F7D1D /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
 		148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
@@ -169,6 +171,8 @@
 				14C94879202B2BF000A97237 /* CastingDetailVC.swift */,
 				14C9487B202B832500A97237 /* SearchTalentVC.swift */,
 				14C9487D202B8CF800A97237 /* SearchTalentCell.swift */,
+				149CFDDF2079332700E8D8AF /* AddEditAuditions.swift */,
+				1446BEEF2089675A00BC271B /* assignAuditionVC.swift */,
 			);
 			path = PreProduction;
 			sourceTree = "<group>";
@@ -191,7 +195,6 @@
 				14A892EA204CC730000C15D6 /* ProfileVC.swift */,
 				14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */,
 				14C900B0205B1DA6004DCFF0 /* DemoReelVC.swift */,
-				149CFDDF2079332700E8D8AF /* AddEditAuditions.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -285,7 +288,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Zachary Blauvelt";
 				TargetAttributes = {
 					14392FA61FC516CE00993BB7 = {
@@ -410,6 +413,7 @@
 				1433E5991FD8D11400925648 /* CreateProjectVC.swift in Sources */,
 				14A948D2202001470061881D /* Employees.swift in Sources */,
 				14C9487A202B2BF000A97237 /* CastingDetailVC.swift in Sources */,
+				1446BEF02089675A00BC271B /* assignAuditionVC.swift in Sources */,
 				14066E5A20135E1900440DD6 /* PreProductionDashboardVC.swift in Sources */,
 				1444D5F51FD45B9900A50CFF /* ProjectsCell.swift in Sources */,
 				148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */,
@@ -456,6 +460,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -463,6 +468,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -513,6 +519,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -520,6 +527,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
