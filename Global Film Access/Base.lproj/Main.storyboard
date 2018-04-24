@@ -2479,6 +2479,7 @@
                         <outlet property="fullNameLbl" destination="MWC-bV-7Fs" id="3At-dk-kBK"/>
                         <outlet property="imdbRatingLbl" destination="Kef-76-yiw" id="fcS-9w-Upo"/>
                         <outlet property="legalBtn" destination="LlR-zN-qe4" id="41E-qb-0hd"/>
+                        <outlet property="locationLbl" destination="QAM-KO-AxD" id="GaL-qj-KdQ"/>
                         <outlet property="managerBtn" destination="bII-gA-uaj" id="p3w-i0-NW6"/>
                         <outlet property="profileImage" destination="6os-Pb-G96" id="Qdf-Ac-3aJ"/>
                         <outlet property="tableView" destination="LzC-Ts-HVZ" id="MKX-Xu-z7D"/>
