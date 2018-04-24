@@ -50,6 +50,12 @@ class assignAuditionVC: UITableViewController {
 
             return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
+    
  
 
     //MARK: Getting Audition Details

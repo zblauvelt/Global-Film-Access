@@ -66,9 +66,7 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 
                 let createCastName = Cast()
                 
-                if castName != "" {
-                    try! createCastName.createPosition(projectID: self.projectID, positionName: castName)
-                } else {
+                if castName == "" {
                     
                     let alertController = UIAlertController(title: "" , message: "Please provide a valid name.", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
@@ -76,8 +74,19 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     }
                     alertController.addAction(okAction)
                     self.present(alertController, animated: true, completion: nil)
+                    
+                } else if Cast.createdPositions.contains(castName.lowercased()) {
+                    
+                    let alertController = UIAlertController(title: "" , message: "You have already created a position with this name. Please create a different position.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
+                        return
+                    }
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                } else {
+                    try! createCastName.createPosition(projectID: self.projectID, positionName: castName)
                 }
-               
             }
             
         }))
@@ -94,7 +103,7 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     //MARK: Get the Positions for project
     func getCastingPositions() {
-        Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).observe(.value, with: { (snapshot) in
+        Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child(FIRDataCast.cast.rawValue).observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 Cast.createdPositions.removeAll()
                 self.castingPostions.removeAll()
@@ -105,7 +114,7 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let key = snap.key
                         let position = Cast(positionName: key, positionData: positionDict)
                         self.castingPostions.append(position)
-                        Cast.createdPositions.append(position.positionName)
+                        Cast.createdPositions.append(position.positionName.lowercased())
                     }
                 }
                 

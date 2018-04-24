@@ -32,6 +32,7 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var agentBtn: UIButton!
     @IBOutlet weak var managerBtn: UIButton!
     @IBOutlet weak var legalBtn: UIButton!
+    @IBOutlet weak var locationLbl: UILabel!
     
     
     override func viewDidLoad() {
@@ -214,6 +215,7 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         self.getImageFromFirebase()
         fullNameLbl.text = "\(userDetail[0].firstName) \(userDetail[0].lastName)"
         imdbRatingLbl.text = userDetail[0].imdbRating
+        locationLbl.text = "\(userDetail[0].city), \(userDetail[0].state)"
     }
     
     //MARK: Call buttons

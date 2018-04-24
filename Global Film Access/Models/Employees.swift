@@ -27,16 +27,20 @@ enum FiRPositionData: String {
 protocol Position {
     var positionName: String { get set }
     static var createdPositions: [String] { get set }
-    var prospects: [String] { get set }
     static var REF_PRE_PRODUCTION_CASTING_POSITION: FIRDatabaseReference { get }
     
     func createPosition(projectID: String, positionName: String) throws
 }
 
+enum FIRDataCast: String {
+    case cast = "cast"
+}
+
+
 class Cast: Position {
     var positionName: String = ""
     static var createdPositions = [String]()
-    var prospects: [String] = ["No Prospects"]
+    
     static var REF_PRE_PRODUCTION_CASTING_POSITION: FIRDatabaseReference = DB_BASE.child("preProductionCasting")
     
     init() {}
@@ -48,9 +52,7 @@ class Cast: Position {
             self.positionName = positionName as! String
         }
         
-        if let prospects = positionData[FiRPositionData.prospects.rawValue] {
-            self.prospects = prospects as! [String]
-        }
+        
 
     }
     
@@ -66,14 +68,20 @@ class Cast: Position {
             throw CreatePositionError.duplicatePosition
         }
         
-        let newPosition: Dictionary <String, Any> = [
+        let newPosition: Dictionary <String, String> = [
             FiRPositionData.positionName.rawValue: positionName,
-            FiRPositionData.prospects.rawValue: self.prospects
+            
         ]
         
-        Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child(positionName).setValue(newPosition)
+        Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child(FIRDataCast.cast.rawValue).child(positionName).setValue(newPosition)
         
     }
+    
+    func assignAudition() {
+        
+    }
+    
+    
     
 }
 
