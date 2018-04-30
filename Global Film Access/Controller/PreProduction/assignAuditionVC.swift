@@ -13,10 +13,14 @@ class assignAuditionVC: UITableViewController {
     
     var projectID = ProjectDetailVC.currentProject
     var auditions = [Auditions]()
+    var talentName = ""
+    var positionName = CastingDetailVC.positionName
+    var userID = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAuditionDetails()    
+        getAuditionDetails()
+        print(userID)
 
     }
 
@@ -52,7 +56,13 @@ class assignAuditionVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        
+        let talentRating = "5"
+        let talentAccepted = "NO"
+        
+        let prospect = Prospect(talentName: talentName, talentRating: talentRating, talentAccepted: talentAccepted)
+        prospect.createProspect(prospect: prospect, projectID: ProjectDetailVC.currentProject, position: positionName, userID: userID)
+        
     }
     
     
@@ -79,5 +89,27 @@ class assignAuditionVC: UITableViewController {
             
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "message" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let desVC = segue.destination as! inviteMessageVC
+                desVC.inviteeName = talentName
+                desVC.auditionID = auditions[indexPath.row].auditionKey
+                desVC.inviteeKey = userID
+            }
+            
+            
+        }
+    }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

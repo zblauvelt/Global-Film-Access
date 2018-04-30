@@ -47,6 +47,8 @@
 		14C9487E202B8CF800A97237 /* SearchTalentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C9487D202B8CF800A97237 /* SearchTalentCell.swift */; };
 		14C948A02030F97200A97237 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C9489F2030F97200A97237 /* EditProfileVC.swift */; };
 		14CA4A5820576782007F7C20 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */; };
+		14DF79CA20975FB500220E9F /* Invitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF79C920975FB400220E9F /* Invitations.swift */; };
+		14DF79CC209773A300220E9F /* inviteMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF79CB209773A300220E9F /* inviteMessageVC.swift */; };
 		14E640F22002EB6C00A00968 /* CreateProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E640F12002EB6C00A00968 /* CreateProfileVC.swift */; };
 		14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */; };
 		14E8D5071FF2CA7600B85A20 /* ArchiveProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */; };
@@ -97,6 +99,8 @@
 		14C9487D202B8CF800A97237 /* SearchTalentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTalentCell.swift; sourceTree = "<group>"; };
 		14C9489F2030F97200A97237 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		14DF79C920975FB400220E9F /* Invitations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invitations.swift; sourceTree = "<group>"; };
+		14DF79CB209773A300220E9F /* inviteMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inviteMessageVC.swift; sourceTree = "<group>"; };
 		14E640F12002EB6C00A00968 /* CreateProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileVC.swift; sourceTree = "<group>"; };
 		14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectsVC.swift; sourceTree = "<group>"; };
 		14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectCell.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				1444D5EE1FD0C53900A50CFF /* UserProjects.swift */,
 				1403ED12200851F700A5C58C /* Project.swift */,
 				14A948D1202001470061881D /* Employees.swift */,
+				14DF79C920975FB400220E9F /* Invitations.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				14C9487D202B8CF800A97237 /* SearchTalentCell.swift */,
 				149CFDDF2079332700E8D8AF /* AddEditAuditions.swift */,
 				1446BEEF2089675A00BC271B /* assignAuditionVC.swift */,
+				14DF79CB209773A300220E9F /* inviteMessageVC.swift */,
 			);
 			path = PreProduction;
 			sourceTree = "<group>";
@@ -386,6 +392,7 @@
 				1444D5F91FD6414200A50CFF /* CustomView.swift in Sources */,
 				1444D5F11FD0CC9000A50CFF /* ProjectListVC.swift in Sources */,
 				14CA4A5820576782007F7C20 /* ProfileCollectionViewCell.swift in Sources */,
+				14DF79CA20975FB500220E9F /* Invitations.swift in Sources */,
 				1433E59D1FD8E86200925648 /* CircleButton.swift in Sources */,
 				1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */,
 				149CFDDE2076F72C00E8D8AF /* EditProjectCell.swift in Sources */,
@@ -417,6 +424,7 @@
 				14066E5A20135E1900440DD6 /* PreProductionDashboardVC.swift in Sources */,
 				1444D5F51FD45B9900A50CFF /* ProjectsCell.swift in Sources */,
 				148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */,
+				14DF79CC209773A300220E9F /* inviteMessageVC.swift in Sources */,
 				149CFDE02079332700E8D8AF /* AddEditAuditions.swift in Sources */,
 				14C9487C202B832600A97237 /* SearchTalentVC.swift in Sources */,
 				14C948A02030F97200A97237 /* EditProfileVC.swift in Sources */,

@@ -14,6 +14,7 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var projectNameLbl: UITextField!
     @IBOutlet weak var dateLbl: UITextField!
     @IBOutlet weak var projectAccessCodeLbl: UITextField!
+    @IBOutlet weak var productionCompanyLbl: UITextField!
     
     @IBOutlet weak var imageAdd: CircleImage!
     
@@ -28,6 +29,7 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         projectNameLbl.setBottomBorder()
         dateLbl.setBottomBorder()
         projectAccessCodeLbl.setBottomBorder()
+        productionCompanyLbl.setBottomBorder()
         //creating the imagepicker
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true   
@@ -52,9 +54,9 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     
     @IBAction func createProjectTapped(_ sender: Any) {
-        if let projectName = projectNameLbl.text, let projectReleaseDate = dateLbl.text, let projectAccessCode = projectAccessCodeLbl.text, let projectImage = imageAdd.image {
+        if let projectName = projectNameLbl.text, let projectReleaseDate = dateLbl.text, let projectAccessCode = projectAccessCodeLbl.text, let projectImage = imageAdd.image, let productionCompany = productionCompanyLbl.text {
             
-            let newProject = ProjectType(projectName: projectName, projectReleaseDate: projectReleaseDate, projectAccessCode: projectAccessCode)
+            let newProject = ProjectType(projectName: projectName, projectReleaseDate: projectReleaseDate, projectAccessCode: projectAccessCode, productionCompany: productionCompany)
             do {
                 try newProject.createProjectDB(project: newProject, image: projectImage)
                 print("ZACK: Project saved.")
@@ -74,6 +76,8 @@ class CreateProjectVC: UIViewController, UIImagePickerControllerDelegate, UINavi
                 showAlert(message: CreateProjectError.invalidAccessCode.rawValue)
             } catch CreateProjectError.invalideProjectImage {
                 showAlert(message: CreateProjectError.invalideProjectImage.rawValue)
+            } catch CreateProjectError.invalidProductionCompany {
+                showAlert(message: CreateProjectError.invalidProductionCompany.rawValue)
             } catch let error {
                 showAlert(message: "\(error)")
             }

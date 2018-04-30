@@ -20,6 +20,7 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var projectAccessCodeLbl: CommonTextField!
     @IBOutlet weak var auditionsTV: UITableView!
     @IBOutlet weak var auditionHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var productionCompanyLbl: CommonTextField!
     
     var editingProject = [ProjectType]()
     var auditionsDetail = [Auditions]()
@@ -28,7 +29,7 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     var imagePicker: UIImagePickerController!
     var imageChanged = false
     //This variable holds the original project name to tell
-    //if they changed the name. if they did change name we will test for duplicate.
+    //if they changed the name. If they did change name we will test for duplicate.
     var currentProjectName = ""
     
     
@@ -113,9 +114,10 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
        if let projectName = projectNameLbl.text,
             let releaseDate = releaseDateLbl.text,
             let accessCode = projectAccessCodeLbl.text,
-            let projectImage = projectImage.image {
+            let projectImage = projectImage.image,
+            let productionCompany = productionCompanyLbl.text {
         
-            let project = ProjectType(projectName: projectName, projectReleaseDate: releaseDate, projectAccessCode: accessCode)
+        let project = ProjectType(projectName: projectName, projectReleaseDate: releaseDate, projectAccessCode: accessCode, productionCompany: productionCompany)
         
         do {
             try project.updateProject(project: project, image: projectImage, projectID: self.projectID, currentProjectName: currentProjectName, imageChanged: imageChanged)
@@ -146,6 +148,8 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             showAlert(message: CreateProjectError.invalidProjectDate.rawValue)
         } catch CreateProjectError.invalidAccessCode {
             showAlert(message: CreateProjectError.invalidAccessCode.rawValue)
+        } catch CreateProjectError.invalidProductionCompany {
+            showAlert(message: CreateProjectError.invalidProductionCompany.rawValue)
         } catch let error {
             showAlert(message: "\(error)")
         }
@@ -218,6 +222,7 @@ class EditProjectVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.projectNameLbl.text = project.projectName
         self.releaseDateLbl.text = project.projectReleaseDate
         self.projectAccessCodeLbl.text = project.projectAccessCode
+        self.productionCompanyLbl.text = project.productionCompany
     }
     
     //MARK: Get image from Firebase

@@ -252,6 +252,11 @@ class ProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         if segue.identifier == "showVideo" {
             let desVC = segue.destination as! DemoReelVC
             desVC.chosenVideoID = self.videoID
+        } else if segue.identifier == "assignAudition" {
+            let nav = segue.destination as! UINavigationController
+            let desVC = nav.topViewController as! assignAuditionVC
+            desVC.talentName = "\(userDetail[0].firstName) \(userDetail[0].lastName)"
+            desVC.userID = "\(currentUserKey)"
         }
     }
     
