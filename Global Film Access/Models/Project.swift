@@ -19,6 +19,7 @@ enum CreateProjectError: String, Error {
     case invalidProjectAccessLevel = "Please provide a correct access level."
     case duplicateName = "You're already a part of a project with this name. Please give the project a unique name."
     case invalidAccessCode = "Please provide a valid access code."
+    case invalidProductionCompany = "Please provide a valid Production Company."
 }
 
 //Firebase DB References
@@ -28,6 +29,7 @@ enum FIRProjectData: String {
     case releaseDate = "releaseDate"
     case accessLevel = "accessLevel"
     case accessCode = "accessCode"
+    case productionCompany = "productionCompany"
 }
 
 //this enum should be used for projects
@@ -52,26 +54,29 @@ protocol Project {
     static var REF_PROJECT: FIRDatabaseReference { get }
     static var REF_PROJECT_IMG_STORAGE: FIRStorageReference { get }
     
-    func createProjectDB(project: Project, image: UIImage) throws
+    func createProjectDB(project: ProjectType, image: UIImage) throws
     
     
 }
 
 class ProjectType: Project {
     
+    
     var projectName: String
     var projectImage: String?
     var projectReleaseDate: String
     var projectAccessCode: String
     var projectID: String = ""
+    var productionCompany: String
     var userAccessLevel: String = UserAccessLevel.admin.rawValue
     static var REF_PROJECT: FIRDatabaseReference = DB_BASE.child("projects")
     static var REF_PROJECT_IMG_STORAGE: FIRStorageReference = STORAGE_BASE.child("project-pics")
     
-    init(projectName: String, projectReleaseDate: String, projectAccessCode: String) {
+    init(projectName: String, projectReleaseDate: String, projectAccessCode: String, productionCompany: String) {
         self.projectName = projectName
         self.projectReleaseDate = projectReleaseDate
         self.projectAccessCode = projectAccessCode
+        self.productionCompany = productionCompany
     }
     
     init(projectID: String, projectData: Dictionary <String, String>) throws {
@@ -101,10 +106,16 @@ class ProjectType: Project {
             throw CreateProjectError.invalidAccessCode
         }
         
+        if let productionCompany = projectData[FIRProjectData.productionCompany.rawValue] {
+            self.productionCompany = productionCompany
+        } else {
+            throw CreateProjectError.invalidProductionCompany
+        }
+        
     }
     
     
-    func createProjectDB(project: Project, image: UIImage) throws {
+    func createProjectDB(project: ProjectType, image: UIImage) throws {
         guard project.projectName != "" else {
             throw CreateProjectError.inValidProjectName
         }
@@ -115,6 +126,10 @@ class ProjectType: Project {
         
         guard project.projectReleaseDate != "" else {
             throw CreateProjectError.invalidProjectDate
+        }
+        
+        guard project.productionCompany != "" else {
+            throw CreateProjectError.invalidProductionCompany
         }
         
         let img = image
@@ -136,6 +151,7 @@ class ProjectType: Project {
                             FIRProjectData.projectName.rawValue: self.projectName,
                             FIRProjectData.releaseDate.rawValue: self.projectReleaseDate,
                             FIRProjectData.accessCode.rawValue: self.projectAccessCode,
+                            FIRProjectData.productionCompany.rawValue: self.productionCompany,
                             FIRProjectData.image.rawValue: url
                         ]
                         let currentProject: Dictionary <String, String> = [
@@ -156,7 +172,7 @@ class ProjectType: Project {
         }
     }
     
-    func updateProject(project: Project, image: UIImage, projectID: String, currentProjectName: String, imageChanged: Bool) throws {
+    func updateProject(project: ProjectType, image: UIImage, projectID: String, currentProjectName: String, imageChanged: Bool) throws {
         guard project.projectName != "" else {
             throw CreateProjectError.inValidProjectName
         }
@@ -169,6 +185,10 @@ class ProjectType: Project {
         
         guard project.projectReleaseDate != "" else {
             throw CreateProjectError.invalidProjectDate
+        }
+        
+        guard project.productionCompany != "" else {
+            throw CreateProjectError.invalidProductionCompany
         }
         
         if imageChanged {
@@ -191,6 +211,7 @@ class ProjectType: Project {
                                 FIRProjectData.projectName.rawValue: self.projectName,
                                 FIRProjectData.releaseDate.rawValue: self.projectReleaseDate,
                                 FIRProjectData.accessCode.rawValue: self.projectAccessCode,
+                                FIRProjectData.productionCompany.rawValue: self.productionCompany,
                                 FIRProjectData.image.rawValue: url
                             ]
                             let currentProject: Dictionary <String, String> = [

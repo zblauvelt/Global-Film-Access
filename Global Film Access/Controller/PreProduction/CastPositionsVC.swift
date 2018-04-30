@@ -110,7 +110,7 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 for snap in snapshot {
                     print("SNAP:\(snap)")
                     
-                    if let positionDict = snap.value as? Dictionary<String, Any> {
+                    if let positionDict = snap.value as? Dictionary<String, String> {
                         let key = snap.key
                         let position = Cast(positionName: key, positionData: positionDict)
                         self.castingPostions.append(position)

@@ -17,7 +17,9 @@ enum CreatePositionError: String, Error {
 
 enum FiRPositionData: String {
     case positionName = "positionName"
-    case prospects = "prospects"
+    case talentName = "talentName"
+    case talentRating = "talentRating"
+    case talentAccepted = "talentAccepted"
 }
 
 
@@ -41,17 +43,20 @@ class Cast: Position {
     var positionName: String = ""
     static var createdPositions = [String]()
     
+    
     static var REF_PRE_PRODUCTION_CASTING_POSITION: FIRDatabaseReference = DB_BASE.child("preProductionCasting")
     
     init() {}
     
-    init(positionName: String, positionData: Dictionary <String, Any>) {
+    //init for positions
+    init(positionName: String, positionData: Dictionary <String, String>) {
         self.positionName = positionName
         
         if let positionName = positionData[FiRPositionData.positionName.rawValue] {
-            self.positionName = positionName as! String
+            self.positionName = positionName
         }
         
+
         
 
     }
@@ -77,13 +82,87 @@ class Cast: Position {
         
     }
     
-    func assignAudition() {
+}
+
+
+class Prospect {
+    var talentName: String = ""
+    var talentRating: String = ""
+    var talentedAccepted: String = "NO"
+    var prospectID: String = ""
+    
+    init(talentName: String, talentRating: String, talentAccepted: String) {
+        self.talentName = talentName
+        self.talentRating = talentRating
+        self.talentedAccepted = talentAccepted
+    }
+    
+    //init for prospects
+    init(prospectID: String, prospectData: Dictionary <String, String>) {
+        self.prospectID = prospectID
         
+        if let talentName = prospectData[FiRPositionData.talentName.rawValue] {
+            self.talentName = talentName
+        }
+        
+        if let talentRating = prospectData[FiRPositionData.talentRating.rawValue] {
+            self.talentRating = talentRating
+        }
+        
+        if let talentAccepted = prospectData[FiRPositionData.talentAccepted.rawValue] {
+            self.talentedAccepted = talentAccepted
+        }
+        
+    }
+    
+    func createProspect(prospect: Prospect, projectID: String, position: String, userID: String) {
+        let prospect: Dictionary <String, String> = [
+            FiRPositionData.talentName.rawValue: prospect.talentName,
+            FiRPositionData.talentRating.rawValue: prospect.talentRating,
+            FiRPositionData.talentAccepted.rawValue: prospect.talentedAccepted
+        ]
+        
+        Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child("prospect").child(position).child(userID).updateChildValues(prospect)
     }
     
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

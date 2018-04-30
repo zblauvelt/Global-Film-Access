@@ -518,10 +518,10 @@
                                                 </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="B2P-rT-SlI">
-                                                <rect key="frame" x="10.5" y="278.5" width="300" height="204"/>
+                                                <rect key="frame" x="10.5" y="278.5" width="300" height="300"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bt1-zq-zR6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -532,7 +532,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Est Release Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B96-ax-zTS">
-                                                        <rect key="frame" x="0.0" y="88" width="300" height="28"/>
+                                                        <rect key="frame" x="0.0" y="90" width="300" height="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -542,8 +542,19 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Production Company" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zPJ-Xq-RJs">
+                                                        <rect key="frame" x="0.0" y="180" width="300" height="30"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Project Access Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FgO-gZ-YNd">
-                                                        <rect key="frame" x="0.0" y="176" width="300" height="28"/>
+                                                        <rect key="frame" x="0.0" y="270" width="300" height="30"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -555,12 +566,12 @@
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="204" id="K1n-jB-fr0"/>
+                                                    <constraint firstAttribute="height" constant="300" id="K1n-jB-fr0"/>
                                                     <constraint firstAttribute="width" constant="300" id="Utb-If-Wsx"/>
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Access Code is what you will give to potential talent and employees of this project. E.g. &quot;MyProject4973&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dp-2T-E7e">
-                                                <rect key="frame" x="10" y="486.5" width="300" height="95"/>
+                                                <rect key="frame" x="10" y="582.5" width="300" height="95"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="95" id="XQv-On-hs3"/>
                                                 </constraints>
@@ -635,6 +646,7 @@
                     <connections>
                         <outlet property="dateLbl" destination="B96-ax-zTS" id="pbt-o7-vAQ"/>
                         <outlet property="imageAdd" destination="gAV-LO-rv4" id="2HJ-sx-oQY"/>
+                        <outlet property="productionCompanyLbl" destination="zPJ-Xq-RJs" id="Pav-vT-NOK"/>
                         <outlet property="projectAccessCodeLbl" destination="FgO-gZ-YNd" id="a4M-27-1UD"/>
                         <outlet property="projectNameLbl" destination="Bt1-zq-zR6" id="yWq-Pl-aOj"/>
                     </connections>
@@ -1243,21 +1255,28 @@
                                                         <rect key="frame" x="10" y="206" width="300" height="150"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Project Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V3d-a8-DyE" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="49.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="37"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Release Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AK7-ae-DrU" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="50.5" width="300" height="49"/>
+                                                                <rect key="frame" x="0.0" y="38" width="300" height="36.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Production Company" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QNE-As-eqz" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="75.5" width="300" height="37"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Access Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eng-3E-PYk" customClass="CommonTextField" customModule="Global_Film_Access" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="100.5" width="300" height="49.5"/>
+                                                                <rect key="frame" x="0.0" y="113.5" width="300" height="36.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -1472,6 +1491,7 @@
                     <connections>
                         <outlet property="auditionHeightConstraint" destination="JIo-l0-HTi" id="ckB-Rd-Or3"/>
                         <outlet property="auditionsTV" destination="3R2-Eq-1am" id="0bk-EV-ff4"/>
+                        <outlet property="productionCompanyLbl" destination="QNE-As-eqz" id="feh-NH-qk0"/>
                         <outlet property="projectAccessCodeLbl" destination="eng-3E-PYk" id="uCg-xT-EVC"/>
                         <outlet property="projectImage" destination="aS8-8E-wp1" id="GTd-Wj-iwG"/>
                         <outlet property="projectNameLbl" destination="V3d-a8-DyE" id="ect-sD-6Vr"/>
@@ -2468,7 +2488,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="pXn-60-iQV">
                         <barButtonItem key="rightBarButtonItem" image="calendar" id="7cy-IL-91i">
                             <connections>
-                                <segue destination="9wb-us-SpE" kind="presentation" id="dbR-5d-v7D"/>
+                                <segue destination="9wb-us-SpE" kind="presentation" identifier="assignAudition" id="dbR-5d-v7D"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2491,7 +2511,7 @@
             </objects>
             <point key="canvasLocation" x="8966.25" y="-405"/>
         </scene>
-        <!--Choose Audition-->
+        <!--Auditions-->
         <scene sceneID="r6M-NH-AV2">
             <objects>
                 <tableViewController id="y8M-KH-jv4" customClass="assignAuditionVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
@@ -2523,6 +2543,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ZSH-Gd-ljJ" kind="show" identifier="message" id="neG-bT-68F"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -2530,7 +2553,7 @@
                             <outlet property="delegate" destination="y8M-KH-jv4" id="yAL-Sr-8ps"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Choose Audition" id="1jK-Ga-Qwn">
+                    <navigationItem key="navigationItem" title="Auditions" id="1jK-Ga-Qwn">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="QOH-Es-Q2M">
                             <connections>
                                 <segue destination="rtl-k6-BFJ" kind="unwind" unwindAction="cancelToProfileWithSegue:" id="cQS-ER-lN1"/>
@@ -2542,6 +2565,92 @@
                 <exit id="rtl-k6-BFJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="9881" y="-1506"/>
+        </scene>
+        <!--Invite-->
+        <scene sceneID="ZKi-Hb-Yka">
+            <objects>
+                <viewController title="Invite" id="ZSH-Gd-ljJ" customClass="inviteMessageVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WC1-hM-pN0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0IF-Eg-vCq">
+                                <rect key="frame" x="8" y="114" width="304" height="251"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="J7L-7w-pdS">
+                                        <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4m-Be-TC3">
+                                                <rect key="frame" x="0.0" y="0.0" width="47" height="30"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWe-QN-1wu">
+                                                <rect key="frame" x="52" y="0.0" width="252" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="nTT-ll-WgW"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4gu-Va-WCQ">
+                                        <rect key="frame" x="0.0" y="50" width="304" height="201"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QM-69-iyR">
+                                                <rect key="frame" x="0.0" y="0.0" width="304" height="25"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X51-fg-O89">
+                                                <rect key="frame" x="0.0" y="30" width="304" height="171"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCH-Qg-lyW">
+                                <rect key="frame" x="0.0" y="415" width="320" height="65"/>
+                                <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="BoK-lR-g36"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
+                                <state key="normal" title="Invite">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="inviteBtnTapped:" destination="ZSH-Gd-ljJ" eventType="touchUpInside" id="8B6-Vk-FOL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gCH-Qg-lyW" firstAttribute="leading" secondItem="Mp3-if-2hL" secondAttribute="leading" id="4uq-2h-tLl"/>
+                            <constraint firstItem="gCH-Qg-lyW" firstAttribute="trailing" secondItem="Mp3-if-2hL" secondAttribute="trailing" id="B8U-vN-XoV"/>
+                            <constraint firstItem="0IF-Eg-vCq" firstAttribute="leading" secondItem="Mp3-if-2hL" secondAttribute="leading" constant="8" id="Vw8-Of-d7e"/>
+                            <constraint firstItem="Mp3-if-2hL" firstAttribute="trailing" secondItem="0IF-Eg-vCq" secondAttribute="trailing" constant="8" id="gsx-08-z1h"/>
+                            <constraint firstItem="0IF-Eg-vCq" firstAttribute="top" secondItem="Mp3-if-2hL" secondAttribute="top" constant="50" id="mo2-iD-1uL"/>
+                            <constraint firstItem="gCH-Qg-lyW" firstAttribute="top" secondItem="0IF-Eg-vCq" secondAttribute="bottom" constant="50" id="pTd-QD-P3r"/>
+                            <constraint firstItem="gCH-Qg-lyW" firstAttribute="bottom" secondItem="Mp3-if-2hL" secondAttribute="bottom" id="ugu-10-10h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mp3-if-2hL"/>
+                    </view>
+                    <connections>
+                        <outlet property="inviteMessageLbl" destination="X51-fg-O89" id="ukG-VN-auI"/>
+                        <outlet property="invitorNameLbl" destination="KWe-QN-1wu" id="RJX-4W-0t0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="opE-RP-3T7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10635" y="-1501.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7M5-rF-0tv">
