@@ -23,6 +23,14 @@ enum FIRUserData: String {
     case profileImage = "profileImage"
     case userName = "userName"
     case zipCode = "zipCode"
+    case height = "height"
+    case weight = "weight"
+    case bodyType = "bodyType"
+    case ethnicity = "ethnicity"
+    case eyeColor = "eyeColor"
+    case hairColor = "hairColor"
+    case hairLength = "hairLength"
+    case hairType = "hairType"
     case agentName = "agentName"
     case agentNumber = "agentNumber"
     case managerName = "managerName"
@@ -48,10 +56,12 @@ enum CreateUserError: String, Error {
     case invalidNumber = "This user did not provide a valid contact number."
     case invalidHeight = "Please provide a valid height."
     case invalidWeight = "Please provide a valid weight."
+    case invalidBodyType = "Please provide a valid body type."
     case invalidEthnicity = "Please provide a valid ethnicity."
     case invalidEyeColor = "Please provide a valid eye color."
+    case invalidHairColor = "Please provide a valid hair color."
     case invalidHairLength = "Please provide a valid hair length."
-    
+    case invalidHairType = "Please provide a valid hair type."
 
     
 }
@@ -78,6 +88,54 @@ protocol User {
     
 }
 
+enum Ethnicity: String {
+    case americanIndianAlaskanNative = "American Indian or Alaska Native"
+    case asian = "Asian"
+    case blackAfricanAmerican = "Black or African American"
+    case hispanicLatino = "Hispanic or Latino"
+    case nativeHawaiianPacificIslander = "Native Hawaiian or Other Pacific Islander"
+    case white = "White"
+}
+
+enum BodyType: String {
+    case thin = "Thin"
+    case athletic = "Athletic"
+    case overweight = "Overweight"
+    case obese = "Obese"
+}
+
+enum EyeColor: String {
+    case amber = "Amber"
+    case blue = "Blue"
+    case brown = "Brown"
+    case gray = "Gray"
+    case green = "Green"
+    case hazel = "Hazel"
+}
+
+enum HairColor: String {
+    case blonde = "Blonde"
+    case brown = "Brown"
+    case black = "Black"
+    case red = "Red"
+    case strawberryblonde = "Strawberry Blonde"
+    case pink = "Pink"
+    case purple = "Purple"
+    case other = "Other"
+}
+
+enum HairLength: String {
+    case short = "Short"
+    case medium = "Medium"
+    case long = "Long"
+}
+
+enum HairType: String {
+    case straight =  "Straight"
+    case waivy = "Waivy"
+    case curly = "Curly"
+}
+
 class UserType: User {
     
     var firstName: String
@@ -87,6 +145,14 @@ class UserType: User {
     var zipCode: String
     var profileImage: String?
     var userName: String
+    var height: String?
+    var weight: String?
+    var bodyType: BodyType?
+    var ethnicity: Ethnicity?
+    var eyeColor: EyeColor?
+    var hairColor: HairColor?
+    var hairLength: HairLength?
+    var hairType: HairType?
     var userKey: String = ""
     var agentName: String?
     var agentNumber: String?
@@ -145,6 +211,54 @@ class UserType: User {
             self.zipCode = zipCode
         } else {
             self.zipCode = ""
+        }
+        
+        if let height = userData[FIRUserData.height.rawValue] {
+            self.height = height
+        } else {
+            self.height = ""
+        }
+        
+        if let weight = userData[FIRUserData.weight.rawValue] {
+            self.weight = weight
+        } else {
+            self.weight = ""
+        }
+        
+        if let bodyType = userData[FIRUserData.bodyType.rawValue] {
+            self.bodyType = BodyType(rawValue: bodyType)
+        } else { 
+            self.bodyType = BodyType(rawValue: "")
+        }
+        
+        if let ethnicity = userData[FIRUserData.ethnicity.rawValue] {
+            self.ethnicity = Ethnicity(rawValue: ethnicity)
+        } else {
+            self.ethnicity = Ethnicity(rawValue: "")
+        }
+        
+        if let eyeColor = userData[FIRUserData.eyeColor.rawValue] {
+            self.eyeColor = EyeColor(rawValue: eyeColor)
+        } else {
+            self.eyeColor = EyeColor(rawValue: "")
+        }
+        
+        if let hairColor = userData[FIRUserData.hairColor.rawValue] {
+            self.hairColor = HairColor(rawValue: hairColor)
+        } else {
+            self.hairColor = HairColor(rawValue: "")
+        }
+        
+        if let hairLength = userData[FIRUserData.hairLength.rawValue] {
+            self.hairLength = HairLength(rawValue: hairLength)
+        } else {
+            self.hairLength = HairLength(rawValue: "")
+        }
+        
+        if let hairType = userData[FIRUserData.hairType.rawValue] {
+            self.hairType = HairType(rawValue: hairType)
+        } else {
+            self.hairType = HairType(rawValue: "")
         }
         
         if let userName = userData[FIRUserData.userName.rawValue] {
