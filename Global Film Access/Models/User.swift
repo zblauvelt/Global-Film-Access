@@ -46,6 +46,12 @@ enum CreateUserError: String, Error {
     case invalidProfileImage = "Please provide an image."
     case invalidUserName = "Please provide a username."
     case invalidNumber = "This user did not provide a valid contact number."
+    case invalidHeight = "Please provide a valid height."
+    case invalidWeight = "Please provide a valid weight."
+    case invalidEthnicity = "Please provide a valid ethnicity."
+    case invalidEyeColor = "Please provide a valid eye color."
+    case invalidHairLength = "Please provide a valid hair length."
+    
 
     
 }
