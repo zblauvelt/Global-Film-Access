@@ -39,6 +39,27 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var videoTableView: UITableView!
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var imdbRating: CommonTextField!
+    @IBOutlet weak var heightFeet: CommonTextField!
+    @IBOutlet weak var heightInches: CommonTextField!
+    @IBOutlet weak var weight: CommonTextField!
+    @IBOutlet weak var bodyType: CommonTextField!
+    @IBOutlet weak var eyeColor: CommonTextField!
+    @IBOutlet weak var hairColor: CommonTextField!
+    @IBOutlet weak var hairLength: CommonTextField!
+    @IBOutlet weak var hairType: CommonTextField!
+    @IBOutlet weak var ethnicity: CommonTextField!
+    
+    //Variable to convert labels in convertText function
+    var heightFeetInt: Int = 0
+    var heightInchesInt: Int = 0
+    var weightInt: Int = 0
+    var bodyTypeEnum: BodyType = .na
+    var eyeColorEnum: EyeColor = .na
+    var hairColorEnum: HairColor = .na
+    var hairLengthEnum: HairLength = .na
+    var hairTypeEnum: HairType = .na
+    var ethnicityEnum: Ethnicity = .na
+    
     
     //MARK: Constraints
     @IBOutlet weak var movieTableViewHeight: NSLayoutConstraint!
@@ -247,6 +268,8 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
 
     //Save Updates
     @IBAction func saveButtonTapped(_ sender: Any) {
+        self.convertText()
+        
         if let firstName = firstNameLbl.text,
             let lastName = lastNameLbl.text,
             let city = cityLbl.text,
@@ -264,7 +287,8 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             let user = UserType(firstName: firstName, lastName: lastName, city: city, state: state, zipCode: zipCode)
             
             do {
-                try user.updateProfileInfo(user: user, userImage: userImage, userAgentName: agentName, userAgentNumber: agentNumber, userManagerName: managerName, userManagerNumber: managerNumber, userLegalName: legalName, userLegalNumber: legalNumber, userImdbRating: imdbRating, imageChanged: imageChanged)
+                print("send to DB height: \(self.heightFeetInt)")
+                try user.updateProfileInfo(user: user, userImage: userImage, heightFeet: heightFeetInt, heightInches: heightInchesInt, weight: weightInt, bodyType: bodyTypeEnum, eyeColor: eyeColorEnum, hairColor: hairColorEnum, hairLength: hairLengthEnum, hairType: hairTypeEnum, ethnicity: ethnicityEnum, userAgentName: agentName, userAgentNumber: agentNumber, userManagerName: managerName, userManagerNumber: managerNumber, userLegalName: legalName, userLegalNumber: legalNumber, userImdbRating: imdbRating, imageChanged: imageChanged)
                 
                 if imageChanged {
                     if let userProfileImage = userDetails[0].profileImage {
@@ -296,6 +320,102 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 showAlert(message: "\(error)")
             }
         }
+    }
+    
+    //MARK: Convert Text
+    func convertText() {
+        print("conversion started...")
+        //Convert Feet
+        if let heightFeetInput = self.heightFeet.text {
+            if let heightFeet = Int(heightFeetInput) {
+                self.heightFeetInt = heightFeet
+            } else {
+                print("Not a number")
+            }
+        } else {
+            print("Nothing entered")
+        }
+        //Convert Inches
+        if let heightInchesInput = self.heightInches.text {
+            if let heightInches = Int(heightInchesInput) {
+                self.heightInchesInt = heightInches
+            } else {
+                print("Not a number")
+            }
+        } else {
+            print("Nothing entered")
+        }
+        //Convert Weight
+        if let weightInput = self.weight.text {
+            if let weight = Int(weightInput) {
+                self.weightInt = weight
+            } else {
+                print("Not a number")
+            }
+        } else {
+            print("Nothing entered")
+        }
+        //Convert BodyType
+        if let bodyTypeInput = self.bodyType.text {
+            if let bodyType = BodyType(rawValue: bodyTypeInput) {
+                self.bodyTypeEnum = bodyType
+            } else {
+                print("Not a body type")
+            }
+        } else {
+            print("Nothing entered")
+        }
+        //Convert EyeColor
+        if let eyeColorInput = self.eyeColor.text {
+            if let eyeColor = EyeColor(rawValue: eyeColorInput) {
+                self.eyeColorEnum = eyeColor
+            } else {
+                print("Not a eye color")
+            }
+        } else {
+            print("Nothing entered")
+        }
+        //Convert HairColor
+        if let hairColorInput = self.hairColor.text {
+            if let hairColor = HairColor(rawValue: hairColorInput) {
+                self.hairColorEnum = hairColor
+            } else {
+                print("Not a hair color")
+            }
+        } else {
+            print("Nothing entered")
+        }
+        //Convert HairLength
+        if let hairLengthInput = self.hairLength.text {
+            if let hairLength = HairLength(rawValue: hairLengthInput) {
+                self.hairLengthEnum = hairLength
+            } else {
+                print("Not a hair length")
+            }
+        } else {
+            print("Nothing entered")
+        }
+        //Convert HairType
+        if let hairTypeInput = self.hairType.text {
+            if let hairType = HairType(rawValue: hairTypeInput) {
+                self.hairTypeEnum = hairType
+            } else {
+                print("Not a hair type")
+            }
+        } else {
+            print("Nothing entered")
+        }
+        //Convert Ethnicity
+        if let ethnicityInput = self.ethnicity.text {
+            if let ethnicity = Ethnicity(rawValue: ethnicityInput) {
+                self.ethnicityEnum = ethnicity
+            } else {
+                print("Not a ethnicity")
+            }
+        } else {
+            print("Nothing entered")
+        }
+        print("conversion ended...")
     }
     
     func showAlert(message: String) {
