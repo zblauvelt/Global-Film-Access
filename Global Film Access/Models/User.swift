@@ -89,6 +89,7 @@ protocol User {
 }
 
 enum Ethnicity: String {
+    case na = "N/A"
     case americanIndianAlaskanNative = "American Indian or Alaska Native"
     case asian = "Asian"
     case blackAfricanAmerican = "Black or African American"
@@ -98,6 +99,7 @@ enum Ethnicity: String {
 }
 
 enum BodyType: String {
+    case na = "N/A"
     case thin = "Thin"
     case athletic = "Athletic"
     case overweight = "Overweight"
@@ -105,6 +107,7 @@ enum BodyType: String {
 }
 
 enum EyeColor: String {
+    case na = "N/A"
     case amber = "Amber"
     case blue = "Blue"
     case brown = "Brown"
@@ -114,6 +117,7 @@ enum EyeColor: String {
 }
 
 enum HairColor: String {
+    case na = "N/A"
     case blonde = "Blonde"
     case brown = "Brown"
     case black = "Black"
@@ -125,12 +129,14 @@ enum HairColor: String {
 }
 
 enum HairLength: String {
+    case na = "N/A"
     case short = "Short"
     case medium = "Medium"
     case long = "Long"
 }
 
 enum HairType: String {
+    case na = "N/A"
     case straight =  "Straight"
     case waivy = "Waivy"
     case curly = "Curly"
@@ -227,7 +233,7 @@ class UserType: User {
         
         if let bodyType = userData[FIRUserData.bodyType.rawValue] {
             self.bodyType = BodyType(rawValue: bodyType)
-        } else { 
+        } else {
             self.bodyType = BodyType(rawValue: "")
         }
         
@@ -376,7 +382,7 @@ class UserType: User {
         }
     }
     
-    func updateProfileInfo(user: UserType, userImage: UIImage, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String, userImdbRating: String, imageChanged: Bool) throws {
+    func updateProfileInfo(user: UserType, userImage: UIImage, heightFeet: Int, heightInches: Int, weight: Int, bodyType: BodyType, eyeColor: EyeColor, hairColor: HairColor, hairLength: HairLength, hairType: HairType, ethnicity: Ethnicity, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String, userImdbRating: String, imageChanged: Bool) throws {
         let defualtNumber = "(xxx) xxx-xxxx"
         guard user.firstName != "" else {
             throw CreateUserError.invalidFirstName
@@ -385,13 +391,22 @@ class UserType: User {
             throw CreateUserError.invalidLastName
         }
         guard user.city != "" else {
-            throw CreateUserError.invalidCity
+            throw CreateUserError.invalidCity     
         }
         guard user.state != "" else {
             throw CreateUserError.invalidState
         }
         guard user.zipCode != "" else {
             throw CreateUserError.invalidZipCode
+        }
+        
+        var height: Int {
+            if heightFeet > 0 && heightFeet < 10 && heightInches >= 0 && heightInches < 12 {
+                return (heightFeet * 12) + heightInches
+                
+            } else {
+                return 0
+            }
         }
         
         var agentName: String {
@@ -469,6 +484,14 @@ class UserType: User {
                                 FIRUserData.state.rawValue: user.state,
                                 FIRUserData.zipCode.rawValue: user.zipCode,
                                 FIRUserData.profileImage.rawValue: url,
+                                FIRUserData.height.rawValue: "\(height)",
+                                FIRUserData.weight.rawValue: "\(weight)",
+                                FIRUserData.bodyType.rawValue: "\(bodyType)",
+                                FIRUserData.eyeColor.rawValue: "\(eyeColor)",
+                                FIRUserData.hairColor.rawValue: "\(hairColor)",
+                                FIRUserData.hairLength.rawValue: "\(hairLength)",
+                                FIRUserData.hairType.rawValue: "\(hairType)",
+                                FIRUserData.ethnicity.rawValue: "\(ethnicity)",
                                 FIRUserData.agentName.rawValue: agentName,
                                 FIRUserData.agentNumber.rawValue: agentNumber,
                                 FIRUserData.managerName.rawValue: managerName,
@@ -500,6 +523,14 @@ class UserType: User {
                 FIRUserData.city.rawValue: user.city,
                 FIRUserData.state.rawValue: user.state,
                 FIRUserData.zipCode.rawValue: user.zipCode,
+                FIRUserData.height.rawValue: "\(height)",
+                FIRUserData.weight.rawValue: "\(weight)",
+                FIRUserData.bodyType.rawValue: "\(bodyType)",
+                FIRUserData.eyeColor.rawValue: "\(eyeColor)",
+                FIRUserData.hairColor.rawValue: "\(hairColor)",
+                FIRUserData.hairLength.rawValue: "\(hairLength)",
+                FIRUserData.hairType.rawValue: "\(hairType)",
+                FIRUserData.ethnicity.rawValue: "\(ethnicity)",
                 FIRUserData.agentName.rawValue: agentName,
                 FIRUserData.agentNumber.rawValue: agentNumber,
                 FIRUserData.managerName.rawValue: managerName,
