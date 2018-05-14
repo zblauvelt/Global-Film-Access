@@ -71,11 +71,11 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserDetails()
-        getStatePickers(stateLbl)
+        //getStatePickers(stateLbl)
         getUserVideos()
         getUserMovies()
-        
-        
+        loadPickerViews()
+        hideKeyboard()
         
         //creating the imagePicker
         imagePicker = UIImagePickerController()
@@ -569,71 +569,149 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
     }
     
-    
+
     
     //MARK: States List
     let usaStates: [USAState] = [.alabama, .alaska, .arizone, .arkansas, .california, .colorado, .connecticut, .delaware, .florida, .georgia, .hawaii, .idaho, .illinois, .indiana, .iowa, .kansas, .kentucky, .louisiana, .maine, .maryland, .massachusetts, .michigan, .minnesota, .mississippi, .missouri, .montana, .nebraska, .nevada, .newHampshire, .newJersey, .newMexico, .newYork, .northCarolina, .northDakota, .ohio, .oklahoma, .oregon, .pennsylvania, .rhodeIsland, .southCarolina, .southDakota, .tennessee, .texas, .utah, .vermont, .virginia, .washington, .westVirginia, .wisconsin, .wyoming]
+    
+    //MARK: Body types
+    var bodyTypes: [BodyType] = [.thin, .athletic, .overweight, .obese]
+    
+    //MARK: Eye Color
+    var eyeColors: [EyeColor] = [.amber, .blue, .brown, .gray, .green, .hazel]
+    
+    //MARK: Hair Color
+    var hairColors: [HairColor] = [.black, .blonde, .brown, .other]
+    
+    //MARK: Hair Length
+    var hairLengths: [HairLength] = [.short, .medium, .long]
+    
+    //MARK: Hair Type
+    var hairTypes: [HairType] = [.straight, .wavy, .curly]
+    
+    //MARK: Ethnicity
+    var ethnicities: [Ethnicity] = [.americanIndianAlaskanNative, .asian, .blackAfricanAmerican, .hispanicLatino, .nativeHawaiianPacificIslander, .white]
     
     //MARK:- PickerView Delegate & DataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return usaStates.count
+        switch pickerView.tag {
+        case 1:
+            return usaStates.count
+        case 2:
+            return bodyTypes.count
+        case 3:
+            return eyeColors.count
+        case 4:
+            return hairColors.count
+        case 5:
+            return hairLengths.count
+        case 6:
+            return hairTypes.count
+        case 7:
+            return ethnicities.count
+        default:
+            return 1
+            
+        }
+        
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return usaStates[row].rawValue as String
+        switch pickerView.tag {
+        case 1:
+            return usaStates[row].rawValue as String
+        case 2:
+            return bodyTypes[row].rawValue as String
+        case 3:
+            return eyeColors[row].rawValue as String
+        case 4:
+            return hairColors[row].rawValue as String
+        case 5:
+            return hairLengths[row].rawValue as String
+        case 6:
+            return hairTypes[row].rawValue as String
+        case 7:
+            return ethnicities[row].rawValue as String
+        default:
+            return "Not Available"
+        
+        }
+        
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.stateLbl.text = usaStates[row].rawValue
-    }
-    //MARK:- TextField Delegate
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.getStatePickers(stateLbl)
+        
+        if pickerView.tag == 1 {
+            stateLbl.text = usaStates[row].rawValue
+        } else if pickerView.tag == 2 {
+            bodyType.text = bodyTypes[row].rawValue
+        } else if pickerView.tag == 3 {
+            eyeColor.text = eyeColors[row].rawValue
+        } else if pickerView.tag == 4 {
+            hairColor.text = hairColors[row].rawValue
+        } else if pickerView.tag == 5 {
+            hairLength.text = hairLengths[row].rawValue
+        } else if pickerView.tag == 6 {
+            hairType.text = hairTypes[row].rawValue
+        } else if pickerView.tag == 7 {
+            ethnicity.text = ethnicities[row].rawValue
+        }
+        
     }
     
-    //MARK: UIViewPicker for State
-    func getStatePickers(_ textField : UITextField){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        
+    }
+    
+    //MARK: Picker Views
+    ///Load picker views
+    func loadPickerViews() {
+        //State
         let statePickerView = UIPickerView()
         statePickerView.delegate = self
-        textField.inputView = statePickerView
+        statePickerView.tag = 1
+        stateLbl.inputView = statePickerView
         
-        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
+        //Body type
+        let bodyTypePickerView = UIPickerView()
+        bodyTypePickerView.delegate = self
+        bodyTypePickerView.tag = 2
+        bodyType.inputView = bodyTypePickerView
         
-        toolBar.barStyle = UIBarStyle.blackTranslucent
-        toolBar.tintColor = UIColor.white
+        //Eye Color
+        let eyeCOlorPickerView = UIPickerView()
+        eyeCOlorPickerView.delegate = self
+        eyeCOlorPickerView.tag = 3
+        eyeColor.inputView = eyeCOlorPickerView
         
-        let cancel = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(CreateProfileVC.cancelPressed(sender:)))
+        //Hair Color
+        let hairColorPickerView = UIPickerView()
+        hairColorPickerView.delegate = self
+        hairColorPickerView.tag = 4
+        hairColor.inputView = hairColorPickerView
         
-        let done = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(CreateProfileVC.donePressed(sender:)))
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+        //Hair Length
+        let hairLengthPickerView = UIPickerView()
+        hairLengthPickerView.delegate = self
+        hairLengthPickerView.tag = 5
+        hairLength.inputView = hairLengthPickerView
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/3, height: 40))
+        //Hair Type
+        let hairTypePickerView = UIPickerView()
+        hairTypePickerView.delegate = self
+        hairTypePickerView.tag = 6
+        hairType.inputView = hairTypePickerView
         
-        label.font = UIFont.systemFont(ofSize: 14)
-        
-        label.textColor = UIColor.white
-        
-        label.text = "Pick a State"
-        
-        label.textAlignment = NSTextAlignment.center
-        
-        let textButton = UIBarButtonItem(customView: label)
-        
-        toolBar.setItems([cancel, flexSpace, textButton, flexSpace, done], animated: true)
-        
-        stateLbl.inputAccessoryView = toolBar
-    }
-    //MARK:- Button
-    @objc func donePressed(sender: UIBarButtonItem) {
-        stateLbl.resignFirstResponder()
+        //Ethnicity
+        let ethnicityPickerView = UIPickerView()
+        ethnicityPickerView.delegate = self
+        ethnicityPickerView.tag = 7
+        ethnicity.inputView = ethnicityPickerView
     }
     
-    @objc func cancelPressed(sender: UIBarButtonItem) {
-        stateLbl.resignFirstResponder()
-    }
 
-    
-    
+
 
 }

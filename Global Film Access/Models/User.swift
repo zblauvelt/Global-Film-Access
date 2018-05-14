@@ -138,7 +138,7 @@ enum HairLength: String {
 enum HairType: String {
     case na = "N/A"
     case straight =  "Straight"
-    case waivy = "Waivy"
+    case wavy = "Wavy"
     case curly = "Curly"
 }
 
