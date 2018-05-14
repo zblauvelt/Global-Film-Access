@@ -504,7 +504,15 @@ class UserType: User {
                             let updateAllUser: Dictionary<String, String> = [
                                 FIRUserData.firstName.rawValue: user.firstName,
                                 FIRUserData.lastName.rawValue: user.lastName,
-                                FIRUserData.profileImage.rawValue: url
+                                FIRUserData.profileImage.rawValue: url,
+                                FIRUserData.height.rawValue: "\(height)",
+                                FIRUserData.weight.rawValue: "\(weight)",
+                                FIRUserData.bodyType.rawValue: "\(bodyType)",
+                                FIRUserData.eyeColor.rawValue: "\(eyeColor)",
+                                FIRUserData.hairColor.rawValue: "\(hairColor)",
+                                FIRUserData.hairLength.rawValue: "\(hairLength)",
+                                FIRUserData.hairType.rawValue: "\(hairType)",
+                                FIRUserData.ethnicity.rawValue: "\(ethnicity)"
                             ]
                             
                             //MARK: Post to Firebase Database
@@ -542,7 +550,15 @@ class UserType: User {
             
             let updateAllUser: Dictionary<String, String> = [
                 FIRUserData.firstName.rawValue: user.firstName,
-                FIRUserData.lastName.rawValue: user.lastName
+                FIRUserData.lastName.rawValue: user.lastName,
+                FIRUserData.height.rawValue: "\(height)",
+                FIRUserData.weight.rawValue: "\(weight)",
+                FIRUserData.bodyType.rawValue: "\(bodyType)",
+                FIRUserData.eyeColor.rawValue: "\(eyeColor)",
+                FIRUserData.hairColor.rawValue: "\(hairColor)",
+                FIRUserData.hairLength.rawValue: "\(hairLength)",
+                FIRUserData.hairType.rawValue: "\(hairType)",
+                FIRUserData.ethnicity.rawValue: "\(ethnicity)"
             ]
             
             //MARK: Post to Firebase Database
