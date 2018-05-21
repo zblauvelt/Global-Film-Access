@@ -28,6 +28,7 @@
 		1444D5F71FD63F7000A50CFF /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F61FD63F7000A50CFF /* CircleImage.swift */; };
 		1444D5F91FD6414200A50CFF /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F81FD6414200A50CFF /* CustomView.swift */; };
 		1446BEF02089675A00BC271B /* assignAuditionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446BEEF2089675A00BC271B /* assignAuditionVC.swift */; };
+		1458F08820B3633400D6FE82 /* addRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F08720B3633400D6FE82 /* addRoleVC.swift */; };
 		148E23941FF91AF8004F7D1D /* USStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23931FF91AF8004F7D1D /* USStates.swift */; };
 		148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23951FFA833C004F7D1D /* FireBaseAuth.swift */; };
 		148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */; };
@@ -80,6 +81,7 @@
 		1444D5F61FD63F7000A50CFF /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		1444D5F81FD6414200A50CFF /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		1446BEEF2089675A00BC271B /* assignAuditionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assignAuditionVC.swift; sourceTree = "<group>"; };
+		1458F08720B3633400D6FE82 /* addRoleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRoleVC.swift; sourceTree = "<group>"; };
 		148E23931FF91AF8004F7D1D /* USStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USStates.swift; sourceTree = "<group>"; };
 		148E23951FFA833C004F7D1D /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
 		148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				149CFDDF2079332700E8D8AF /* AddEditAuditions.swift */,
 				1446BEEF2089675A00BC271B /* assignAuditionVC.swift */,
 				14DF79CB209773A300220E9F /* inviteMessageVC.swift */,
+				1458F08720B3633400D6FE82 /* addRoleVC.swift */,
 			);
 			path = PreProduction;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				148E239A1FFAD022004F7D1D /* WhiteBottomBorder.swift in Sources */,
 				14DF79CC209773A300220E9F /* inviteMessageVC.swift in Sources */,
 				149CFDE02079332700E8D8AF /* AddEditAuditions.swift in Sources */,
+				1458F08820B3633400D6FE82 /* addRoleVC.swift in Sources */,
 				14C9487C202B832600A97237 /* SearchTalentVC.swift in Sources */,
 				14C948A02030F97200A97237 /* EditProfileVC.swift in Sources */,
 				14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */,

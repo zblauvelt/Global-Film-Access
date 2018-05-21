@@ -53,12 +53,12 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     var heightFeetInt: Int = 0
     var heightInchesInt: Int = 0
     var weightInt: Int = 0
-    var bodyTypeEnum: BodyType = .na
-    var eyeColorEnum: EyeColor = .na
-    var hairColorEnum: HairColor = .na
-    var hairLengthEnum: HairLength = .na
-    var hairTypeEnum: HairType = .na
-    var ethnicityEnum: Ethnicity = .na
+    var bodyTypeEnum = ""
+    var eyeColorEnum = ""
+    var hairColorEnum = ""
+    var hairLengthEnum = ""
+    var hairTypeEnum = ""
+    var ethnicityEnum = ""
     
     
     //MARK: Constraints
@@ -115,6 +115,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                         let userDetails = UserType(userKey: key, userData: userDetailsDict)
                         self.userDetails.append(userDetails)
                         self.fillInUserDetail(currentUser: self.userDetails)
+                        
                         self.getImageFromFirebase()
                     }
                 }
@@ -130,12 +131,37 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.stateLbl.text = currentUser[0].state
         self.zipCodeLbl.text = currentUser[0].zipCode
         
+        var feet = 0
+        var inches = 0
+        var userWeight = 0
+        if let height = currentUser[0].height {
+            if let heightInt = Int(height) {
+                feet = heightInt/12
+                inches = heightInt - ((heightInt/12) * 12)
+            }
+        }
+        
+        if let weight = currentUser[0].weight {
+            if let weightInt = Int(weight) {
+                userWeight = weightInt
+            }
+        }
+        
+        
         if let agentName = currentUser[0].agentName,
             let agentNumber = currentUser[0].agentNumber,
             let managerName = currentUser[0].managerName,
             let managerNumber = currentUser[0].managerNumber,
-            let legalName = currentUser[0].legalName,
-            let legalNumber = currentUser[0].legalNumber {
+            let legalName = currentUser[0].legalName,		
+            let legalNumber = currentUser[0].legalNumber,
+            let ethnicity = currentUser[0].ethnicity,
+            let bodyType = currentUser[0].bodyType,
+            let eyeColor = currentUser[0].eyeColor,
+            let hairColor = currentUser[0].hairColor,
+            let hairLength = currentUser[0].hairLength,
+            let hairType = currentUser[0].hairType
+            
+            {
             
             self.agentNameLbl.text = agentName
             self.agentNumberLbl.text = agentNumber
@@ -143,6 +169,15 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             self.managerNumberLbl.text = managerNumber
             self.legalNameLbl.text = legalName
             self.legalNumberLbl.text = legalNumber
+            self.ethnicity.text = ethnicity.rawValue
+            self.bodyType.text = bodyType.rawValue
+            self.heightFeet.text = "\(feet)"
+            self.heightInches.text = "\(inches)"
+            self.weight.text = "\(userWeight)"
+            self.eyeColor.text = eyeColor.rawValue
+            self.hairColor.text = hairColor.rawValue
+            self.hairLength.text = hairLength.rawValue
+            self.hairType.text = hairType.rawValue
         }
     }
     
@@ -358,7 +393,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         //Convert BodyType
         if let bodyTypeInput = self.bodyType.text {
             if let bodyType = BodyType(rawValue: bodyTypeInput) {
-                self.bodyTypeEnum = bodyType
+                self.bodyTypeEnum = bodyType.rawValue
             } else {
                 print("Not a body type")
             }
@@ -368,7 +403,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         //Convert EyeColor
         if let eyeColorInput = self.eyeColor.text {
             if let eyeColor = EyeColor(rawValue: eyeColorInput) {
-                self.eyeColorEnum = eyeColor
+                self.eyeColorEnum = eyeColor.rawValue
             } else {
                 print("Not a eye color")
             }
@@ -378,7 +413,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         //Convert HairColor
         if let hairColorInput = self.hairColor.text {
             if let hairColor = HairColor(rawValue: hairColorInput) {
-                self.hairColorEnum = hairColor
+                self.hairColorEnum = hairColor.rawValue
             } else {
                 print("Not a hair color")
             }
@@ -388,7 +423,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         //Convert HairLength
         if let hairLengthInput = self.hairLength.text {
             if let hairLength = HairLength(rawValue: hairLengthInput) {
-                self.hairLengthEnum = hairLength
+                self.hairLengthEnum = hairLength.rawValue
             } else {
                 print("Not a hair length")
             }
@@ -398,7 +433,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         //Convert HairType
         if let hairTypeInput = self.hairType.text {
             if let hairType = HairType(rawValue: hairTypeInput) {
-                self.hairTypeEnum = hairType
+                self.hairTypeEnum = hairType.rawValue
             } else {
                 print("Not a hair type")
             }
@@ -408,7 +443,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         //Convert Ethnicity
         if let ethnicityInput = self.ethnicity.text {
             if let ethnicity = Ethnicity(rawValue: ethnicityInput) {
-                self.ethnicityEnum = ethnicity
+                self.ethnicityEnum = ethnicity.rawValue
             } else {
                 print("Not a ethnicity")
             }

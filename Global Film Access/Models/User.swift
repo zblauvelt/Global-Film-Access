@@ -382,7 +382,7 @@ class UserType: User {
         }
     }
     
-    func updateProfileInfo(user: UserType, userImage: UIImage, heightFeet: Int, heightInches: Int, weight: Int, bodyType: BodyType, eyeColor: EyeColor, hairColor: HairColor, hairLength: HairLength, hairType: HairType, ethnicity: Ethnicity, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String, userImdbRating: String, imageChanged: Bool) throws {
+    func updateProfileInfo(user: UserType, userImage: UIImage, heightFeet: Int, heightInches: Int, weight: Int, bodyType: BodyType.RawValue, eyeColor: EyeColor.RawValue, hairColor: HairColor.RawValue, hairLength: HairLength.RawValue, hairType: HairType.RawValue, ethnicity: Ethnicity.RawValue, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String, userImdbRating: String, imageChanged: Bool) throws {
         let defualtNumber = "(xxx) xxx-xxxx"
         guard user.firstName != "" else {
             throw CreateUserError.invalidFirstName
