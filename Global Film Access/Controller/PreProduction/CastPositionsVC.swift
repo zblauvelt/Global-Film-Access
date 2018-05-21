@@ -53,7 +53,7 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     //MARK: add a position row
     @IBAction func addPositionTapped(_ sender: Any) {
         //1. Create the alert controller.
-        let alertController = UIAlertController(title: "Add Position", message: "Enter a name of your new cast member.", preferredStyle: .alert)
+        /*let alertController = UIAlertController(title: "Add Position", message: "Enter a name of your new cast member.", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { alert -> Void in
             return
@@ -97,7 +97,7 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         })
         
         // 4. Present the alert.
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)*/
     }
     
     

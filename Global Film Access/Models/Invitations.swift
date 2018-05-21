@@ -86,7 +86,7 @@ class EventInvite: Invite {
         }
     }
     
-    ///Provide the envent, the person inviting, and the userKey for the user being invited. userKey is for Database. Also included is the ProjectID and Audition ID to access later for call sheet and calendar.
+    ///Provide the event, the person inviting, and the userKey for the user being invited. userKey is for Database. Also included is the ProjectID and Audition ID to access later for call sheet and calendar.
     func createInvite(event: EventInvite, invitorName: String, invitorProfileImage: String, inviteeKey: String, projectID: String, auditionID: String, positionName: String) throws {
         guard event.message != "" else {
             throw CreateInviteError.invalidMessage
