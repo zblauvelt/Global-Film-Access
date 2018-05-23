@@ -12,6 +12,8 @@ import Firebase
 class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var positionName: String = ""
+    //For editing Role
+    var roleNameID: String = ""
     var projectID: String = ""
     var castingPostions = [Cast]()
     @IBOutlet weak var tableView: UITableView!
@@ -34,7 +36,7 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let cellIdentifier =  "castPositionCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        cell.textLabel?.text = castingPostions[indexPath.row].positionName
+        cell.textLabel?.text = castingPostions[indexPath.row].roleName
         
         return cell
         
@@ -45,76 +47,36 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             self.deletePosition(indexPath: indexPath)
             
         }
+        
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { (rowAction, indexPath) in
+            self.roleNameID = self.castingPostions[indexPath.row].roleName
+            print("Role ID Name: \(self.roleNameID)")
+            self.performSegue(withIdentifier: "updateRole", sender: nil)
+        }
         delete.backgroundColor = UIColor.red
-        return [delete]
+        edit.backgroundColor = UIColor.blue
+        return [delete, edit]
         
     }
 
     //MARK: add a position row
-    @IBAction func addPositionTapped(_ sender: Any) {
-        //1. Create the alert controller.
-        /*let alertController = UIAlertController(title: "Add Position", message: "Enter a name of your new cast member.", preferredStyle: .alert)
-        
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { alert -> Void in
-            return
-        }))
-        
-        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
-            let positionNameField = alertController.textFields![0] as UITextField
-            
-            if let castName = positionNameField.text {
-                
-                let createCastName = Cast()
-                
-                if castName == "" {
-                    
-                    let alertController = UIAlertController(title: "" , message: "Please provide a valid name.", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
-                        return
-                    }
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                    
-                } else if Cast.createdPositions.contains(castName.lowercased()) {
-                    
-                    let alertController = UIAlertController(title: "" , message: "You have already created a position with this name. Please create a different position.", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
-                        return
-                    }
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                    
-                } else {
-                    try! createCastName.createPosition(projectID: self.projectID, positionName: castName)
-                }
-            }
-            
-        }))
-        
-        alertController.addTextField(configurationHandler: { (textField) -> Void in
-            textField.placeholder = "Position Name"
-            textField.textAlignment = .center
-        })
-        
-        // 4. Present the alert.
-        self.present(alertController, animated: true, completion: nil)*/
-    }
+    @IBAction func addPositionTapped(_ sender: Any) {}
     
     
     //MARK: Get the Positions for project
     func getCastingPositions() {
         Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child(FIRDataCast.cast.rawValue).observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                Cast.createdPositions.removeAll()
+                Cast.createdRoles.removeAll()
                 self.castingPostions.removeAll()
                 for snap in snapshot {
                     print("SNAP:\(snap)")
                     
                     if let positionDict = snap.value as? Dictionary<String, String> {
                         let key = snap.key
-                        let position = Cast(positionName: key, positionData: positionDict)
+                        let position = Cast(roleName: key, roleData: positionDict)
                         self.castingPostions.append(position)
-                        Cast.createdPositions.append(position.positionName.lowercased())
+                        Cast.createdRoles.append(position.roleName.lowercased())
                     }
                 }
                 
@@ -138,7 +100,7 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             let deleteField = alertController.textFields![0] as UITextField
             
             if deleteField.text == "DELETE" {
-                Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(self.projectID).child(self.castingPostions[indexPath.row].positionName).removeValue()
+                Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(self.projectID).child(self.castingPostions[indexPath.row].roleName).removeValue()
                 return
             } else {
                 let alertController = UIAlertController(title: "" , message: "Position was not deleted. Please make sure you spell DELETE in all capital letters.", preferredStyle: .alert)
@@ -160,14 +122,32 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.present(alertController, animated: true, completion: nil)
         self.getCastingPositions()
     }
+    
     //MARK: Passing cast selected to Cast Detail vc
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToCast" {
+        
+        switch segue.identifier {
+        case "goToCast":
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! CastingDetailVC
-                destinationController.selectedCastPosition = castingPostions[indexPath.row].positionName
+                destinationController.selectedCastPosition = castingPostions[indexPath.row].roleName
+                destinationController.selectedRole.append(castingPostions[indexPath.row])
             }
+        case "updateRole":
+                let nav = segue.destination as! UINavigationController
+                let destinationController = nav.topViewController as! addRoleVC
+                destinationController.roleNameID = self.roleNameID
+                destinationController.update = true
+        case "addRole":
+                let nav = segue.destination as! UINavigationController
+                let destinationController = nav.topViewController as! addRoleVC
+                destinationController.update = false
+            
+        default:
+            print("no segue")
         }
     }
+    
+    @IBAction func cancelAddRole(segue: UIStoryboardSegue) {}
     
 }

@@ -12,15 +12,24 @@ class CastingDetailVC: UIViewController {
     
     var selectedCastPosition: String = ""
     static var positionName: String = ""
+    var selectedRole = [Cast]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         CastingDetailVC.positionName = selectedCastPosition
+        self.title = selectedCastPosition
+        
     }
 
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "searchTalent" {
+            let desVC = segue.destination as! SearchTalentVC
+            desVC.searchingRole.append(selectedRole[0])
+        }
+    }
 
 
 

@@ -24,6 +24,7 @@ enum FIRUserData: String {
     case userName = "userName"
     case zipCode = "zipCode"
     case height = "height"
+    case age = "age"
     case weight = "weight"
     case bodyType = "bodyType"
     case ethnicity = "ethnicity"
@@ -55,6 +56,7 @@ enum CreateUserError: String, Error {
     case invalidUserName = "Please provide a username."
     case invalidNumber = "This user did not provide a valid contact number."
     case invalidHeight = "Please provide a valid height."
+    case invalidAge = "Please provide a valid age."
     case invalidWeight = "Please provide a valid weight."
     case invalidBodyType = "Please provide a valid body type."
     case invalidEthnicity = "Please provide a valid ethnicity."
@@ -152,6 +154,7 @@ class UserType: User {
     var profileImage: String?
     var userName: String
     var height: String?
+    var age: String?
     var weight: String?
     var bodyType: BodyType?
     var ethnicity: Ethnicity?
@@ -223,6 +226,12 @@ class UserType: User {
             self.height = height
         } else {
             self.height = ""
+        }
+        
+        if let age = userData[FIRUserData.age.rawValue] {
+            self.age = age
+        } else {
+            self.age = ""
         }
         
         if let weight = userData[FIRUserData.weight.rawValue] {
@@ -382,7 +391,7 @@ class UserType: User {
         }
     }
     
-    func updateProfileInfo(user: UserType, userImage: UIImage, heightFeet: Int, heightInches: Int, weight: Int, bodyType: BodyType.RawValue, eyeColor: EyeColor.RawValue, hairColor: HairColor.RawValue, hairLength: HairLength.RawValue, hairType: HairType.RawValue, ethnicity: Ethnicity.RawValue, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String, userImdbRating: String, imageChanged: Bool) throws {
+    func updateProfileInfo(user: UserType, userImage: UIImage, heightFeet: Int, heightInches: Int, age: Int, weight: Int, bodyType: BodyType.RawValue, eyeColor: EyeColor.RawValue, hairColor: HairColor.RawValue, hairLength: HairLength.RawValue, hairType: HairType.RawValue, ethnicity: Ethnicity.RawValue, userAgentName: String, userAgentNumber: String, userManagerName: String, userManagerNumber: String, userLegalName: String, userLegalNumber: String, userImdbRating: String, imageChanged: Bool) throws {
         let defualtNumber = "(xxx) xxx-xxxx"
         guard user.firstName != "" else {
             throw CreateUserError.invalidFirstName
@@ -485,6 +494,7 @@ class UserType: User {
                                 FIRUserData.zipCode.rawValue: user.zipCode,
                                 FIRUserData.profileImage.rawValue: url,
                                 FIRUserData.height.rawValue: "\(height)",
+                                FIRUserData.age.rawValue: "\(age)",
                                 FIRUserData.weight.rawValue: "\(weight)",
                                 FIRUserData.bodyType.rawValue: "\(bodyType)",
                                 FIRUserData.eyeColor.rawValue: "\(eyeColor)",
@@ -506,6 +516,7 @@ class UserType: User {
                                 FIRUserData.lastName.rawValue: user.lastName,
                                 FIRUserData.profileImage.rawValue: url,
                                 FIRUserData.height.rawValue: "\(height)",
+                                FIRUserData.age.rawValue: "\(age)",
                                 FIRUserData.weight.rawValue: "\(weight)",
                                 FIRUserData.bodyType.rawValue: "\(bodyType)",
                                 FIRUserData.eyeColor.rawValue: "\(eyeColor)",
@@ -532,6 +543,7 @@ class UserType: User {
                 FIRUserData.state.rawValue: user.state,
                 FIRUserData.zipCode.rawValue: user.zipCode,
                 FIRUserData.height.rawValue: "\(height)",
+                FIRUserData.age.rawValue: "\(age)",
                 FIRUserData.weight.rawValue: "\(weight)",
                 FIRUserData.bodyType.rawValue: "\(bodyType)",
                 FIRUserData.eyeColor.rawValue: "\(eyeColor)",
@@ -552,6 +564,7 @@ class UserType: User {
                 FIRUserData.firstName.rawValue: user.firstName,
                 FIRUserData.lastName.rawValue: user.lastName,
                 FIRUserData.height.rawValue: "\(height)",
+                FIRUserData.age.rawValue: "\(age)",
                 FIRUserData.weight.rawValue: "\(weight)",
                 FIRUserData.bodyType.rawValue: "\(bodyType)",
                 FIRUserData.eyeColor.rawValue: "\(eyeColor)",
