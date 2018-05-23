@@ -254,14 +254,7 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
                     }
                 }
             }
-            
-            print(heightFilter.count)
-            print(ethnicityFilter.count)
-            print(bodyTypeFilter.count)
-            print(eyeColorFilter.count)
-            print(hairColorFilter.count)
-            print(hairLengthFilter.count)
-            print(self.roleFilteredTalent.count)
+
             tableView.reloadData()
             
         } else {
@@ -321,6 +314,8 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
                 let destinationController = segue.destination as! ProfileVC
                 if isSearching {
                     destinationController.currentUserKey = filteredTalent[indexPath.row].userKey
+                } else if isFiltered {
+                    destinationController.currentUserKey = roleFilteredTalent[indexPath.row].userKey
                 } else {
                     destinationController.currentUserKey = unfilteredTalent[indexPath.row].userKey
                 }
