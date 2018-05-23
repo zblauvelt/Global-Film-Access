@@ -101,6 +101,10 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
             var ageFilter = [UserType]()
             var heightFilter = [UserType]()
             var ethnicityFilter = [UserType]()
+            var bodyTypeFilter = [UserType]()
+            var eyeColorFilter = [UserType]()
+            var hairColorFilter = [UserType]()
+            var hairLengthFilter = [UserType]()
             searchBar.setImage(UIImage(named: "filtered"), for: .bookmark, state: .normal)
             isFiltered = true
             print("Filtering....")
@@ -168,12 +172,96 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
             }
             //MARK: Filtering out ethnicity requirements
             let roleEthnicity = role.ethnicity?.rawValue
-            for talent in heightFilter {
-                if roleEthnicity == talent.ethnicity?.rawValue {
+            
+            if roleEthnicity == "" || roleEthnicity == nil {
+                for talent in heightFilter {
                     ethnicityFilter.append(talent)
                 }
+            } else {
+                for talent in heightFilter {
+                    if roleEthnicity == talent.ethnicity?.rawValue {
+                        ethnicityFilter.append(talent)
+                    }
+                }
             }
+            
+            //MARK: Filtering out body type requirements
+            let roleBodyType = role.bodyType?.rawValue
+            if roleBodyType == "" || roleBodyType == nil {
+                for talent in ethnicityFilter {
+                    bodyTypeFilter.append(talent)
+                }
+            } else {
+                for talent in ethnicityFilter {
+                    if roleBodyType == talent.bodyType?.rawValue {
+                        bodyTypeFilter.append(talent)
+                    }
+                }
+            }
+            
+            //MARK: Filtering out eye color requirements
+            let roleEyeColor = role.eyeColor?.rawValue
+            if roleEyeColor == "" || roleEyeColor == nil {
+                for talent in bodyTypeFilter {
+                    eyeColorFilter.append(talent)
+                }
+            } else {
+                for talent in bodyTypeFilter {
+                    if roleEyeColor == talent.eyeColor?.rawValue {
+                        eyeColorFilter.append(talent)
+                    }
+                }
+            }
+            
+            //MARK: Filtering out hair color requirements
+            let roleHairColor = role.hairColor?.rawValue
+            if roleHairColor == "" || roleHairColor == nil {
+                for talent in eyeColorFilter {
+                    hairColorFilter.append(talent)
+                }
+            } else {
+                for talent in eyeColorFilter {
+                    if roleHairColor == talent.hairColor?.rawValue {
+                        hairColorFilter.append(talent)
+                    }
+                }
+            }
+            
+            //MARK: Filtering out hair length requirements
+            let roleHairLength = role.hairLength?.rawValue
+            if roleHairLength == "" || roleHairLength == nil {
+                for talent in hairColorFilter {
+                    hairLengthFilter.append(talent)
+                }
+            } else {
+                for talent in hairColorFilter {
+                    if roleHairLength == talent.hairLength?.rawValue {
+                        hairLengthFilter.append(talent)
+                    }
+                }
+            }
+            
+            //MARK: Filtering out hair type requirements - last filter - goes to roleTalentFilter [UserType]
+            let roleHairType = role.hairType?.rawValue
+            if roleHairType == "" || roleHairType == nil {
+                for talent in hairLengthFilter {
+                    self.roleFilteredTalent.append(talent)
+                }
+            } else {
+                for talent in hairLengthFilter {
+                    if roleHairType == talent.hairType?.rawValue {
+                        self.roleFilteredTalent.append(talent)
+                    }
+                }
+            }
+            
+            print(heightFilter.count)
             print(ethnicityFilter.count)
+            print(bodyTypeFilter.count)
+            print(eyeColorFilter.count)
+            print(hairColorFilter.count)
+            print(hairLengthFilter.count)
+            print(self.roleFilteredTalent.count)
             tableView.reloadData()
             
         } else {
