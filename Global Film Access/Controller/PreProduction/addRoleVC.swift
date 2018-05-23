@@ -194,22 +194,41 @@ class addRoleVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         heightMaxInches.text = "\(heightMaxInchesTotal)"
         
         
-        if let ethnicity = roleInfo.ethnicity,
-            let bodyType = roleInfo.bodyType,
-            let eyeColor = roleInfo.eyeColor,
-            let hairColor = roleInfo.hairColor,
-            let hairLength = roleInfo.hairLength,
-            let hairType = roleInfo.hairType
-            
-        {
+        if let ethnicity = roleInfo.ethnicity {
             self.ethnicityLbl.text = ethnicity.rawValue
-            self.bodyTypeLbl.text = bodyType.rawValue
-            self.eyeColorLbl.text = eyeColor.rawValue
-            self.hairColorLbl.text = hairColor.rawValue
-            self.hairLengthLbl.text = hairLength.rawValue
-            self.hairTypeLbl.text = hairType.rawValue
+        } else {
+            self.ethnicityLbl.text = ""
         }
         
+        if let bodyType = roleInfo.bodyType {
+            self.bodyTypeLbl.text = bodyType.rawValue
+        } else {
+            self.bodyTypeLbl.text = ""
+        }
+        
+        if let eyeColor = roleInfo.eyeColor {
+            self.eyeColorLbl.text = eyeColor.rawValue
+        } else {
+            self.eyeColorLbl.text = ""
+        }
+        
+        if let hairColor = roleInfo.hairColor {
+            self.hairColorLbl.text = hairColor.rawValue
+        } else {
+            self.hairColorLbl.text = ""
+        }
+        
+        if let hairLength = roleInfo.hairLength {
+            self.hairLengthLbl.text = hairLength.rawValue
+        } else {
+            self.hairLengthLbl.text = ""
+        }
+        
+        if let hairType = roleInfo.hairType {
+            self.hairTypeLbl.text = hairType.rawValue
+        } else {
+            self.hairTypeLbl.text = ""
+        }
     }
     
     

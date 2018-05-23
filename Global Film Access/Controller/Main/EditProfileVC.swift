@@ -157,39 +157,88 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             }
         }
         
+        self.heightFeet.text = "\(feet)"
+        self.heightInches.text = "\(inches)"
+        self.ageLbl.text = "\(userAge)"
+        self.weight.text = "\(userWeight)"
         
-        if let agentName = currentUser[0].agentName,
-            let agentNumber = currentUser[0].agentNumber,
-            let managerName = currentUser[0].managerName,
-            let managerNumber = currentUser[0].managerNumber,
-            let legalName = currentUser[0].legalName,		
-            let legalNumber = currentUser[0].legalNumber,
-            let ethnicity = currentUser[0].ethnicity,
-            let bodyType = currentUser[0].bodyType,
-            let eyeColor = currentUser[0].eyeColor,
-            let hairColor = currentUser[0].hairColor,
-            let hairLength = currentUser[0].hairLength,
-            let hairType = currentUser[0].hairType
-            
-            {
-            
+        
+        
+        if let agentName = currentUser[0].agentName {
             self.agentNameLbl.text = agentName
-            self.agentNumberLbl.text = agentNumber
-            self.managerNameLbl.text = managerName
-            self.managerNumberLbl.text = managerNumber
-            self.legalNameLbl.text = legalName
-            self.legalNumberLbl.text = legalNumber
-            self.ethnicity.text = ethnicity.rawValue
-            self.bodyType.text = bodyType.rawValue
-            self.heightFeet.text = "\(feet)"
-            self.heightInches.text = "\(inches)"
-            self.ageLbl.text = "\(userAge)"
-            self.weight.text = "\(userWeight)"
-            self.eyeColor.text = eyeColor.rawValue
-            self.hairColor.text = hairColor.rawValue
-            self.hairLength.text = hairLength.rawValue
-            self.hairType.text = hairType.rawValue
+        } else {
+            self.agentNameLbl.text = ""
         }
+        
+        if let agentNumber = currentUser[0].agentNumber {
+            self.agentNumberLbl.text = agentNumber
+        } else {
+            self.agentNumberLbl.text = ""
+        }
+        
+        if let managerName = currentUser[0].managerName {
+            self.managerNameLbl.text = managerName
+        } else {
+            self.managerNameLbl.text = ""
+        }
+        
+        if let managerNumber = currentUser[0].managerNumber {
+            self.managerNumberLbl.text = managerNumber
+        } else {
+            self.managerNumberLbl.text = ""
+        }
+        
+        if let legalName = currentUser[0].legalName{
+            self.legalNameLbl.text = legalName
+        } else {
+            self.legalNameLbl.text = ""
+        }
+        
+        if let legalNumber = currentUser[0].legalNumber {
+            self.legalNumberLbl.text = legalNumber
+        } else {
+            self.legalNumberLbl.text = ""
+        }
+        
+        if let ethnicity = currentUser[0].ethnicity {
+            self.ethnicity.text = ethnicity.rawValue
+        } else {
+            self.ethnicity.text = ""
+        }
+        
+        if let bodyType = currentUser[0].bodyType {
+            self.bodyType.text = bodyType.rawValue
+        } else {
+            self.bodyType.text = ""
+        }
+        
+        if let eyeColor = currentUser[0].eyeColor {
+            self.eyeColor.text = eyeColor.rawValue
+        } else {
+            self.eyeColor.text = ""
+        }
+        
+        if let hairColor = currentUser[0].hairColor {
+            self.hairColor.text = hairColor.rawValue
+        } else {
+            self.hairColor.text = ""
+        }
+        
+        if let hairLength = currentUser[0].hairLength {
+            self.hairLength.text = hairLength.rawValue
+        } else {
+            self.hairLength.text = ""
+        }
+        
+        if let hairType = currentUser[0].hairType {
+            self.hairType.text = hairType.rawValue
+        } else {
+            self.hairType.text = ""
+        }
+        
+            
+
+
     }
     
     
