@@ -9,12 +9,13 @@
 import Foundation
 import Firebase
 
-enum CreatePositionError: String, Error {
-    case invalidPositionName = "Please provide a valid project"
+enum CreateRoleError: String, Error {
+    case invalidRoleName = "Please provide a valid project"
+    case invalidRoleType = "Please provide a type for this role."
+    case invalidShortDescription = "Please provide a short description for this role."
+    case invalidDetailDescription = "Please provide a detailed description for this role."
     case invalidProjectName = "Please provide a valid position name."
     case duplicatePosition = "You have already created a position with this name. Please create a different position."
-    case invalidRoleType = "Please provide a valid Role Type."
-    case invalidShortDescription = "Please provide a short description of the role."
     case invalidDaysNeeded = "Please provide the amount of days this cast member will be needed."
     case invalidDailyRate = "Please provide a valid Daily Rate for this cast member."
     case invalidMinAge = "Please provide a valid minimum age requirement."
@@ -28,15 +29,20 @@ enum CreatePositionError: String, Error {
     case invalidHairType = "Please provide a valid hair type."
 }
 
-enum FIRPositionData: String {
-    case positionName = "positionName"
+enum FIRRoleData: String {
+    case roleName = "roleName"
     case talentName = "talentName"
+    case roleType = "roleType"
+    case shortDescription = "shortDescription"
+    case detailDescription = "detailDescription"
     case talentRating = "talentRating"
     case talentAccepted = "talentAccepted"
     case heightMin = "heightMin"
     case heightMax = "heightMax"
     case ageMin = "ageMin"
     case ageMax = "ageMax"
+    case daysNeeded = "daysNeeded"
+    case dailyRate = "dailyRate"
     case bodyType = "bodyType"
     case ethnicity = "ethnicity"
     case eyeColor = "eyeColor"
@@ -105,8 +111,8 @@ enum RoleHairType: String {
 //MARK: Pre-Production
 
 protocol Position {
-    var positionName: String { get set }
-    static var createdPositions: [String] { get set }
+    var roleName: String { get set }
+    static var createdRoles: [String] { get set }
     static var REF_PRE_PRODUCTION_CASTING_POSITION: FIRDatabaseReference { get }
     
 }
@@ -119,12 +125,17 @@ enum FIRDataCast: String {
 
 class Cast: Position {
     
-    var positionName: String = ""
-    static var createdPositions = [String]()
-    var heightMin: String
-    var heightMax: String
-    var ageMin: String
-    var ageMax: String
+    var roleName: String
+    static var createdRoles = [String]()
+    var roleType: String
+    var shortDescription: String
+    var detailDescription: String
+    var heightMin: String?
+    var heightMax: String?
+    var ageMin: String?
+    var ageMax: String?
+    var daysNeeded: String?
+    var dailyRate: String?
     var bodyType: RoleBodyType?
     var ethnicity: RoleEthnicity?
     var eyeColor: RoleEyeColor?
@@ -134,119 +145,275 @@ class Cast: Position {
     
     static var REF_PRE_PRODUCTION_CASTING_POSITION: FIRDatabaseReference = DB_BASE.child("preProductionCasting")
     
-    init(heightMin: String, heightMax: String, ageMin: String, ageMax: String, bodyType: RoleBodyType, ethnicity: RoleEthnicity, eyeColor: RoleEyeColor, hairColor: RoleHairColor, hairLength: RoleHairLength, hairType: RoleHairType) {
-        self.heightMin = heightMin
-        self.heightMax = heightMax
-        self.ageMin = ageMin
-        self.ageMax = ageMax
-        self.bodyType = bodyType
-        self.ethnicity = ethnicity
-        self.eyeColor = eyeColor
-        self.hairColor = hairColor
-        self.hairLength = hairLength
-        self.hairType = hairType
+    init(roleName: String, roleType: String, shortDescription: String, detailDescription: String) {
+        self.roleName = roleName
+        self.roleType = roleType
+        self.shortDescription = shortDescription
+        self.detailDescription = detailDescription
     }
     
     //init for positions
-    init(positionName: String, positionData: Dictionary <String, String>) {
-        self.positionName = positionName
+    init(roleName: String, roleData: Dictionary <String, String>) {
+        self.roleName = roleName
         
-        if let positionName = positionData[FIRPositionData.positionName.rawValue] {
-            self.positionName = positionName
+        if let roleName = roleData[FIRRoleData.roleName.rawValue] {
+            self.roleName = roleName
         } else {
-            self.positionName = ""
+            self.roleName = ""
         }
         
-        if let heightMin = positionData[FIRPositionData.heightMin.rawValue] {
+        if let roleType = roleData[FIRRoleData.roleType.rawValue] {
+            self.roleType = roleType
+        } else {
+            self.roleType = ""
+        }
+        
+        if let shortDescription = roleData[FIRRoleData.shortDescription.rawValue] {
+            self.shortDescription = shortDescription
+        } else {
+            self.shortDescription = ""
+        }
+        
+        if let detailDescription = roleData[FIRRoleData.detailDescription.rawValue] {
+            self.detailDescription = detailDescription
+        } else {
+            self.detailDescription = ""
+        }
+        
+        if let daysNeeded = roleData[FIRRoleData.daysNeeded.rawValue] {
+            self.daysNeeded = daysNeeded
+        } else {
+            self.daysNeeded = ""
+        }
+        
+        if let dailyRate = roleData[FIRRoleData.dailyRate.rawValue] {
+            self.dailyRate = dailyRate
+        } else {
+            self.dailyRate = ""
+        }
+        
+        if let heightMin = roleData[FIRRoleData.heightMin.rawValue] {
             self.heightMin = heightMin
         } else {
             self.heightMin = ""
         }
         
-        if let heightMax = positionData[FIRPositionData.heightMax.rawValue] {
+        if let heightMax = roleData[FIRRoleData.heightMax.rawValue] {
             self.heightMax = heightMax
         } else {
             self.heightMax = ""
         }
         
-        if let ageMin = positionData[FIRPositionData.ageMin.rawValue] {
+        if let ageMin = roleData[FIRRoleData.ageMin.rawValue] {
             self.ageMin = ageMin
         } else {
             self.ageMin = ""
         }
         
-        if let ageMax = positionData[FIRPositionData.ageMax.rawValue] {
+        if let ageMax = roleData[FIRRoleData.ageMax.rawValue] {
             self.ageMax = ageMax
         } else {
             self.ageMax = ""
         }
         
-        if let bodyType = positionData[FIRPositionData.bodyType.rawValue] {
+        if let bodyType = roleData[FIRRoleData.bodyType.rawValue] {
             self.bodyType = RoleBodyType(rawValue: bodyType)
         } else {
             self.bodyType = RoleBodyType(rawValue: "")
         }
         
-        if let ethnicity = positionData[FIRPositionData.ethnicity.rawValue] {
+        if let ethnicity = roleData[FIRRoleData.ethnicity.rawValue] {
             self.ethnicity = RoleEthnicity(rawValue: ethnicity)
         } else {
             self.ethnicity = RoleEthnicity(rawValue: "")
         }
         
-        if let eyeColor = positionData[FIRPositionData.eyeColor.rawValue] {
+        if let eyeColor = roleData[FIRRoleData.eyeColor.rawValue] {
             self.eyeColor = RoleEyeColor(rawValue: eyeColor)
         } else {
             self.eyeColor = RoleEyeColor(rawValue: "")
         }
 
-        if let hairColor = positionData[FIRPositionData.hairColor.rawValue] {
+        if let hairColor = roleData[FIRRoleData.hairColor.rawValue] {
             self.hairColor = RoleHairColor(rawValue: hairColor)
         } else {
             self.hairColor = RoleHairColor(rawValue: "")
         }
         
-        if let hairLength = positionData[FIRPositionData.hairLength.rawValue] {
+        if let hairLength = roleData[FIRRoleData.hairLength.rawValue] {
             self.hairLength = RoleHairLength(rawValue: hairLength)
         } else {
             self.hairLength = RoleHairLength(rawValue: "")
         }
         
-        if let hairType = positionData[FIRPositionData.hairType.rawValue] {
+        if let hairType = roleData[FIRRoleData.hairType.rawValue] {
             self.hairType = RoleHairType(rawValue: hairType)
         } else {
             self.hairType = RoleHairType(rawValue: "")
         }
     }
     
-    func createPosition(projectID: String, positionName: String, heightMin: String, heightMax: String, ageMin: String, ageMax: String, bodyType: RoleBodyType, ethnicity: RoleEthnicity, eyeColor: RoleEyeColor, hairColor: RoleHairColor, hairLength: RoleHairLength, hairType: RoleHairType) throws {
+    func createRole(projectID: String, role: Cast, daysNeeded: String, dailyRate: String, ageMin: String, ageMax: String, heightMinFeet: String, heightMinInches: String, heightMaxFeet: String, heightMaxInches: String,bodyType: BodyType.RawValue, eyeColor: EyeColor.RawValue, hairColor: HairColor.RawValue, hairLength: HairLength.RawValue, hairType: HairType.RawValue, ethnicity: Ethnicity.RawValue, update: Bool) throws {
         guard projectID != "" else {
-            throw CreatePositionError.invalidProjectName
+            throw CreateRoleError.invalidProjectName
         }
-        guard positionName != "" else {
-            throw CreatePositionError.invalidPositionName
-        }
-        
-        if Cast.createdPositions.contains(positionName.lowercased()) {
-            throw CreatePositionError.duplicatePosition
+        guard role.roleName != "" else {
+            throw CreateRoleError.invalidRoleName
         }
         
+        guard role.roleType != "" else {
+            throw CreateRoleError.invalidRoleType
+        }
+        
+        guard role.shortDescription != "" else {
+            throw CreateRoleError.invalidShortDescription
+        }
+        
+        guard role.detailDescription != "" else {
+            throw CreateRoleError.invalidDetailDescription
+        }
+        
+        if update {
+            print("updating role...")
+        } else {
+            if Cast.createdRoles.contains(roleName.lowercased()) {
+                throw CreateRoleError.duplicatePosition
+            }
+        }
         
         
-        let newPosition: Dictionary <String, String> = [
-            FIRPositionData.positionName.rawValue: positionName,
-            FIRPositionData.heightMin.rawValue: heightMin,
-            FIRPositionData.heightMax.rawValue: heightMax,
-            FIRPositionData.ageMin.rawValue: ageMin,
-            FIRPositionData.ageMax.rawValue: ageMax,
-            FIRPositionData.bodyType.rawValue: bodyType.rawValue,
-            FIRPositionData.ethnicity.rawValue: ethnicity.rawValue,
-            FIRPositionData.eyeColor.rawValue: eyeColor.rawValue,
-            FIRPositionData.hairColor.rawValue: hairColor.rawValue,
-            FIRPositionData.hairLength.rawValue: hairLength.rawValue,
-            FIRPositionData.hairType.rawValue: hairType.rawValue
+        
+        var daysNeededInt = 0
+        if daysNeeded == "" {
+            print("Days needed not entered")
+        } else {
+            if let daysNeededConverted = Int(daysNeeded) {
+                daysNeededInt = daysNeededConverted
+            } else {
+                throw CreateRoleError.invalidDaysNeeded
+            }
+        }
+        
+        var dailyRateInt = 0
+        if dailyRate == "" {
+            print("Daily rate not entered")
+        } else {
+            if let dailyRateConverted = Int(dailyRate) {
+                dailyRateInt = dailyRateConverted
+            } else {
+                throw CreateRoleError.invalidDailyRate
+            }
+        }
+        
+        var ageMinInt = 0
+        if ageMin == "" {
+            print("Age min not entered")
+        } else {
+            if let ageMinConverted = Int(ageMin) {
+                ageMinInt = ageMinConverted
+            } else {
+                throw CreateRoleError.invalidMinAge
+            }
+        }
+        
+        var ageMaxInt = 0
+        if ageMax == "" {
+            print("Age min not entered")
+        } else {
+            if let ageMaxConverted = Int(ageMax) {
+                ageMaxInt = ageMaxConverted
+            } else {
+                throw CreateRoleError.invalidMaxAge
+            }
+        }
+        
+        //Convert Minimum Height
+        var heightMinFeetInt = 0
+        var heightMinInchesInt = 0
+        if heightMinFeet == "" {
+            print("height min not entered")
+        } else {
+            if let heightMinFeetConverted = Int(heightMinFeet) {
+                if heightMinFeetConverted < 12 && heightMinFeetConverted >= 0 {
+                    heightMinFeetInt = heightMinFeetConverted
+                } else {
+                    throw CreateRoleError.invalidMinHeight
+                }
+            } else {
+                throw CreateRoleError.invalidMinHeight
+            }
+        }
+        
+        if heightMinInches == "" {
+            print("Did not enter Inches Min")
+        } else {
+            if let heightMinInchesConverted = Int(heightMinInches) {
+                if heightMinInchesConverted < 12 && heightMinInchesConverted >= 0 {
+                    heightMinInchesInt = heightMinInchesConverted
+                } else {
+                    throw CreateRoleError.invalidMinHeight
+                }
+            } else {
+                throw CreateRoleError.invalidMinHeight
+            }
+        }
+
+        let heightMinTotal = (heightMinFeetInt * 12) + heightMinInchesInt
+
+            //Convert Maximum Height
+            var heightMaxFeetInt = 0
+            var heightMaxInchesInt = 0
+        
+        if heightMaxFeet == "" {
+            print("height min not entered")
+        } else {
+            if let heightMaxFeetConverted = Int(heightMaxFeet) {
+                if heightMaxFeetConverted < 12 && heightMaxFeetConverted >= 0 {
+                    heightMaxFeetInt = heightMaxFeetConverted
+                } else {
+                    throw CreateRoleError.invalidMaxHeight
+                }
+            } else {
+                throw CreateRoleError.invalidMaxHeight
+            }
+        }
+        
+        if heightMaxInches == "" {
+            print("Did not enter Inches Min")
+        } else {
+            if let heightMaxInchesConverted = Int(heightMaxInches) {
+                if heightMaxInchesConverted < 12 && heightMaxInchesConverted >= 0 {
+                    heightMaxInchesInt = heightMaxInchesConverted
+                } else {
+                    throw CreateRoleError.invalidMaxHeight
+                }
+            } else {
+                throw CreateRoleError.invalidMaxHeight
+            }
+        }
+        
+            let heightMaxTotal = (heightMaxFeetInt * 12) + heightMaxInchesInt
+        
+        let newRole: Dictionary <String, String> = [
+            FIRRoleData.roleName.rawValue: role.roleName,
+            FIRRoleData.roleType.rawValue: role.roleType,
+            FIRRoleData.shortDescription.rawValue: role.shortDescription,
+            FIRRoleData.detailDescription.rawValue: role.detailDescription,
+            FIRRoleData.daysNeeded.rawValue: "\(daysNeededInt)",
+            FIRRoleData.dailyRate.rawValue: "\(dailyRateInt)",
+            FIRRoleData.heightMin.rawValue: "\(heightMinTotal)",
+            FIRRoleData.heightMax.rawValue: "\(heightMaxTotal)",
+            FIRRoleData.ageMin.rawValue: "\(ageMinInt)",
+            FIRRoleData.ageMax.rawValue: "\(ageMaxInt)",
+            FIRRoleData.bodyType.rawValue: bodyType,
+            FIRRoleData.ethnicity.rawValue: ethnicity,
+            FIRRoleData.eyeColor.rawValue: eyeColor,
+            FIRRoleData.hairColor.rawValue: hairColor,
+            FIRRoleData.hairLength.rawValue: hairLength,
+            FIRRoleData.hairType.rawValue: hairType
         ]
         
-        Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child(FIRDataCast.cast.rawValue).child(positionName).updateChildValues(newPosition)
+        Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child(FIRDataCast.cast.rawValue).child(roleName).updateChildValues(newRole)
         
     }
     
@@ -269,15 +436,15 @@ class Prospect {
     init(prospectID: String, prospectData: Dictionary <String, String>) {
         self.prospectID = prospectID
         
-        if let talentName = prospectData[FIRPositionData.talentName.rawValue] {
+        if let talentName = prospectData[FIRRoleData.talentName.rawValue] {
             self.talentName = talentName
         }
         
-        if let talentRating = prospectData[FIRPositionData.talentRating.rawValue] {
+        if let talentRating = prospectData[FIRRoleData.talentRating.rawValue] {
             self.talentRating = talentRating
         }
         
-        if let talentAccepted = prospectData[FIRPositionData.talentAccepted.rawValue] {
+        if let talentAccepted = prospectData[FIRRoleData.talentAccepted.rawValue] {
             self.talentedAccepted = talentAccepted
         }
         
@@ -285,9 +452,9 @@ class Prospect {
     
     func createProspect(prospect: Prospect, projectID: String, position: String, userID: String) {
         let prospect: Dictionary <String, String> = [
-            FIRPositionData.talentName.rawValue: prospect.talentName,
-            FIRPositionData.talentRating.rawValue: prospect.talentRating,
-            FIRPositionData.talentAccepted.rawValue: prospect.talentedAccepted
+            FIRRoleData.talentName.rawValue: prospect.talentName,
+            FIRRoleData.talentRating.rawValue: prospect.talentRating,
+            FIRRoleData.talentAccepted.rawValue: prospect.talentedAccepted
         ]
         
         Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child("prospect").child(position).child(userID).updateChildValues(prospect)
@@ -295,7 +462,8 @@ class Prospect {
     
     
     
-}
+    }
+    
 
 
 

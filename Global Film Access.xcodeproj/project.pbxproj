@@ -29,6 +29,8 @@
 		1444D5F91FD6414200A50CFF /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1444D5F81FD6414200A50CFF /* CustomView.swift */; };
 		1446BEF02089675A00BC271B /* assignAuditionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1446BEEF2089675A00BC271B /* assignAuditionVC.swift */; };
 		1458F08820B3633400D6FE82 /* addRoleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F08720B3633400D6FE82 /* addRoleVC.swift */; };
+		1458F08A20B5B96600D6FE82 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F08920B5B96600D6FE82 /* CustomTextView.swift */; };
+		1458F08C20B5C18000D6FE82 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1458F08B20B5C18000D6FE82 /* CustomSearchBar.swift */; };
 		148E23941FF91AF8004F7D1D /* USStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23931FF91AF8004F7D1D /* USStates.swift */; };
 		148E23961FFA833C004F7D1D /* FireBaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23951FFA833C004F7D1D /* FireBaseAuth.swift */; };
 		148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */; };
@@ -82,6 +84,8 @@
 		1444D5F81FD6414200A50CFF /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		1446BEEF2089675A00BC271B /* assignAuditionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = assignAuditionVC.swift; sourceTree = "<group>"; };
 		1458F08720B3633400D6FE82 /* addRoleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRoleVC.swift; sourceTree = "<group>"; };
+		1458F08920B5B96600D6FE82 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		1458F08B20B5C18000D6FE82 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		148E23931FF91AF8004F7D1D /* USStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USStates.swift; sourceTree = "<group>"; };
 		148E23951FFA833C004F7D1D /* FireBaseAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuth.swift; sourceTree = "<group>"; };
 		148E23971FFAC72D004F7D1D /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
@@ -196,11 +200,11 @@
 				1444D5F41FD45B9900A50CFF /* ProjectsCell.swift */,
 				1433E5981FD8D11400925648 /* CreateProjectVC.swift */,
 				14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */,
-				14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */,
 				1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */,
 				14C9489F2030F97200A97237 /* EditProfileVC.swift */,
 				14058A63206935E1008E8347 /* EditProjectVC.swift */,
 				149CFDDD2076F72C00E8D8AF /* EditProjectCell.swift */,
+				14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */,
 				14A892EA204CC730000C15D6 /* ProfileVC.swift */,
 				14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */,
 				14C900B0205B1DA6004DCFF0 /* DemoReelVC.swift */,
@@ -219,6 +223,8 @@
 				1433E5961FD8C8DD00925648 /* CommonTextField.swift */,
 				1433E59C1FD8E86200925648 /* CircleButton.swift */,
 				148E23991FFAD022004F7D1D /* WhiteBottomBorder.swift */,
+				1458F08920B5B96600D6FE82 /* CustomTextView.swift */,
+				1458F08B20B5C18000D6FE82 /* CustomSearchBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -413,6 +419,7 @@
 				14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */,
 				1403ED17200D4D2700A5C58C /* ProjectDetailVC.swift in Sources */,
 				14392FAB1FC516CE00993BB7 /* AppDelegate.swift in Sources */,
+				1458F08A20B5B96600D6FE82 /* CustomTextView.swift in Sources */,
 				14A948D42023EF910061881D /* CastPositionsVC.swift in Sources */,
 				14C8AF021FCCEC64005AACA2 /* DataService.swift in Sources */,
 				14C8AEF91FCAF674005AACA2 /* Constants.swift in Sources */,
@@ -432,6 +439,7 @@
 				1458F08820B3633400D6FE82 /* addRoleVC.swift in Sources */,
 				14C9487C202B832600A97237 /* SearchTalentVC.swift in Sources */,
 				14C948A02030F97200A97237 /* EditProfileVC.swift in Sources */,
+				1458F08C20B5C18000D6FE82 /* CustomSearchBar.swift in Sources */,
 				14C8AEFF1FCB05FC005AACA2 /* RndButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

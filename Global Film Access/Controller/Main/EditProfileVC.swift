@@ -48,10 +48,12 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var hairLength: CommonTextField!
     @IBOutlet weak var hairType: CommonTextField!
     @IBOutlet weak var ethnicity: CommonTextField!
+    @IBOutlet weak var ageLbl: CommonTextField!
     
     //Variable to convert labels in convertText function
     var heightFeetInt: Int = 0
     var heightInchesInt: Int = 0
+    var ageInt: Int = 0
     var weightInt: Int = 0
     var bodyTypeEnum = ""
     var eyeColorEnum = ""
@@ -133,11 +135,19 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         var feet = 0
         var inches = 0
+        var userAge = 0
         var userWeight = 0
+
         if let height = currentUser[0].height {
             if let heightInt = Int(height) {
                 feet = heightInt/12
                 inches = heightInt - ((heightInt/12) * 12)
+            }
+        }
+        
+        if let age = currentUser[0].age {
+            if let ageInt = Int(age) {
+                userAge = ageInt
             }
         }
         
@@ -173,6 +183,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             self.bodyType.text = bodyType.rawValue
             self.heightFeet.text = "\(feet)"
             self.heightInches.text = "\(inches)"
+            self.ageLbl.text = "\(userAge)"
             self.weight.text = "\(userWeight)"
             self.eyeColor.text = eyeColor.rawValue
             self.hairColor.text = hairColor.rawValue
@@ -323,7 +334,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             
             do {
                 print("send to DB height: \(self.heightFeetInt)")
-                try user.updateProfileInfo(user: user, userImage: userImage, heightFeet: heightFeetInt, heightInches: heightInchesInt, weight: weightInt, bodyType: bodyTypeEnum, eyeColor: eyeColorEnum, hairColor: hairColorEnum, hairLength: hairLengthEnum, hairType: hairTypeEnum, ethnicity: ethnicityEnum, userAgentName: agentName, userAgentNumber: agentNumber, userManagerName: managerName, userManagerNumber: managerNumber, userLegalName: legalName, userLegalNumber: legalNumber, userImdbRating: imdbRating, imageChanged: imageChanged)
+                try user.updateProfileInfo(user: user, userImage: userImage, heightFeet: heightFeetInt, heightInches: heightInchesInt, age: ageInt, weight: weightInt, bodyType: bodyTypeEnum, eyeColor: eyeColorEnum, hairColor: hairColorEnum, hairLength: hairLengthEnum, hairType: hairTypeEnum, ethnicity: ethnicityEnum, userAgentName: agentName, userAgentNumber: agentNumber, userManagerName: managerName, userManagerNumber: managerNumber, userLegalName: legalName, userLegalNumber: legalNumber, userImdbRating: imdbRating, imageChanged: imageChanged)
                 
                 if imageChanged {
                     if let userProfileImage = userDetails[0].profileImage {
@@ -364,6 +375,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         if let heightFeetInput = self.heightFeet.text {
             if let heightFeet = Int(heightFeetInput) {
                 self.heightFeetInt = heightFeet
+                print("Feet: \(self.heightFeetInt)")
             } else {
                 print("Not a number")
             }
@@ -374,11 +386,21 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         if let heightInchesInput = self.heightInches.text {
             if let heightInches = Int(heightInchesInput) {
                 self.heightInchesInt = heightInches
+                print("Inches: \(self.heightInchesInt)")
             } else {
                 print("Not a number")
             }
         } else {
             print("Nothing entered")
+        }
+        
+        //Convert Age
+        if let ageInput = self.ageLbl.text {
+            if let age = Int(ageInput) {
+                self.ageInt = age
+            } else {
+                print("Not a number")
+            }
         }
         //Convert Weight
         if let weightInput = self.weight.text {

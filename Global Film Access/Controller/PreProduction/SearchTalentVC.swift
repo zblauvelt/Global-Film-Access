@@ -10,10 +10,13 @@ import UIKit
 import Firebase
 
 class SearchTalentVC: UITableViewController, UISearchBarDelegate {
-
+    
+    var searchingRole = [Cast]()
+    var roleFilteredTalent = [UserType]()
     var unfilteredTalent = [UserType]()
     var filteredTalent = [UserType]()
     var isSearching = false
+    var isFiltered = false
     static var userProfileImageCache: NSCache<NSString, UIImage> = NSCache()
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,6 +26,7 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
         getTalentProfiles()
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.setImage(UIImage(named: "unfiltered"), for: .bookmark, state: .normal)
         
     }
 
@@ -39,8 +43,12 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
         
         if isSearching {
             return filteredTalent.count
+        } else if isFiltered {
+            return roleFilteredTalent.count
+        } else {
+            return unfilteredTalent.count
         }
-        return unfilteredTalent.count
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,6 +93,108 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
             tableView.reloadData()
         }
     }
+    
+    //MARK: Filter throught role needs
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        if isFiltered == false {
+            //Filters are in order of how they are checked. Every talent that matches age will then be checked by height and so on.
+            var ageFilter = [UserType]()
+            var heightFilter = [UserType]()
+            var ethnicityFilter = [UserType]()
+            searchBar.setImage(UIImage(named: "filtered"), for: .bookmark, state: .normal)
+            isFiltered = true
+            print("Filtering....")
+            let role = searchingRole[0]
+            //MARK: Filtering out age limit
+            let roleAgeMin = convertStringToInt(string: role.ageMin)
+            let roleAgeMax = convertStringToInt(string: role.ageMax)
+            //MARK: If only a minimum age requirement
+            if roleAgeMin > 0 && roleAgeMax <= 0 {
+                for talent in unfilteredTalent {
+                    let talentAge = convertStringToInt(string: talent.age)
+                    if talentAge >= roleAgeMin {
+                        ageFilter.append(talent)
+                    }
+                }
+            } else if roleAgeMin <= 0 && roleAgeMax > 0 {
+                for talent in unfilteredTalent {
+                    let talentAge = convertStringToInt(string: talent.age)
+                    if talentAge <= roleAgeMax {
+                        ageFilter.append(talent)
+                    }
+                }
+            } else if roleAgeMin > 0 && roleAgeMax > 0 {
+                for talent in unfilteredTalent {
+                    let talentAge = convertStringToInt(string: talent.age)
+                    if talentAge >= roleAgeMin && talentAge <= roleAgeMax {
+                        ageFilter.append(talent)
+                    }
+                }
+            }  else {
+                for talent in unfilteredTalent {
+                    ageFilter.append(talent)
+                }
+            }
+            
+            //MARK: Filtering out height requirement from age filter
+            let roleHeightMin = convertStringToInt(string: role.heightMin)
+            let roleHeightMax = convertStringToInt(string: role.heightMax)
+            
+            if roleHeightMin > 0 && roleAgeMax <= 0 {
+                for talent in ageFilter {
+                    let talentHeight = convertStringToInt(string: talent.height)
+                    if talentHeight >= roleHeightMin {
+                        heightFilter.append(talent)
+                    }
+                }
+            } else if roleHeightMin <= 0 && roleHeightMax > 0 {
+                for talent in ageFilter {
+                    let talentHeight = convertStringToInt(string: talent.height)
+                    if talentHeight <= roleHeightMax {
+                        heightFilter.append(talent)
+                    }
+                }
+            } else if roleHeightMin > 0 && roleHeightMax > 0 {
+                for talent in ageFilter {
+                    let talentHeight = convertStringToInt(string: talent.height)
+                    if talentHeight >= roleHeightMin && talentHeight <= roleHeightMax {
+                        heightFilter.append(talent)
+                    }
+                }
+            } else {
+                for talent in ageFilter {
+                    heightFilter.append(talent)
+                }
+            }
+            //MARK: Filtering out ethnicity requirements
+            let roleEthnicity = role.ethnicity?.rawValue
+            for talent in heightFilter {
+                if roleEthnicity == talent.ethnicity?.rawValue {
+                    ethnicityFilter.append(talent)
+                }
+            }
+            print(ethnicityFilter.count)
+            tableView.reloadData()
+            
+        } else {
+            searchBar.setImage(UIImage(named: "unfiltered"), for: .bookmark, state: .normal)
+            isFiltered = false
+            self.roleFilteredTalent.removeAll()
+            print("Removing filter...")
+            tableView.reloadData()
+        }
+    }
+    
+    //Convert optional string to int
+    func convertStringToInt(string: String?) -> Int {
+        var int = 0
+        if let str = string {
+            if let stringToInt = Int(str) {
+                int = stringToInt
+            }
+        }
+        return int
+    }
 
     //Get all users for Search
     func getTalentProfiles() {
@@ -110,6 +220,8 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
     func toggleTalentArrays() -> [UserType] {
         if isSearching {
             return filteredTalent
+        } else if isFiltered {
+            return roleFilteredTalent
         } else {
             return unfilteredTalent
         }
