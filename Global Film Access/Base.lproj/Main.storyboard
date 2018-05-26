@@ -2412,30 +2412,43 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="UZQ-Js-ydE">
-                                            <rect key="frame" x="16" y="11" width="85" height="78"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radioUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="yy2-Sr-VOb">
+                                            <rect key="frame" x="8" y="39" width="21" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="85" id="pOh-WC-Hpi"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="2xM-IO-M5i"/>
+                                                <constraint firstAttribute="width" constant="21" id="Sr0-ed-WCx"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zack Blauvelt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rN-Bb-si5">
-                                            <rect key="frame" x="116" y="35" width="188" height="31"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G3Z-dA-ymD">
+                                            <rect key="frame" x="39" y="7" width="273" height="85"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="UZQ-Js-ydE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="85" id="pOh-WC-Hpi"/>
+                                                        <constraint firstAttribute="height" constant="85" id="rY8-lS-iv1"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zack Blauvelt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rN-Bb-si5">
+                                                    <rect key="frame" x="95" y="0.0" width="178" height="85"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="UZQ-Js-ydE" firstAttribute="leading" secondItem="9P8-IN-NrU" secondAttribute="leadingMargin" id="bAh-8N-4dg"/>
-                                        <constraint firstItem="UZQ-Js-ydE" firstAttribute="top" secondItem="9P8-IN-NrU" secondAttribute="topMargin" id="fDE-mw-mq6"/>
-                                        <constraint firstItem="1rN-Bb-si5" firstAttribute="leading" secondItem="UZQ-Js-ydE" secondAttribute="trailing" constant="15" id="hPC-jI-CSi"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="UZQ-Js-ydE" secondAttribute="bottom" id="kVW-gG-IJa"/>
-                                        <constraint firstItem="1rN-Bb-si5" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="rpE-yO-vcG"/>
-                                        <constraint firstItem="1rN-Bb-si5" firstAttribute="trailing" secondItem="9P8-IN-NrU" secondAttribute="trailingMargin" id="t82-8h-4ui"/>
+                                        <constraint firstItem="yy2-Sr-VOb" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="6VH-lw-5L2"/>
+                                        <constraint firstItem="G3Z-dA-ymD" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="ZYU-Px-gEU"/>
+                                        <constraint firstItem="yy2-Sr-VOb" firstAttribute="leading" secondItem="9P8-IN-NrU" secondAttribute="leading" constant="8" id="nbQ-mY-v59"/>
+                                        <constraint firstAttribute="trailing" secondItem="G3Z-dA-ymD" secondAttribute="trailing" constant="8" id="prr-yv-y3P"/>
+                                        <constraint firstItem="G3Z-dA-ymD" firstAttribute="leading" secondItem="yy2-Sr-VOb" secondAttribute="trailing" constant="10" id="z63-UV-fH6"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="radioButton" destination="yy2-Sr-VOb" id="2Hm-aU-SnV"/>
                                     <outlet property="talentUserName" destination="1rN-Bb-si5" id="vTp-ds-8d9"/>
                                     <outlet property="userProfileImage" destination="UZQ-Js-ydE" id="BjI-px-rd1"/>
                                     <segue destination="9Ru-sO-W0a" kind="show" identifier="searchToProfile" id="3RE-Wb-SVU"/>
@@ -2447,6 +2460,9 @@
                             <outlet property="delegate" destination="x71-JX-PEA" id="G77-m4-fxw"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Search" id="jwc-h1-zZV">
+                        <barButtonItem key="rightBarButtonItem" title="Select" id="kQp-ef-ybm"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="kP7-3W-o2e" id="2xW-sf-lfc"/>
                     </connections>
@@ -3876,6 +3892,7 @@
         <image name="clapperboard" width="56" height="64"/>
         <image name="email" width="33" height="33"/>
         <image name="password" width="31" height="31"/>
+        <image name="radioUnselected" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ozr-ac-8g7"/>

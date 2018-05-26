@@ -28,6 +28,7 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
         searchBar.returnKeyType = UIReturnKeyType.done
         searchBar.setImage(UIImage(named: "unfiltered"), for: .bookmark, state: .normal)
         
+        
     }
 
 

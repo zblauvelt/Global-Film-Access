@@ -44,6 +44,7 @@ enum FIRUserData: String {
     case videoImageURL = "videoImageURL"
     case movieName = "movieName"
     case movieYear = "movieYear"
+    case searchSelected = "searchSelected"
 }
 
 enum CreateUserError: String, Error {
@@ -144,6 +145,11 @@ enum HairType: String {
     case curly = "Curly"
 }
 
+enum SearchSelected: String {
+    case yes = "YES"
+    case no = "NO"
+}
+
 class UserType: User {
     
     var firstName: String
@@ -170,6 +176,7 @@ class UserType: User {
     var legalName: String?
     var legalNumber: String?
     var imdbRating: String?
+    var searchSelected: SearchSelected?
     
     //Firebase database references
     static var REF_USERS = DB_BASE.child("users").child("allUsers")
@@ -322,6 +329,12 @@ class UserType: User {
             self.legalNumber = legalNumber
         } else {
             self.legalNumber = "(xxx) xxx-xxxx"
+        }
+        
+        if let searchSelected = userData[FIRUserData.searchSelected.rawValue] {
+            self.searchSelected = SearchSelected(rawValue: searchSelected)
+        } else {
+            self.searchSelected = SearchSelected(rawValue: SearchSelected.no.rawValue)
         }
         
         if let imdbRating = userData[FIRUserData.imdbRating.rawValue] {
