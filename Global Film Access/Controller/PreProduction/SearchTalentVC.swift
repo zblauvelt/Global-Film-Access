@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SearchTalentVC: UITableViewController, SearchCellDelegate {
+class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
 
     var searchingRole = [Cast]()
     var unfilteredTalent = [UserType]()
@@ -17,6 +17,7 @@ class SearchTalentVC: UITableViewController, SearchCellDelegate {
     var selectedTalent = [UserType]()
     var matchingTalentUserKeys = [String]()
     var isFiltered = false
+    var prospectRef: FIRDatabaseReference!
     static var userProfileImageCache: NSCache<NSString, UIImage> = NSCache()
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -86,42 +87,39 @@ class SearchTalentVC: UITableViewController, SearchCellDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let talent: UserType
-        if isSearching() {
-            talent = self.filteredTalent[indexPath.row]
-        } else {
-            talent = self.unfilteredTalent[indexPath.row]
-        }
         
         let cellIdentifier = "userSearchCell"
-        
-        // Configure the cell...
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SearchTalentCell {
+            var talent: UserType
+            if isSearching() {
+                print("we are searching")
+                talent = self.filteredTalent[indexPath.row]
+                print("indexPath: \(indexPath.row)")
+            } else {
+                print("we are not searching")
+                talent = self.unfilteredTalent[indexPath.row]
+            }
+            
             if let imageURL = talent.profileImage {
                 if let img = SearchTalentVC.userProfileImageCache.object(forKey: imageURL as NSString) {
                     cell.configureCell(user: talent, img: img)
-                    cell.delegate = self
                     
                 } else {
                     cell.configureCell(user: talent)
-                    cell.delegate = self
-
+                    //cell.delegate = self
                 }
                 return cell
             } else {
                 cell.configureCell(user: talent)
-                cell.delegate = self
+                //cell.delegate = self
                 return SearchTalentCell()
-                
             }
         } else {
             return SearchTalentCell()
         }
     }
-    
+ 
 
-    
-    
     //MARK: Filter through role needs
     func filterRoleFeature() {
         
@@ -271,19 +269,17 @@ class SearchTalentVC: UITableViewController, SearchCellDelegate {
             let roleHairType = role.hairType?.rawValue
             if roleHairType == "" || roleHairType == nil {
                 for talent in hairLengthFilter {
-                    self.filteredTalent.append(talent)
+                    //self.filteredTalent.append(talent)
                     self.matchingTalentUserKeys.append(talent.userKey)
                 }
             } else {
                 for talent in hairLengthFilter {
                     if roleHairType == talent.hairType?.rawValue {
-                        self.filteredTalent.append(talent)
+                        //self.filteredTalent.append(talent)
                         self.matchingTalentUserKeys.append(talent.userKey)
                     }
                 }
             }
-
-            self.tableView.reloadData()
     }
     
     //Convert optional string to int
@@ -334,19 +330,22 @@ class SearchTalentVC: UITableViewController, SearchCellDelegate {
         }
     }
     
-    func didTapRadioButton(userKey: String, searchSelected: String) {
+    /*func didTapRadioButton(userKey: String, searchSelected: String, radioButton: UIButton) {
         
         if searchSelected == SearchSelected.yes.rawValue {
             let searchSelected = [FIRUserData.searchSelected.rawValue: SearchSelected.no.rawValue]
             UserType.REF_USERS.child(userKey).updateChildValues(searchSelected)
+            print("button hit \(userKey) NO")
         } else if searchSelected == SearchSelected.no.rawValue {
             let searchSelected = [FIRUserData.searchSelected.rawValue: SearchSelected.yes.rawValue]
             UserType.REF_USERS.child(userKey).updateChildValues(searchSelected)
+            print("button hit \(userKey) YES")
         } else {
             let searchSelected = [FIRUserData.searchSelected.rawValue: SearchSelected.yes.rawValue]
             UserType.REF_USERS.child(userKey).updateChildValues(searchSelected)
         }
-    }
+    }*/
+
 }
 
 
@@ -356,7 +355,9 @@ extension SearchTalentVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+
         filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+        
     }
     
     

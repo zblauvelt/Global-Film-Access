@@ -11,29 +11,32 @@ import Firebase
 
 
 
-protocol SearchCellDelegate {
+/*protocol SearchCellDelegate {
     
-    func didTapRadioButton(userKey: String, searchSelected: String)
-    
-}
+    func didTapRadioButton(userKey: String, searchSelected: String, radioButton: UIButton)
+}*/
 
 class SearchTalentCell: UITableViewCell {
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var talentUserName: UILabel!
-    @IBOutlet weak var radioButton: UIButton!
-    var currntTalent: UserType!
-    var delegate: SearchCellDelegate?
+    @IBOutlet weak var selectedImg: UIImageView!
+    @IBOutlet weak var inviteSentImg: UIImageView!
+    var prospectRef: FIRDatabaseReference!
+    //@IBOutlet weak var radioButton: UIButton!
+    var currentTalent: UserType!
+    //var delegate: SearchCellDelegate?
     
     func setTalent(talent: UserType) {
-        currntTalent = talent
-        currntTalent.userKey = talent.userKey
-        currntTalent.searchSelected = talent.searchSelected
-        
+        currentTalent = talent
+        currentTalent.userKey = talent.userKey
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        let tap = UITapGestureRecognizer(target: self, action: #selector(selectTapped))
+        tap.numberOfTapsRequired = 1
+        selectedImg.addGestureRecognizer(tap)
+        selectedImg.isUserInteractionEnabled = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,19 +45,26 @@ class SearchTalentCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func radioButtonTapped(_ sender: Any) {
-        delegate?.didTapRadioButton(userKey: currntTalent.userKey, searchSelected: currntTalent.searchSelected!.rawValue)
-    }
-    
-    
-    
+    /*@IBAction func radioButtonTapped(_ sender: Any) {
+        delegate?.didTapRadioButton(userKey: currntTalent.userKey, searchSelected: currntTalent.searchSelected!.rawValue, radioButton: radioButton)
+    }*/
+
     
     func configureCell(user: UserType, img: UIImage? = nil) {
-        setTalent(talent: user)
+        prospectRef = Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(ProjectDetailVC.currentProject).child(FIRDataCast.prospect.rawValue).child(CastingDetailVC.positionName).child(user.userKey)
+        //setTalent(talent: user)
         self.talentUserName.text = "\(user.firstName) \(user.lastName)"
-        
-        user.adjustSearchSelected(talent: user, radioButton: radioButton)
-        
+        //self.inviteSentImg.image = UIImage(named: "inviteSent")
+        //user.adjustSearchSelected(talent: user, radioButton: radioButton)
+        prospectRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.inviteSentImg.isHidden = true
+                print("**Image hidden")
+            } else {
+                self.inviteSentImg.image = UIImage(named: "inviteSent")
+                print("**Image shown")
+            }
+        })
         
         //Image Caching
         if img != nil {
@@ -79,12 +89,23 @@ class SearchTalentCell: UITableViewCell {
                 })
             }
         }
+        
+
+        
     }
     
-
+    @objc func selectTapped(sender: UITapGestureRecognizer) {
+        if UserType.selectedTalentForSearch.contains(currentTalent.userKey) {
+            selectedImg.image = UIImage(named: "radioUnselected")
+            
+        } else {
+            selectedImg.image = UIImage(named: "radioSelected")
+            
+        }
+    }
     
     
     
     
-
+    
 }

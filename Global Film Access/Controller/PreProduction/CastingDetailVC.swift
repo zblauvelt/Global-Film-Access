@@ -20,7 +20,7 @@ class CastingDetailVC: UIViewController {
         // Do any additional setup after loading the view.
         CastingDetailVC.positionName = selectedCastPosition
         self.title = selectedCastPosition
-        
+        print(CastingDetailVC.positionName)
     }
 
     
