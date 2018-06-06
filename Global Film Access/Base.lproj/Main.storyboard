@@ -2404,7 +2404,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G3Z-dA-ymD">
-                                            <rect key="frame" x="47" y="7" width="265" height="85"/>
+                                            <rect key="frame" x="40" y="7" width="243" height="85"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="UZQ-Js-ydE">
                                                     <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
@@ -2414,36 +2414,42 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zack Blauvelt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rN-Bb-si5">
-                                                    <rect key="frame" x="95" y="0.0" width="170" height="85"/>
+                                                    <rect key="frame" x="95" y="0.0" width="148" height="85"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHe-bY-QCI">
-                                            <rect key="frame" x="16" y="38" width="21" height="22"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radioUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="QTl-bm-yZM">
+                                            <rect key="frame" x="8" y="39" width="22" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="22" id="63i-kE-zbe"/>
-                                                <constraint firstAttribute="width" constant="21" id="6q0-hF-deD"/>
+                                                <constraint firstAttribute="height" constant="22" id="RTe-xq-5eu"/>
+                                                <constraint firstAttribute="width" constant="22" id="rX0-3a-Tk9"/>
                                             </constraints>
-                                            <state key="normal" image="radioUnselected"/>
-                                            <connections>
-                                                <action selector="radioButtonTapped:" destination="KKV-0f-xGd" eventType="touchUpInside" id="Xqo-ZL-y5N"/>
-                                            </connections>
-                                        </button>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inviteSent" translatesAutoresizingMaskIntoConstraints="NO" id="78F-1N-WRY">
+                                            <rect key="frame" x="291" y="38.5" width="21" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="21" id="EKq-WZ-3OS"/>
+                                                <constraint firstAttribute="height" constant="21" id="pkf-aX-vmO"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="ZHe-bY-QCI" firstAttribute="leading" secondItem="9P8-IN-NrU" secondAttribute="leadingMargin" id="JA2-h0-QxY"/>
-                                        <constraint firstItem="G3Z-dA-ymD" firstAttribute="leading" secondItem="ZHe-bY-QCI" secondAttribute="trailing" constant="10" id="QbA-nq-Ab5"/>
-                                        <constraint firstItem="ZHe-bY-QCI" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="UYN-he-veV"/>
+                                        <constraint firstItem="QTl-bm-yZM" firstAttribute="leading" secondItem="9P8-IN-NrU" secondAttribute="leading" constant="8" id="GsV-te-Fts"/>
+                                        <constraint firstItem="G3Z-dA-ymD" firstAttribute="leading" secondItem="QTl-bm-yZM" secondAttribute="trailing" constant="10" id="Ooz-nz-AXf"/>
+                                        <constraint firstItem="QTl-bm-yZM" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="X3S-LQ-kLz"/>
                                         <constraint firstItem="G3Z-dA-ymD" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="ZYU-Px-gEU"/>
-                                        <constraint firstAttribute="trailing" secondItem="G3Z-dA-ymD" secondAttribute="trailing" constant="8" id="prr-yv-y3P"/>
+                                        <constraint firstItem="78F-1N-WRY" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="eGy-Cr-ybF"/>
+                                        <constraint firstAttribute="trailing" secondItem="78F-1N-WRY" secondAttribute="trailing" constant="8" id="eMf-Rp-K8O"/>
+                                        <constraint firstItem="78F-1N-WRY" firstAttribute="leading" secondItem="G3Z-dA-ymD" secondAttribute="trailing" constant="8" id="gr8-b3-85S"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="radioButton" destination="ZHe-bY-QCI" id="oWK-Q9-QxW"/>
+                                    <outlet property="inviteSentImg" destination="78F-1N-WRY" id="cOr-2L-qXR"/>
+                                    <outlet property="selectedImg" destination="QTl-bm-yZM" id="l6i-5e-daa"/>
                                     <outlet property="talentUserName" destination="1rN-Bb-si5" id="vTp-ds-8d9"/>
                                     <outlet property="userProfileImage" destination="UZQ-Js-ydE" id="BjI-px-rd1"/>
                                     <segue destination="9Ru-sO-W0a" kind="show" identifier="searchToProfile" id="3RE-Wb-SVU"/>
@@ -3851,6 +3857,7 @@
         <image name="calendar" width="27" height="27"/>
         <image name="clapperboard" width="56" height="64"/>
         <image name="email" width="33" height="33"/>
+        <image name="inviteSent" width="21" height="21"/>
         <image name="password" width="31" height="31"/>
         <image name="radioUnselected" width="21" height="21"/>
     </resources>

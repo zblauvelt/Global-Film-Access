@@ -178,6 +178,9 @@ class UserType: User {
     var imdbRating: String?
     var searchSelected: SearchSelected?
     
+    //MARK: Array to store selected talent in searched talent
+    static var selectedTalentForSearch = ["RuNyBpU6dFPsXuQlww5eV6Y5UZF3"]
+    
     //Firebase database references
     static var REF_USERS = DB_BASE.child("users").child("allUsers")
     static var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
@@ -593,18 +596,17 @@ class UserType: User {
         }
     }
     
-    func adjustSearchSelected(talent: UserType, radioButton: UIButton) {
+    /*func adjustSearchSelected(talent: UserType, radioButton: UIButton) {
         if let searchSelected = talent.searchSelected?.rawValue {
             if searchSelected == SearchSelected.yes.rawValue {
                 radioButton.setImage(#imageLiteral(resourceName: "radioSelected"), for: .normal)
             } else {
                 radioButton.setImage(#imageLiteral(resourceName: "radioUnselected"), for: .normal)
             }
-        }
-        
-        
-    }
-    
+        }  
+    }*/
+
+
     
 
 

@@ -49,6 +49,7 @@ enum FIRRoleData: String {
     case hairColor = "hairColor"
     case hairLength = "hairLength"
     case hairType = "hairType"
+    case auditionAssignment = "auditionAssignment"
 }
 
 enum RoleEthnicity: String {
@@ -119,6 +120,7 @@ protocol Position {
 
 enum FIRDataCast: String {
     case cast = "cast"
+    case prospect = "prospect"
 
 }
 
@@ -425,6 +427,7 @@ class Prospect {
     var talentRating: String = ""
     var talentedAccepted: String = "NO"
     var prospectID: String = ""
+    var talentAuditionAssignment: String = ""
     
     init(talentName: String, talentRating: String, talentAccepted: String) {
         self.talentName = talentName
@@ -448,13 +451,18 @@ class Prospect {
             self.talentedAccepted = talentAccepted
         }
         
+        if let talentAuditionAssignment = prospectData[FIRRoleData.auditionAssignment.rawValue] {
+            self.talentAuditionAssignment = talentAuditionAssignment
+        }
+        
     }
     
     func createProspect(prospect: Prospect, projectID: String, position: String, userID: String) {
         let prospect: Dictionary <String, String> = [
             FIRRoleData.talentName.rawValue: prospect.talentName,
             FIRRoleData.talentRating.rawValue: prospect.talentRating,
-            FIRRoleData.talentAccepted.rawValue: prospect.talentedAccepted
+            FIRRoleData.talentAccepted.rawValue: prospect.talentedAccepted,
+            FIRRoleData.auditionAssignment.rawValue: prospect.talentAuditionAssignment
         ]
         
         Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(projectID).child("prospect").child(position).child(userID).updateChildValues(prospect)
