@@ -9,11 +9,28 @@
 import UIKit
 import Firebase
 
+
+
+protocol SearchCellDelegate {
+    
+    func didTapRadioButton(userKey: String, searchSelected: String)
+    
+}
+
 class SearchTalentCell: UITableViewCell {
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var talentUserName: UILabel!
+    @IBOutlet weak var radioButton: UIButton!
+    var currntTalent: UserType!
+    var delegate: SearchCellDelegate?
     
-    @IBOutlet weak var radioButton: UIImageView!
+    func setTalent(talent: UserType) {
+        currntTalent = talent
+        currntTalent.userKey = talent.userKey
+        currntTalent.searchSelected = talent.searchSelected
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,17 +42,18 @@ class SearchTalentCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func radioButtonTapped(_ sender: Any) {
+        delegate?.didTapRadioButton(userKey: currntTalent.userKey, searchSelected: currntTalent.searchSelected!.rawValue)
+    }
+    
+    
+    
+    
     func configureCell(user: UserType, img: UIImage? = nil) {
+        setTalent(talent: user)
         self.talentUserName.text = "\(user.firstName) \(user.lastName)"
         
-        if let searchSelected = user.searchSelected?.rawValue {
-            if searchSelected == SearchSelected.yes.rawValue {
-                self.radioButton.image = UIImage(named: "radioSelected")
-            } else {
-                self.radioButton.image = UIImage(named: "radioUnselected")
-            }
-        }
-        
+        user.adjustSearchSelected(talent: user, radioButton: radioButton)
         
         
         //Image Caching
@@ -62,5 +80,11 @@ class SearchTalentCell: UITableViewCell {
             }
         }
     }
+    
+
+    
+    
+    
+    
 
 }

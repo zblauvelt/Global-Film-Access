@@ -592,6 +592,23 @@ class UserType: User {
             UserType.REF_USERS.child(userID).updateChildValues(updateAllUser)
         }
     }
+    
+    func adjustSearchSelected(talent: UserType, radioButton: UIButton) {
+        if let searchSelected = talent.searchSelected?.rawValue {
+            if searchSelected == SearchSelected.yes.rawValue {
+                radioButton.setImage(#imageLiteral(resourceName: "radioSelected"), for: .normal)
+            } else {
+                radioButton.setImage(#imageLiteral(resourceName: "radioUnselected"), for: .normal)
+            }
+        }
+        
+        
+    }
+    
+    
+
+
+
 }
 
 enum CreateVideoError: String, Error {

@@ -9,29 +9,64 @@
 import UIKit
 import Firebase
 
-class SearchTalentVC: UITableViewController, UISearchBarDelegate {
-    
+class SearchTalentVC: UITableViewController, SearchCellDelegate {
+
     var searchingRole = [Cast]()
-    var roleFilteredTalent = [UserType]()
     var unfilteredTalent = [UserType]()
     var filteredTalent = [UserType]()
-    var isSearching = false
+    var selectedTalent = [UserType]()
+    var matchingTalentUserKeys = [String]()
     var isFiltered = false
     static var userProfileImageCache: NSCache<NSString, UIImage> = NSCache()
+    let searchController = UISearchController(searchResultsController: nil)
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    //@IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Talent"
+        searchController.searchBar.barStyle = .black
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        searchController.searchBar.scopeButtonTitles = ["All", "Role Specific"]
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.delegate = self
         getTalentProfiles()
-        searchBar.delegate = self
-        searchBar.returnKeyType = UIReturnKeyType.done
-        searchBar.setImage(UIImage(named: "unfiltered"), for: .bookmark, state: .normal)
-        
         
     }
-
-
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredTalent = unfilteredTalent.filter({ (talent : UserType) -> Bool in
+            let doesTalentMatch = (scope == "All") || doesUserKeyMatch(talent: talent.userKey)
+            
+            if searchBarIsEmpty() {
+                return doesTalentMatch
+            } else {
+                let fullName = "\(talent.firstName) \(talent.lastName)"
+                return doesTalentMatch && fullName.lowercased().contains(searchText.lowercased())
+            }
+        })
+        tableView.reloadData()
+    }
+    
+    func doesUserKeyMatch(talent: String) -> Bool {
+        self.filterRoleFeature()
+        
+        return matchingTalentUserKeys.contains(talent)
+    }
+    
+    func isSearching() -> Bool {
+        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+        return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,10 +77,8 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        if isSearching {
+        if isSearching() {
             return filteredTalent.count
-        } else if isFiltered {
-            return roleFilteredTalent.count
         } else {
             return unfilteredTalent.count
         }
@@ -53,9 +86,13 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-        let talent = toggleTalentArrays()[indexPath.row]
-     //let talent = unfilteredTalent[indexPath.row]
+        let talent: UserType
+        if isSearching() {
+            talent = self.filteredTalent[indexPath.row]
+        } else {
+            talent = self.unfilteredTalent[indexPath.row]
+        }
+        
         let cellIdentifier = "userSearchCell"
         
         // Configure the cell...
@@ -63,41 +100,31 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
             if let imageURL = talent.profileImage {
                 if let img = SearchTalentVC.userProfileImageCache.object(forKey: imageURL as NSString) {
                     cell.configureCell(user: talent, img: img)
+                    cell.delegate = self
                     
                 } else {
                     cell.configureCell(user: talent)
+                    cell.delegate = self
+
                 }
                 return cell
             } else {
+                cell.configureCell(user: talent)
+                cell.delegate = self
                 return SearchTalentCell()
+                
             }
         } else {
             return SearchTalentCell()
         }
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text == nil || searchBar.text == "" {
-            isSearching = false
-            
-            view.endEditing(true)
-            filteredTalent.removeAll()
-            tableView.reloadData()
-        } else {
-            isSearching = true
-            
-            for talent in unfilteredTalent {
-                if talent.firstName.lowercased() == searchText.lowercased() || talent.lastName.lowercased() == searchText.lowercased() {
-                   filteredTalent.append(talent)
-                }
-            }
-            tableView.reloadData()
-        }
-    }
+
     
-    //MARK: Filter throught role needs
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        if isFiltered == false {
+    
+    //MARK: Filter through role needs
+    func filterRoleFeature() {
+        
             //Filters are in order of how they are checked. Every talent that matches age will then be checked by height and so on.
             var ageFilter = [UserType]()
             var heightFilter = [UserType]()
@@ -106,8 +133,6 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
             var eyeColorFilter = [UserType]()
             var hairColorFilter = [UserType]()
             var hairLengthFilter = [UserType]()
-            searchBar.setImage(UIImage(named: "filtered"), for: .bookmark, state: .normal)
-            isFiltered = true
             print("Filtering....")
             let role = searchingRole[0]
             //MARK: Filtering out age limit
@@ -246,25 +271,19 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
             let roleHairType = role.hairType?.rawValue
             if roleHairType == "" || roleHairType == nil {
                 for talent in hairLengthFilter {
-                    self.roleFilteredTalent.append(talent)
+                    self.filteredTalent.append(talent)
+                    self.matchingTalentUserKeys.append(talent.userKey)
                 }
             } else {
                 for talent in hairLengthFilter {
                     if roleHairType == talent.hairType?.rawValue {
-                        self.roleFilteredTalent.append(talent)
+                        self.filteredTalent.append(talent)
+                        self.matchingTalentUserKeys.append(talent.userKey)
                     }
                 }
             }
 
-            tableView.reloadData()
-            
-        } else {
-            searchBar.setImage(UIImage(named: "unfiltered"), for: .bookmark, state: .normal)
-            isFiltered = false
-            self.roleFilteredTalent.removeAll()
-            print("Removing filter...")
-            tableView.reloadData()
-        }
+            self.tableView.reloadData()
     }
     
     //Convert optional string to int
@@ -291,6 +310,9 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
                         let key = snap.key
                         let userDetails = UserType(userKey: key, userData: userDetailsDict)
                         self.unfilteredTalent.append(userDetails)
+                        if userDetails.searchSelected == SearchSelected.yes {
+                            self.selectedTalent.append(userDetails)
+                        }
                     }
                 }
             }
@@ -298,25 +320,13 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
             self.tableView.reloadData()
         })
     }
-    ///Function to see if searching or not.
-    func toggleTalentArrays() -> [UserType] {
-        if isSearching {
-            return filteredTalent
-        } else if isFiltered {
-            return roleFilteredTalent
-        } else {
-            return unfilteredTalent
-        }
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "searchToProfile" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let destinationController = segue.destination as! ProfileVC
-                if isSearching {
+                if isSearching() {
                     destinationController.currentUserKey = filteredTalent[indexPath.row].userKey
-                } else if isFiltered {
-                    destinationController.currentUserKey = roleFilteredTalent[indexPath.row].userKey
                 } else {
                     destinationController.currentUserKey = unfilteredTalent[indexPath.row].userKey
                 }
@@ -324,5 +334,47 @@ class SearchTalentVC: UITableViewController, UISearchBarDelegate {
         }
     }
     
+    func didTapRadioButton(userKey: String, searchSelected: String) {
+        
+        if searchSelected == SearchSelected.yes.rawValue {
+            let searchSelected = [FIRUserData.searchSelected.rawValue: SearchSelected.no.rawValue]
+            UserType.REF_USERS.child(userKey).updateChildValues(searchSelected)
+        } else if searchSelected == SearchSelected.no.rawValue {
+            let searchSelected = [FIRUserData.searchSelected.rawValue: SearchSelected.yes.rawValue]
+            UserType.REF_USERS.child(userKey).updateChildValues(searchSelected)
+        } else {
+            let searchSelected = [FIRUserData.searchSelected.rawValue: SearchSelected.yes.rawValue]
+            UserType.REF_USERS.child(userKey).updateChildValues(searchSelected)
+        }
+    }
+}
+
+
+
+
+extension SearchTalentVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+    }
+    
     
 }
+
+
+extension SearchTalentVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+}
+
+
+
+
+
+
+
+
+
+

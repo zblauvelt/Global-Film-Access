@@ -2395,32 +2395,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Name" showsBookmarkButton="YES" id="kP7-3W-o2e" customClass="CustomSearchBar" customModule="Global_Film_Access" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <scopeButtonTitles>
-                                <string>Title</string>
-                                <string>Title</string>
-                            </scopeButtonTitles>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userSearchCell" rowHeight="100" id="KKV-0f-xGd" customClass="SearchTalentCell" customModule="Global_Film_Access" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="84" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KKV-0f-xGd" id="9P8-IN-NrU">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radioUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="yy2-Sr-VOb">
-                                            <rect key="frame" x="8" y="39" width="21" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="2xM-IO-M5i"/>
-                                                <constraint firstAttribute="width" constant="21" id="Sr0-ed-WCx"/>
-                                            </constraints>
-                                        </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G3Z-dA-ymD">
-                                            <rect key="frame" x="39" y="7" width="273" height="85"/>
+                                            <rect key="frame" x="47" y="7" width="265" height="85"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="UZQ-Js-ydE">
                                                     <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
@@ -2430,25 +2414,36 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zack Blauvelt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rN-Bb-si5">
-                                                    <rect key="frame" x="95" y="0.0" width="178" height="85"/>
+                                                    <rect key="frame" x="95" y="0.0" width="170" height="85"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHe-bY-QCI">
+                                            <rect key="frame" x="16" y="38" width="21" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="63i-kE-zbe"/>
+                                                <constraint firstAttribute="width" constant="21" id="6q0-hF-deD"/>
+                                            </constraints>
+                                            <state key="normal" image="radioUnselected"/>
+                                            <connections>
+                                                <action selector="radioButtonTapped:" destination="KKV-0f-xGd" eventType="touchUpInside" id="Xqo-ZL-y5N"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="yy2-Sr-VOb" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="6VH-lw-5L2"/>
+                                        <constraint firstItem="ZHe-bY-QCI" firstAttribute="leading" secondItem="9P8-IN-NrU" secondAttribute="leadingMargin" id="JA2-h0-QxY"/>
+                                        <constraint firstItem="G3Z-dA-ymD" firstAttribute="leading" secondItem="ZHe-bY-QCI" secondAttribute="trailing" constant="10" id="QbA-nq-Ab5"/>
+                                        <constraint firstItem="ZHe-bY-QCI" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="UYN-he-veV"/>
                                         <constraint firstItem="G3Z-dA-ymD" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="ZYU-Px-gEU"/>
-                                        <constraint firstItem="yy2-Sr-VOb" firstAttribute="leading" secondItem="9P8-IN-NrU" secondAttribute="leading" constant="8" id="nbQ-mY-v59"/>
                                         <constraint firstAttribute="trailing" secondItem="G3Z-dA-ymD" secondAttribute="trailing" constant="8" id="prr-yv-y3P"/>
-                                        <constraint firstItem="G3Z-dA-ymD" firstAttribute="leading" secondItem="yy2-Sr-VOb" secondAttribute="trailing" constant="10" id="z63-UV-fH6"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="radioButton" destination="yy2-Sr-VOb" id="2Hm-aU-SnV"/>
+                                    <outlet property="radioButton" destination="ZHe-bY-QCI" id="oWK-Q9-QxW"/>
                                     <outlet property="talentUserName" destination="1rN-Bb-si5" id="vTp-ds-8d9"/>
                                     <outlet property="userProfileImage" destination="UZQ-Js-ydE" id="BjI-px-rd1"/>
                                     <segue destination="9Ru-sO-W0a" kind="show" identifier="searchToProfile" id="3RE-Wb-SVU"/>
@@ -2463,9 +2458,6 @@
                     <navigationItem key="navigationItem" title="Search" id="jwc-h1-zZV">
                         <barButtonItem key="rightBarButtonItem" title="Select" id="kQp-ef-ybm"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="searchBar" destination="kP7-3W-o2e" id="2xW-sf-lfc"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FWM-ad-UfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2762,7 +2754,6 @@
                         <outlet property="profileImage" destination="6os-Pb-G96" id="Qdf-Ac-3aJ"/>
                         <outlet property="tableView" destination="LzC-Ts-HVZ" id="MKX-Xu-z7D"/>
                         <outlet property="tvHeightConstraint" destination="pZH-lk-aXB" id="onE-BK-Ql0"/>
-                        <segue destination="b5C-fm-CfY" kind="show" identifier="showVideo" id="HF3-SH-mtz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byY-Mw-rl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3492,37 +3483,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8RL-r7-9jq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8966" y="-1501"/>
-        </scene>
-        <!--DemoReel-->
-        <scene sceneID="7aP-9C-kFl">
-            <objects>
-                <viewController title="DemoReel" id="b5C-fm-CfY" customClass="DemoReelVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NQU-ex-5Jf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYw-fX-YUO">
-                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="WYw-fX-YUO" firstAttribute="leading" secondItem="QIf-tR-610" secondAttribute="leading" id="3yn-oj-RgA"/>
-                            <constraint firstItem="WYw-fX-YUO" firstAttribute="trailing" secondItem="QIf-tR-610" secondAttribute="trailing" id="M0m-Qp-RMw"/>
-                            <constraint firstItem="WYw-fX-YUO" firstAttribute="bottom" secondItem="QIf-tR-610" secondAttribute="bottom" id="dma-Xl-VhX"/>
-                            <constraint firstItem="WYw-fX-YUO" firstAttribute="top" secondItem="QIf-tR-610" secondAttribute="top" id="f1W-zX-jqd"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="QIf-tR-610"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Demo Reel" id="1Bu-vz-4Fr"/>
-                    <connections>
-                        <outlet property="videoWebView" destination="WYw-fX-YUO" id="oZT-f4-cHI"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oqt-8N-HvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="9954.375" y="-398.75"/>
         </scene>
         <!--Projects-->
         <scene sceneID="K2j-iX-5wQ">
