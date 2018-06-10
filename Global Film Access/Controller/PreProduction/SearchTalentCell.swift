@@ -10,21 +10,13 @@ import UIKit
 import Firebase
 
 
-
-/*protocol SearchCellDelegate {
-    
-    func didTapRadioButton(userKey: String, searchSelected: String, radioButton: UIButton)
-}*/
-
 class SearchTalentCell: UITableViewCell {
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var talentUserName: UILabel!
     @IBOutlet weak var selectedImg: UIImageView!
     @IBOutlet weak var inviteSentImg: UIImageView!
     var prospectRef: FIRDatabaseReference!
-    //@IBOutlet weak var radioButton: UIButton!
     var currentTalent: UserType!
-    //var delegate: SearchCellDelegate?
     
     func setTalent(talent: UserType) {
         currentTalent = talent
@@ -44,28 +36,28 @@ class SearchTalentCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    /*@IBAction func radioButtonTapped(_ sender: Any) {
-        delegate?.didTapRadioButton(userKey: currntTalent.userKey, searchSelected: currntTalent.searchSelected!.rawValue, radioButton: radioButton)
-    }*/
 
     
     func configureCell(user: UserType, img: UIImage? = nil) {
         prospectRef = Cast.REF_PRE_PRODUCTION_CASTING_POSITION.child(ProjectDetailVC.currentProject).child(FIRDataCast.prospect.rawValue).child(CastingDetailVC.positionName).child(user.userKey)
-        //setTalent(talent: user)
+        setTalent(talent: user)
         self.talentUserName.text = "\(user.firstName) \(user.lastName)"
-        //self.inviteSentImg.image = UIImage(named: "inviteSent")
-        //user.adjustSearchSelected(talent: user, radioButton: radioButton)
+
         prospectRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.inviteSentImg.isHidden = true
-                print("**Image hidden")
             } else {
                 self.inviteSentImg.image = UIImage(named: "inviteSent")
                 self.inviteSentImg.isHidden = false
-                print("**Image shown")
             }
         })
+        if UserType.selectedTalentForSearch.contains(currentTalent.userKey) {
+            selectedImg.image = UIImage(named: "radioSelected")
+            
+        } else {
+            selectedImg.image = UIImage(named: "radioUnselected")
+            
+        }
         
         //Image Caching
         if img != nil {
@@ -90,18 +82,18 @@ class SearchTalentCell: UITableViewCell {
                 })
             }
         }
-        
-
-        
     }
     
     @objc func selectTapped(sender: UITapGestureRecognizer) {
         if UserType.selectedTalentForSearch.contains(currentTalent.userKey) {
             selectedImg.image = UIImage(named: "radioUnselected")
+            UserType.selectedTalentForSearch = UserType.selectedTalentForSearch.filter{$0 != currentTalent.userKey}
+            print("Keys: \(UserType.selectedTalentForSearch)")
             
         } else {
             selectedImg.image = UIImage(named: "radioSelected")
-            
+            UserType.selectedTalentForSearch.append(currentTalent.userKey)
+            print("Keys: \(UserType.selectedTalentForSearch)")
         }
     }
     

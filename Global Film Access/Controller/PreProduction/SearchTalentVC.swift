@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
+class SearchTalentVC: UITableViewController {
 
     var searchingRole = [Cast]()
     var unfilteredTalent = [UserType]()
@@ -340,23 +340,6 @@ class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
             }
         }
     }
-    
-    /*func didTapRadioButton(userKey: String, searchSelected: String, radioButton: UIButton) {
-        
-        if searchSelected == SearchSelected.yes.rawValue {
-            let searchSelected = [FIRUserData.searchSelected.rawValue: SearchSelected.no.rawValue]
-            UserType.REF_USERS.child(userKey).updateChildValues(searchSelected)
-            print("button hit \(userKey) NO")
-        } else if searchSelected == SearchSelected.no.rawValue {
-            let searchSelected = [FIRUserData.searchSelected.rawValue: SearchSelected.yes.rawValue]
-            UserType.REF_USERS.child(userKey).updateChildValues(searchSelected)
-            print("button hit \(userKey) YES")
-        } else {
-            let searchSelected = [FIRUserData.searchSelected.rawValue: SearchSelected.yes.rawValue]
-            UserType.REF_USERS.child(userKey).updateChildValues(searchSelected)
-        }
-    }*/
-
 }
 
 
