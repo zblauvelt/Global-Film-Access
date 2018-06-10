@@ -62,6 +62,7 @@ class SearchTalentCell: UITableViewCell {
                 print("**Image hidden")
             } else {
                 self.inviteSentImg.image = UIImage(named: "inviteSent")
+                self.inviteSentImg.isHidden = false
                 print("**Image shown")
             }
         })

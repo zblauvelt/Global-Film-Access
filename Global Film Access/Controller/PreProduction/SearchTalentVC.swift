@@ -20,7 +20,7 @@ class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
     var prospectRef: FIRDatabaseReference!
     static var userProfileImageCache: NSCache<NSString, UIImage> = NSCache()
     let searchController = UISearchController(searchResultsController: nil)
-    
+
     //@IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
@@ -34,6 +34,9 @@ class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
         searchController.searchBar.scopeButtonTitles = ["All", "Role Specific"]
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        
+        
         getTalentProfiles()
         
     }
@@ -45,16 +48,19 @@ class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
         filteredTalent = unfilteredTalent.filter({ (talent : UserType) -> Bool in
             let doesTalentMatch = (scope == "All") || doesUserKeyMatch(talent: talent.userKey)
-            
+
             if searchBarIsEmpty() {
                 return doesTalentMatch
             } else {
+
                 let fullName = "\(talent.firstName) \(talent.lastName)"
                 return doesTalentMatch && fullName.lowercased().contains(searchText.lowercased())
             }
         })
         tableView.reloadData()
     }
+    
+    
     
     func doesUserKeyMatch(talent: String) -> Bool {
         self.filterRoleFeature()
@@ -94,18 +100,21 @@ class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
             if isSearching() {
                 print("we are searching")
                 talent = self.filteredTalent[indexPath.row]
+                
                 print("indexPath: \(indexPath.row)")
             } else {
                 print("we are not searching")
                 talent = self.unfilteredTalent[indexPath.row]
+                
             }
             
             if let imageURL = talent.profileImage {
                 if let img = SearchTalentVC.userProfileImageCache.object(forKey: imageURL as NSString) {
                     cell.configureCell(user: talent, img: img)
-                    
+                   
                 } else {
                     cell.configureCell(user: talent)
+                    
                     //cell.delegate = self
                 }
                 return cell
@@ -118,7 +127,7 @@ class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
             return SearchTalentCell()
         }
     }
- 
+
 
     //MARK: Filter through role needs
     func filterRoleFeature() {
@@ -280,6 +289,7 @@ class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
                     }
                 }
             }
+        tableView.reloadData()
     }
     
     //Convert optional string to int
@@ -312,10 +322,11 @@ class SearchTalentVC: UITableViewController/*, SearchCellDelegate*/ {
                     }
                 }
             }
-            
             self.tableView.reloadData()
         })
     }
+    
+    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "searchToProfile" {
@@ -355,15 +366,14 @@ extension SearchTalentVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-
         filterContentForSearchText(searchController.searchBar.text!, scope: scope)
-        
+        self.tableView.reloadData()
     }
     
     
 }
 
-
+ 
 extension SearchTalentVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
