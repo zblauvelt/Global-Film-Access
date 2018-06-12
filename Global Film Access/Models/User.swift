@@ -179,8 +179,7 @@ class UserType: User {
     var searchSelected: SearchSelected?
     
     //MARK: Array to store selected talent in searched talent
-    static var selectedTalentForSearch = ["RuNyBpU6dFPsXuQlww5eV6Y5UZF3"]
-    
+    static var selectedTalentForSearch = [String]()
     //Firebase database references
     static var REF_USERS = DB_BASE.child("users").child("allUsers")
     static var REF_CURRENT_USER = DB_BASE.child("users").child(userID)
