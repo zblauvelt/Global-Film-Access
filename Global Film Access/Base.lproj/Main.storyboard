@@ -2378,7 +2378,7 @@
                     <navigationItem key="navigationItem" title="Cast" id="htY-ZA-gDi">
                         <barButtonItem key="rightBarButtonItem" image="AddNavBar" id="kPQ-Ft-9nG">
                             <connections>
-                                <segue destination="x71-JX-PEA" kind="show" identifier="searchTalent" id="wFF-SI-xYB"/>
+                                <segue destination="FHK-yI-JIe" kind="show" identifier="searchTalent" id="brI-Kx-cAe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2390,13 +2390,13 @@
         <!--Search Talent-->
         <scene sceneID="2N5-co-qi8">
             <objects>
-                <tableViewController title="Search Talent" id="x71-JX-PEA" customClass="SearchTalentVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Search Talent" id="x71-JX-PEA" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MM1-FJ-4xP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userSearchCell" rowHeight="100" id="KKV-0f-xGd" customClass="SearchTalentCell" customModule="Global_Film_Access" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userSearchCell" rowHeight="100" id="KKV-0f-xGd">
                                 <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KKV-0f-xGd" id="9P8-IN-NrU">
@@ -2447,13 +2447,6 @@
                                         <constraint firstItem="78F-1N-WRY" firstAttribute="leading" secondItem="G3Z-dA-ymD" secondAttribute="trailing" constant="8" id="gr8-b3-85S"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="inviteSentImg" destination="78F-1N-WRY" id="cOr-2L-qXR"/>
-                                    <outlet property="selectedImg" destination="QTl-bm-yZM" id="l6i-5e-daa"/>
-                                    <outlet property="talentUserName" destination="1rN-Bb-si5" id="vTp-ds-8d9"/>
-                                    <outlet property="userProfileImage" destination="UZQ-Js-ydE" id="BjI-px-rd1"/>
-                                    <segue destination="9Ru-sO-W0a" kind="show" identifier="searchToProfile" id="3RE-Wb-SVU"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -2462,12 +2455,125 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="jwc-h1-zZV">
-                        <barButtonItem key="rightBarButtonItem" title="Select" id="kQp-ef-ybm"/>
+                        <barButtonItem key="rightBarButtonItem" title="Select All" id="kQp-ef-ybm"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FWM-ad-UfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8098.125" y="-405"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="7Sc-Os-igE">
+            <objects>
+                <viewController id="FHK-yI-JIe" customClass="SearchTalentVC" customModule="Global_Film_Access" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dDx-DJ-aLM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pnu-Ey-fdi">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="386"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userSearchCell" rowHeight="100" id="YVY-C0-fII" customClass="SearchTalentCell" customModule="Global_Film_Access" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YVY-C0-fII" id="tAf-Q9-fT5">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radioUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="Dbh-VX-GVm">
+                                                    <rect key="frame" x="8" y="38" width="22" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="75v-7B-DTH"/>
+                                                        <constraint firstAttribute="width" constant="22" id="cXf-6d-n6N"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8vS-3z-bhB">
+                                                    <rect key="frame" x="40" y="7.5" width="243" height="85"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="9du-wX-zHi">
+                                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="85" id="54z-qw-kEn"/>
+                                                                <constraint firstAttribute="height" constant="85" id="UX1-Cw-N9W"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zack Blauvelt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLL-fs-e4v">
+                                                            <rect key="frame" x="95" y="32.5" width="148" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inviteSent" translatesAutoresizingMaskIntoConstraints="NO" id="UTd-KK-3jN">
+                                                    <rect key="frame" x="291" y="39.5" width="21" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="MwZ-AI-tFk"/>
+                                                        <constraint firstAttribute="width" constant="21" id="r3a-QN-RTQ"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Dbh-VX-GVm" firstAttribute="centerY" secondItem="tAf-Q9-fT5" secondAttribute="centerY" id="5vI-uV-OLG"/>
+                                                <constraint firstItem="Dbh-VX-GVm" firstAttribute="leading" secondItem="tAf-Q9-fT5" secondAttribute="leading" constant="8" id="8Xp-AP-Sdg"/>
+                                                <constraint firstAttribute="trailing" secondItem="UTd-KK-3jN" secondAttribute="trailing" constant="8" id="DrD-MO-zYc"/>
+                                                <constraint firstItem="8vS-3z-bhB" firstAttribute="centerY" secondItem="tAf-Q9-fT5" secondAttribute="centerY" id="HL7-8K-RZd"/>
+                                                <constraint firstItem="UTd-KK-3jN" firstAttribute="centerY" secondItem="tAf-Q9-fT5" secondAttribute="centerY" id="IVQ-36-Zu1"/>
+                                                <constraint firstItem="8vS-3z-bhB" firstAttribute="leading" secondItem="Dbh-VX-GVm" secondAttribute="trailing" constant="10" id="Sc0-QD-prl"/>
+                                                <constraint firstItem="UTd-KK-3jN" firstAttribute="leading" secondItem="8vS-3z-bhB" secondAttribute="trailing" constant="8" id="wxw-GF-Pwj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="inviteSentImg" destination="UTd-KK-3jN" id="45Q-Rl-W3L"/>
+                                            <outlet property="selectedImg" destination="Dbh-VX-GVm" id="dOS-9p-BpC"/>
+                                            <outlet property="talentUserName" destination="LLL-fs-e4v" id="EW6-Pj-9PO"/>
+                                            <outlet property="userProfileImage" destination="9du-wX-zHi" id="0wk-bT-MS5"/>
+                                            <segue destination="9Ru-sO-W0a" kind="show" identifier="searchToProfile" id="F5I-X2-fB1"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="FHK-yI-JIe" id="ljA-Bl-eTo"/>
+                                    <outlet property="delegate" destination="FHK-yI-JIe" id="0uM-8Z-zu0"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCJ-8s-zDW">
+                                <rect key="frame" x="0.0" y="386" width="320" height="45"/>
+                                <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="h1N-Fl-TUk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Send Invite">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendInviteTapped:" destination="FHK-yI-JIe" eventType="touchUpInside" id="oVP-WK-cpR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VCJ-8s-zDW" firstAttribute="bottom" secondItem="zOW-r8-786" secondAttribute="bottom" id="9Nh-nd-Czg"/>
+                            <constraint firstItem="Pnu-Ey-fdi" firstAttribute="leading" secondItem="zOW-r8-786" secondAttribute="leading" id="F94-Jj-PR7"/>
+                            <constraint firstItem="VCJ-8s-zDW" firstAttribute="trailing" secondItem="zOW-r8-786" secondAttribute="trailing" id="Ilf-by-xcs"/>
+                            <constraint firstItem="VCJ-8s-zDW" firstAttribute="leading" secondItem="zOW-r8-786" secondAttribute="leading" id="OC2-BI-GdW"/>
+                            <constraint firstItem="Pnu-Ey-fdi" firstAttribute="top" secondItem="dDx-DJ-aLM" secondAttribute="top" id="icw-mb-TvW"/>
+                            <constraint firstItem="VCJ-8s-zDW" firstAttribute="top" secondItem="Pnu-Ey-fdi" secondAttribute="bottom" id="oDI-AB-VOp"/>
+                            <constraint firstItem="zOW-r8-786" firstAttribute="trailing" secondItem="Pnu-Ey-fdi" secondAttribute="trailing" id="vXf-5u-vos"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zOW-r8-786"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="JXG-VF-yuf"/>
+                    <connections>
+                        <outlet property="sendInviteButton" destination="VCJ-8s-zDW" id="RNU-1q-8Cg"/>
+                        <outlet property="tableView" destination="Pnu-Ey-fdi" id="5QE-vH-cxc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6zE-eF-EwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8096.25" y="375"/>
         </scene>
         <!--Profile-->
         <scene sceneID="N0Y-Ff-BA9">

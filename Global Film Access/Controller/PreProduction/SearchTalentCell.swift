@@ -85,6 +85,7 @@ class SearchTalentCell: UITableViewCell {
     }
     
     @objc func selectTapped(sender: UITapGestureRecognizer) {
+
         if UserType.selectedTalentForSearch.contains(currentTalent.userKey) {
             selectedImg.image = UIImage(named: "radioUnselected")
             UserType.selectedTalentForSearch = UserType.selectedTalentForSearch.filter{$0 != currentTalent.userKey}
@@ -94,6 +95,7 @@ class SearchTalentCell: UITableViewCell {
             selectedImg.image = UIImage(named: "radioSelected")
             UserType.selectedTalentForSearch.append(currentTalent.userKey)
             print("Keys: \(UserType.selectedTalentForSearch)")
+
         }
     }
     

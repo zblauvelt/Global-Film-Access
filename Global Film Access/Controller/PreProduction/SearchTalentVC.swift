@@ -9,19 +9,23 @@
 import UIKit
 import Firebase
 
-class SearchTalentVC: UITableViewController {
 
+
+class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sendInviteButton: UIButton!
     var searchingRole = [Cast]()
     var unfilteredTalent = [UserType]()
     var filteredTalent = [UserType]()
     var selectedTalent = [UserType]()
     var matchingTalentUserKeys = [String]()
     var isFiltered = false
+    var selectedCounter = [String]()
     var prospectRef: FIRDatabaseReference!
     static var userProfileImageCache: NSCache<NSString, UIImage> = NSCache()
     let searchController = UISearchController(searchResultsController: nil)
-
-    //@IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +39,13 @@ class SearchTalentVC: UITableViewController {
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
-        
-        
+        self.sendInviteButton.setTitle("Send Invite to \(UserType.selectedTalentForSearch.count) Prospects", for: .normal)
         getTalentProfiles()
         
+    }
+    
+    func updateButtonTitle() {
+        self.sendInviteButton.setTitle("Send Invite to \(UserType.selectedTalentForSearch.count) Prospects", for: .normal)
     }
     
     func searchBarIsEmpty() -> Bool {
@@ -76,12 +83,12 @@ class SearchTalentVC: UITableViewController {
     
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
         if isSearching() {
@@ -92,10 +99,11 @@ class SearchTalentVC: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "userSearchCell"
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SearchTalentCell {
+             self.sendInviteButton.setTitle("Send Invite to \(UserType.selectedTalentForSearch.count) Prospects", for: .normal)
             var talent: UserType
             if isSearching() {
                 print("we are searching")
@@ -114,19 +122,24 @@ class SearchTalentVC: UITableViewController {
                    
                 } else {
                     cell.configureCell(user: talent)
-                    
-                    //cell.delegate = self
                 }
                 return cell
             } else {
                 cell.configureCell(user: talent)
-                //cell.delegate = self
                 return SearchTalentCell()
             }
         } else {
             return SearchTalentCell()
         }
     }
+    
+    
+
+    
+    @IBAction func sendInviteTapped(_ sender: Any) {
+        //TODO
+    }
+    
 
 
     //MARK: Filter through role needs
