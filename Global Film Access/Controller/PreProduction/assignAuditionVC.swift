@@ -16,11 +16,15 @@ class assignAuditionVC: UITableViewController {
     var talentName = ""
     var positionName = CastingDetailVC.positionName
     var userID = ""
+    var segueTag = 0
+    //received from SearchTalentVC
+    var selectedTalent = [UserType]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         getAuditionDetails()
-        print(userID)
+        print("Selected Talent Count \(self.selectedTalent.count)")
+        print(segueTag)
 
     }
 
@@ -57,12 +61,26 @@ class assignAuditionVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let talentRating = "5"
-        let talentAccepted = "NO"
-        
-        let prospect = Prospect(talentName: talentName, talentRating: talentRating, talentAccepted: talentAccepted)
-        prospect.createProspect(prospect: prospect, projectID: ProjectDetailVC.currentProject, position: positionName, userID: userID)
-        
+        if segueTag == 2 {
+            print(segueTag)
+            for talent in selectedTalent {
+                let fullName = "\(talent.firstName) \(talent.lastName)"
+                let userID = talent.userKey
+                let project = ProjectDetailVC.currentProject
+                let position = CastingDetailVC.positionName
+                let prospect = Prospect(talentName: fullName, talentRating: "5", talentAccepted: "NO")
+                prospect.createProspect(prospect: prospect, projectID: project, position: position, userID: userID)
+                UserType.selectedTalentForSearch.removeAll()
+                self.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            let talentRating = "5"
+            let talentAccepted = "NO"
+            
+            let prospect = Prospect(talentName: talentName, talentRating: talentRating, talentAccepted: talentAccepted)
+            prospect.createProspect(prospect: prospect, projectID: ProjectDetailVC.currentProject, position: positionName, userID: userID)
+            performSegue(withIdentifier: "message", sender: nil)
+        }
     }
     
     

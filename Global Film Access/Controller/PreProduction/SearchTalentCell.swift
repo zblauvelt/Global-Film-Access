@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 
+protocol SearchTalentCellDelegate: class {
+    func radioButtonTapped(_ sender: SearchTalentCell)
+}
 
 class SearchTalentCell: UITableViewCell {
     @IBOutlet weak var userProfileImage: UIImageView!
@@ -17,7 +20,7 @@ class SearchTalentCell: UITableViewCell {
     @IBOutlet weak var inviteSentImg: UIImageView!
     var prospectRef: FIRDatabaseReference!
     var currentTalent: UserType!
-    
+    weak var delegate: SearchTalentCellDelegate?
     func setTalent(talent: UserType) {
         currentTalent = talent
         currentTalent.userKey = talent.userKey
@@ -85,22 +88,20 @@ class SearchTalentCell: UITableViewCell {
     }
     
     @objc func selectTapped(sender: UITapGestureRecognizer) {
-
         if UserType.selectedTalentForSearch.contains(currentTalent.userKey) {
             selectedImg.image = UIImage(named: "radioUnselected")
             UserType.selectedTalentForSearch = UserType.selectedTalentForSearch.filter{$0 != currentTalent.userKey}
             print("Keys: \(UserType.selectedTalentForSearch)")
+            self.delegate?.radioButtonTapped(self)
             
         } else {
             selectedImg.image = UIImage(named: "radioSelected")
             UserType.selectedTalentForSearch.append(currentTalent.userKey)
             print("Keys: \(UserType.selectedTalentForSearch)")
-
+            self.delegate?.radioButtonTapped(self)
         }
+
+        
     }
-    
-    
-    
-    
-    
+  
 }

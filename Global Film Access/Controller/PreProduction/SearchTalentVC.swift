@@ -20,6 +20,7 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var unfilteredTalent = [UserType]()
     var filteredTalent = [UserType]()
     var selectedTalent = [UserType]()
+    //var selectedTalent = [UserType]()
     var matchingTalentUserKeys = [String]()
     var isFiltered = false
     var selectedCounter = [String]()
@@ -44,9 +45,12 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    func updateButtonTitle() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
         self.sendInviteButton.setTitle("Send Invite to \(UserType.selectedTalentForSearch.count) Prospects", for: .normal)
     }
+
     
     func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -71,7 +75,6 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func doesUserKeyMatch(talent: String) -> Bool {
         self.filterRoleFeature()
-        
         return matchingTalentUserKeys.contains(talent)
     }
     
@@ -103,7 +106,6 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let cellIdentifier = "userSearchCell"
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SearchTalentCell {
-             self.sendInviteButton.setTitle("Send Invite to \(UserType.selectedTalentForSearch.count) Prospects", for: .normal)
             var talent: UserType
             if isSearching() {
                 print("we are searching")
@@ -119,13 +121,15 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let imageURL = talent.profileImage {
                 if let img = SearchTalentVC.userProfileImageCache.object(forKey: imageURL as NSString) {
                     cell.configureCell(user: talent, img: img)
-                   
+                    cell.delegate = self
                 } else {
                     cell.configureCell(user: talent)
+                    cell.delegate = self
                 }
                 return cell
             } else {
                 cell.configureCell(user: talent)
+                cell.delegate = self
                 return SearchTalentCell()
             }
         } else {
@@ -137,9 +141,19 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     
     @IBAction func sendInviteTapped(_ sender: Any) {
-        //TODO
+        getSelectedTalent()
+        self.performSegue(withIdentifier: "assignAudition2", sender: nil)
     }
     
+    //Gets all the talent selected
+    func getSelectedTalent() {
+        for talent in unfilteredTalent {
+            if UserType.selectedTalentForSearch.contains(talent.userKey) {
+                print("Matched: \(talent)")
+                self.selectedTalent.append(talent)
+            }
+        }
+    }
 
 
     //MARK: Filter through role needs
@@ -329,9 +343,6 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                         let key = snap.key
                         let userDetails = UserType(userKey: key, userData: userDetailsDict)
                         self.unfilteredTalent.append(userDetails)
-                        if userDetails.searchSelected == SearchSelected.yes {
-                            self.selectedTalent.append(userDetails)
-                        }
                     }
                 }
             }
@@ -351,6 +362,16 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     destinationController.currentUserKey = unfilteredTalent[indexPath.row].userKey
                 }
             }
+        } else if segue.identifier == "assignAudition2" {
+            let nav = segue.destination as! UINavigationController
+            let desVC = nav.topViewController as! assignAuditionVC
+            print("Search Selected: \(self.selectedTalent.count)")
+            desVC.segueTag = 2
+            desVC.selectedTalent = self.selectedTalent
+            self.selectedTalent.removeAll()
+            /*for talent in self.selectedTalent {
+                desVC.selectedTalent.append(talent)
+            }*/
         }
     }
 }
@@ -376,12 +397,11 @@ extension SearchTalentVC: UISearchBarDelegate {
     }
 }
 
-
-
-
-
-
-
+extension SearchTalentVC: SearchTalentCellDelegate {
+    func radioButtonTapped(_ sender: SearchTalentCell) {
+        self.sendInviteButton.setTitle("Send Invite to \(UserType.selectedTalentForSearch.count) Prospects", for: .normal)
+    }
+}
 
 
 

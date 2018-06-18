@@ -114,16 +114,6 @@ class FirebaseAuth {
         
     }
     
-    func archiveProject() {
-        
-    }
-    
-    func activateProject() {
-        
-    }
-    
-    func deleteProject() {
-        
-    }
+
 }
 

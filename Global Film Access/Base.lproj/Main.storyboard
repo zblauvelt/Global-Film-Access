@@ -2387,81 +2387,6 @@
             </objects>
             <point key="canvasLocation" x="7363.125" y="-403.75"/>
         </scene>
-        <!--Search Talent-->
-        <scene sceneID="2N5-co-qi8">
-            <objects>
-                <tableViewController title="Search Talent" id="x71-JX-PEA" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MM1-FJ-4xP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userSearchCell" rowHeight="100" id="KKV-0f-xGd">
-                                <rect key="frame" x="0.0" y="28" width="320" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KKV-0f-xGd" id="9P8-IN-NrU">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G3Z-dA-ymD">
-                                            <rect key="frame" x="40" y="7" width="243" height="85"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="UZQ-Js-ydE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="85" id="pOh-WC-Hpi"/>
-                                                        <constraint firstAttribute="height" constant="85" id="rY8-lS-iv1"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zack Blauvelt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rN-Bb-si5">
-                                                    <rect key="frame" x="95" y="0.0" width="148" height="85"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radioUnselected" translatesAutoresizingMaskIntoConstraints="NO" id="QTl-bm-yZM">
-                                            <rect key="frame" x="8" y="39" width="22" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="22" id="RTe-xq-5eu"/>
-                                                <constraint firstAttribute="width" constant="22" id="rX0-3a-Tk9"/>
-                                            </constraints>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inviteSent" translatesAutoresizingMaskIntoConstraints="NO" id="78F-1N-WRY">
-                                            <rect key="frame" x="291" y="38.5" width="21" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="21" id="EKq-WZ-3OS"/>
-                                                <constraint firstAttribute="height" constant="21" id="pkf-aX-vmO"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="QTl-bm-yZM" firstAttribute="leading" secondItem="9P8-IN-NrU" secondAttribute="leading" constant="8" id="GsV-te-Fts"/>
-                                        <constraint firstItem="G3Z-dA-ymD" firstAttribute="leading" secondItem="QTl-bm-yZM" secondAttribute="trailing" constant="10" id="Ooz-nz-AXf"/>
-                                        <constraint firstItem="QTl-bm-yZM" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="X3S-LQ-kLz"/>
-                                        <constraint firstItem="G3Z-dA-ymD" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="ZYU-Px-gEU"/>
-                                        <constraint firstItem="78F-1N-WRY" firstAttribute="centerY" secondItem="9P8-IN-NrU" secondAttribute="centerY" id="eGy-Cr-ybF"/>
-                                        <constraint firstAttribute="trailing" secondItem="78F-1N-WRY" secondAttribute="trailing" constant="8" id="eMf-Rp-K8O"/>
-                                        <constraint firstItem="78F-1N-WRY" firstAttribute="leading" secondItem="G3Z-dA-ymD" secondAttribute="trailing" constant="8" id="gr8-b3-85S"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="x71-JX-PEA" id="q6r-mw-Brn"/>
-                            <outlet property="delegate" destination="x71-JX-PEA" id="G77-m4-fxw"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Search" id="jwc-h1-zZV">
-                        <barButtonItem key="rightBarButtonItem" title="Select All" id="kQp-ef-ybm"/>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FWM-ad-UfO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8098.125" y="-405"/>
-        </scene>
         <!--Search-->
         <scene sceneID="7Sc-Os-igE">
             <objects>
@@ -2569,11 +2494,12 @@
                     <connections>
                         <outlet property="sendInviteButton" destination="VCJ-8s-zDW" id="RNU-1q-8Cg"/>
                         <outlet property="tableView" destination="Pnu-Ey-fdi" id="5QE-vH-cxc"/>
+                        <segue destination="9wb-us-SpE" kind="presentation" identifier="assignAudition2" id="KtM-Sj-8tS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6zE-eF-EwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8096.25" y="375"/>
+            <point key="canvasLocation" x="8119" y="-403"/>
         </scene>
         <!--Profile-->
         <scene sceneID="N0Y-Ff-BA9">
@@ -2904,9 +2830,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="ZSH-Gd-ljJ" kind="show" identifier="message" id="neG-bT-68F"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -2921,6 +2844,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="ZSH-Gd-ljJ" kind="show" identifier="message" id="qxo-Ik-XAc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="058-Wd-NvS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="rtl-k6-BFJ" userLabel="Exit" sceneMemberID="exit"/>
@@ -2962,13 +2888,13 @@
                                         <rect key="frame" x="0.0" y="50" width="304" height="201"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QM-69-iyR">
-                                                <rect key="frame" x="0.0" y="0.0" width="304" height="25"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="304" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X51-fg-O89">
-                                                <rect key="frame" x="0.0" y="30" width="304" height="171"/>
+                                                <rect key="frame" x="0.0" y="5" width="304" height="196"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -3970,6 +3896,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Ozr-ac-8g7"/>
         <segue reference="iRo-JK-oAK"/>
+        <segue reference="KtM-Sj-8tS"/>
         <segue reference="EvJ-64-rho"/>
         <segue reference="SUM-tk-5AS"/>
     </inferredMetricsTieBreakers>
