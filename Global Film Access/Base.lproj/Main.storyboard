@@ -2463,35 +2463,57 @@
                                     <outlet property="delegate" destination="FHK-yI-JIe" id="0uM-8Z-zu0"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCJ-8s-zDW">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="OSW-Pb-ich">
                                 <rect key="frame" x="0.0" y="386" width="320" height="45"/>
-                                <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vqf-bi-84V">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="45"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="Select All">
+                                            <color key="titleColor" red="0.16862745098039217" green="0.71764705882352942" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectTapped:" destination="FHK-yI-JIe" eventType="touchUpInside" id="Hwk-PR-Kd5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCJ-8s-zDW">
+                                        <rect key="frame" x="160" y="0.0" width="160" height="45"/>
+                                        <color key="backgroundColor" red="0.18843412400000001" green="0.74832278490000004" blue="0.63977283240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="h1N-Fl-TUk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="Send Invite">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendInviteTapped:" destination="FHK-yI-JIe" eventType="touchUpInside" id="oVP-WK-cpR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="h1N-Fl-TUk"/>
+                                    <constraint firstAttribute="height" constant="45" id="gHV-qw-Zqj"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="gTS-pC-tAR"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                <state key="normal" title="Send Invite">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendInviteTapped:" destination="FHK-yI-JIe" eventType="touchUpInside" id="oVP-WK-cpR"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="VCJ-8s-zDW" firstAttribute="bottom" secondItem="zOW-r8-786" secondAttribute="bottom" id="9Nh-nd-Czg"/>
+                            <constraint firstItem="OSW-Pb-ich" firstAttribute="leading" secondItem="zOW-r8-786" secondAttribute="leading" id="2cJ-Ra-E8c"/>
+                            <constraint firstItem="OSW-Pb-ich" firstAttribute="top" secondItem="Pnu-Ey-fdi" secondAttribute="bottom" id="ChC-Uy-YnG"/>
+                            <constraint firstItem="OSW-Pb-ich" firstAttribute="leading" secondItem="zOW-r8-786" secondAttribute="leading" id="EDK-jO-tdC"/>
                             <constraint firstItem="Pnu-Ey-fdi" firstAttribute="leading" secondItem="zOW-r8-786" secondAttribute="leading" id="F94-Jj-PR7"/>
-                            <constraint firstItem="VCJ-8s-zDW" firstAttribute="trailing" secondItem="zOW-r8-786" secondAttribute="trailing" id="Ilf-by-xcs"/>
-                            <constraint firstItem="VCJ-8s-zDW" firstAttribute="leading" secondItem="zOW-r8-786" secondAttribute="leading" id="OC2-BI-GdW"/>
                             <constraint firstItem="Pnu-Ey-fdi" firstAttribute="top" secondItem="dDx-DJ-aLM" secondAttribute="top" id="icw-mb-TvW"/>
-                            <constraint firstItem="VCJ-8s-zDW" firstAttribute="top" secondItem="Pnu-Ey-fdi" secondAttribute="bottom" id="oDI-AB-VOp"/>
+                            <constraint firstItem="OSW-Pb-ich" firstAttribute="trailing" secondItem="zOW-r8-786" secondAttribute="trailing" id="lzt-FU-JHe"/>
+                            <constraint firstItem="zOW-r8-786" firstAttribute="bottom" secondItem="OSW-Pb-ich" secondAttribute="bottom" id="swX-0l-Hal"/>
                             <constraint firstItem="zOW-r8-786" firstAttribute="trailing" secondItem="Pnu-Ey-fdi" secondAttribute="trailing" id="vXf-5u-vos"/>
+                            <constraint firstItem="zOW-r8-786" firstAttribute="trailing" secondItem="OSW-Pb-ich" secondAttribute="trailing" id="y5K-zY-Jdb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zOW-r8-786"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="JXG-VF-yuf"/>
                     <connections>
+                        <outlet property="selectBtn" destination="Vqf-bi-84V" id="YJ0-2f-z0R"/>
                         <outlet property="sendInviteButton" destination="VCJ-8s-zDW" id="RNU-1q-8Cg"/>
                         <outlet property="tableView" destination="Pnu-Ey-fdi" id="5QE-vH-cxc"/>
                         <segue destination="9wb-us-SpE" kind="presentation" identifier="assignAudition2" id="KtM-Sj-8tS"/>
@@ -2888,13 +2910,13 @@
                                         <rect key="frame" x="0.0" y="50" width="304" height="201"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QM-69-iyR">
-                                                <rect key="frame" x="0.0" y="0.0" width="304" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="304" height="25"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X51-fg-O89">
-                                                <rect key="frame" x="0.0" y="5" width="304" height="196"/>
+                                                <rect key="frame" x="0.0" y="30" width="304" height="171"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

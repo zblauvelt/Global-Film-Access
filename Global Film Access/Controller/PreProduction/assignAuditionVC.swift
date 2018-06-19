@@ -70,9 +70,12 @@ class assignAuditionVC: UITableViewController {
                 let position = CastingDetailVC.positionName
                 let prospect = Prospect(talentName: fullName, talentRating: "5", talentAccepted: "NO")
                 prospect.createProspect(prospect: prospect, projectID: project, position: position, userID: userID)
-                UserType.selectedTalentForSearch.removeAll()
-                self.dismiss(animated: true, completion: nil)
+                
+                //let invitation = 
+                
             }
+            UserType.selectedTalentForSearch.removeAll()
+            self.dismiss(animated: true, completion: nil)
         } else {
             let talentRating = "5"
             let talentAccepted = "NO"
