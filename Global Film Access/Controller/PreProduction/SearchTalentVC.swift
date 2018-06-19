@@ -27,6 +27,8 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var prospectRef: FIRDatabaseReference!
     static var userProfileImageCache: NSCache<NSString, UIImage> = NSCache()
     let searchController = UISearchController(searchResultsController: nil)
+    var allSelected = false
+    @IBOutlet weak var selectBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,7 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         searchController.searchBar.tintColor = UIColor.white
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
-        self.sendInviteButton.setTitle("Send Invite to \(UserType.selectedTalentForSearch.count) Prospects", for: .normal)
+        self.sendInviteButton.setTitle("Send Invite (\(UserType.selectedTalentForSearch.count))", for: .normal)
         getTalentProfiles()
         
     }
@@ -48,7 +50,7 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tableView.reloadData()
-        self.sendInviteButton.setTitle("Send Invite to \(UserType.selectedTalentForSearch.count) Prospects", for: .normal)
+        self.sendInviteButton.setTitle("Send Invite (\(UserType.selectedTalentForSearch.count))", for: .normal)
     }
 
     
@@ -144,6 +146,41 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         getSelectedTalent()
         self.performSegue(withIdentifier: "assignAudition2", sender: nil)
     }
+    
+    @IBAction func selectTapped(_ sender: Any) {
+        changebarButtonTitle()
+    }
+    
+    func changebarButtonTitle() {
+        if allSelected {
+            if isSearching() {
+                for talent in filteredTalent {
+                    UserType.selectedTalentForSearch = UserType.selectedTalentForSearch.filter{$0 != talent.userKey}
+                }
+            } else {
+                for talent in unfilteredTalent {
+                    UserType.selectedTalentForSearch = UserType.selectedTalentForSearch.filter{$0 != talent.userKey}
+                }
+            }
+            selectBtn.setTitle("Select All", for: .normal)
+            allSelected = false
+        } else {
+            if isSearching() {
+                for talent in filteredTalent {
+                    UserType.selectedTalentForSearch.append(talent.userKey)
+                }
+            } else {
+                for talent in unfilteredTalent {
+                    UserType.selectedTalentForSearch.append(talent.userKey)
+                }
+            }
+            selectBtn.setTitle("Unselect", for: .normal)
+            allSelected = true
+        }
+        self.sendInviteButton.setTitle("Send Invite (\(UserType.selectedTalentForSearch.count))", for: .normal)
+        tableView.reloadData()
+    }
+    
     
     //Gets all the talent selected
     func getSelectedTalent() {
@@ -369,9 +406,6 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             desVC.segueTag = 2
             desVC.selectedTalent = self.selectedTalent
             self.selectedTalent.removeAll()
-            /*for talent in self.selectedTalent {
-                desVC.selectedTalent.append(talent)
-            }*/
         }
     }
 }
@@ -399,7 +433,7 @@ extension SearchTalentVC: UISearchBarDelegate {
 
 extension SearchTalentVC: SearchTalentCellDelegate {
     func radioButtonTapped(_ sender: SearchTalentCell) {
-        self.sendInviteButton.setTitle("Send Invite to \(UserType.selectedTalentForSearch.count) Prospects", for: .normal)
+        self.sendInviteButton.setTitle("Send Invite (\(UserType.selectedTalentForSearch.count))", for: .normal)
     }
 }
 

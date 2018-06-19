@@ -103,5 +103,9 @@ class SearchTalentCell: UITableViewCell {
 
         
     }
+    
+    @objc func selectAllTapped(sender: UIBarButtonItem) {
+        //TODO
+    }
   
 }
