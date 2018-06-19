@@ -43,6 +43,8 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         self.sendInviteButton.setTitle("Send Invite (\(UserType.selectedTalentForSearch.count))", for: .normal)
+        let backButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(SearchTalentVC.emptySelectionArray(sender:)))
+        self.navigationItem.leftBarButtonItem = backButton
         getTalentProfiles()
         
     }
@@ -51,6 +53,13 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewWillAppear(true)
         tableView.reloadData()
         self.sendInviteButton.setTitle("Send Invite (\(UserType.selectedTalentForSearch.count))", for: .normal)
+        selectBtn.setTitle("Select All", for: .normal)
+        
+    }
+    
+    @objc func emptySelectionArray(sender: UIBarButtonItem) {
+        UserType.selectedTalentForSearch.removeAll()
+        _ = navigationController?.popViewController(animated: true)
     }
 
     
@@ -148,12 +157,13 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func selectTapped(_ sender: Any) {
-        changebarButtonTitle()
+        toggleSelectAll()
     }
     
-    func changebarButtonTitle() {
+    func toggleSelectAll() {
+        UserType.selectedTalentForSearch.removeAll()
         if allSelected {
-            if isSearching() {
+            /*if isSearching() {
                 for talent in filteredTalent {
                     UserType.selectedTalentForSearch = UserType.selectedTalentForSearch.filter{$0 != talent.userKey}
                 }
@@ -161,11 +171,14 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 for talent in unfilteredTalent {
                     UserType.selectedTalentForSearch = UserType.selectedTalentForSearch.filter{$0 != talent.userKey}
                 }
-            }
+            }*/
+            UserType.selectedTalentForSearch.removeAll()
             selectBtn.setTitle("Select All", for: .normal)
             allSelected = false
         } else {
+            
             if isSearching() {
+                
                 for talent in filteredTalent {
                     UserType.selectedTalentForSearch.append(talent.userKey)
                 }
@@ -434,6 +447,10 @@ extension SearchTalentVC: UISearchBarDelegate {
 extension SearchTalentVC: SearchTalentCellDelegate {
     func radioButtonTapped(_ sender: SearchTalentCell) {
         self.sendInviteButton.setTitle("Send Invite (\(UserType.selectedTalentForSearch.count))", for: .normal)
+        if UserType.selectedTalentForSearch.count == 0 {
+            self.selectBtn.setTitle("Select All", for: .normal)
+            allSelected = false
+        }
     }
 }
 

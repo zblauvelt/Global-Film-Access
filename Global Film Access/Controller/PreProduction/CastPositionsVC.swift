@@ -149,5 +149,4 @@ class CastPositionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @IBAction func cancelAddRole(segue: UIStoryboardSegue) {}
-    
 }

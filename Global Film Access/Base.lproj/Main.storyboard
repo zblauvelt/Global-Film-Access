@@ -2868,6 +2868,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="ZSH-Gd-ljJ" kind="show" identifier="message" id="qxo-Ik-XAc"/>
+                        <segue destination="rtl-k6-BFJ" kind="unwind" identifier="unwindToCastingDetail" unwindAction="unwindToCastingDetailWithSegue:" id="6Vw-vL-oih"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="058-Wd-NvS" userLabel="First Responder" sceneMemberID="firstResponder"/>

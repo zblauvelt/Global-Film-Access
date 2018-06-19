@@ -20,8 +20,9 @@ class CastingDetailVC: UIViewController {
         // Do any additional setup after loading the view.
         CastingDetailVC.positionName = selectedCastPosition
         self.title = selectedCastPosition
-        print(CastingDetailVC.positionName)
     }
+    
+
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -31,6 +32,6 @@ class CastingDetailVC: UIViewController {
         }
     }
 
-
+    @IBAction func unwindToCastingDetail(segue: UIStoryboardSegue) {}
 
 }
