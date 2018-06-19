@@ -70,12 +70,12 @@ class assignAuditionVC: UITableViewController {
                 let position = CastingDetailVC.positionName
                 let prospect = Prospect(talentName: fullName, talentRating: "5", talentAccepted: "NO")
                 prospect.createProspect(prospect: prospect, projectID: project, position: position, userID: userID)
-                
                 //let invitation = 
                 
             }
             UserType.selectedTalentForSearch.removeAll()
-            self.dismiss(animated: true, completion: nil)
+            self.showAlert(message: "You have invited \(selectedTalent.count) people to \(auditions[indexPath.row].description). They will receive your invite in their inbox and you can now manage them on the role's page.")
+            //self.dismiss(animated: true, completion: nil)
         } else {
             let talentRating = "5"
             let talentAccepted = "NO"
@@ -86,7 +86,14 @@ class assignAuditionVC: UITableViewController {
         }
     }
     
-    
+    func showAlert(message: String) {
+        let alertController = UIAlertController(title: "" , message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
+            self.performSegue(withIdentifier: "unwindToCastingDetail", sender: nil)
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
  
 
     //MARK: Getting Audition Details
@@ -119,9 +126,10 @@ class assignAuditionVC: UITableViewController {
                 desVC.auditionID = auditions[indexPath.row].auditionKey
                 desVC.inviteeKey = userID
             }
-            
-            
-        }
+        } /*else if segue.identifier == "unwindToCastingDetail" {
+            let desVC = segue.destination as! CastingDetailVC
+            desVC.selectedCastPosition = positionName
+        }*/
     }
 
     
