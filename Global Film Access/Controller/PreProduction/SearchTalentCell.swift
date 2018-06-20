@@ -21,6 +21,7 @@ class SearchTalentCell: UITableViewCell {
     var prospectRef: FIRDatabaseReference!
     var currentTalent: UserType!
     weak var delegate: SearchTalentCellDelegate?
+    
     func setTalent(talent: UserType) {
         currentTalent = talent
         currentTalent.userKey = talent.userKey

@@ -37,6 +37,7 @@ enum FIRRoleData: String {
     case detailDescription = "detailDescription"
     case talentRating = "talentRating"
     case talentAccepted = "talentAccepted"
+    case talentProfileImage = "talentProfileImage"
     case heightMin = "heightMin"
     case heightMax = "heightMax"
     case ageMin = "ageMin"
@@ -427,6 +428,7 @@ class Prospect {
     var talentRating: String = ""
     var talentedAccepted: String = "NO"
     var prospectID: String = ""
+    var talentProfileImage: String?
     
     var talentAuditionAssignment: String = ""
     
@@ -454,6 +456,12 @@ class Prospect {
         
         if let talentAuditionAssignment = prospectData[FIRRoleData.auditionAssignment.rawValue] {
             self.talentAuditionAssignment = talentAuditionAssignment
+        }
+        
+        if let talentProfileImage = prospectData[FIRRoleData.talentProfileImage.rawValue] {
+            self.talentProfileImage = talentProfileImage
+        } else {
+            self.talentProfileImage = "https://firebasestorage.googleapis.com/v0/b/global-film-access.appspot.com/o/profile-pics%2F89A22D1E-4CBF-4372-BAB1-585E569CF143?alt=media&token=c6aee4d7-efe6-4d73-8af0-7979da9a697d"
         }
         
     }
