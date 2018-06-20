@@ -126,10 +126,7 @@ class assignAuditionVC: UITableViewController {
                 desVC.auditionID = auditions[indexPath.row].auditionKey
                 desVC.inviteeKey = userID
             }
-        } /*else if segue.identifier == "unwindToCastingDetail" {
-            let desVC = segue.destination as! CastingDetailVC
-            desVC.selectedCastPosition = positionName
-        }*/
+        } 
     }
 
     
