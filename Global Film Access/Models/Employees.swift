@@ -427,6 +427,7 @@ class Prospect {
     var talentRating: String = ""
     var talentedAccepted: String = "NO"
     var prospectID: String = ""
+    
     var talentAuditionAssignment: String = ""
     
     init(talentName: String, talentRating: String, talentAccepted: String) {

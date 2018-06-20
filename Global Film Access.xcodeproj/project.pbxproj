@@ -55,6 +55,7 @@
 		14E640F22002EB6C00A00968 /* CreateProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E640F12002EB6C00A00968 /* CreateProfileVC.swift */; };
 		14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */; };
 		14E8D5071FF2CA7600B85A20 /* ArchiveProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */; };
+		14FB6D6E20DAA91C00179483 /* CastingDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FB6D6D20DAA91C00179483 /* CastingDetailCell.swift */; };
 		1E477724B92E25CFD32BCC06 /* Pods_Global_Film_Access.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CDBEDCFF910448C7FC4733 /* Pods_Global_Film_Access.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		14E640F12002EB6C00A00968 /* CreateProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileVC.swift; sourceTree = "<group>"; };
 		14E8D5041FF2BEE800B85A20 /* ArchiveProjectsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectsVC.swift; sourceTree = "<group>"; };
 		14E8D5061FF2CA7600B85A20 /* ArchiveProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveProjectCell.swift; sourceTree = "<group>"; };
+		14FB6D6D20DAA91C00179483 /* CastingDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastingDetailCell.swift; sourceTree = "<group>"; };
 		C9E9645289A7DF37D7A13653 /* Pods-Global Film Access.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Global Film Access.release.xcconfig"; path = "Pods/Target Support Files/Pods-Global Film Access/Pods-Global Film Access.release.xcconfig"; sourceTree = "<group>"; };
 		D3CDBEDCFF910448C7FC4733 /* Pods_Global_Film_Access.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Global_Film_Access.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 				14066E5920135E1900440DD6 /* PreProductionDashboardVC.swift */,
 				14A948D32023EF910061881D /* CastPositionsVC.swift */,
 				14C94879202B2BF000A97237 /* CastingDetailVC.swift */,
+				14FB6D6D20DAA91C00179483 /* CastingDetailCell.swift */,
 				14C9487B202B832500A97237 /* SearchTalentVC.swift */,
 				14C9487D202B8CF800A97237 /* SearchTalentCell.swift */,
 				149CFDDF2079332700E8D8AF /* AddEditAuditions.swift */,
@@ -417,6 +420,7 @@
 				1444D5EF1FD0C53900A50CFF /* UserProjects.swift in Sources */,
 				14C9487E202B8CF800A97237 /* SearchTalentCell.swift in Sources */,
 				14E8D5051FF2BEE800B85A20 /* ArchiveProjectsVC.swift in Sources */,
+				14FB6D6E20DAA91C00179483 /* CastingDetailCell.swift in Sources */,
 				1403ED17200D4D2700A5C58C /* ProjectDetailVC.swift in Sources */,
 				14392FAB1FC516CE00993BB7 /* AppDelegate.swift in Sources */,
 				1458F08A20B5B96600D6FE82 /* CustomTextView.swift in Sources */,
