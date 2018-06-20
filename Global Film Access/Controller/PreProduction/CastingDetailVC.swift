@@ -8,11 +8,12 @@
 
 import UIKit
 
-class CastingDetailVC: UIViewController {
-    
+class CastingDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     var selectedCastPosition: String = ""
     static var positionName: String = ""
     var selectedRole = [Cast]()
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,13 @@ class CastingDetailVC: UIViewController {
         self.title = selectedCastPosition
     }
     
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //TODO
+    }
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

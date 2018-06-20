@@ -2372,7 +2372,66 @@
                     <view key="view" contentMode="scaleToFill" id="byh-FG-uyf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bs3-J7-dST">
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CastProspectCell" rowHeight="150" id="HxW-XM-6R0" customClass="CastingDetailCell" customModule="Global_Film_Access" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HxW-XM-6R0" id="pjc-jx-NHI">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="PAF-2l-rfa" customClass="CircleImage" customModule="Global_Film_Access" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="21" width="75" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="78Y-JB-tkg"/>
+                                                        <constraint firstAttribute="height" constant="75" id="KEq-Jr-UIG"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zack Blauvelt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XY3-Mz-0Sh">
+                                                    <rect key="frame" x="110" y="48" width="195" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="TLW-Ig-YhI">
+                                                    <rect key="frame" x="13" y="109" width="294" height="31"/>
+                                                </slider>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="TLW-Ig-YhI" secondAttribute="bottom" id="0Rb-78-Ic0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TLW-Ig-YhI" secondAttribute="trailing" id="41e-ZH-cjS"/>
+                                                <constraint firstItem="PAF-2l-rfa" firstAttribute="top" secondItem="pjc-jx-NHI" secondAttribute="topMargin" constant="10" id="4f7-gF-UaB"/>
+                                                <constraint firstItem="XY3-Mz-0Sh" firstAttribute="centerY" secondItem="PAF-2l-rfa" secondAttribute="centerY" id="Q4Z-yu-R1X"/>
+                                                <constraint firstItem="PAF-2l-rfa" firstAttribute="leading" secondItem="pjc-jx-NHI" secondAttribute="leadingMargin" id="SBf-3h-Wec"/>
+                                                <constraint firstItem="TLW-Ig-YhI" firstAttribute="leading" secondItem="pjc-jx-NHI" secondAttribute="leadingMargin" id="eXX-vR-gMR"/>
+                                                <constraint firstItem="XY3-Mz-0Sh" firstAttribute="leading" secondItem="PAF-2l-rfa" secondAttribute="trailing" constant="20" id="zNo-FE-Tnl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="XY3-Mz-0Sh" secondAttribute="trailing" id="zlo-OI-U3f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="profileImg" destination="PAF-2l-rfa" id="dlI-sU-6ZT"/>
+                                            <outlet property="prospectNameLbl" destination="XY3-Mz-0Sh" id="6mh-Ms-5BV"/>
+                                            <outlet property="ratingSlider" destination="TLW-Ig-YhI" id="JqO-Dv-FUK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PnP-SE-YoJ" id="1lQ-ac-Bq2"/>
+                                    <outlet property="delegate" destination="PnP-SE-YoJ" id="ubm-KK-14S"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AGT-jk-3zk" firstAttribute="bottom" secondItem="Bs3-J7-dST" secondAttribute="bottom" id="AKE-yk-mXE"/>
+                            <constraint firstItem="Bs3-J7-dST" firstAttribute="leading" secondItem="AGT-jk-3zk" secondAttribute="leading" id="Pn0-hx-Cld"/>
+                            <constraint firstItem="Bs3-J7-dST" firstAttribute="trailing" secondItem="AGT-jk-3zk" secondAttribute="trailing" id="btF-vY-uft"/>
+                            <constraint firstItem="Bs3-J7-dST" firstAttribute="top" secondItem="AGT-jk-3zk" secondAttribute="top" id="yZi-sf-u9q"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="AGT-jk-3zk"/>
                     </view>
                     <navigationItem key="navigationItem" title="Cast" id="htY-ZA-gDi">
@@ -2382,6 +2441,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Bs3-J7-dST" id="ufg-7p-bwo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YIA-jP-J8L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
