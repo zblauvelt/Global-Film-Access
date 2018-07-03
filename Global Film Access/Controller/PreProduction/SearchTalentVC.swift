@@ -421,6 +421,8 @@ class SearchTalentVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.selectedTalent.removeAll()
         }
     }
+    
+    @IBAction func unwindToSearchVC(segue: UIStoryboardSegue) {}
 }
 
 

@@ -2936,11 +2936,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Auditions" id="1jK-Ga-Qwn">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="QOH-Es-Q2M">
-                            <connections>
-                                <segue destination="rtl-k6-BFJ" kind="unwind" unwindAction="cancelToProfileWithSegue:" id="cQS-ER-lN1"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="QOH-Es-Q2M"/>
                     </navigationItem>
                     <connections>
                         <segue destination="ZSH-Gd-ljJ" kind="show" identifier="message" id="qxo-Ik-XAc"/>
