@@ -35,6 +35,7 @@ enum FIREventData: String {
     case projectID = "projectID"
     case eventID = "eventID"
     case roleID = "roleID"
+    case timeStamp = "timestamp"
 }
 
 class Notifications {
@@ -43,6 +44,7 @@ class Notifications {
     var inviterProfileImage: String
     var inviterUserID: String
     var notificatoinKey: String = ""
+    var timeStamp = ""
     static var REF_NOTIFICATION = DB_BASE.child("users").child("notifications")
     //ID from database to specify project
     var projectID: String?
@@ -137,6 +139,12 @@ class Notifications {
             throw CreateNotificationError.invalidRoleID
         }
         
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        notification.timeStamp = formatter.string(from: now)
+        
         print("Create Notification")
         
         let notification: Dictionary <String, String> = [
@@ -144,6 +152,7 @@ class Notifications {
             FIREventData.label.rawValue: notification.label.rawValue,
             FIREventData.inviterProfileImage.rawValue: notification.inviterProfileImage,
             FIREventData.inviterUserID.rawValue: notification.inviterUserID,
+            FIREventData.timeStamp.rawValue: notification.timeStamp,
             FIREventData.projectID.rawValue: project,
             FIREventData.roleID.rawValue: role,
             FIREventData.eventID.rawValue: event
