@@ -17,12 +17,14 @@ class assignAuditionVC: UITableViewController {
     var positionName = CastingDetailVC.positionName
     var userID = ""
     var segueTag = 0
+    var inviterInfo = [UserType]()
     //received from SearchTalentVC
     var selectedTalent = [UserType]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         getAuditionDetails()
+        getInviteeDetails()
         print("Selected Talent Count \(self.selectedTalent.count)")
         print(segueTag)
 
@@ -70,8 +72,35 @@ class assignAuditionVC: UITableViewController {
                 let position = CastingDetailVC.positionName
                 let prospect = Prospect(talentName: fullName, talentRating: "5", talentAccepted: "NO")
                 prospect.createProspect(prospect: prospect, projectID: project, position: position, userID: userID)
-                //let invitation = 
                 
+                let audition = auditions[indexPath.row].auditionKey
+                
+                if let inviterProfileImage = inviterInfo[0].profileImage {
+                    print(project)
+                    let notification = Notifications(label: .audition, inviterProfileImage: inviterProfileImage, projectID: project, eventID: audition, roleID: position)
+                    
+                    do {
+                        try notification.createAuditionNotification(notification: notification, userKey: userID)
+                    } catch CreateNotificationError.invalidMessage {
+                        print("\(CreateNotificationError.invalidMessage.rawValue)")
+                    } catch CreateNotificationError.invalidLabel {
+                        print("\(CreateNotificationError.invalidLabel.rawValue)")
+                    } catch CreateNotificationError.invalidRoleID {
+                        print("\(CreateNotificationError.invalidRoleID.rawValue)")
+                    } catch CreateNotificationError.invalidProjectID {
+                        print("\(CreateNotificationError.invalidProjectID.rawValue)")
+                    } catch CreateNotificationError.invalidAuditionID {
+                        print("\(CreateNotificationError.invalidAuditionID.rawValue)")
+                    } catch CreateNotificationError.invalidProfileImage {
+                        print("\(CreateNotificationError.invalidProfileImage.rawValue)")
+                    } catch CreateNotificationError.invalidInviteeUserId {
+                        print("\(CreateNotificationError.invalidInviteeUserId)")
+                    } catch let error {
+                        print("\(error)")
+                    }
+                    
+                }
+
             }
             UserType.selectedTalentForSearch.removeAll()
             self.showAlert(message: "You have invited \(selectedTalent.count) people to \(auditions[indexPath.row].description). They will receive your invite in their inbox and you can now manage them on the role's page.")
@@ -118,7 +147,24 @@ class assignAuditionVC: UITableViewController {
         })
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func getInviteeDetails() {
+        UserType.REF_CURRENT_USER_DETAILS_INFO.observe(.value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                self.inviterInfo.removeAll()
+                for snap in snapshot {
+                    print("INFO SNAP: \(snap)")
+                    
+                    if let InviterDetailDict = snap.value as? Dictionary<String, String> {
+                        let key = snap.key
+                        let inviterDetail = UserType(userKey: key, userData: InviterDetailDict)
+                        self.inviterInfo.append(inviterDetail)
+                    }
+                }
+            }
+        })
+    }
+    
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "message" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let desVC = segue.destination as! inviteMessageVC
@@ -127,7 +173,7 @@ class assignAuditionVC: UITableViewController {
                 desVC.inviteeKey = userID
             }
         } 
-    }
+    }*/
 
     
     
