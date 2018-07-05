@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class inviteMessageVC: UIViewController {
+/*class inviteMessageVC: UIViewController {
     
     var inviteeName = ""
     var inviteeKey = ""
@@ -175,4 +175,4 @@ class inviteMessageVC: UIViewController {
 
 
 
-}
+}*/
