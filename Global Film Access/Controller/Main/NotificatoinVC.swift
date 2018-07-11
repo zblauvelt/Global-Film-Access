@@ -54,6 +54,8 @@ class NotificatoinVC: UITableViewController {
         return NotificationCell()
     }
  
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -120,6 +122,38 @@ class NotificatoinVC: UITableViewController {
             })
         
         }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToNotificationDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let desVC = segue.destination as! NotificationDetailVC
+                desVC.notificationLabel = notifications[indexPath.row].label
+                desVC.inviterUserID = notifications[indexPath.row].inviterUserID
+                //role ID
+                if let roleID = notifications[indexPath.row].roleID {
+                    desVC.roleID = roleID
+                } else {
+                    desVC.roleID = ""
+                }
+                
+                //project ID
+                if let projectID = notifications[indexPath.row].projectID {
+                    desVC.projectID = projectID
+                } else {
+                    desVC.projectID = ""
+                }
+                
+                //Audition ID
+                if let auditionID = notifications[indexPath.row].eventID {
+                    desVC.eventID = auditionID
+                } else {
+                    desVC.eventID = ""
+                }
+                
+            }
+        }
+    }
+    
     
     /*func getInviterProfileImage() {
         var inviterInfo = [UserType]()
