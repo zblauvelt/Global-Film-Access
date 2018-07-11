@@ -11,6 +11,7 @@
 		1403ED17200D4D2700A5C58C /* ProjectDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */; };
 		14058A64206935E1008E8347 /* EditProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14058A63206935E1008E8347 /* EditProjectVC.swift */; };
 		14066E5A20135E1900440DD6 /* PreProductionDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14066E5920135E1900440DD6 /* PreProductionDashboardVC.swift */; };
+		140DB55920F53AD70012A3CE /* NotificationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140DB55820F53AD70012A3CE /* NotificationDetailVC.swift */; };
 		1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E5961FD8C8DD00925648 /* CommonTextField.swift */; };
 		1433E5991FD8D11400925648 /* CreateProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E5981FD8D11400925648 /* CreateProjectVC.swift */; };
 		1433E59D1FD8E86200925648 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1433E59C1FD8E86200925648 /* CircleButton.swift */; };
@@ -67,6 +68,7 @@
 		1403ED16200D4D2700A5C58C /* ProjectDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailVC.swift; sourceTree = "<group>"; };
 		14058A63206935E1008E8347 /* EditProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectVC.swift; sourceTree = "<group>"; };
 		14066E5920135E1900440DD6 /* PreProductionDashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreProductionDashboardVC.swift; sourceTree = "<group>"; };
+		140DB55820F53AD70012A3CE /* NotificationDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDetailVC.swift; sourceTree = "<group>"; };
 		1433E5961FD8C8DD00925648 /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
 		1433E5981FD8D11400925648 /* CreateProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProjectVC.swift; sourceTree = "<group>"; };
 		1433E59C1FD8E86200925648 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				14CA4A5720576782007F7C20 /* ProfileCollectionViewCell.swift */,
 				14C900B0205B1DA6004DCFF0 /* DemoReelVC.swift */,
 				14BD6D0A20EE86BF0090A8D5 /* NotificatoinVC.swift */,
+				140DB55820F53AD70012A3CE /* NotificationDetailVC.swift */,
 				14BD6D0C20EE92990090A8D5 /* NotificationCell.swift */,
 			);
 			path = Main;
@@ -414,6 +417,7 @@
 				1433E59D1FD8E86200925648 /* CircleButton.swift in Sources */,
 				1433E5971FD8C8DD00925648 /* CommonTextField.swift in Sources */,
 				149CFDDE2076F72C00E8D8AF /* EditProjectCell.swift in Sources */,
+				140DB55920F53AD70012A3CE /* NotificationDetailVC.swift in Sources */,
 				148E23981FFAC72D004F7D1D /* CreateAccountVC.swift in Sources */,
 				1403ED13200851F800A5C58C /* Project.swift in Sources */,
 				14E640F22002EB6C00A00968 /* CreateProfileVC.swift in Sources */,
